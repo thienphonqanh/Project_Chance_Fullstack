@@ -27,6 +27,11 @@ class Controller {
     }
 
     public function render($view, $data = []) {
+        
+        if (!empty(View::$dataShare)){
+            $data = array_merge($data, View::$dataShare);
+        }
+
         // Chuyển phần tử mảng thành biến
         extract($data); 
         /*

@@ -33,6 +33,14 @@ if (!empty($configsDir)):
     endforeach;
 endif;
 
+// Load Service Provider Class
+require_once 'core/ServiceProvider.php';
+
+// Load View
+require_once 'core/View.php';
+
+
+// Load PHP Mailer
 require_once 'phpmailer/PHPMailer.php';
 require_once 'phpmailer/SMTP.php';
 require_once 'phpmailer/Exception.php';
