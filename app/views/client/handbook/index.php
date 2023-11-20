@@ -68,7 +68,7 @@
                 <a href="#">
                     <h5 class="post-category fw-normal fs-5 text-uppercase text-white p-2">Trạm sạc kỹ năng</h5>
                 </a>
-                <a href="tram-sac-ky-nang.html" class="btn border border-dark m-0 px-3">Xem tất cả</a>
+                <a href="<?php echo _WEB_ROOT; ?>/cam-nang/tram-sac-ky-nang" class="btn border border-dark m-0 px-3">Xem tất cả</a>
             </div>
             <div>
                 <div class="row">
@@ -145,7 +145,7 @@
                 <a href="#">
                     <h5 class="post-category fw-normal fs-5 text-uppercase text-white p-2">La bàn sự nghiệp</h5>
                 </a>
-                <a href="la-ban-su-nghiep.html" class="btn border border-dark m-0 px-3">Xem tất cả</a>
+                <a href="<?php echo _WEB_ROOT; ?>/cam-nang/la-ban-su-nghiep" class="btn border border-dark m-0 px-3">Xem tất cả</a>
             </div>
             <div>
                 <div class="row">
@@ -223,7 +223,7 @@
                 <a href="#">
                     <h5 class="post-category fw-normal fs-5 text-uppercase text-white p-2">Ki ốt vui vẻ</h5>
                 </a>
-                <a href="ki-ot-vui-ve.html" class="btn border border-dark m-0 px-3">Xem tất cả</a>
+                <a href="<?php echo _WEB_ROOT; ?>/cam-nang/ki-ot-vui-ve" class="btn border border-dark m-0 px-3">Xem tất cả</a>
             </div>
             <div>
                 <div class="row">
