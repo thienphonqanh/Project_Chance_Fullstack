@@ -46,8 +46,6 @@ require_once 'phpmailer/SMTP.php';
 require_once 'phpmailer/Exception.php';
 
 require_once 'core/Route.php';
-require_once 'core/Session.php';
-require_once 'app/App.php';
 
 // Kiểm tra config của DB và load vào
 if (!empty($config['database'])):
@@ -59,8 +57,24 @@ if (!empty($config['database'])):
         require_once 'core/Database.php';
         require_once 'core/DB.php';
     endif;
-
 endif;
+
+
+require_once 'app/App.php';
+require_once 'core/Session.php';
+
+//Load core helpers
+require_once 'core/Helper.php';
+
+//Load all heplers
+$allHelpers = scandir('app/helpers');
+if (!empty($allHelpers)) {
+    foreach ($allHelpers as $item) {
+        if ($item != '.' && $item != '..' && file_exists('app/helpers/' . $item)) {
+            require_once 'app/helpers/' . $item;
+        }
+    }
+}
 
 
 require_once 'core/Mailer.php';

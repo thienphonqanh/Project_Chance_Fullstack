@@ -21,8 +21,6 @@ class AuthModel extends Model {
         $dbValue = $this->db->table('users')->select('id, email, password, status')
             ->where('email', '=', $username)
             ->first();
-
-        $response = [];
         
         if (!empty($dbValue)):
             $passwordHash = $dbValue['password'];
@@ -37,9 +35,9 @@ class AuthModel extends Model {
                     'create_at' => date('Y-m-d H:i:s')
                 ];
 
-                $insertTokenStatus = $this->db->table('login_token')->insert($dataToken);
-                if ($insertTokenStatus):
-                    if ($statusAccount === 1):
+                if ($statusAccount === 1):
+                    $insertTokenStatus = $this->db->table('login_token')->insert($dataToken);
+                    if ($insertTokenStatus):
                         // Lưu login token vào session
                         Session::data('login_token', $loginToken);
                         // Lưu thông tin người đăng nhập
@@ -47,34 +45,32 @@ class AuthModel extends Model {
                             ->select('id, fullname, thumbnail, email, 
                                 dob, address, phone, password, about_content, 
                                 contact_facebook, contact_twitter, contact_linkedin,
-                                contact_pinterest, status, decentralization_id, 
-                                last_activity, create_at')
+                                status, group_id, last_activity, create_at')
                             ->where('id', '=', $userId)
                             ->first();
                         Session::data('user_data', $userData);
 
                         return true;
                     endif;
-
-                    if ($statusAccount === 0):
-                        $response = [
-                            'message' => 'Vui lòng kích hoạt tài khoản tại Gmail bạn dùng để đăng ký tài khoản'
-                        ];
-                    endif;
-
-                    if ($statusAccount === 2):
-                        $response = [
-                            'message' => 'Tài khoản của bạn đã tạm thời bị khoá. Vui lòng liên hệ quản trị viên để xử lý'
-                        ];
-                    endif;
                 endif;
+
+                if ($statusAccount === 0):
+                    Session::flash('msg', 'Vui lòng kích hoạt tài khoản tại Gmail bạn dùng để đăng ký tài khoản');
+                    Session::flash('msg_type', 'danger');
+                endif;
+
+                if ($statusAccount === 2):
+                    Session::flash('msg', 'Tài khoản của bạn đã tạm thời bị khoá. Vui lòng liên hệ quản trị viên để được hỗ trợ');
+                    Session::flash('msg_type', 'danger');
+                endif;
+            else:
+                Session::flash('msg', 'Mật khẩu chưa chính xác');
+                Session::flash('msg_type', 'danger');
             endif;
+        else:
+            Session::flash('msg', 'Email chưa chính xác');
+            Session::flash('msg_type', 'danger');
         endif;
-
-        if (!empty($response)):
-            return $response;
-        endif;
-
 
         return false;
     }
@@ -87,7 +83,7 @@ class AuthModel extends Model {
             'email' => $_POST['email'],
             'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
             'active_token' => $activeToken,
-            'decentralization_id' => 2,
+            'group_id' => 5,
             'create_at' => date('Y-m-d H:i:s')
         ];
 
@@ -105,8 +101,16 @@ class AuthModel extends Model {
             $sendStatus = Mailer::sendMail($_POST['email'], $subject, $content);
 
             if ($sendStatus):
+                Session::flash('msg', 'Đăng ký thành công. Email kích hoạt đã được gửi đến bạn!');
+                Session::flash('msg_type', 'success');
                 return true;
+            else:
+                Session::flash('msg', 'Hệ thống đang gặp sự cố');
+                Session::flash('msg_type', 'danger');
             endif;
+        else:
+            Session::flash('msg', 'Hệ thống đang gặp sự cố');
+            Session::flash('msg_type', 'danger');
         endif;
 
         return false;
@@ -132,6 +136,21 @@ class AuthModel extends Model {
                     return true;
                 endif;    
             endif;
+        endif;
+
+        return false;
+    }
+
+    public function handleLogout($userId) {
+        $queryDelete = $this->db->table('login_token')
+            ->where('user_id', '=', $userId)
+            ->delete();
+        
+        if ($queryDelete):
+            Session::delete('login_token');
+            Session::delete('user_data');
+
+            return true;
         endif;
 
         return false;

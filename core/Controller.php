@@ -26,7 +26,7 @@ class Controller {
         return false;
     }
 
-    public function render($view, $data = []) {
+    public function render($view, $data = [], $role = '') {
         
         if (!empty(View::$dataShare)){
             $data = array_merge($data, View::$dataShare);
@@ -38,8 +38,17 @@ class Controller {
             'name' -> $name
             'title' -> $title 
         */
-        if (file_exists(_DIR_ROOT.'/app/views/'.$view.'.php')):
-            require_once _DIR_ROOT.'/app/views/'.$view.'.php';
+        if (!empty($role)):
+            if ($role == 'admin' || $role == 'client'):
+                if (file_exists(_DIR_ROOT.'/app/views/'.$role.'/'.$view.'.php')):
+                    require_once _DIR_ROOT.'/app/views/'.$role.'/'.$view.'.php';
+                endif;
+            endif;
+        else:
+            if (file_exists(_DIR_ROOT.'/app/views/'.$view.'.php')):
+                require_once _DIR_ROOT.'/app/views/'.$view.'.php';
+            endif;
         endif;
+        
     }
 }
