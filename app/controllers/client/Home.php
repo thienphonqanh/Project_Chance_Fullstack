@@ -10,7 +10,7 @@ class Home extends Controller {
     public function index() {
         $this->data['body'] = 'client/home/index';
         
-        $this->render('layouts/layout', $this->data, 'client');
+        $this->render('layouts/main.layout', $this->data, 'client');
     }
    
 }

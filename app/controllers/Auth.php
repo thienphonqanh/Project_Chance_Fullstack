@@ -13,6 +13,10 @@ class Auth extends Controller {
         $request = new Request();
         $response = new Response();
 
+        if (!empty(Session::data('login_token'))):
+            $response->redirect('trang-chu');
+        endif; 
+
         if ($request->isPost()): // Kiểm tra post
             $request->rules([
                 'email' => 'required',
@@ -62,6 +66,10 @@ class Auth extends Controller {
     public function register() {
         $request = new Request();
         $response = new Response();
+
+        if (!empty(Session::data('login_token'))):
+            $response->redirect('trang-chu');
+        endif; 
         
         if ($request->isPost()): // Kiểm tra post
             $request->rules([

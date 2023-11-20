@@ -1,5 +1,7 @@
 <?php
 define('_DIR_ROOT', __DIR__);
+const _INCODE = true; //Ngăn chặn hành vi truy cập trực tiếp vào file
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 // Xử lý http root
 if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on'):

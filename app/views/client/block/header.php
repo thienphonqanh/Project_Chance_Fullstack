@@ -52,7 +52,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="">Cẩm nang</a>
+                            <a class="nav-link" href="<?php echo _WEB_ROOT; ?>/cam-nang">Cẩm nang</a>
                         </li>
 
                         <li class="nav-item">
