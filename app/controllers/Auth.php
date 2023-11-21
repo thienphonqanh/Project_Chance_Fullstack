@@ -13,7 +13,7 @@ class Auth extends Controller {
         $request = new Request();
         $response = new Response();
 
-        if (!empty(Session::data('login_token'))):
+        if (isLogin()):
             $response->redirect('trang-chu');
         endif; 
 
@@ -67,7 +67,7 @@ class Auth extends Controller {
         $request = new Request();
         $response = new Response();
 
-        if (!empty(Session::data('login_token'))):
+        if (isLogin()):
             $response->redirect('trang-chu');
         endif; 
         
@@ -141,8 +141,10 @@ class Auth extends Controller {
     public function logout() {
         $response = new Response();
         
-        $userId = Session::data('user_data')['id'];
-
+        if (!empty(Session::data('user_data')['id'])):
+            $userId = Session::data('user_data')['id'];
+        endif;
+        
         if (!empty($userId)):
             $result = $this->authModel->handleLogout($userId);
 

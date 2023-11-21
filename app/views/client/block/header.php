@@ -32,7 +32,7 @@
         <!-- Thanh header -->
         <nav class="navbar p-1 navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <a class="navbar-brand d-flex align-items-center" href="<?php echo _WEB_ROOT; ?>/trang-chu">
                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/logos/Logo-Chance.png" class="img-fluid logo-image">
 
                     <div class="d-flex flex-column">
@@ -60,11 +60,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Liên hệ</a>
+                            <a class="nav-link" href="<?php echo _WEB_ROOT; ?>/lien-he">Liên hệ</a>
                         </li>
 
                         <?php 
-                            if (empty(Session::data('login_token'))):                        
+                            if (!isLogin()):                        
                         ?>
                             <li class="nav-item ms-lg-auto">
                                 <a class="nav-link text-dark fw-normal" type="button" href="<?php echo _WEB_ROOT; ?>/dang-ky">Đăng ký</a>
@@ -74,7 +74,7 @@
                                 <a class="nav-link custom-btn btn" href="<?php echo _WEB_ROOT; ?>/dang-nhap">Đăng nhập</a>
                             </li>
 
-                        <?php elseif(Session::data('user_data')['group_id'] !== 5): ?>
+                        <?php elseif (!isUser()): ?>
 
                             <li class="nav-item dropdown ms-lg-auto">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

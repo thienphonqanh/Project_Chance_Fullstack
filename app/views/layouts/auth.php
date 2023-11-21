@@ -41,7 +41,7 @@
                 $this->render($body, $dataView); 
             ?>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 d-md-none d-sm-none d-none d-lg-block">
             <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/bg-login.png" width="100%" alt="">
         </div>
     </div>
