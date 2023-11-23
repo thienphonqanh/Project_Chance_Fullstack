@@ -17,7 +17,7 @@
         <table class="table table-bordered mt-4">
             <thead>
                 <tr>
-                    <th class="text-center" width="5%">STT</th>
+                    <th class="text-center" width="5%"><input type="checkbox"></th>
                     <th class="text-center">Họ và tên</th>
                     <th class="text-center">Chức vụ</th>
                     <th class="text-center" width="8%">Xem</th>
@@ -28,12 +28,10 @@
             <tbody>
                 <?php 
                     if (!empty($listPersonnel)): 
-                        $count = 0;
                         foreach ($listPersonnel as $item):
-                            $count++;
                 ?>
                 <tr>
-                    <td class="text-center"><?php echo $count; ?></td>
+                    <td class="text-center"><input type="checkbox"></td>
                     <td class="text-center"><?php echo $item['fullname'] ?></td>
                     <td class="text-center"><?php echo $item['name'] ?></td>
                     <td class="text-center"><a href="#" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> Xem</a></td>
@@ -52,6 +50,22 @@
                 <?php endif; ?>
             </tbody>
         </table>
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-danger disabled">Xoá đã chọn (0)</button>
+            </div>
+            <div class="col-6">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+            </div>
+        </div>
 
     </div><!-- /.container-fluid -->
 </section>

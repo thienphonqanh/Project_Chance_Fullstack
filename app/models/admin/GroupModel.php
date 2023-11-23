@@ -45,13 +45,29 @@ class GroupModel extends Model {
     }
 
     // Xử lý lấy danh sách nhân sự
-    public function handleGetCandidate() {
+    public function handleGetCandidate($filters = [], $keyword = '') {
         $queryGet = $this->db->table('users')
             ->select('users.fullname, users.email, 
                     users.status, users.create_at, groups.name')
             ->join('groups', 'users.group_id = groups.id')
-            ->where('users.group_id', '=', 5)
-            ->get();
+            ->where('users.group_id', '=', 5);
+
+
+        if (!empty($filters)):
+            foreach ($filters as $key => $value):
+                $queryGet->where($key, '=', $value);
+            endforeach;
+        endif;
+
+        if (!empty($keyword)):
+            $queryGet->where(function ($query) use ($keyword) {
+                $query
+                    ->where('users.fullname', 'LIKE', "%$keyword%")
+                    ->orWhere('users.email', 'LIKE', "%$keyword%");
+            });
+        endif;
+
+        $queryGet = $queryGet->get();
             
         $response = [];
         $checkNull = false;

@@ -19,24 +19,43 @@ trait QueryBuilder {
         return $this;
     }
 
-    public function where($field, $compare, $value) {
-        if (empty($this->where)):
-            $this->operator = ' WHERE ';
-        else:
-            $this->operator = ' AND ';
-        endif;
-        $this->where .= "$this->operator $field $compare '$value'";
+    public function where($field, $compare = null, $value = null) {
+        if ( $field instanceof \Closure ) {
+            $callback = $field;
+            $this->where .= '(';
+            call_user_func_array( $callback, [ $this ] );
+            $this->where .= ')';
+        } else {
+            if ( empty( $this->where ) ) {
+                $this->operator = ' WHERE ';
+            } else {
+                $this->operator = ' AND ';
+
+            }
+            $this->where .= "$this->operator $field $compare '$value'";
+            $this->where = str_replace( '( AND', 'AND (', $this->where );
+        }
 
         return $this;
     }
 
     public function orWhere($field, $compare, $value){
-        if (empty($this->where)){
-            $this->operator = ' WHERE ';
-        }else{
-            $this->operator = ' OR ';
+        if ( $field instanceof \Closure ) {
+            $callback = $field;
+            $this->where .= '(';
+            call_user_func_array( $callback, [ $this ] );
+            $this->where .= ')';
+
+        } else {
+            if ( empty( $this->where ) ) {
+                $this->operator = ' WHERE ';
+            } else {
+                $this->operator = ' OR ';
+            }
+
+            $this->where .= "$this->operator $field $compare '$value'";
+            $this->where = str_replace( '( OR', 'OR (', $this->where );
         }
-        $this->where.="$this->operator $field $compare '$value'";
 
         return $this;
     }

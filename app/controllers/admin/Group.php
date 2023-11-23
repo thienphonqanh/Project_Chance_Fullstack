@@ -23,7 +23,22 @@ class Group extends Controller {
     }
 
     public function getCandidate() {
-        $result = $this->groupModel->handleGetCandidate();
+        $request = new Request();
+        $query = $request->getFields();
+
+        $filters = [];
+
+        if (!empty($query)):
+            extract($query);
+
+            if (isset($status)):
+                if ($status == 'active' || $status == 'inactive'):
+                    $filters['status'] = $status == 'active' ? 1 : 0;
+                endif;
+            endif;
+        endif;
+
+        $result = $this->groupModel->handleGetCandidate($filters, $keyword ?? '');
 
         if (!empty($result)):
             $listCandidate = $result;
@@ -34,6 +49,7 @@ class Group extends Controller {
         endif;
 
         $this->data['body'] = 'admin/groups/candidate';
+        $this->data['dataView']['request'] = $request;
         $this->render('layouts/layout', $this->data, 'admin');
     }
    

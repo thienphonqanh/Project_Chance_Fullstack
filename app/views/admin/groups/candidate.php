@@ -4,15 +4,15 @@
         <form action="" method="GET">
             <div class="row">
                 <div class="col-4">
-                    <select class="form-select">
-                        <option selected> -- - Chọn trạng thái --- </option>
-                        <option value="0">Chưa kích hoạt</option>
-                        <option value="1">Đã kích hoạt</option>
+                    <select class="form-select" name="status">
+                        <option value="all">--- Tất cả trạng thái ---</option>
+                        <option value="inactive" <?php isset($request->getFields()['status']) && $request->getFields()['status'] == 'inactive' ? 'selected' : '' ?>>Chưa kích hoạt</option>
+                        <option value="active" <?php isset($request->getFields()['status']) && $request->getFields()['status'] == 'active' ? 'selected' : '' ?>>Đã kích hoạt</option>
                     </select>
                 </div>
                 <div class="col-5">
                     <input type="search" name="keyword" class="form-control" placeholder="Nhập từ khoá..."
-                        value="">
+                        value="<?php isset($request->getFields()['keyword']) ?? '' ?>">
                 </div>
                 <div class="col-3">
                     <button type="submit" class="btn btn-primary btn-block">Tìm kiếm</button>
@@ -24,7 +24,7 @@
         <table class="table table-bordered mt-4">
             <thead>
                 <tr>
-                    <th class="text-center" width="5%">STT</th>
+                    <th class="text-center" width="5%"><input type="checkbox"></th>
                     <th class="text-center">Họ và tên</th>
                     <th class="text-center">Email</th>
                     <th class="text-center">Trạng thái</th>
@@ -37,12 +37,10 @@
             <tbody>
                 <?php 
                     if (!empty($listCandidate)): 
-                        $count = 0;
                         foreach ($listCandidate as $item):
-                            $count++;
                 ?>
                 <tr>
-                    <td class="text-center"><?php echo $count; ?></td>
+                    <td class="text-center"><input type="checkbox"></td>
                     <td class="text-center"><?php echo $item['fullname'] ?></td>
                     <td class="text-center"><?php echo $item['email'] ?></td>
                     <td class="text-center">
@@ -66,10 +64,27 @@
                 </tr>
                 <?php endforeach; else: ?>
                     <tr>
-                        <td colspan="6" class="text-center bg-danger"><?php echo $emptyValue; ?></td>
+                        <td colspan="8" class="text-center bg-danger"><?php echo $emptyValue; ?></td>
                     </tr>
                 <?php endif; ?>
             </tbody>
         </table>
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-danger disabled">Xoá đã chọn (0)</button>
+            </div>
+            <div class="col-6">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+            </div>
+        </div>
+
     </div><!-- /.container-fluid -->
 </section>
