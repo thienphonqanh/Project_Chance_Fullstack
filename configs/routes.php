@@ -14,6 +14,7 @@ $routes['dang-xuat'] = 'auth/logout';
 
 // Route trang client
 $routes['tim-viec-lam'] = 'client/job';
+$routes['chi-tiet-viec-lam'] = 'client/job/detail';
 $routes['cam-nang'] = 'client/handbook';
 $routes['cam-nang/la-ban-su-nghiep'] = 'client/handbook/firstPage';
 $routes['cam-nang/tram-sac-ky-nang'] = 'client/handbook/secondPage';
@@ -24,6 +25,7 @@ $routes['lien-he'] = 'client/contact';
 // Route trang Admin
 $routes['groups'] = 'admin/group';
 $routes['groups/nhan-su'] = 'admin/group/getPersonnel';
+$routes['groups/ung-vien'] = 'admin/group/getCandidate';
 
 
 ?>

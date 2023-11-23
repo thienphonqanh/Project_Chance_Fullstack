@@ -58,11 +58,6 @@ class AuthModel extends Model {
                     Session::flash('msg', 'Vui lòng kích hoạt tài khoản tại Gmail bạn dùng để đăng ký tài khoản');
                     Session::flash('msg_type', 'danger');
                 endif;
-
-                if ($statusAccount === 2):
-                    Session::flash('msg', 'Tài khoản của bạn đã tạm thời bị khoá. Vui lòng liên hệ quản trị viên để được hỗ trợ');
-                    Session::flash('msg_type', 'danger');
-                endif;
             else:
                 Session::flash('msg', 'Mật khẩu chưa chính xác');
                 Session::flash('msg_type', 'danger');
@@ -78,12 +73,13 @@ class AuthModel extends Model {
     // Xử lý register
     public function handleRegister() {
         $activeToken = sha1(uniqid().time());
+        $groupUser = 5;
         $dataInsert = [
             'fullname' => $_POST['fullname'],
             'email' => $_POST['email'],
             'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
             'active_token' => $activeToken,
-            'group_id' => 5,
+            'group_id' => $groupUser,
             'create_at' => date('Y-m-d H:i:s')
         ];
 

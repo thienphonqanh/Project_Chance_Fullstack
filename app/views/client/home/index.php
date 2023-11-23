@@ -47,11 +47,11 @@
                                             <span class="text-white mb-lg-0 mb-md-0 me-2">Từ khoá phổ biến:</span>
 
                                             <div>
-                                                <a href="job-listings.html" class="badge">Web design</a>
+                                                <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="badge">Web design</a>
 
-                                                <a href="job-listings.html" class="badge">Marketing</a>
+                                                <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="badge">Marketing</a>
 
-                                                <a href="job-listings.html" class="badge">Customer support</a>
+                                                <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="badge">Customer support</a>
                                             </div>
                                         </div>
                                     </div>
@@ -252,7 +252,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Nhân Viên Kinh Doanh (Có trình độ ngoại ngữ)</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Kinh Doanh (Có trình độ ngoại ngữ)</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -275,7 +275,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -288,7 +288,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Giáo Viên Mẫu Giáo (Dạy trẻ 3-5 tuổi)</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Giáo Viên Mẫu Giáo (Dạy trẻ 3-5 tuổi)</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -313,7 +313,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -326,7 +326,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Nhân Viên Kinh Doanh (Lương cứng tốt - Hoa Hồng)</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Kinh Doanh (Lương cứng tốt - Hoa Hồng)</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -349,7 +349,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -362,7 +362,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Giám Sát Kinh Doanh (Kênh Đại Lý)</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Giám Sát Kinh Doanh (Kênh Đại Lý)</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -385,7 +385,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -398,7 +398,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Trưởng Phòng Kinh Doanh Ưu Tiên Nữ</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Trưởng Phòng Kinh Doanh Ưu Tiên Nữ</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -421,7 +421,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -434,7 +434,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Nhân Viên Kinh Doanh BĐS Thổ Cư</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Kinh Doanh BĐS Thổ Cư</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -457,7 +457,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -470,7 +470,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Nhân Viên Chăm Sóc Khách Hàng</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Chăm Sóc Khách Hàng</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -493,7 +493,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -505,7 +505,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Chuyên Viên Tư Vấn Tài Chính</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Chuyên Viên Tư Vấn Tài Chính</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -528,7 +528,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -541,7 +541,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Nhân Viên Content</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Content</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -564,7 +564,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -577,7 +577,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Kế Toán Bán Hàng</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Kế Toán Bán Hàng</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -600,7 +600,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -613,7 +613,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Nhân Viên Kỹ Thuật Spa - Hệ Thống Care With Love</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Kỹ Thuật Spa - Hệ Thống Care With Love</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -636,7 +636,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -649,7 +649,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Nhân Viên Kỹ Thuật (Thang Máy Cibes)</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Kỹ Thuật (Thang Máy Cibes)</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -672,7 +672,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -684,7 +684,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Kênh Ngân Hàng Viettinbank - Chuyên Viên Tư Vấn Bảo Hiểm</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Kênh Ngân Hàng Viettinbank - Chuyên Viên Tư Vấn Bảo Hiểm</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -707,7 +707,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -720,7 +720,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Lái Xe Biết Ngoại Ngữ</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Lái Xe Biết Ngoại Ngữ</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -743,7 +743,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -756,7 +756,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Kỹ Thuật Viên Nail/Spa</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Kỹ Thuật Viên Nail/Spa</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -779,7 +779,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -792,7 +792,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Thư Ký/ Trợ Lý Văn Phòng (Biết Tiếng Trung)</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Thư Ký/ Trợ Lý Văn Phòng (Biết Tiếng Trung)</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -815,7 +815,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -828,7 +828,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Java Developer Upto 35M</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Java Developer Upto 35M</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -851,7 +851,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -863,7 +863,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Sale Manager</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Sale Manager</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -886,7 +886,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -899,7 +899,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Nhân Viên Vận Hành Game</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Vận Hành Game</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -922,7 +922,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -935,7 +935,7 @@
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="job-listings.html" class="job-title-link">Thực Tập Sinh Ngân Hàng</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Thực Tập Sinh Ngân Hàng</a>
                                         </h5>
     
                                         <div class="d-flex flex-wrap align-items-center">
@@ -958,7 +958,7 @@
                                     </div>
     
                                     <div class="job-section-btn-wrap">
-                                        <a href="job-listings.html" class="btn-details">Ứng tuyển</a>
+                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
@@ -979,19 +979,19 @@
             <h3 class="text-center">Cẩm Nang Nghề Nghiệp</h3>
             <p class="text-center">Những kinh nghiệm bạn có thể cần trong quá trình tìm kiếm và làm việc</p>
             <div class="handbook-block">
-                <a href="handbook.html" class="handbook">
+                <a href="<?php echo _WEB_ROOT; ?>/cam-nang" class="handbook">
                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/h-1.jpg" class="img-fluid" alt="">
                     <p class="text-dark">Vì sao nhiều người trẻ bỏ việc văn phòng, ước mơ làm việc tự do thu nhập trăm củ?</p>
                     <span class="text-dark">Người trẻ chán việc văn phòng không phải chỉ vì lý do lương thấp. Kỳ thực, chỉ cần bạn có năng lực tốt, dù làm việc ở văn phòng hay làm việc tự do, bạn đều có thể đạt...</span>
                 </a>
 
-                <a href="handbook.html" class="handbook">
+                <a href="<?php echo _WEB_ROOT; ?>/cam-nang" class="handbook">
                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/h-2.jpg" class="img-fluid" alt="">
                     <p class="text-dark">6 điều cần chuẩn bị trước khi nghỉ việc mà người lao động cần biết</p>
                     <span class="text-dark">Xin nghỉ việc bao giờ cũng là một quyết định quan trọng, mang ý nghĩa “sống còn” trong sự nghiệp của mỗi người. Nhưng khoan hãy nóng vội, dù là chuyện gì cũng cần có...</span>
                 </a>
 
-                <a href="handbook.html" class="handbook">
+                <a href="<?php echo _WEB_ROOT; ?>/cam-nang" class="handbook">
                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/h-3.jpg" class="img-fluid" alt="">
                     <p class="text-dark">Các khoản thu nhập không phải đóng BHXH mà người lao động cần biết</p>
                     <span class="text-dark">Khi tham gia lao động tại bất kỳ công ty hay doanh nghiệp nào, bảo hiểm xã hội (BHXH) đã trở thành phúc lợi quan trọng trong việc đảm bảo cuộc sống ổn định cho...</span>
@@ -999,7 +999,7 @@
 
             </div>
             <!-- <button type="button" class="btn-loadHandBook">Xem thêm cẩm nang nghề nghiệp</button> -->
-            <a href="handbook.html" class="more-handbook d-block p-2 m-auto mt-3 text-center rounded">Xem thêm cẩm nang nghề nghiệp</a>
+            <a href="<?php echo _WEB_ROOT; ?>/cam-nang" class="more-handbook d-block p-2 m-auto mt-3 text-center rounded">Xem thêm cẩm nang nghề nghiệp</a>
         </section>
 
         

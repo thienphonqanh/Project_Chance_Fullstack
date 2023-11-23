@@ -9,9 +9,9 @@ class Dashboard extends Controller {
     }
 
     public function index() {
-        $this->data['body'] = 'users/index';
-        
-        $this->render('dashboard/index', $this->data, 'admin');
+        $this->data['body'] = 'dashboard/index';
+        $this->data['dataView'][''] = '';
+        $this->render('layouts/layout', $this->data, 'admin');
     }
 
    

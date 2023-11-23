@@ -28,7 +28,6 @@
     </head>
     
     <body id="top">
-
         <!-- Thanh header -->
         <nav class="navbar p-1 navbar-expand-lg">
             <div class="container">
@@ -48,7 +47,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav align-items-center ms-lg-5">
                         <li class="nav-item">
-                            <a class="nav-link active" href="<?php echo _WEB_ROOT; ?>/trang-chu">Trang chủ</a>
+                            <a class="nav-link <?php echo handleActiveLink('trang-chu') ? 'active' : false; ?>" href="<?php echo _WEB_ROOT; ?>/trang-chu">Trang chủ</a>
                         </li>
 
                         <li class="nav-item">
@@ -56,11 +55,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo _WEB_ROOT; ?>/tim-viec-lam">Tìm việc làm</a>
+                            <a class="nav-link <?php echo handleActiveLink('tim-viec-lam') ? 'active' : false; ?>" href="<?php echo _WEB_ROOT; ?>/tim-viec-lam">Tìm việc làm</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo _WEB_ROOT; ?>/lien-he">Liên hệ</a>
+                            <a class="nav-link <?php echo handleActiveLink('lien-he') ? 'active' : false; ?>" href="<?php echo _WEB_ROOT; ?>/lien-he">Liên hệ</a>
                         </li>
 
                         <?php 
@@ -78,7 +77,7 @@
 
                             <li class="nav-item dropdown ms-lg-auto">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-person-circle m-2"></i> <?php echo Session::data('user_data')['fullname']; ?>
+                                    <i class="bi bi-person-circle m-2"></i> <?php echo getNameUserLogin(); ?>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/admin">Trang quản trị</a></li>
@@ -90,7 +89,7 @@
 
                             <li class="nav-item dropdown ms-lg-auto">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-person-circle m-2"></i> <?php echo Session::data('user_data')['fullname']; ?>
+                                    <i class="bi bi-person-circle m-2"></i> <?php echo getNameUserLogin(); ?>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>

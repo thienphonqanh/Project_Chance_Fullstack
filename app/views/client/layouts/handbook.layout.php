@@ -63,9 +63,38 @@
                             <a class="nav-link p-3 text-dark fw-normal" href="<?php echo _WEB_ROOT; ?>/trang-chu"><i class="bi bi-house"></i></a>
                         </li>
 
+                        <?php if (!isLogin()): ?>
+
                         <li class="nav-item ms-lg-auto">
                             <a class="nav-link handbook-login text-dark p-2 fw-bold" type="button" href="<?php echo _WEB_ROOT; ?>/dang-nhap"><i class="bi bi-person-circle p-1"></i> Đăng nhập</a>
                         </li>
+
+                        <?php elseif (!isUser()): ?>
+
+                            <li class="nav-item dropdown ms-lg-auto">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-circle m-2"></i> <?php echo getNameUserLogin(); ?>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/admin">Trang quản trị</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/dang-xuat">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+
+                        <?php else: ?>
+
+                            <li class="nav-item dropdown ms-lg-auto">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-circle m-2"></i> <?php echo getNameUserLogin(); ?>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+                                    <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/dang-xuat">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
