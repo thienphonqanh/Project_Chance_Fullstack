@@ -35,6 +35,9 @@ if (!empty($configsDir)):
     endforeach;
 endif;
 
+// Load Paginate
+require_once 'core/Paginate.php';
+
 // Load Service Provider Class
 require_once 'core/ServiceProvider.php';
 

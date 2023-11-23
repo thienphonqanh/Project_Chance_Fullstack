@@ -17,18 +17,32 @@ class GroupModel extends Model {
     }
 
     // Xử lý lấy danh sách nhân sự
-    public function handleGetPersonnel() {
+    public function handleGetPersonnel($keyword = '', $limit) {
         $queryGet = $this->db->table('users')
             ->select('users.fullname, groups.name')
             ->join('groups', 'users.group_id = groups.id')
-            ->where('users.group_id', '!=', 5)
-            ->get();
+            ->where('users.group_id', '!=', 5);
             
-        $response = [];
-        $checkNull = false;
+            $checkNull = false;
 
-        if (!empty($queryGet)):
-            foreach ($queryGet as $key => $item):
+        if (!empty($filters)):
+            foreach ($filters as $key => $value):
+                $queryGet->where($key, '=', $value);
+            endforeach;
+        endif;
+
+        if (!empty($keyword)):
+            $queryGet->where(function ($query) use ($keyword) {
+                $query
+                    ->where('users.fullname', 'LIKE', "%$keyword%")
+                    ->orWhere('users.email', 'LIKE', "%$keyword%");
+            });
+        endif;
+        
+        $queryGet = $queryGet->paginate($limit);
+
+        if (!empty($queryGet['data'])):
+            foreach ($queryGet['data'] as $key => $item):
                 foreach ($item as $subKey => $subItem):
                     if ($subItem === NULL || $subItem === ''):
                         $checkNull = true;
@@ -45,13 +59,14 @@ class GroupModel extends Model {
     }
 
     // Xử lý lấy danh sách nhân sự
-    public function handleGetCandidate($filters = [], $keyword = '') {
+    public function handleGetCandidate($filters = [], $keyword = '', $limit) {
         $queryGet = $this->db->table('users')
             ->select('users.fullname, users.email, 
                     users.status, users.create_at, groups.name')
             ->join('groups', 'users.group_id = groups.id')
             ->where('users.group_id', '=', 5);
 
+        $checkNull = false;
 
         if (!empty($filters)):
             foreach ($filters as $key => $value):
@@ -66,14 +81,11 @@ class GroupModel extends Model {
                     ->orWhere('users.email', 'LIKE', "%$keyword%");
             });
         endif;
+        
+        $queryGet = $queryGet->paginate($limit);
 
-        $queryGet = $queryGet->get();
-            
-        $response = [];
-        $checkNull = false;
-
-        if (!empty($queryGet)):
-            foreach ($queryGet as $key => $item):
+        if (!empty($queryGet['data'])):
+            foreach ($queryGet['data'] as $key => $item):
                 foreach ($item as $subKey => $subItem):
                     if ($subItem === NULL || $subItem === ''):
                         $checkNull = true;

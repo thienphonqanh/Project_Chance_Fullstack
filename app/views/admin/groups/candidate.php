@@ -74,15 +74,7 @@
                 <button class="btn btn-danger disabled">Xoá đã chọn (0)</button>
             </div>
             <div class="col-6">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </nav>
+                <nav class="d-flex justify-content-end"><?php echo $links;  ?></nav>
             </div>
         </div>
 

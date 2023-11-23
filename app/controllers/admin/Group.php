@@ -2,13 +2,27 @@
 class Group extends Controller {
     private $groupModel;
     private $data = [];
+    private $config = [];
 
     public function __construct() {
+        global $config;
+        $this->config = $config[ 'app' ];
         $this->groupModel = $this->model('GroupModel', 'admin');
     }
 
     public function getPersonnel() {
-        $result = $this->groupModel->handleGetPersonnel();
+        $request = new Request();
+        $query = $request->getFields();
+
+        if (!empty($query)):
+            extract($query);
+        endif;
+
+        $resultPaginate = $this->groupModel->handleGetPersonnel($keyword ?? '', $this->config[ 'page_limit' ] );
+
+        $result = $resultPaginate[ 'data' ];
+
+        $links = $resultPaginate[ 'link' ];
 
         if (!empty($result)):
             $listPersonnel = $result;
@@ -19,6 +33,8 @@ class Group extends Controller {
         endif;
 
         $this->data['body'] = 'admin/groups/personnel';
+        $this->data['dataView']['request'] = $request;
+        $this->data['dataView'][ 'links' ] = $links;
         $this->render('layouts/layout', $this->data, 'admin');
     }
 
@@ -38,7 +54,11 @@ class Group extends Controller {
             endif;
         endif;
 
-        $result = $this->groupModel->handleGetCandidate($filters, $keyword ?? '');
+        $resultPaginate = $this->groupModel->handleGetCandidate($filters, $keyword ?? '', $this->config[ 'page_limit' ] );
+
+        $result = $resultPaginate[ 'data' ];
+
+        $links = $resultPaginate[ 'link' ];
 
         if (!empty($result)):
             $listCandidate = $result;
@@ -50,6 +70,7 @@ class Group extends Controller {
 
         $this->data['body'] = 'admin/groups/candidate';
         $this->data['dataView']['request'] = $request;
+        $this->data['dataView'][ 'links' ] = $links;
         $this->render('layouts/layout', $this->data, 'admin');
     }
    

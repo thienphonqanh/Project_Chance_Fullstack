@@ -5,13 +5,13 @@
             <div class="row">
                 <div class="col-9">
                     <input type="search" name="keyword" class="form-control" placeholder="Nhập từ khoá..."
-                        value="">
+                        value="<?php isset($request->getFields()['keyword']) ?? '' ?>">
                 </div>
                 <div class="col-3">
                     <button type="submit" class="btn btn-primary btn-block">Tìm kiếm</button>
                 </div>
             </div>
-            <input type="hidden" name="module" value="groups">
+            <input type="hidden" name="module" value="groups" >
         </form>
         <hr>
         <table class="table table-bordered mt-4">
@@ -55,15 +55,7 @@
                 <button class="btn btn-danger disabled">Xoá đã chọn (0)</button>
             </div>
             <div class="col-6">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </nav>
+                <nav class="d-flex justify-content-end"><?php echo $links;  ?></nav>
             </div>
         </div>
 
