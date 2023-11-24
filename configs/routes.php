@@ -25,10 +25,14 @@ $routes['cam-nang/toa-do-nhan-tai'] = 'client/handbook/thirdPage';
 $routes['cam-nang/ki-ot-vui-ve'] = 'client/handbook/fourthPage';
 $routes['lien-he'] = 'client/contact';
 
+
 // Route trang Admin
 $routes['groups'] = 'admin/group';
 $routes['groups/nhan-su'] = 'admin/group/getPersonnel';
 $routes['groups/ung-vien'] = 'admin/group/getCandidate';
+$routes['groups/ung-vien/thong-tin'] = 'admin/group/viewProfile';
+
+
 
 
 ?>

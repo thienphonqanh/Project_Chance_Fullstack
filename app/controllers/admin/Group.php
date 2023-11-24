@@ -81,5 +81,29 @@ class Group extends Controller {
         $this->data['dataView'][ 'links' ] = $links;
         $this->render('layouts/layout', $this->data, 'admin');
     }
+
+    public function viewProfile() {
+        $request = new Request();
+
+        $data = $request->getFields();
+
+        if (!empty($data['id'])):
+            $userId = $data['id'];
+
+            $result = $this->groupModel->handleViewProfile($userId);
+
+            if (!empty($result)):
+                $dataProfile = $result;
+                $this->data['dataView']['dataProfile'] = $dataProfile;
+            else:
+                $emtyValue = 'Không có dữ liệu';
+                $this->data['dataView']['emptyValue'] = $emtyValue;
+            endif;
+        endif;
+
+
+        $this->data['body'] = 'admin/profile/candidate';
+        $this->render('layouts/layout', $this->data, 'admin');
+    }
    
 }

@@ -19,7 +19,7 @@ class GroupModel extends Model {
     // Xử lý lấy danh sách nhân sự
     public function handleGetPersonnel($filters = [], $keyword = '', $limit) {
         $queryGet = $this->db->table('admins')
-            ->select('admins.fullname, admins.status, admins.email, groups.name')
+            ->select('admins.id, admins.fullname, admins.status, admins.email, groups.name')
             ->join('groups', 'admins.group_id = groups.id')
             ->where('admins.group_id', '!=', 2);
             
@@ -61,7 +61,7 @@ class GroupModel extends Model {
     // Xử lý lấy danh sách nhân sự
     public function handleGetCandidate($filters = [], $keyword = '', $limit) {
         $queryGet = $this->db->table('candidates')
-            ->select('candidates.fullname, candidates.email, 
+            ->select('candidates.id, candidates.fullname, candidates.email, 
                 candidates.status, candidates.create_at, groups.name')
             ->join('groups', 'candidates.group_id = groups.id')
             ->where('candidates.group_id', '=', 2);
@@ -95,6 +95,21 @@ class GroupModel extends Model {
         endif;
 
         if (!$checkNull):
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    // Xử lý lấy data trang thông tin 
+    public function handleViewProfile($userId) {
+        $queryGet = $this->db->table('candidates')
+            ->select('fullname, email, dob, phone, gender, location, address,
+                contact_facebook, contact_twitter, contact_linkedin, about_content')
+            ->where('id', '=', $userId)
+            ->first();
+
+        if (!empty($queryGet)):
             $response = $queryGet;
         endif;
 

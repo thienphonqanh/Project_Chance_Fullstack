@@ -179,12 +179,12 @@ class AuthModel extends Model {
     public function handleLogout($userId, $groupId) {
         if (!empty($groupId) && $groupId === 1):
             $queryDelete = $this->db->table('login_token')
-            ->where('admin_id', '=', $userId)
-            ->delete();
+                ->where('admin_id', '=', $userId)
+                ->delete();
         else:
             $queryDelete = $this->db->table('login_token')
-            ->where('candidate_id', '=', $userId)
-            ->delete();
+                ->where('candidate_id', '=', $userId)
+                ->delete();
         endif;
         
         if ($queryDelete):

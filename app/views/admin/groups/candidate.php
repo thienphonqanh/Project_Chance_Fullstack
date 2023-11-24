@@ -54,7 +54,7 @@
                             echo getDateTimeFormat($item['create_at'], 'd-m-Y');
                         ?>
                     </td>
-                    <td class="text-center"><a href="" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> Xem</a></td>
+                    <td class="text-center"><a href="<?php echo _WEB_ROOT; ?>/groups/ung-vien/thong-tin?id=<?php echo $item['id']; ?>" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> Xem</a></td>
                     <td class="text-center"><a href="" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Sửa</a></td>
                 </tr>
                 <?php endforeach; else: ?>
