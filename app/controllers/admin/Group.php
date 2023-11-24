@@ -105,5 +105,96 @@ class Group extends Controller {
         $this->data['body'] = 'admin/profile/candidate';
         $this->render('layouts/layout', $this->data, 'admin');
     }
+
+    public function updateProfile() {
+        $request = new Request();
+
+        $data = $request->getFields();
+        $userId = $_GET['id'];
+
+        $checkOld= $this->groupModel->handleGetOldEmail($userId);
+        $oldEmail = $checkOld['email'];
+
+        if ($request->isPost()):
+            if (!empty($oldEmail) && $oldEmail === $data['email']):
+                $request->rules([
+                    'fullname' => 'required|min:5',
+                    'email' => 'required|email|min:11',
+                    'phone' => 'required|phone',
+                    'dob' => 'required'
+                ]);
+
+                $request->message([
+                    'fullname.required' => 'Họ tên không được để trống',
+                    'fullname.min' => 'Họ tên phải lớn hơn 4 ký tự',
+                    'email.required' => 'Email không được để trống',
+                    'email.email' => 'Định dạng email không hợp lệ',
+                    'email.min' => 'Email phải lớn hơn 11 ký tự',
+                    'phone.required' => 'Số điện thoại không được để trống',
+                    'phone.phone' => 'Số điện thoại không hợp lệ',
+                    'dob.required' => 'Ngày sinh không được để trống',
+                ]);
+            else:
+                $request->rules([
+                    'fullname' => 'required|min:5',
+                    'email' => 'required|email|min:11|unique:candidates:email',
+                    'phone' => 'required|phone',
+                    'dob' => 'required'
+                ]);
+
+                $request->message([
+                    'fullname.required' => 'Họ tên không được để trống',
+                    'fullname.min' => 'Họ tên phải lớn hơn 4 ký tự',
+                    'email.required' => 'Email không được để trống',
+                    'email.email' => 'Định dạng email không hợp lệ',
+                    'email.min' => 'Email phải lớn hơn 11 ký tự',
+                    'email.unique' => 'Email đã tồn tại',
+                    'phone.required' => 'Số điện thoại không được để trống',
+                    'phone.phone' => 'Số điện thoại không hợp lệ',
+                    'dob.required' => 'Ngày sinh không được để trống',
+                ]);
+            endif;
+            
+           
+
+            $validate = $request->validate();
+
+            if ($validate):
+                if (!empty($userId)):
+                    $resultUpdate = $this->groupModel->handleUpdateProfile($userId);
+                endif;
+
+                if ($resultUpdate):
+                    Session::flash('msg', 'Thay đổi thành công');
+                    Session::flash('msg_type', 'success');
+                else:
+                    Session::flash('msg', 'Thay đổi thất bại');
+                    Session::flash('msg_type', 'danger');
+                endif;
+            else:
+                Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
+                Session::flash('msg_type', 'danger');
+            endif;
+        endif;
+
+        if (!empty($userId)):
+            $result = $this->groupModel->handleViewProfile($userId);
+
+            if (!empty($result)):
+                $dataProfile = $result;
+                $this->data['dataView']['dataProfile'] = $dataProfile;
+            else:
+                $emtyValue = 'Không có dữ liệu';
+                $this->data['dataView']['emptyValue'] = $emtyValue;
+            endif;
+        endif;
+
+        $this->data['body'] = 'admin/profile/candidate_edit';
+        $this->data['dataView']['msg'] = Session::flash('msg');
+        $this->data['dataView']['msgType'] = Session::flash('msg_type');
+        $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
+        $this->data['dataView']['old'] = Session::flash('chance_session_old');
+        $this->render('layouts/layout', $this->data, 'admin');
+    }
    
 }

@@ -33,7 +33,7 @@
   <!-- CkEditor -->
   <script type="text/javascript" src="<?php echo _WEB_ROOT; ?>/public/admin/assets/ckeditor/ckeditor.js"></script>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed overflow-x-hidden">
 <div class="wrapper">
 
   <!-- Preloader -->

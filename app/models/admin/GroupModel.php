@@ -115,5 +115,55 @@ class GroupModel extends Model {
 
         return $response;
     }
+
+    // Xử lý lấy update trang thông tin 
+    public function handleUpdateProfile($userId) {
+        $queryGet = $this->db->table('candidates')
+            ->where('id', '=', $userId)
+            ->first();
+
+        if (!empty($queryGet)):
+            $dataUpdate = [
+                'fullname' => $_POST['fullname'],
+                'email' => $_POST['email'],
+                'phone' => $_POST['phone'],
+                'dob' => $_POST['dob'],
+                'gender' => $_POST['gender'],
+                'location' => $_POST['location'],
+                'address' => $_POST['address'],
+                'contact_facebook' => $_POST['contact_facebook'],
+                'contact_twitter' => $_POST['contact_twitter'],
+                'contact_linkedin' => $_POST['contact_linkedin'],
+                'about_content' => $_POST['about_content'],
+                'update_at' => date('Y-m-d H:i:s'),
+            ];
+
+            $updateStatus = $this->db->table('candidates')
+                ->where('id', '=', $userId)
+                ->update($dataUpdate);
+            
+            if ($updateStatus):
+                return true;
+            endif;
+        endif;
+
+        return false;
+    }
+
+    // Lấy email
+    public function handleGetOldEmail($userId) {
+        $queryGet = $this->db->table('candidates')
+            ->select('email')
+            ->where('id', '=', $userId)
+            ->first();
+
+        $response = [];
+
+        if (!empty($queryGet)):
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
     
 }
