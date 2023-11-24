@@ -7,10 +7,13 @@ $routes['/'] = 'client/home';
 $routes['trang-chu'] = 'client/home';
 $routes['admin'] = 'admin/dashboard';
 
+
 // Route Auth
 $routes['dang-nhap'] = 'auth/login';
 $routes['dang-ky'] = 'auth/register';
 $routes['dang-xuat'] = 'auth/logout';
+$routes['active'] = 'auth/active';
+
 
 // Route trang client
 $routes['tim-viec-lam'] = 'client/job';

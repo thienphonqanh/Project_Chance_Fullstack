@@ -14,11 +14,19 @@ class Group extends Controller {
         $request = new Request();
         $query = $request->getFields();
 
+        $filters = [];
+
         if (!empty($query)):
             extract($query);
+
+            if (isset($status)):
+                if ($status == 'active' || $status == 'inactive'):
+                    $filters['status'] = $status == 'active' ? 1 : 0;
+                endif;
+            endif;
         endif;
 
-        $resultPaginate = $this->groupModel->handleGetPersonnel($keyword ?? '', $this->config[ 'page_limit' ] );
+        $resultPaginate = $this->groupModel->handleGetPersonnel($filters, $keyword ?? '', $this->config[ 'page_limit' ] );
 
         $result = $resultPaginate[ 'data' ];
 

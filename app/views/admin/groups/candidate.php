@@ -24,14 +24,13 @@
         <table class="table table-bordered mt-4">
             <thead>
                 <tr>
-                    <th class="text-center" width="5%"><input type="checkbox"></th>
-                    <th class="text-center">Họ và tên</th>
-                    <th class="text-center">Email</th>
+                    <th class="text-center" width="5%"><input type="checkbox" class="checkbox-select-all"></th>
+                    <th class="text-center" width="28%">Họ và tên</th>
+                    <th class="text-center" width="28%">Email</th>
                     <th class="text-center">Trạng thái</th>
                     <th class="text-center" width="12%">Thời gian</th>
                     <th class="text-center" width="8%">Xem</th>
                     <th class="text-center" width="8%">Sửa</th>
-                    <th class="text-center" width="8%">Xoá</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,7 +39,7 @@
                         foreach ($listCandidate as $item):
                 ?>
                 <tr>
-                    <td class="text-center"><input type="checkbox"></td>
+                    <td class="text-center"><input type="checkbox" class="checkbox-item"></td>
                     <td class="text-center"><?php echo $item['fullname'] ?></td>
                     <td class="text-center"><?php echo $item['email'] ?></td>
                     <td class="text-center">
@@ -57,21 +56,17 @@
                     </td>
                     <td class="text-center"><a href="" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> Xem</a></td>
                     <td class="text-center"><a href="" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Sửa</a></td>
-                    <td class="text-center"><a
-                            href=""
-                            class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xoá?')"><i
-                                class="fa fa-trash"></i> Xoá</a></td>
                 </tr>
                 <?php endforeach; else: ?>
                     <tr>
-                        <td colspan="8" class="text-center bg-danger"><?php echo $emptyValue; ?></td>
+                        <td colspan="7" class="text-center bg-danger"><?php echo $emptyValue; ?></td>
                     </tr>
                 <?php endif; ?>
             </tbody>
         </table>
         <div class="row">
             <div class="col-6">
-                <button class="btn btn-danger disabled">Xoá đã chọn (0)</button>
+                <button class="btn btn-danger delete-button" disabled>Xoá đã chọn (0)</button>
             </div>
             <div class="col-6">
                 <nav class="d-flex justify-content-end"><?php echo $links;  ?></nav>

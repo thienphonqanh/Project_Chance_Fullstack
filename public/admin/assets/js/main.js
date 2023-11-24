@@ -61,7 +61,6 @@ if (sourceTitle !== null && slugRender !== null) {
 }
 
 
-
 // Xử lý ckeditor với class
 let classTextArea = document.querySelectorAll('.editor')
 
@@ -70,4 +69,78 @@ if (classTextArea !== null) {
         item.id = 'editor_' + (index + 1)
         CKEDITOR.replace(item.id);
     }) 
+}
+
+// Xử lý chọn checkbox và button xoá
+var selectAllCheckbox = document.querySelector('.checkbox-select-all');
+var checkboxes = document.querySelectorAll('.checkbox-item');
+var deleteButton = document.querySelector('.delete-button');
+
+    // Thiết lập nút chọn tất cả của checkbox
+selectAllCheckbox.addEventListener('change', function () {
+    var count = 0;
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = selectAllCheckbox.checked;
+    }
+
+    // Thiết lập button enable với nút chọn tất cả checkbox
+    if (selectAllCheckbox.checked) {
+        count = checkboxes.length;
+        deleteButton.removeAttribute('disabled');
+    } else {
+        count = 0;
+        deleteButton.setAttribute('disabled', 'disabled');
+    }
+
+    deleteButton.innerHTML = `Xoá đã chọn (${count})`;
+
+
+
+});
+
+for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].addEventListener('change', function () {
+        var atLeastOneChecked = false;
+        for (var j = 0; j < checkboxes.length; j++) {
+            if (checkboxes[j].checked) {
+                atLeastOneChecked = true;
+                break;
+            }
+        }
+
+
+        // Xử lý button enable khi chọn ít nhất 1 checkbox
+        if (atLeastOneChecked) {
+            deleteButton.removeAttribute('disabled');
+        } else {
+            deleteButton.setAttribute('disabled', 'disabled');
+        }
+    });
+}
+
+// Thiết lập nút chọn tất cả của checkbox
+// selectAllCheckbox.addEventListener('change', function () {
+//     var count = 0;
+//     for (var i = 0; i < checkboxes.length; i++) {
+//         count = checkboxes.length;
+//         checkboxes[i].checked = selectAllCheckbox.checked;
+//     }
+
+//     // Thiết lập button enable với nút chọn tất cả checkbox
+//     if (selectAllCheckbox.checked) {
+//     } 
+// });
+
+
+for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].addEventListener('change', function () {
+        var count = 0;
+        for (var j = 0; j < checkboxes.length; j++) {
+            if (checkboxes[j].checked) {
+                count++;
+            } 
+        }
+        deleteButton.innerHTML = `Xoá đã chọn (${count})`;
+
+    });
 }

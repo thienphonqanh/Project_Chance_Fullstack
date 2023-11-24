@@ -74,7 +74,7 @@ class Auth extends Controller {
         if ($request->isPost()): // Kiểm tra post
             $request->rules([
                 'fullname' => 'required|min:5',
-                'email' => 'required|email|min:11|unique:users:email',
+                'email' => 'required|email|min:11|unique:candidates:email',
                 'password' => 'required|min:8|special',
                 're_password' => 'required|match:password'
             ]);
@@ -143,10 +143,11 @@ class Auth extends Controller {
         
         if (!empty(Session::data('user_data')['id'])):
             $userId = Session::data('user_data')['id'];
+            $groupId = Session::data('user_data')['group_id'];
         endif;
         
-        if (!empty($userId)):
-            $result = $this->authModel->handleLogout($userId);
+        if (!empty($userId) && !empty($groupId)):
+            $result = $this->authModel->handleLogout($userId, $groupId);
 
             if ($result):
                 $response->redirect('trang-chu');

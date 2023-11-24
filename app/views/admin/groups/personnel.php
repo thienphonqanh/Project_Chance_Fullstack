@@ -3,7 +3,14 @@
     <div class="container-fluid">
         <form action="" method="GET">
             <div class="row">
-                <div class="col-9">
+            <div class="col-4">
+                    <select class="form-select" name="status">
+                        <option value="all">--- Tất cả trạng thái ---</option>
+                        <option value="inactive" <?php isset($request->getFields()['status']) && $request->getFields()['status'] == 'inactive' ? 'selected' : '' ?>>Chưa kích hoạt</option>
+                        <option value="active" <?php isset($request->getFields()['status']) && $request->getFields()['status'] == 'active' ? 'selected' : '' ?>>Đã kích hoạt</option>
+                    </select>
+                </div>
+                <div class="col-5">
                     <input type="search" name="keyword" class="form-control" placeholder="Nhập từ khoá..."
                         value="<?php isset($request->getFields()['keyword']) ?? '' ?>">
                 </div>
@@ -17,12 +24,13 @@
         <table class="table table-bordered mt-4">
             <thead>
                 <tr>
-                    <th class="text-center" width="5%"><input type="checkbox"></th>
-                    <th class="text-center">Họ và tên</th>
+                    <th class="text-center" width="5%"><input type="checkbox" class="checkbox-select-all"></th>
+                    <th class="text-center" width="25%">Họ và tên</th>
+                    <th class="text-center" width="25%">Email</th>
                     <th class="text-center">Chức vụ</th>
+                    <th class="text-center">Trạng thái</th>
                     <th class="text-center" width="8%">Xem</th>
                     <th class="text-center" width="8%">Sửa</th>
-                    <th class="text-center" width="8%">Xoá</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,31 +39,35 @@
                         foreach ($listPersonnel as $item):
                 ?>
                 <tr>
-                    <td class="text-center"><input type="checkbox"></td>
+                    <td class="text-center"><input type="checkbox" class="checkbox-item"></td>
                     <td class="text-center"><?php echo $item['fullname'] ?></td>
+                    <td class="text-center"><?php echo $item['email'] ?></td>
                     <td class="text-center"><?php echo $item['name'] ?></td>
+                    <td class="text-center">
+                        <?php 
+                            echo ($item['status'] === 1) ? 
+                                '<a href="#" class="btn btn-success btn-sm">Đã kích hoạt</a>' : 
+                                '<a href="#" class="btn btn-danger btn-sm">Chưa kích hoạt</a>';
+                        ?>
+                    </td>
                     <td class="text-center"><a href="#" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> Xem</a></td>
                     <td class="text-center"><a
                             href=""
                             class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Sửa</a></td>
-                    <td class="text-center"><a
-                            href=""
-                            class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xoá?')"><i
-                                class="fa fa-trash"></i> Xoá</a></td>
                 </tr>
                 <?php endforeach; else: ?>
                     <tr>
-                        <td colspan="6" class="text-center bg-danger"><?php echo $emptyValue; ?></td>
+                        <td colspan="7" class="text-center bg-danger"><?php echo $emptyValue; ?></td>
                     </tr>
                 <?php endif; ?>
             </tbody>
         </table>
         <div class="row">
             <div class="col-6">
-                <button class="btn btn-danger disabled">Xoá đã chọn (0)</button>
+                <button class="btn btn-danger delete-button" disabled>Xoá đã chọn (0)</button>
             </div>
             <div class="col-6">
-                <nav class="d-flex justify-content-end"><?php echo $links;  ?></nav>
+                <nav class="d-flex justify-content-end"><?php echo $links; ?></nav>
             </div>
         </div>
 

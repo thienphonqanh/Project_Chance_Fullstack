@@ -16,7 +16,7 @@ function isUser() {
         $groupId = Session::data('user_data')['group_id'];
     endif;
 
-    if (!empty($groupId) && $groupId === 5):
+    if (!empty($groupId) && $groupId === 2):
         return true;
     endif;
 

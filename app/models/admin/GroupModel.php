@@ -17,13 +17,13 @@ class GroupModel extends Model {
     }
 
     // Xử lý lấy danh sách nhân sự
-    public function handleGetPersonnel($keyword = '', $limit) {
-        $queryGet = $this->db->table('users')
-            ->select('users.fullname, groups.name')
-            ->join('groups', 'users.group_id = groups.id')
-            ->where('users.group_id', '!=', 5);
+    public function handleGetPersonnel($filters = [], $keyword = '', $limit) {
+        $queryGet = $this->db->table('admins')
+            ->select('admins.fullname, admins.status, admins.email, groups.name')
+            ->join('groups', 'admins.group_id = groups.id')
+            ->where('admins.group_id', '!=', 2);
             
-            $checkNull = false;
+        $checkNull = false;
 
         if (!empty($filters)):
             foreach ($filters as $key => $value):
@@ -34,8 +34,8 @@ class GroupModel extends Model {
         if (!empty($keyword)):
             $queryGet->where(function ($query) use ($keyword) {
                 $query
-                    ->where('users.fullname', 'LIKE', "%$keyword%")
-                    ->orWhere('users.email', 'LIKE', "%$keyword%");
+                    ->where('admins.fullname', 'LIKE', "%$keyword%")
+                    ->orWhere('groups.name', 'LIKE', "%$keyword%");
             });
         endif;
         
@@ -60,11 +60,11 @@ class GroupModel extends Model {
 
     // Xử lý lấy danh sách nhân sự
     public function handleGetCandidate($filters = [], $keyword = '', $limit) {
-        $queryGet = $this->db->table('users')
-            ->select('users.fullname, users.email, 
-                    users.status, users.create_at, groups.name')
-            ->join('groups', 'users.group_id = groups.id')
-            ->where('users.group_id', '=', 5);
+        $queryGet = $this->db->table('candidates')
+            ->select('candidates.fullname, candidates.email, 
+                candidates.status, candidates.create_at, groups.name')
+            ->join('groups', 'candidates.group_id = groups.id')
+            ->where('candidates.group_id', '=', 2);
 
         $checkNull = false;
 
@@ -77,8 +77,8 @@ class GroupModel extends Model {
         if (!empty($keyword)):
             $queryGet->where(function ($query) use ($keyword) {
                 $query
-                    ->where('users.fullname', 'LIKE', "%$keyword%")
-                    ->orWhere('users.email', 'LIKE', "%$keyword%");
+                    ->where('candidates.fullname', 'LIKE', "%$keyword%")
+                    ->orWhere('candidates.email', 'LIKE', "%$keyword%");
             });
         endif;
         
