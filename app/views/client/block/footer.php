@@ -11,7 +11,7 @@
                         <strong class="logo-text text-white">Chance</strong>
                         <small class="logo-slogan">Online Job Portal</small>
                     </div>
-                </div>  
+                </div>
 
                 <p class="mb-2">
                     <i class="custom-icon bi-globe me-1"></i>
@@ -135,4 +135,5 @@
 <script src="<?php echo _WEB_ROOT; ?>/public/client/assets/js/main.js?ver=<?php echo rand(); ?>"></script>
 
 </body>
+
 </html>

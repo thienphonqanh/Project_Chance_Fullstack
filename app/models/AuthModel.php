@@ -1,5 +1,6 @@
 <?php
-class AuthModel extends Model {
+class AuthModel extends Model
+{
     public function tableFill()
     {
         return '';
@@ -16,29 +17,30 @@ class AuthModel extends Model {
     }
 
     // Xử lý login
-    public function handleLogin($username, $password) {
+    public function handleLogin($username, $password)
+    {
         $queryGet = $this->handleGetWithRole($username);
-        
-        if (!empty($queryGet)):
+
+        if (!empty($queryGet)) :
             $passwordHash = $queryGet['password'];
             $userId = $queryGet['id'];
             $statusAccount = $queryGet['status'];
             $groupId = $queryGet['group_id'];
 
-            if (password_verify($password, $passwordHash)):
-                $loginToken = sha1(uniqid().time());
+            if (password_verify($password, $passwordHash)) :
+                $loginToken = sha1(uniqid() . time());
 
-                if ($groupId === 1):
+                if ($groupId === 1) :
                     $dataToken = [
                         'admin_id' => $userId,
                         'token' => $loginToken,
                         'create_at' => date('Y-m-d H:i:s')
                     ];
-                    
+
                     $tableName = 'admins';
                 endif;
-                
-                if ($groupId === 2):
+
+                if ($groupId === 2) :
                     $dataToken = [
                         'candidate_id' => $userId,
                         'token' => $loginToken,
@@ -48,9 +50,9 @@ class AuthModel extends Model {
                     $tableName = 'candidates';
                 endif;
 
-                if ($statusAccount === 1):
+                if ($statusAccount === 1) :
                     $insertTokenStatus = $this->db->table('login_token')->insert($dataToken);
-                    if ($insertTokenStatus):
+                    if ($insertTokenStatus) :
                         // Lưu login token vào session
                         Session::data('login_token', $loginToken);
                         // Lưu thông tin người đăng nhập
@@ -60,15 +62,15 @@ class AuthModel extends Model {
                     endif;
                 endif;
 
-                if ($statusAccount === 0):
+                if ($statusAccount === 0) :
                     Session::flash('msg', 'Vui lòng kích hoạt tài khoản tại Gmail bạn dùng để đăng ký tài khoản');
                     Session::flash('msg_type', 'danger');
                 endif;
-            else:
+            else :
                 Session::flash('msg', 'Mật khẩu chưa chính xác');
                 Session::flash('msg_type', 'danger');
             endif;
-        else:
+        else :
             Session::flash('msg', 'Email chưa chính xác');
             Session::flash('msg_type', 'danger');
         endif;
@@ -77,22 +79,23 @@ class AuthModel extends Model {
     }
 
     // Xử lý check: admin, candidates
-    public function handleGetWithRole($username) {
+    public function handleGetWithRole($username)
+    {
         $queryGetAdmin = $this->db->table('admins')
             ->select('id, email, password, status, group_id')
             ->where('email', '=', $username)
             ->first();
-            
+
         $queryGetCandidate = $this->db->table('candidates')
             ->select('id, email, password, status, group_id')
             ->where('email', '=', $username)
             ->first();
 
-        if (!empty($queryGetAdmin)):
+        if (!empty($queryGetAdmin)) :
             return $queryGetAdmin;
         endif;
 
-        if (!empty($queryGetCandidate)):
+        if (!empty($queryGetCandidate)) :
             return $queryGetCandidate;
         endif;
 
@@ -100,18 +103,20 @@ class AuthModel extends Model {
     }
 
     // Xử lý lưu data login vào session
-    public function handleSaveUserData($role = '', $userId = '') {
+    public function handleSaveUserData($role = '', $userId = '')
+    {
         $userData = $this->db->table($role)
             ->where('id', '=', $userId)
             ->first();
 
         Session::data('user_data', $userData);
     }
-  
+
 
     // Xử lý register
-    public function handleRegister() {
-        $activeToken = sha1(uniqid().time());
+    public function handleRegister()
+    {
+        $activeToken = sha1(uniqid() . time());
         $groupId = 2;
         $dataInsert = [
             'fullname' => $_POST['fullname'],
@@ -123,27 +128,27 @@ class AuthModel extends Model {
         ];
 
         $insertStatus = $this->db->table('candidates')->insert($dataInsert);
-        if ($insertStatus):
+        if ($insertStatus) :
             // Tạo link active
-            $linkActive = _WEB_ROOT.'/active?token='.$activeToken;
+            $linkActive = _WEB_ROOT . '/active?token=' . $activeToken;
             // Thiết lập mail
-            $subject = ucwords($_POST['fullname']).' ơi. Bạn vui lòng kích hoạt tài khoản';
-            $content = 'Chào bạn: '.ucwords($_POST['fullname']).'<br>';
+            $subject = ucwords($_POST['fullname']) . ' ơi. Bạn vui lòng kích hoạt tài khoản';
+            $content = 'Chào bạn: ' . ucwords($_POST['fullname']) . '<br>';
             $content .= 'Vui lòng click vào link dưới đây để kích hoạt tài khoản của bạn: <br>';
-            $content .= $linkActive.'<br>';
+            $content .= $linkActive . '<br>';
             $content .= 'Trân trọng!';
 
             $sendStatus = Mailer::sendMail($_POST['email'], $subject, $content);
 
-            if ($sendStatus):
+            if ($sendStatus) :
                 Session::flash('msg', 'Đăng ký thành công. Email kích hoạt đã được gửi đến bạn!');
                 Session::flash('msg_type', 'success');
                 return true;
-            else:
+            else :
                 Session::flash('msg', 'Hệ thống đang gặp sự cố');
                 Session::flash('msg_type', 'danger');
             endif;
-        else:
+        else :
             Session::flash('msg', 'Hệ thống đang gặp sự cố');
             Session::flash('msg_type', 'danger');
         endif;
@@ -152,42 +157,44 @@ class AuthModel extends Model {
     }
 
 
-    public function handleActiveAccount($token) {
-        if (!empty($token)):
+    public function handleActiveAccount($token)
+    {
+        if (!empty($token)) :
             // Truy vấn sql để so sánh
             $tokenQuery = $this->db->table('candidates')
                 ->select('id')
                 ->where('active_token', '=', $token)
                 ->first();
 
-            if (!empty($tokenQuery)):
+            if (!empty($tokenQuery)) :
                 $userId = $tokenQuery['id'];
                 $dataUpdate = [
                     'status' => 1,
                     'active_token' => null
                 ];
                 $updateStatus = $this->db->table('candidates')->update($dataUpdate, "id = $userId");
-                if ($updateStatus):
+                if ($updateStatus) :
                     return true;
-                endif;    
+                endif;
             endif;
         endif;
 
         return false;
     }
 
-    public function handleLogout($userId, $groupId) {
-        if (!empty($groupId) && $groupId === 1):
+    public function handleLogout($userId, $groupId)
+    {
+        if (!empty($groupId) && $groupId === 1) :
             $queryDelete = $this->db->table('login_token')
                 ->where('admin_id', '=', $userId)
                 ->delete();
-        else:
+        else :
             $queryDelete = $this->db->table('login_token')
                 ->where('candidate_id', '=', $userId)
                 ->delete();
         endif;
-        
-        if ($queryDelete):
+
+        if ($queryDelete) :
             Session::delete('login_token');
             Session::delete('user_data');
 

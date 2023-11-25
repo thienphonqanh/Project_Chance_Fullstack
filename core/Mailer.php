@@ -1,10 +1,14 @@
 <?php
- use PHPMailer\PHPMailer\PHPMailer;
- use PHPMailer\PHPMailer\SMTP;
- use PHPMailer\PHPMailer\Exception;
-class Mailer {
 
-    public static function sendMail($to, $subject, $content) {
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+class Mailer
+{
+
+    public static function sendMail($to, $subject, $content)
+    {
         //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
 
@@ -22,10 +26,10 @@ class Mailer {
             //Recipients
             $mail->setFrom('thienphonqanh@gmail.com', 'Mailer');
             $mail->addAddress($to);     //Add a recipient
-            
+
 
             //Content
-            $mail->isHTML(true);  
+            $mail->isHTML(true);
             $mail->CharSet = 'UTF-8';                                //Set email format to HTML
             $mail->Subject = $subject;
             $mail->Body    = $content;

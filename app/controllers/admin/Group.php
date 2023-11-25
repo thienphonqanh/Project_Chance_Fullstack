@@ -1,101 +1,106 @@
 <?php
-class Group extends Controller {
+class Group extends Controller
+{
     private $groupModel;
     private $data = [];
     private $config = [];
 
-    public function __construct() {
+    public function __construct()
+    {
         global $config;
-        $this->config = $config[ 'app' ];
+        $this->config = $config['app'];
         $this->groupModel = $this->model('GroupModel', 'admin');
     }
 
-    public function getPersonnel() {
+    public function getPersonnel()
+    {
         $request = new Request();
         $query = $request->getFields();
 
         $filters = [];
 
-        if (!empty($query)):
+        if (!empty($query)) :
             extract($query);
 
-            if (isset($status)):
-                if ($status == 'active' || $status == 'inactive'):
+            if (isset($status)) :
+                if ($status == 'active' || $status == 'inactive') :
                     $filters['status'] = $status == 'active' ? 1 : 0;
                 endif;
             endif;
         endif;
 
-        $resultPaginate = $this->groupModel->handleGetPersonnel($filters, $keyword ?? '', $this->config[ 'page_limit' ] );
+        $resultPaginate = $this->groupModel->handleGetPersonnel($filters, $keyword ?? '', $this->config['page_limit']);
 
-        $result = $resultPaginate[ 'data' ];
+        $result = $resultPaginate['data'];
 
-        $links = $resultPaginate[ 'link' ];
+        $links = $resultPaginate['link'];
 
-        if (!empty($result)):
+        if (!empty($result)) :
             $listPersonnel = $result;
             $this->data['dataView']['listPersonnel'] = $listPersonnel;
-        else:
+        else :
             $emtyValue = 'Không có dữ liệu';
             $this->data['dataView']['emptyValue'] = $emtyValue;
         endif;
 
         $this->data['body'] = 'admin/groups/personnel';
         $this->data['dataView']['request'] = $request;
-        $this->data['dataView'][ 'links' ] = $links;
+        $this->data['dataView']['links'] = $links;
         $this->render('layouts/layout', $this->data, 'admin');
     }
 
-    public function getCandidate() {
+    public function getCandidate()
+    {
         $request = new Request();
         $query = $request->getFields();
 
         $filters = [];
 
-        if (!empty($query)):
+        if (!empty($query)) :
             extract($query);
 
-            if (isset($status)):
-                if ($status == 'active' || $status == 'inactive'):
+            if (isset($status)) :
+                if ($status == 'active' || $status == 'inactive') :
                     $filters['status'] = $status == 'active' ? 1 : 0;
                 endif;
             endif;
         endif;
 
-        $resultPaginate = $this->groupModel->handleGetCandidate($filters, $keyword ?? '', $this->config[ 'page_limit' ] );
+        $resultPaginate = $this->groupModel->handleGetCandidate($filters, $keyword ?? '', $this->config['page_limit']);
 
-        $result = $resultPaginate[ 'data' ];
+        $result = $resultPaginate['data'];
 
-        $links = $resultPaginate[ 'link' ];
+        $links = $resultPaginate['link'];
 
-        if (!empty($result)):
+        if (!empty($result)) :
             $listCandidate = $result;
             $this->data['dataView']['listCandidate'] = $listCandidate;
-        else:
+        else :
             $emtyValue = 'Không có dữ liệu';
             $this->data['dataView']['emptyValue'] = $emtyValue;
         endif;
 
         $this->data['body'] = 'admin/groups/candidate';
         $this->data['dataView']['request'] = $request;
-        $this->data['dataView'][ 'links' ] = $links;
+        $this->data['dataView']['links'] = $links;
         $this->render('layouts/layout', $this->data, 'admin');
     }
 
-    public function viewProfile() {
+    public function viewProfile()
+    {
         $request = new Request();
 
         $data = $request->getFields();
 
-        if (!empty($data['id'])):
+        if (!empty($data['id'])) :
             $userId = $data['id'];
 
             $result = $this->groupModel->handleViewProfile($userId);
 
-            if (!empty($result)):
+            if (!empty($result)) :
                 $dataProfile = $result;
                 $this->data['dataView']['dataProfile'] = $dataProfile;
-            else:
+            else :
                 $emtyValue = 'Không có dữ liệu';
                 $this->data['dataView']['emptyValue'] = $emtyValue;
             endif;
@@ -106,17 +111,18 @@ class Group extends Controller {
         $this->render('layouts/layout', $this->data, 'admin');
     }
 
-    public function updateProfile() {
+    public function updateProfile()
+    {
         $request = new Request();
 
         $data = $request->getFields();
         $userId = $_GET['id'];
 
-        $checkOld= $this->groupModel->handleGetOldEmail($userId);
+        $checkOld = $this->groupModel->handleGetOldEmail($userId);
         $oldEmail = $checkOld['email'];
 
-        if ($request->isPost()):
-            if (!empty($oldEmail) && $oldEmail === $data['email']):
+        if ($request->isPost()) :
+            if (!empty($oldEmail) && $oldEmail === $data['email']) :
                 $request->rules([
                     'fullname' => 'required|min:5',
                     'email' => 'required|email|min:11',
@@ -134,7 +140,7 @@ class Group extends Controller {
                     'phone.phone' => 'Số điện thoại không hợp lệ',
                     'dob.required' => 'Ngày sinh không được để trống',
                 ]);
-            else:
+            else :
                 $request->rules([
                     'fullname' => 'required|min:5',
                     'email' => 'required|email|min:11|unique:candidates:email',
@@ -154,36 +160,36 @@ class Group extends Controller {
                     'dob.required' => 'Ngày sinh không được để trống',
                 ]);
             endif;
-            
-           
+
+
 
             $validate = $request->validate();
 
-            if ($validate):
-                if (!empty($userId)):
+            if ($validate) :
+                if (!empty($userId)) :
                     $resultUpdate = $this->groupModel->handleUpdateProfile($userId);
                 endif;
 
-                if ($resultUpdate):
+                if ($resultUpdate) :
                     Session::flash('msg', 'Thay đổi thành công');
                     Session::flash('msg_type', 'success');
-                else:
+                else :
                     Session::flash('msg', 'Thay đổi thất bại');
                     Session::flash('msg_type', 'danger');
                 endif;
-            else:
+            else :
                 Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
                 Session::flash('msg_type', 'danger');
             endif;
         endif;
 
-        if (!empty($userId)):
+        if (!empty($userId)) :
             $result = $this->groupModel->handleViewProfile($userId);
 
-            if (!empty($result)):
+            if (!empty($result)) :
                 $dataProfile = $result;
                 $this->data['dataView']['dataProfile'] = $dataProfile;
-            else:
+            else :
                 $emtyValue = 'Không có dữ liệu';
                 $this->data['dataView']['emptyValue'] = $emtyValue;
             endif;
@@ -196,45 +202,45 @@ class Group extends Controller {
         $this->data['dataView']['old'] = Session::flash('chance_session_old');
         $this->render('layouts/layout', $this->data, 'admin');
     }
-   
+
     // Xử lý trạng thái account
-    public function changeStatusAccount() {
+    public function changeStatusAccount()
+    {
         $request = new Request();
         $response = new Response();
 
         $data = $request->getFields();
 
-        if (!empty($data['id'])):
+        if (!empty($data['id'])) :
             $userId = $data['id'];
 
             $result = $this->groupModel->handleChangeStatusAccount($userId); // Gọi xử lý ở Model
 
-            if ($result):
+            if ($result) :
                 $response->redirect('groups/ung-vien');
             endif;
-            
+
         endif;
     }
 
-    public function delete() {
+    public function delete()
+    {
         $request = new Request();
         $response = new Response();
 
         $data = $request->getFields();
 
-        if (!empty($data)):
+        if (!empty($data)) :
             $itemsToDelete = isset($data['item']) ? $data['item'] : [];
             $itemsToDelete = implode(',', $itemsToDelete);
-            
+
 
             $result = $this->groupModel->handleDelete($itemsToDelete);
 
-            if ($result):
+            if ($result) :
                 $response->redirect('groups/ung-vien');
             endif;
-            
+
         endif;
     }
-
-
 }

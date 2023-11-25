@@ -5,4 +5,3 @@ $config['database'] = [
     'pass' => '',
     'db' => 'job'
 ];
-?>

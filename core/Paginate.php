@@ -1,5 +1,6 @@
 <?php
-class Paginate {
+class Paginate
+{
     private static function getPaginateLink($page, $isQuery)
     {
         if (!empty($_SERVER['QUERY_STRING']) && $isQuery) {

@@ -1,5 +1,6 @@
 <?php
-trait QueryBuilder {
+trait QueryBuilder
+{
     public $tableName = '';
     public $where = '';
     public $operator = '';
@@ -29,13 +30,13 @@ trait QueryBuilder {
             } else {
                 $this->operator = ' AND ';
             }
-            
+
             if ($compare == 'IN') {
                 $this->where .= "$this->operator $field $compare $value";
             } else {
                 $this->where .= "$this->operator $field $compare '$value'";
             }
-            
+
             $this->where = str_replace('( AND', 'AND (', $this->where);
         }
 

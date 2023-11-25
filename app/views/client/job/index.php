@@ -3,7 +3,7 @@
 
     <div class="container">
         <div class="row">
-            
+
             <div class="col-lg-12 col-12 text-center">
                 <h1 class="text-white">Danh sách việc làm</h1>
 
@@ -26,7 +26,7 @@
             <div class="col-lg-12 col-12">
                 <form class="custom-form hero-form" action="#" method="get" role="form">
                     <h3 class="text-white mb-3">Tìm kiếm công việc mơ ước</h3>
-                    
+
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="input-group">
@@ -138,49 +138,50 @@
                 </div>
             </div>
 
-            
+
             <div class="col-lg-12 col-12 bg-body-tertiary p-3 rounded d-flex">
                 <div class="row">
                     <div class="col-lg-9">
                         <ul class="list-job">
-                        <?php 
-                            if (!empty($listJob)): 
-                                foreach ($listJob as $item):
-                        ?>
-                            <li class="job-thumb">
-                                <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam" class="d-flex w-100">
-                                    <div class="job-image-wrap bg-white shadow-lg">
-                                        <img src="<?php echo $item['thumbnail'] ?>" class="job-image img-fluid" alt="">
-                                    </div>
-                                    <div class="job-body d-flex flex-wrap align-items-center ms-4 w-100">
-                                        
-                                        <div class="mb-3">
-                                            <h5 class="text-dark mb-lg-0 pb-2">
-                                                <?php echo $item['title'] ?>
-                                            </h5>
-                                            
-                                            <div class="d-flex flex-wrap align-items-center">
-                                                <p class="job-location mb-0">
-                                                    <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
-                                                    <?php echo $item['name'] ?><br>
-                                                    <strong class="text-info mx-1"><?php echo $item['location'] ?></strong>
-                                                </p>
-                                            
-                                                <p class="job-date mb-0">
-                                                    <i class="fa-regular fa-clock text-primary-emphasis"></i>
-                                                    10 giờ trước
-                                                </p>
-                                            
-                                                <p class="job-price mb-0">
-                                                    <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
-                                                    <?php echo $item['salary'] ?>
-                                                </p>
+                            <?php
+                            if (!empty($listJob)) :
+                                foreach ($listJob as $item) :
+                            ?>
+                                    <li class="job-thumb">
+                                        <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam" class="d-flex w-100">
+                                            <div class="job-image-wrap bg-white shadow-lg">
+                                                <img src="<?php echo $item['thumbnail'] ?>" class="job-image img-fluid" alt="">
                                             </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        <?php endforeach; endif; ?>
+                                            <div class="job-body d-flex flex-wrap align-items-center ms-4 w-100">
+
+                                                <div class="mb-3">
+                                                    <h5 class="text-dark mb-lg-0 pb-2">
+                                                        <?php echo $item['title'] ?>
+                                                    </h5>
+
+                                                    <div class="d-flex flex-wrap align-items-center">
+                                                        <p class="job-location mb-0">
+                                                            <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
+                                                            <?php echo $item['name'] ?><br>
+                                                            <strong class="text-info mx-1"><?php echo $item['location'] ?></strong>
+                                                        </p>
+
+                                                        <p class="job-date mb-0">
+                                                            <i class="fa-regular fa-clock text-primary-emphasis"></i>
+                                                            10 giờ trước
+                                                        </p>
+
+                                                        <p class="job-price mb-0">
+                                                            <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
+                                                            <?php echo $item['salary'] ?>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                            <?php endforeach;
+                            endif; ?>
 
                             <div class="paging">
                                 <ul class="list-page"></ul>
@@ -213,13 +214,13 @@
                         </div>
                     </div>
                 </div>
-                
-                
-                
-            </div>
-            
 
-            
+
+
+            </div>
+
+
+
         </div>
     </div>
 </section>
@@ -228,38 +229,38 @@
 <section class="career-suggestions">
     <div class="container-lg">
         <h2 class="fw-bold text-center">Việc làm theo nghề nghiệp</h2>
-            <div class="d-flex flex-wrap justify-content-between">
-                    <div class="d-flex flex-column mt-4">
-                        <a href="#" class="fw-semibold">Hành chính-Thư ký</a>
-                        <a href="#" class="fw-semibold">An ninh-Bảo vệ</a>
-                        <a href="#" class="fw-semibold">Thiết kế-Sáng tạo nghệ thuật</a>
-                        <a href="#" class="fw-semibold">Kiến trúc-Thiêt kế nội ngoại thất</a>
-                        <a href="#" class="fw-semibold">Khách sạn-Nhà hàng-Du lịch</a>
-                        <a href="#" class="fw-semibold">Bán sỉ-Bán lẻ-Quản lý cửa hàng</a>
-                        <a href="#" class="fw-semibold">IT Phần cứng-mạng</a>
-                        <a href="#" class="fw-semibold">IT Phần mềm</a>
-                    </div>
-                    <div class="d-flex flex-column mt-4">
-                        <a href="#" class="fw-semibold">Sản xuất-Lắp ráp-Chế biến</a>
-                        <a href="#" class="fw-semibold">Vận hành-Bảo trì-Bảo dưỡng</a>
-                        <a href="#" class="fw-semibold">Nông-Lâm-Ngư nghiệp</a>
-                        <a href="#" class="fw-semibold">Marketing</a>
-                        <a href="#" class="fw-semibold">Bán hàng-Kinh doanh</a>
-                        <a href="#" class="fw-semibold">Thu mua-Kho vận-Chuỗi cung ứng</a>
-                        <a href="#" class="fw-semibold">Xuất nhập khẩu</a>
-                        <a href="#" class="fw-semibold">Vận tải-Lái xe-Giao nhận</a>
-                    </div>
-                    <div class="d-flex flex-column mt-4">
-                        <a href="#" class="fw-semibold">Kế toán</a>
-                        <a href="#" class="fw-semibold">Tài chính-Đầu tư-Chứng khoán</a>
-                        <a href="#" class="fw-semibold">Bảo hiểm</a>
-                        <a href="#" class="fw-semibold">Ngân hàng</a>
-                        <a href="#" class="fw-semibold">Khai thác năng lượng-Khoáng sản-Địa chất</a>
-                        <a href="#" class="fw-semibold">Y tế-Chăm sóc sức khoẻ</a>
-                        <a href="#" class="fw-semibold">Nhân sự</a>
-                        <a href="#" class="fw-semibold">Thông tin-Truyền thông-Quảng cáo</a>
-                    </div>
+        <div class="d-flex flex-wrap justify-content-between">
+            <div class="d-flex flex-column mt-4">
+                <a href="#" class="fw-semibold">Hành chính-Thư ký</a>
+                <a href="#" class="fw-semibold">An ninh-Bảo vệ</a>
+                <a href="#" class="fw-semibold">Thiết kế-Sáng tạo nghệ thuật</a>
+                <a href="#" class="fw-semibold">Kiến trúc-Thiêt kế nội ngoại thất</a>
+                <a href="#" class="fw-semibold">Khách sạn-Nhà hàng-Du lịch</a>
+                <a href="#" class="fw-semibold">Bán sỉ-Bán lẻ-Quản lý cửa hàng</a>
+                <a href="#" class="fw-semibold">IT Phần cứng-mạng</a>
+                <a href="#" class="fw-semibold">IT Phần mềm</a>
             </div>
+            <div class="d-flex flex-column mt-4">
+                <a href="#" class="fw-semibold">Sản xuất-Lắp ráp-Chế biến</a>
+                <a href="#" class="fw-semibold">Vận hành-Bảo trì-Bảo dưỡng</a>
+                <a href="#" class="fw-semibold">Nông-Lâm-Ngư nghiệp</a>
+                <a href="#" class="fw-semibold">Marketing</a>
+                <a href="#" class="fw-semibold">Bán hàng-Kinh doanh</a>
+                <a href="#" class="fw-semibold">Thu mua-Kho vận-Chuỗi cung ứng</a>
+                <a href="#" class="fw-semibold">Xuất nhập khẩu</a>
+                <a href="#" class="fw-semibold">Vận tải-Lái xe-Giao nhận</a>
+            </div>
+            <div class="d-flex flex-column mt-4">
+                <a href="#" class="fw-semibold">Kế toán</a>
+                <a href="#" class="fw-semibold">Tài chính-Đầu tư-Chứng khoán</a>
+                <a href="#" class="fw-semibold">Bảo hiểm</a>
+                <a href="#" class="fw-semibold">Ngân hàng</a>
+                <a href="#" class="fw-semibold">Khai thác năng lượng-Khoáng sản-Địa chất</a>
+                <a href="#" class="fw-semibold">Y tế-Chăm sóc sức khoẻ</a>
+                <a href="#" class="fw-semibold">Nhân sự</a>
+                <a href="#" class="fw-semibold">Thông tin-Truyền thông-Quảng cáo</a>
+            </div>
+        </div>
         <a href="#" type="button" class="d-block text-center m-auto mt-4 text-primary">Xem tất cả nghề nghiệp <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 </section>

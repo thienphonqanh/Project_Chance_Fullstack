@@ -1,5 +1,6 @@
 <?php
-class JobModel extends Model {
+class JobModel extends Model
+{
 
     public function tableFill()
     {
@@ -17,32 +18,31 @@ class JobModel extends Model {
     }
 
     // Xử lý lấy danh sách nhân sự
-    public function handleGetListJob() {
+    public function handleGetListJob()
+    {
         $queryGet = $this->db->table('jobs')
             ->select('jobs.title, jobs.thumbnail, jobs.slug, 
                     jobs.salary, jobs.location, companies.name')
             ->join('companies', 'jobs.company_id = companies.id')
             ->get();
-            
+
         $response = [];
         $checkNull = false;
 
-        if (!empty($queryGet)):
-            foreach ($queryGet as $key => $item):
-                foreach ($item as $subKey => $subItem):
-                    if ($subItem === NULL || $subItem === ''):
+        if (!empty($queryGet)) :
+            foreach ($queryGet as $key => $item) :
+                foreach ($item as $subKey => $subItem) :
+                    if ($subItem === NULL || $subItem === '') :
                         $checkNull = true;
                     endif;
                 endforeach;
             endforeach;
         endif;
 
-        if (!$checkNull):
+        if (!$checkNull) :
             $response = $queryGet;
         endif;
 
         return $response;
     }
-
-    
 }

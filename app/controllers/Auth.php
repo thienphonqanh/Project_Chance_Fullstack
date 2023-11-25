@@ -1,23 +1,25 @@
 <?php
-class Auth extends Controller {
+class Auth extends Controller
+{
     private $authModel;
     private $data = [];
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->authModel = $this->model('AuthModel');
-
     }
 
     // Xử lý login
-    public function login() {
+    public function login()
+    {
         $request = new Request();
         $response = new Response();
 
-        if (isLogin()):
+        if (isLogin()) :
             $response->redirect('trang-chu');
-        endif; 
+        endif;
 
-        if ($request->isPost()): // Kiểm tra post
+        if ($request->isPost()) : // Kiểm tra post
             $request->rules([
                 'email' => 'required',
                 'password' => 'required',
@@ -30,26 +32,26 @@ class Auth extends Controller {
 
             $validate = $request->validate();
 
-            if ($validate):
+            if ($validate) :
                 $data = $request->getFields();
 
-                if (!empty($data)):
+                if (!empty($data)) :
                     $username = $data['email'];
                     $password = $data['password'];
-    
+
                     $result = $this->authModel->handleLogin($username, $password);
-                    
-                    if ($result):
+
+                    if ($result) :
                         $response->redirect('trang-chu');
-                    else:
+                    else :
                         $response->redirect('dang-nhap');
                     endif;
                 endif;
-            else:
+            else :
                 Session::flash('msg', 'Vui lòng nhập tất cả dữ liệu');
                 Session::flash('msg_type', 'danger');
             endif;
-           
+
         endif;
 
 
@@ -63,15 +65,16 @@ class Auth extends Controller {
     }
 
     // Xử lý register
-    public function register() {
+    public function register()
+    {
         $request = new Request();
         $response = new Response();
 
-        if (isLogin()):
+        if (isLogin()) :
             $response->redirect('trang-chu');
-        endif; 
-        
-        if ($request->isPost()): // Kiểm tra post
+        endif;
+
+        if ($request->isPost()) : // Kiểm tra post
             $request->rules([
                 'fullname' => 'required|min:5',
                 'email' => 'required|email|min:11|unique:candidates:email',
@@ -95,15 +98,15 @@ class Auth extends Controller {
 
             $validate = $request->validate();
 
-            if ($validate):
+            if ($validate) :
                 $result = $this->authModel->handleRegister();
 
-                if ($result):
+                if ($result) :
                     $response->redirect('dang-nhap');
-                else:
+                else :
                     $response->redirect('dang-ky');
                 endif;
-            else:
+            else :
                 Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
                 Session::flash('msg_type', 'danger');
             endif;
@@ -119,17 +122,18 @@ class Auth extends Controller {
         $this->render('layouts/auth', $this->data, '');
     }
 
-    public function active() {
+    public function active()
+    {
         $token = $_GET['token'];
-        
-        if (!empty($token)):
+
+        if (!empty($token)) :
             $result = $this->authModel->handleActiveAccount($token);
 
-            if ($result):
+            if ($result) :
                 $response = [
                     'message' => 'Tạo tài khoản thành công'
                 ];
-            else:
+            else :
                 $response = [
                     'message' => 'Tạo tài khoản thất bại'
                 ];
@@ -138,21 +142,21 @@ class Auth extends Controller {
         endif;
     }
 
-    public function logout() {
+    public function logout()
+    {
         $response = new Response();
-        
-        if (!empty(Session::data('user_data')['id'])):
+
+        if (!empty(Session::data('user_data')['id'])) :
             $userId = Session::data('user_data')['id'];
             $groupId = Session::data('user_data')['group_id'];
         endif;
-        
-        if (!empty($userId) && !empty($groupId)):
+
+        if (!empty($userId) && !empty($groupId)) :
             $result = $this->authModel->handleLogout($userId, $groupId);
 
-            if ($result):
+            if ($result) :
                 $response->redirect('trang-chu');
             endif;
         endif;
     }
-
 }

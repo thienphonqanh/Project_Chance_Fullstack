@@ -4,9 +4,9 @@ const _INCODE = true; //Ngăn chặn hành vi truy cập trực tiếp vào file
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 // Xử lý http root
-if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on'):
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') :
     $webRoot = 'https://' . $_SERVER['HTTP_HOST'];
-else:
+else :
     $webRoot = 'http://' . $_SERVER['HTTP_HOST'];
 endif;
 
@@ -25,12 +25,12 @@ define('_WEB_ROOT', $webRoot);
     Tự động load configs
 */
 // scandir: trả về một mảng chứa tên của các tệp và thư mục trong thư mục đã chỉ định.
-$configsDir = scandir('configs'); 
+$configsDir = scandir('configs');
 
-if (!empty($configsDir)):
-    foreach ($configsDir as $item):
-        if ($item != '.' && $item != '..' && file_exists('configs/'.$item)):
-            require_once 'configs/'.$item;
+if (!empty($configsDir)) :
+    foreach ($configsDir as $item) :
+        if ($item != '.' && $item != '..' && file_exists('configs/' . $item)) :
+            require_once 'configs/' . $item;
         endif;
     endforeach;
 endif;
@@ -53,10 +53,10 @@ require_once 'phpmailer/Exception.php';
 require_once 'core/Route.php';
 
 // Kiểm tra config của DB và load vào
-if (!empty($config['database'])):
+if (!empty($config['database'])) :
     $dbConfig = $config['database'];
-    
-    if (!empty($dbConfig)):
+
+    if (!empty($dbConfig)) :
         require_once 'core/Connection.php';
         require_once 'core/QueryBuilder.php';
         require_once 'core/Database.php';

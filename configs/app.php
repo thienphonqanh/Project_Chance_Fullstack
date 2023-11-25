@@ -5,4 +5,3 @@ $config['app'] = [
     ],
     'page_limit' => 6
 ];
-?>

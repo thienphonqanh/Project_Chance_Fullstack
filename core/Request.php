@@ -1,46 +1,52 @@
 <?php
-class Request{
+class Request
+{
     private $__rules = [], $__messages = [], $__errors = [];
     public $db;
     /*
         1. Method
         2. Body
     */
-    function __construct() {
+    function __construct()
+    {
         $this->db = new Database();
     }
 
-    public function getMethod() {
+    public function getMethod()
+    {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
-    public function isPost() {
-        if ($this->getMethod() =='post'):
+    public function isPost()
+    {
+        if ($this->getMethod() == 'post') :
             return true;
         endif;
 
         return false;
     }
 
-    public function isGet() {
-        if ($this->getMethod() =='get'):
+    public function isGet()
+    {
+        if ($this->getMethod() == 'get') :
             return true;
         endif;
 
         return false;
     }
 
-    public function getFields() {
+    public function getFields()
+    {
 
         $dataFields = [];
 
-        if ($this->isGet()):
+        if ($this->isGet()) :
             //Xử lý lấy dữ liệu với phương thức get
-            if (!empty($_GET)):
-                foreach ($_GET as $key=>$value):
-                    if (is_array($value)):
+            if (!empty($_GET)) :
+                foreach ($_GET as $key => $value) :
+                    if (is_array($value)) :
                         $dataFields[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
-                    else:
+                    else :
                         $dataFields[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
                     endif;
                 endforeach;
@@ -48,13 +54,13 @@ class Request{
         endif;
 
 
-        if ($this->isPost()):
+        if ($this->isPost()) :
             //Xử lý lấy dữ liệu với phương thức post
-            if (!empty($_POST)):
-                foreach ($_POST as $key=>$value):
-                    if (is_array($value)):
+            if (!empty($_POST)) :
+                foreach ($_POST as $key => $value) :
+                    if (is_array($value)) :
                         $dataFields[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
-                    else:
+                    else :
                         $dataFields[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
                     endif;
                 endforeach;
@@ -65,31 +71,33 @@ class Request{
     }
 
     //set rules
-    public function rules($rules = []) {
+    public function rules($rules = [])
+    {
         $this->__rules = $rules;
-
     }
 
     //set message
-    public function message($messages = []) { 
+    public function message($messages = [])
+    {
         $this->__messages = $messages;
     }
 
     //Run validate
-    public function validate() {
+    public function validate()
+    {
 
         $this->__rules = array_filter($this->__rules);
 
         $checkValidate = true;
 
-        if (!empty($this->__rules)):
+        if (!empty($this->__rules)) :
 
             $dataFields = $this->getFields();
 
-            foreach ($this->__rules as $fieldName=>$ruleItem):
+            foreach ($this->__rules as $fieldName => $ruleItem) :
                 $ruleItemArr = explode('|', $ruleItem);
 
-                foreach ($ruleItemArr as $rules):
+                foreach ($ruleItemArr as $rules) :
 
                     $ruleName = null;
                     $ruleValue = null;
@@ -98,88 +106,88 @@ class Request{
 
                     $ruleName = reset($rulesArr);
 
-                    if (count($rulesArr) > 1):
+                    if (count($rulesArr) > 1) :
                         $ruleValue = end($rulesArr);
                     endif;
 
-                    if ($ruleName=='required'):
-                        if (empty(trim($dataFields[$fieldName]))):
+                    if ($ruleName == 'required') :
+                        if (empty(trim($dataFields[$fieldName]))) :
                             $this->setErrors($fieldName, $ruleName);
                             $checkValidate = false;
                         endif;
                     endif;
 
-                    if ($ruleName=='min'):
-                        if (strlen(trim($dataFields[$fieldName]))<$ruleValue):
+                    if ($ruleName == 'min') :
+                        if (strlen(trim($dataFields[$fieldName])) < $ruleValue) :
                             $this->setErrors($fieldName, $ruleName);
                             $checkValidate = false;
                         endif;
                     endif;
 
-                    if ($ruleName=='max'):
-                        if (strlen(trim($dataFields[$fieldName]))>$ruleValue):
+                    if ($ruleName == 'max') :
+                        if (strlen(trim($dataFields[$fieldName])) > $ruleValue) :
                             $this->setErrors($fieldName, $ruleName);
                             $checkValidate = false;
                         endif;
                     endif;
 
-                    if ($ruleName=='email'):
-                        if (!filter_var($dataFields[$fieldName], FILTER_VALIDATE_EMAIL)):
+                    if ($ruleName == 'email') :
+                        if (!filter_var($dataFields[$fieldName], FILTER_VALIDATE_EMAIL)) :
                             $this->setErrors($fieldName, $ruleName);
                             $checkValidate = false;
                         endif;
                     endif;
 
                     // ^(0|\+84)\d{9}$
-                    if ($ruleName=='phone'):
-                        if (!preg_match('~^(0|\+84)\d{9}$~', trim($dataFields[$fieldName]))):
+                    if ($ruleName == 'phone') :
+                        if (!preg_match('~^(0|\+84)\d{9}$~', trim($dataFields[$fieldName]))) :
                             $this->setErrors($fieldName, $ruleName);
                             $checkValidate = false;
                         endif;
                     endif;
 
-                    if ($ruleName=='match'):
-                        if (trim($dataFields[$fieldName])!=trim($dataFields[$ruleValue])):
+                    if ($ruleName == 'match') :
+                        if (trim($dataFields[$fieldName]) != trim($dataFields[$ruleValue])) :
                             $this->setErrors($fieldName, $ruleName);
                             $checkValidate = false;
                         endif;
                     endif;
 
                     // ^(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{2,}$
-                    if ($ruleName=='special'):
-                        if (!preg_match('~^(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{2,}$~', trim($dataFields[$fieldName]))):
+                    if ($ruleName == 'special') :
+                        if (!preg_match('~^(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{2,}$~', trim($dataFields[$fieldName]))) :
                             $this->setErrors($fieldName, $ruleName);
                             $checkValidate = false;
                         endif;
                     endif;
 
 
-                    if ($ruleName=='unique'):
+                    if ($ruleName == 'unique') :
                         $tableName = null;
                         $fieldCheck = null;
 
-                        if (!empty($rulesArr[1])):
+                        if (!empty($rulesArr[1])) :
                             $tableName = $rulesArr[1];
                         endif;
 
-                        if (!empty($rulesArr[2])):
+                        if (!empty($rulesArr[2])) :
                             $fieldCheck = $rulesArr[2];
                         endif;
 
-                        if (!empty($tableName) && !empty($fieldCheck)):
+                        if (!empty($tableName) && !empty($fieldCheck)) :
                             $dataFields[$fieldName] = trim($dataFields[$fieldName]);
-                            if (count($rulesArr)==3):
+                            if (count($rulesArr) == 3) :
                                 $checkExist = $this->db->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck='$dataFields[$fieldName]'")->rowCount();
-                            elseif (count($rulesArr)==4):
+                            elseif (count($rulesArr) == 4) :
 
-                                if (!empty($rulesArr[3]) && preg_match('~.+?\=.+?~is', $rulesArr[3])):
+                                if (!empty($rulesArr[3]) && preg_match('~.+?\=.+?~is', $rulesArr[3])) :
                                     $conditionWhere = $rulesArr[3];
                                     $conditionWhere = str_replace('=', '<>', $conditionWhere);
                                     $checkExist = $this->db->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck='trim($dataFields[$fieldName])' AND $conditionWhere")->rowCount();
                                 endif;
                             endif;
 
-                            if (!empty($checkExist)):
+                            if (!empty($checkExist)) :
                                 $this->setErrors($fieldName, $ruleName);
                                 $checkValidate = false;
                             endif;
@@ -187,16 +195,16 @@ class Request{
                     endif;
 
                     //Callback validate
-                    if (preg_match('~^callback_(.+)~is', $ruleName, $callbackArr)):
-                        if (!empty($callbackArr[1])):
+                    if (preg_match('~^callback_(.+)~is', $ruleName, $callbackArr)) :
+                        if (!empty($callbackArr[1])) :
                             $callbackName = $callbackArr[1];
                             $controller = App::$app->getCurrentController();
 
-                            if (method_exists($controller, $callbackName)):
+                            if (method_exists($controller, $callbackName)) :
 
                                 $checkCallback = call_user_func_array([$controller, $callbackName], [trim($dataFields[$fieldName])]);
 
-                                if (!$checkCallback):
+                                if (!$checkCallback) :
                                     $this->setErrors($fieldName, $ruleName);
                                     $checkValidate = false;
                                 endif;
@@ -209,18 +217,19 @@ class Request{
         endif;
 
         $sessionKey = Session::isInvalid();
-        Session::flash($sessionKey.'_errors', $this->errors());
-        Session::flash($sessionKey.'_old', $this->getFields());
+        Session::flash($sessionKey . '_errors', $this->errors());
+        Session::flash($sessionKey . '_old', $this->getFields());
 
         return $checkValidate;
     }
 
     //get errors
-    public function errors($fieldName = ''){
-        if (!empty($this->__errors)){
-            if (empty($fieldName)){
+    public function errors($fieldName = '')
+    {
+        if (!empty($this->__errors)) {
+            if (empty($fieldName)) {
                 $errorsArr = [];
-                foreach ($this->__errors as $key=>$error){
+                foreach ($this->__errors as $key => $error) {
                     $errorsArr[$key] = reset($error);
                 }
                 return $errorsArr;
@@ -233,8 +242,8 @@ class Request{
     }
 
     //set errors
-    public function setErrors($fieldName, $ruleName){
-        $this->__errors[$fieldName][$ruleName] = $this->__messages[$fieldName.'.'.$ruleName];
+    public function setErrors($fieldName, $ruleName)
+    {
+        $this->__errors[$fieldName][$ruleName] = $this->__messages[$fieldName . '.' . $ruleName];
     }
-
 }

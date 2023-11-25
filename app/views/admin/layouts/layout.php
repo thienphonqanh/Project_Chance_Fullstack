@@ -1,4 +1,4 @@
-<?php 
+<?php
 $this->render('block/header', [], 'admin');
 $this->render('block/sidebar', [], 'admin');
 $this->render('block/breadcrumb', [], 'admin');

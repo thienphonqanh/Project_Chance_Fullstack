@@ -1,7 +1,9 @@
 <?php
-class DB {
+class DB
+{
     public $db;
-    function __construct(){
+    function __construct()
+    {
         $this->db = new Database();
     }
 }

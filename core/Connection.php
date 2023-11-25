@@ -2,10 +2,12 @@
 /* 
     Lớp connect DB theo singleton-design-pattern
 */
-class Connection {
+class Connection
+{
     private static $instance = null, $conn = null;
 
-    private function __construct($config) {
+    private function __construct($config)
+    {
         //Kết nối database
         try {
             //Cấu hình dsn
@@ -25,7 +27,6 @@ class Connection {
             $con = new PDO($dsn, $config['user'], $config['pass'], $options);
 
             self::$conn = $con;
-
         } catch (Exception $exception) {
             $mess = $exception->getMessage();
             App::$app->loadError('database', ['message' => $mess]);
@@ -33,7 +34,8 @@ class Connection {
         }
     }
 
-    public static function getInstance($config) {
+    public static function getInstance($config)
+    {
         if (self::$instance == null) {
             $connection = new Connection($config);
             self::$instance = self::$conn;

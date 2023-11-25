@@ -1,66 +1,66 @@
         <!-- Mở đầu -->
         <section class="hero-section d-flex justify-content-center align-items-center">
-                <div class="section-overlay"></div>
+            <div class="section-overlay"></div>
 
-                <div class="container">
-                    <div class="row">
+            <div class="container">
+                <div class="row">
 
-                        <div class="col-lg-6 col-12 mb-5 mb-lg-0">
-                            <div class="hero-section-text mt-5">
-                                <h6 class="text-white">Bạn đang tìm kiếm công việc mơ ước?</h6>
+                    <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                        <div class="hero-section-text mt-5">
+                            <h6 class="text-white">Bạn đang tìm kiếm công việc mơ ước?</h6>
 
-                                <h1 class="hero-title text-white mt-4 mb-4">Việc làm trực tuyến. <br> <span class="text-info">WEBSITE</span> tuyển dụng hàng đầu</h1>
+                            <h1 class="hero-title text-white mt-4 mb-4">Việc làm trực tuyến. <br> <span class="text-info">WEBSITE</span> tuyển dụng hàng đầu</h1>
 
-                                <a href="#categories-section" class="custom-btn custom-border-btn btn">Duyệt danh mục</a>
-                            </div>
+                            <a href="#categories-section" class="custom-btn custom-border-btn btn">Duyệt danh mục</a>
                         </div>
+                    </div>
 
-                        <div class="col-lg-6 col-12">
-                            <form class="custom-form hero-form" action="#" method="get" role="form">
-                                <h3 class="text-white mb-3">Tìm kiếm công việc mơ ước</h3>
+                    <div class="col-lg-6 col-12">
+                        <form class="custom-form hero-form" action="#" method="get" role="form">
+                            <h3 class="text-white mb-3">Tìm kiếm công việc mơ ước</h3>
 
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-12">
-                                        <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon1"><i class="bi-person custom-icon"></i></span>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1"><i class="bi-person custom-icon"></i></span>
 
-                                            <input type="text" name="job-title" id="job-title" class="form-control" placeholder="Tiêu đề" required>
-                                        </div>
+                                        <input type="text" name="job-title" id="job-title" class="form-control" placeholder="Tiêu đề" required>
                                     </div>
+                                </div>
 
-                                    <div class="col-lg-6 col-md-6 col-12">
-                                        <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon2"><i class="bi-geo-alt custom-icon"></i></span>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon2"><i class="bi-geo-alt custom-icon"></i></span>
 
-                                            <input type="text" name="job-location" id="job-location" class="form-control" placeholder="Vị trí" required>
-                                        </div>
+                                        <input type="text" name="job-location" id="job-location" class="form-control" placeholder="Vị trí" required>
                                     </div>
+                                </div>
 
-                                    <div class="col-lg-12 col-12">
-                                        <button type="submit" class="form-control">
-                                            Tìm việc
-                                        </button>
-                                    </div>
+                                <div class="col-lg-12 col-12">
+                                    <button type="submit" class="form-control">
+                                        Tìm việc
+                                    </button>
+                                </div>
 
-                                    <div class="col-12">
-                                        <div class="d-flex flex-wrap align-items-center mt-4 mt-lg-0">
-                                            <span class="text-white mb-lg-0 mb-md-0 me-2">Từ khoá phổ biến:</span>
+                                <div class="col-12">
+                                    <div class="d-flex flex-wrap align-items-center mt-4 mt-lg-0">
+                                        <span class="text-white mb-lg-0 mb-md-0 me-2">Từ khoá phổ biến:</span>
 
-                                            <div>
-                                                <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="badge">Web design</a>
+                                        <div>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="badge">Web design</a>
 
-                                                <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="badge">Marketing</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="badge">Marketing</a>
 
-                                                <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="badge">Customer support</a>
-                                            </div>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="badge">Customer support</a>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-
+                            </div>
+                        </form>
                     </div>
+
                 </div>
+            </div>
         </section>
 
         <!-- Giới thiệu công cụ -->
@@ -98,138 +98,138 @@
 
         <!-- Ngành nghề trọng điểm -->
         <section class="section-key-industries" id="section-key-industries">
-                <h2 class="text-center">Ngành Nghề Trọng Điểm</h2>
-                <div class="industries-block">
-                    <div class="industries">
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-1.png" alt="">
-                            <p>BÁN HÀNG</p>
-                            <span class="text-dark">1782 việc làm</span>
-                        </a>
+            <h2 class="text-center">Ngành Nghề Trọng Điểm</h2>
+            <div class="industries-block">
+                <div class="industries">
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-1.png" alt="">
+                        <p>BÁN HÀNG</p>
+                        <span class="text-dark">1782 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-2.png" alt="">
-                            <p>TÀI CHÍNH/ĐẦU TƯ</p>
-                            <span class="text-dark">1542 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-2.png" alt="">
+                        <p>TÀI CHÍNH/ĐẦU TƯ</p>
+                        <span class="text-dark">1542 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-3.png" alt="">
-                            <p>IT-PHẦN MỀM</p>
-                            <span class="text-dark">1005 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-3.png" alt="">
+                        <p>IT-PHẦN MỀM</p>
+                        <span class="text-dark">1005 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-4.png" alt="">
-                            <p>KẾ TOÁN</p>
-                            <span class="text-dark">959 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-4.png" alt="">
+                        <p>KẾ TOÁN</p>
+                        <span class="text-dark">959 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-5.png" alt="">
-                            <p>MARKETING</p>
-                            <span class="text-dark">914 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-5.png" alt="">
+                        <p>MARKETING</p>
+                        <span class="text-dark">914 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-6.png" alt="">
-                            <p>NGÂN HÀNG</p>
-                            <span class="text-dark">860 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-6.png" alt="">
+                        <p>NGÂN HÀNG</p>
+                        <span class="text-dark">860 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-7.png" alt="">
-                            <p>HÀNH CHÍNH/THƯ KÝ</p>
-                            <span class="text-dark">852 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-7.png" alt="">
+                        <p>HÀNH CHÍNH/THƯ KÝ</p>
+                        <span class="text-dark">852 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-8.png" alt="">
-                            <p>DỊCH VỤ KHÁCH HÀNG</p>
-                            <span class="text-dark">840 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-8.png" alt="">
+                        <p>DỊCH VỤ KHÁCH HÀNG</p>
+                        <span class="text-dark">840 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-9.png" alt="">
-                            <p>ĐIỆN/ĐIỆN TỬ</p>
-                            <span class="text-dark">798 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-9.png" alt="">
+                        <p>ĐIỆN/ĐIỆN TỬ</p>
+                        <span class="text-dark">798 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-10.png" alt="">
-                            <p>SẢN XUẤT</p>
-                            <span class="text-dark">733 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-10.png" alt="">
+                        <p>SẢN XUẤT</p>
+                        <span class="text-dark">733 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-11.png" alt="">
-                            <p>KIỂM TOÁN</p>
-                            <span class="text-dark">675 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-11.png" alt="">
+                        <p>KIỂM TOÁN</p>
+                        <span class="text-dark">675 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-12.png" alt="">
-                            <p>XÂY DỰNG</p>
-                            <span class="text-dark">583 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-12.png" alt="">
+                        <p>XÂY DỰNG</p>
+                        <span class="text-dark">583 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-13.png" alt="">
-                            <p>IT-PHẦN CỨNG/MẠNG</p>
-                            <span class="text-dark">571 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-13.png" alt="">
+                        <p>IT-PHẦN CỨNG/MẠNG</p>
+                        <span class="text-dark">571 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-14.png" alt="">
-                            <p>HOẠCH ĐỊNH/DỰ ÁN</p>
-                            <span class="text-dark">559 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-14.png" alt="">
+                        <p>HOẠCH ĐỊNH/DỰ ÁN</p>
+                        <span class="text-dark">559 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-15.png" alt="">
-                            <p>NHÂN SỰ</p>
-                            <span class="text-dark">492 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-15.png" alt="">
+                        <p>NHÂN SỰ</p>
+                        <span class="text-dark">492 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-16.png" alt="">
-                            <p>QUẢNG CÁO</p>
-                            <span class="text-dark">491 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-16.png" alt="">
+                        <p>QUẢNG CÁO</p>
+                        <span class="text-dark">491 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-17.png" alt="">
-                            <p>THU MUA/VẬT TƯ/CUNG VẬN</p>
-                            <span class="text-dark">348 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-17.png" alt="">
+                        <p>THU MUA/VẬT TƯ/CUNG VẬN</p>
+                        <span class="text-dark">348 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-18.png" alt="">
-                            <p>KIẾN TRÚC/NỘI THẤT</p>
-                            <span class="text-dark">337 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-18.png" alt="">
+                        <p>KIẾN TRÚC/NỘI THẤT</p>
+                        <span class="text-dark">337 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-19.png" alt="">
-                            <p>INTERNET/ONLINE MEDIA</p>
-                            <span class="text-dark">326 việc làm</span>
-                        </a>
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-19.png" alt="">
+                        <p>INTERNET/ONLINE MEDIA</p>
+                        <span class="text-dark">326 việc làm</span>
+                    </a>
 
-                        <a href="#" class="item">
-                            <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-20.png" alt="">
-                            <p>BẤT ĐỘNG SẢN</p>
-                            <span class="text-dark">297 việc làm</span>
-                        </a>
-                    </div>
-                    
-
-
+                    <a href="#" class="item">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-20.png" alt="">
+                        <p>BẤT ĐỘNG SẢN</p>
+                        <span class="text-dark">297 việc làm</span>
+                    </a>
                 </div>
-                
-                <div class="direction">
-                    <button id="prev"><i class="fa-solid fa-angle-left"></i></button>
-                    <button id="next"><i class="fa-solid fa-angle-right"></i></button>
-                </div>
+
+
+
+            </div>
+
+            <div class="direction">
+                <button id="prev"><i class="fa-solid fa-angle-left"></i></button>
+                <button id="next"><i class="fa-solid fa-angle-right"></i></button>
+            </div>
         </section>
 
         <!-- Việc làm nổi bật -->
@@ -248,62 +248,62 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-1.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Kinh Doanh (Có trình độ ngoại ngữ)</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty TNHH Zeng Hsing Industrial<br>
                                                 <strong class="text-info mx-1">Bình Dương</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 10 giờ trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 20 - 30 triệu
                                             </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
-    
+
                             <li class="job-thumb">
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-2.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Giáo Viên Mẫu Giáo (Dạy trẻ 3-5 tuổi)</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary text-primary-emphasis"></i>
                                                 Công ty TNHH Giáo Dục Duy Thịnh<br>
                                                 <strong class="text-info mx-1">TP.HCM</strong>
-                                                
+
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 1 ngày trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 9 - 12 triệu
@@ -311,115 +311,115 @@
 
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
-    
+
                             <li class="job-thumb">
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-3.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Kinh Doanh (Lương cứng tốt - Hoa Hồng)</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty Cổ Phần Phát Triển Địa Ốc Á Châu<br>
                                                 <strong class="text-info mx-1">Bình Dương</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 22 giờ trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 18 - 50 triệu
                                             </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
-    
+
                             <li class="job-thumb">
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-4.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Giám Sát Kinh Doanh (Kênh Đại Lý)</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty TNHH Minh Hương P.N.D<br>
                                                 <strong class="text-info mx-1">Hà Nội</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 40 phút trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 15 - 50 triệu
                                             </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
-    
+
                             <li class="job-thumb">
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-5.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Trưởng Phòng Kinh Doanh Ưu Tiên Nữ</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty Cổ Phần Hưng Thịnh Land<br>
                                                 <strong class="text-info mx-1">Hà Nội, TP.HCM</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 2 giờ trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 15 - 50 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -430,32 +430,32 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-6.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Kinh Doanh BĐS Thổ Cư</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Cen Land-Công ty Cổ Phần BĐS Thế Kỷ<br>
                                                 <strong class="text-info mx-1">Hà Nội</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 2 giờ trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 15 - 30 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -466,32 +466,32 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-7.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Chăm Sóc Khách Hàng</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty Cổ Phần In Hoa Long<br>
                                                 <strong class="text-info mx-1">Hà Nội</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 2 giờ trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 7 - 30 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -501,32 +501,32 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-8.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Chuyên Viên Tư Vấn Tài Chính</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty TNHH Bảo Hiểm Nhân Thọ AIA<br>
                                                 <strong class="text-info mx-1">TP.HCM</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 20 phút trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 15 - 30 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -537,32 +537,32 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-9.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Content</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty TNHH Gia Anh Hưng Yên<br>
                                                 <strong class="text-info mx-1">Hà Nội</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 16 giờ trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 8 - 10 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -573,32 +573,32 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-10.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Kế Toán Bán Hàng</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty Cổ Phần Inox Tân Đạt<br>
                                                 <strong class="text-info mx-1">Hà Nội</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 8 phút trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 12 - 15 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -609,32 +609,32 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-11.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Kỹ Thuật Spa - Hệ Thống Care With Love</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty Cổ Phần Phát Triển Thương Mại Hoa Linh<br>
                                                 <strong class="text-info mx-1">Hà Nội</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 8 giờ trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 7 - 15 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -645,32 +645,32 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-12.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Kỹ Thuật (Thang Máy Cibes)</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty TNHH Cibes Lift Việt Nam (Cibes Lift Vietnam Co., Ltd)<br>
                                                 <strong class="text-info mx-1">Hà Nội, TP.HCM, Quảng Ninh</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 2 giờ trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 7 - 9 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -680,32 +680,32 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-13.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Kênh Ngân Hàng Viettinbank - Chuyên Viên Tư Vấn Bảo Hiểm</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty TNHH Manulife (Việt Nam)<br>
                                                 <strong class="text-info mx-1">Phú Yên, Bến Tre, +5</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 2 phút trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 10 - 20 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -716,32 +716,32 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-14.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Lái Xe Biết Ngoại Ngữ</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty TNHH Dịch Vụ Logitem Việt Nam Miền Bắc<br>
                                                 <strong class="text-info mx-1">Hà Nội</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 1 giờ trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 8 - 12 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -752,68 +752,68 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-15.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Kỹ Thuật Viên Nail/Spa</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty TNHH Iveé Nail Spa & Beauty<br>
                                                 <strong class="text-info mx-1">TP.HCM</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 8 phút trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 6 - 20 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
                             </li>
-                            
+
                             <li class="job-thumb">
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-16.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Thư Ký/ Trợ Lý Văn Phòng (Biết Tiếng Trung)</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Novaland Group<br>
                                                 <strong class="text-info mx-1">TP.HCM</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 4 giây trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 Từ 12 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -824,32 +824,32 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-17.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Java Developer Upto 35M</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty Cổ Phần Hệ Thống Công Nghệ ETC<br>
                                                 <strong class="text-info mx-1">Hà Nội</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 2 giờ trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 Tới 35 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -859,32 +859,32 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-18.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Sale Manager</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty TNHH Tiếp Vận Dịch Vụ Hàng Hoá Đặc Biệt<br>
                                                 <strong class="text-info mx-1">Phú Yên, TP.HCM</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 2 phút trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 25 - 35 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -895,32 +895,32 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-19.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Vận Hành Game</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Công ty Cổ Phần OneSoft-Falcon Game Studio<br>
                                                 <strong class="text-info mx-1">Hà Nội</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 1 giờ trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 Thương lượng
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -931,32 +931,32 @@
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-20.png" class="job-image img-fluid" alt="">
                                 </div>
-    
+
                                 <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                     <div class="mb-3">
                                         <h5 class="job-title mb-lg-0 pb-2">
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Thực Tập Sinh Ngân Hàng</a>
                                         </h5>
-    
+
                                         <div class="d-flex flex-wrap align-items-center">
                                             <p class="job-location mb-0">
                                                 <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                 Ngân Hàng TMCP Quân Đội-MBBank<br>
                                                 <strong class="text-info mx-1">TP.HCM</strong>
                                             </p>
-    
+
                                             <p class="job-date mb-0">
                                                 <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                 8 phút trước
                                             </p>
-    
+
                                             <p class="job-price mb-0">
                                                 <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                 1.5 - 2 triệu
-                                            </p>    
+                                            </p>
                                         </div>
                                     </div>
-    
+
                                     <div class="job-section-btn-wrap">
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
@@ -1001,5 +1001,3 @@
             <!-- <button type="button" class="btn-loadHandBook">Xem thêm cẩm nang nghề nghiệp</button> -->
             <a href="<?php echo _WEB_ROOT; ?>/cam-nang" class="more-handbook d-block p-2 m-auto mt-3 text-center rounded">Xem thêm cẩm nang nghề nghiệp</a>
         </section>
-
-        

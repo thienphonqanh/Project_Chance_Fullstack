@@ -1,16 +1,18 @@
 <?php
-class Home extends Controller {
+class Home extends Controller
+{
     private $data = [];
 
-    public function __construct() {
+    public function __construct()
+    {
         // $this->authModel = $this->model('AuthModel');
 
     }
 
-    public function index() {
+    public function index()
+    {
         $this->data['body'] = 'client/home/index';
         $this->data['dataView'][''] = '';
         $this->render('layouts/main.layout', $this->data, 'client');
     }
-   
 }
