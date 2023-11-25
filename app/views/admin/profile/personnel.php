@@ -55,18 +55,12 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" disabled name="contact_linkedin" id="floatingInput" placeholder="name@example.com" value="<?php echo $dataProfile['contact_linkedin']; ?>">
-                        <label for="floatingInput">Link LinkedIn</label>
-                    </div>
-                </div>
-                <div class="col-12">
                     <div class="form-group">
                         <textarea class="form-control" placeholder="Giới thiệu bản thân" disabled name="about_content" rows="8"><?php echo $dataProfile['about_content']; ?></textarea>
                     </div>
                 </div>
                 <div class="col-12 text-start">
-                    <a href="<?php echo _WEB_ROOT; ?>/groups/ung-vien" class="btn btn-md btn-danger">Quay lại</a>
+                    <a href="<?php echo _WEB_ROOT; ?>/groups/nhan-su" class="btn btn-md btn-danger">Quay lại</a>
                 </div>
             <?php endif; ?>
         </div>

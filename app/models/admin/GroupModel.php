@@ -105,7 +105,7 @@ class GroupModel extends Model
     }
 
     // Xử lý lấy data trang thông tin 
-    public function handleViewProfile($userId)
+    public function handleViewProfileCandidate($userId)
     {
         $queryGet = $this->db->table('candidates')
             ->select('fullname, email, dob, phone, gender, location, address,
@@ -118,6 +118,56 @@ class GroupModel extends Model
         endif;
 
         return $response;
+    }
+
+    // Xử lý lấy data trang thông tin 
+    public function handleViewProfilePersonnel($userId)
+    {
+        $queryGet = $this->db->table('admins')
+            ->select('fullname, email, dob, phone, gender, location, address,
+                contact_facebook, contact_twitter, about_content')
+            ->where('id', '=', $userId)
+            ->first();
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    // Xử lý lấy update trang thông tin 
+    public function handleUpdateProfilePersonnel($userId)
+    {
+        $queryGet = $this->db->table('admins')
+            ->where('id', '=', $userId)
+            ->first();
+
+        if (!empty($queryGet)) :
+            $dataUpdate = [
+                'fullname' => $_POST['fullname'],
+                'email' => $_POST['email'],
+                'phone' => $_POST['phone'],
+                'dob' => $_POST['dob'],
+                'gender' => $_POST['gender'],
+                'location' => $_POST['location'],
+                'address' => $_POST['address'],
+                'contact_facebook' => $_POST['contact_facebook'],
+                'contact_twitter' => $_POST['contact_twitter'],
+                'about_content' => $_POST['about_content'],
+                'update_at' => date('Y-m-d H:i:s'),
+            ];
+
+            $updateStatus = $this->db->table('admins')
+                ->where('id', '=', $userId)
+                ->update($dataUpdate);
+
+            if ($updateStatus) :
+                return true;
+            endif;
+        endif;
+
+        return false;
     }
 
     // Xử lý lấy update trang thông tin 
@@ -155,8 +205,25 @@ class GroupModel extends Model
         return false;
     }
 
-    // Lấy email
-    public function handleGetOld($userId)
+    // Lấy email, phone cũ của personnel
+    public function handleGetOldPersonnel($userId)
+    {
+        $queryGet = $this->db->table('admins')
+            ->select('email, phone')
+            ->where('id', '=', $userId)
+            ->first();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    // Lấy email, phone cũ của candidate
+    public function handleGetOldCandidate($userId)
     {
         $queryGet = $this->db->table('candidates')
             ->select('email, phone')
@@ -172,8 +239,8 @@ class GroupModel extends Model
         return $response;
     }
 
-    // Xử lý duyệt đăng ký dịch vụ của user
-    public function handleChangeStatusAccount($userId)
+    // Xử lý duyệt đăng ký dịch vụ của candidate
+    public function handleChangeStatusAccountCandidate($userId)
     {
         $queryGet = $this->db->table('candidates')
             ->select('status')
@@ -206,7 +273,56 @@ class GroupModel extends Model
         return false;
     }
 
-    public function handleDelete($itemsToDelete = '')
+    // Xử lý duyệt đăng ký dịch vụ của personnel
+    public function handleChangeStatusAccountPersonnel($userId)
+    {
+        $queryGet = $this->db->table('admins')
+            ->select('status')
+            ->where('id', '=', $userId)
+            ->first();
+
+
+        if (!empty($queryGet)) :
+            if ($queryGet['status'] === 0) :
+                $dataUpdate = [
+                    'status' => 1,
+                    'update_at' => date('Y-m-d H:i:s')
+                ];
+            else :
+                $dataUpdate = [
+                    'status' => 0,
+                    'update_at' => date('Y-m-d H:i:s')
+                ];
+            endif;
+
+            $updateStatus = $this->db->table('admins')
+                ->where('id', '=', $userId)
+                ->update($dataUpdate);
+
+            if ($updateStatus) :
+                return true;
+            endif;
+        endif;
+
+        return false;
+    }
+
+    public function handleDeletePersonnel($itemsToDelete = '')
+    {
+        $itemsToDelete = '(' . $itemsToDelete . ')';
+
+        $queryDelete = $this->db->table('admins')
+            ->where('id', 'IN', $itemsToDelete)
+            ->delete();
+
+        if ($queryDelete) :
+            return true;
+        endif;
+
+        return false;
+    }
+
+    public function handleDeleteCandidate($itemsToDelete = '')
     {
         $itemsToDelete = '(' . $itemsToDelete . ')';
 
