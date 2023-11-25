@@ -118,19 +118,6 @@ for (var i = 0; i < checkboxes.length; i++) {
     });
 }
 
-// Thiết lập nút chọn tất cả của checkbox
-// selectAllCheckbox.addEventListener('change', function () {
-//     var count = 0;
-//     for (var i = 0; i < checkboxes.length; i++) {
-//         count = checkboxes.length;
-//         checkboxes[i].checked = selectAllCheckbox.checked;
-//     }
-
-//     // Thiết lập button enable với nút chọn tất cả checkbox
-//     if (selectAllCheckbox.checked) {
-//     } 
-// });
-
 
 for (var i = 0; i < checkboxes.length; i++) {
     checkboxes[i].addEventListener('change', function () {

@@ -21,72 +21,76 @@
             <input type="hidden" name="module" value="groups">
         </form>
         <hr>
-        <table class="table table-bordered mt-4">
-            <thead>
-                <tr>
-                    <th class="text-center" width="5%"><input type="checkbox" class="checkbox-select-all"></th>
-                    <th class="text-center" width="28%">Họ và tên</th>
-                    <th class="text-center" width="28%">Email</th>
-                    <th class="text-center">Trạng thái</th>
-                    <th class="text-center" width="12%">Thời gian</th>
-                    <th class="text-center" width="8%">Xem</th>
-                    <th class="text-center" width="8%">Sửa</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                    if (!empty($listCandidate)): 
-                        foreach ($listCandidate as $item):
-                ?>
-                <tr>
-                    <td class="text-center"><input type="checkbox" class="checkbox-item"></td>
-                    <td class="text-center"><?php echo $item['fullname'] ?></td>
-                    <td class="text-center"><?php echo $item['email'] ?></td>
-                    <td class="text-center">
-                        <?php 
-                            echo ($item['status'] === 1) ? 
-                                '<div class="dropdown">
-                                    <button class="btn btn-success btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Đã kích hoạt
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="'._WEB_ROOT.'/groups/ung-vien/trang-thai?id='.$item['id'].'">Huỷ kích hoạt</a></li>
-                                    </ul>
-                                </div>'
-                                :  
-                                '<div class="dropdown">
-                                    <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Chưa kích hoạt
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="'._WEB_ROOT.'/groups/ung-vien/trang-thai?id='.$item['id'].'">Kích hoạt</a></li>
-                                    </ul>
-                                </div>';
-                        ?>
-                    </td>
-                    <td class="text-center">
-                        <?php 
-                            echo getDateTimeFormat($item['create_at'], 'd-m-Y');
-                        ?>
-                    </td>
-                    <td class="text-center"><a href="<?php echo _WEB_ROOT; ?>/groups/ung-vien/thong-tin?id=<?php echo $item['id']; ?>" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> Xem</a></td>
-                    <td class="text-center"><a href="<?php echo _WEB_ROOT; ?>/groups/ung-vien/chinh-sua?id=<?php echo $item['id']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Sửa</a></td>
-                </tr>
-                <?php endforeach; else: ?>
+        <form action="<?php echo _WEB_ROOT; ?>/groups/ung-vien/xoa" method="post" class="form-delete">
+            <table class="table table-bordered mt-4">
+                <thead>
                     <tr>
-                        <td colspan="7" class="text-center bg-danger"><?php echo $emptyValue; ?></td>
+                        <th class="text-center" width="5%"><input type="checkbox" class="checkbox-select-all"></th>
+                        <th class="text-center" width="28%">Họ và tên</th>
+                        <th class="text-center" width="28%">Email</th>
+                        <th class="text-center">Trạng thái</th>
+                        <th class="text-center" width="12%">Thời gian</th>
+                        <th class="text-center" width="8%">Xem</th>
+                        <th class="text-center" width="8%">Sửa</th>
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-        <div class="row">
-            <div class="col-6">
-                <button class="btn btn-danger delete-button" disabled>Xoá đã chọn (0)</button>
+                </thead>
+                <tbody>
+                    <?php 
+                        if (!empty($listCandidate)): 
+                            foreach ($listCandidate as $item):
+                    ?>
+                    <tr>
+                        <td class="text-center">
+                            <input type="checkbox" class="checkbox-item" name="item[]" value="<?php echo $item['id'] ?>">
+                        </td>
+                        <td class="text-center"><?php echo $item['fullname'] ?></td>
+                        <td class="text-center"><?php echo $item['email'] ?></td>
+                        <td class="text-center">
+                            <?php 
+                                echo ($item['status'] === 1) ? 
+                                    '<div class="dropdown">
+                                        <button class="btn btn-success btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Đã kích hoạt
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="'._WEB_ROOT.'/groups/ung-vien/trang-thai?id='.$item['id'].'">Huỷ kích hoạt</a></li>
+                                        </ul>
+                                    </div>'
+                                    :  
+                                    '<div class="dropdown">
+                                        <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Chưa kích hoạt
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="'._WEB_ROOT.'/groups/ung-vien/trang-thai?id='.$item['id'].'">Kích hoạt</a></li>
+                                        </ul>
+                                    </div>';
+                            ?>
+                        </td>
+                        <td class="text-center">
+                            <?php 
+                                echo getDateTimeFormat($item['create_at'], 'd-m-Y');
+                            ?>
+                        </td>
+                        <td class="text-center"><a href="<?php echo _WEB_ROOT; ?>/groups/ung-vien/thong-tin?id=<?php echo $item['id']; ?>" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> Xem</a></td>
+                        <td class="text-center"><a href="<?php echo _WEB_ROOT; ?>/groups/ung-vien/chinh-sua?id=<?php echo $item['id']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Sửa</a></td>
+                    </tr>
+                    <?php endforeach; else: ?>
+                        <tr>
+                            <td colspan="7" class="text-center bg-danger"><?php echo $emptyValue; ?></td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-6">
+                    <button type="submit" class="btn btn-danger delete-button" disabled>Xoá đã chọn (0)</button>
+                </div>
+                <div class="col-6">
+                    <nav class="d-flex justify-content-end"><?php echo $links;  ?></nav>
+                </div>
             </div>
-            <div class="col-6">
-                <nav class="d-flex justify-content-end"><?php echo $links;  ?></nav>
-            </div>
-        </div>
+        </form>
 
     </div><!-- /.container-fluid -->
 </section>

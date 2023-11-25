@@ -216,5 +216,25 @@ class Group extends Controller {
         endif;
     }
 
+    public function delete() {
+        $request = new Request();
+        $response = new Response();
+
+        $data = $request->getFields();
+
+        if (!empty($data)):
+            $itemsToDelete = isset($data['item']) ? $data['item'] : [];
+            $itemsToDelete = implode(',', $itemsToDelete);
+            
+
+            $result = $this->groupModel->handleDelete($itemsToDelete);
+
+            if ($result):
+                $response->redirect('groups/ung-vien');
+            endif;
+            
+        endif;
+    }
+
 
 }

@@ -198,5 +198,19 @@ class GroupModel extends Model {
 
         return false;
     }
+
+    public function handleDelete($itemsToDelete = '') {
+        $itemsToDelete = '('.$itemsToDelete.')';
+        
+        $queryDelete = $this->db->table('candidates')
+            ->where('id', 'IN', $itemsToDelete)
+            ->delete();
+
+        if ($queryDelete):
+            return true;
+        endif;
+
+        return false;
+    }
     
 }

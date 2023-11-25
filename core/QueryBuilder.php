@@ -29,7 +29,13 @@ trait QueryBuilder {
             } else {
                 $this->operator = ' AND ';
             }
-            $this->where .= "$this->operator $field $compare '$value'";
+            
+            if ($compare == 'IN') {
+                $this->where .= "$this->operator $field $compare $value";
+            } else {
+                $this->where .= "$this->operator $field $compare '$value'";
+            }
+            
             $this->where = str_replace('( AND', 'AND (', $this->where);
         }
 
