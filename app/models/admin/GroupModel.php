@@ -165,5 +165,38 @@ class GroupModel extends Model {
 
         return $response;
     }
+
+    // Xử lý duyệt đăng ký dịch vụ của user
+    public function handleChangeStatusAccount($userId) {
+        $queryGet = $this->db->table('candidates')
+            ->select('status')
+            ->where('id', '=', $userId)
+            ->first();
+        
+
+        if (!empty($queryGet)):
+            if ($queryGet['status'] === 0):
+                $dataUpdate = [
+                    'status' => 1,
+                    'update_at' => date('Y-m-d H:i:s')
+                ];
+            else:
+                $dataUpdate = [
+                    'status' => 0,
+                    'update_at' => date('Y-m-d H:i:s')
+                ];
+            endif;
+
+            $updateStatus = $this->db->table('candidates')
+                ->where('id', '=', $userId)
+                ->update($dataUpdate);
+             
+            if ($updateStatus):
+                return true;
+            endif;
+        endif;
+
+        return false;
+    }
     
 }

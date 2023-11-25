@@ -77,7 +77,7 @@
             <div class="col-12">
                 <div class="mt-5 text-start">
                     <h4>Hồ sơ cá nhân</h4>
-                    <input class="form-control form-control-md" name="cv" id="cv" type="file">
+                    <input class="form-control form-control-md" name="cv" id="cv" type="file" disabled>
                     <p class="fw-semibold fs-6 fst-italic p-1">Sử dụng tệp .doc, .docx hoặc .pdf, không chứa mật khẩu bảo vệ và dưới 3MB</p>
                 </div>
             </div>

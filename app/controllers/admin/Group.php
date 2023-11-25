@@ -197,4 +197,24 @@ class Group extends Controller {
         $this->render('layouts/layout', $this->data, 'admin');
     }
    
+    // Xử lý trạng thái account
+    public function changeStatusAccount() {
+        $request = new Request();
+        $response = new Response();
+
+        $data = $request->getFields();
+
+        if (!empty($data['id'])):
+            $userId = $data['id'];
+
+            $result = $this->groupModel->handleChangeStatusAccount($userId); // Gọi xử lý ở Model
+
+            if ($result):
+                $response->redirect('groups/ung-vien');
+            endif;
+            
+        endif;
+    }
+
+
 }

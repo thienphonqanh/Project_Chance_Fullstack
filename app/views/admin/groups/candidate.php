@@ -45,8 +45,23 @@
                     <td class="text-center">
                         <?php 
                             echo ($item['status'] === 1) ? 
-                                '<a href="#" class="btn btn-success btn-sm">Đã kích hoạt</a>' : 
-                                '<a href="#" class="btn btn-danger btn-sm">Chưa kích hoạt</a>';
+                                '<div class="dropdown">
+                                    <button class="btn btn-success btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Đã kích hoạt
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="'._WEB_ROOT.'/groups/ung-vien/trang-thai?id='.$item['id'].'">Huỷ kích hoạt</a></li>
+                                    </ul>
+                                </div>'
+                                :  
+                                '<div class="dropdown">
+                                    <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Chưa kích hoạt
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="'._WEB_ROOT.'/groups/ung-vien/trang-thai?id='.$item['id'].'">Kích hoạt</a></li>
+                                    </ul>
+                                </div>';
                         ?>
                     </td>
                     <td class="text-center">

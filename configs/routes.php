@@ -32,6 +32,7 @@ $routes['groups/nhan-su'] = 'admin/group/getPersonnel';
 $routes['groups/ung-vien'] = 'admin/group/getCandidate';
 $routes['groups/ung-vien/thong-tin'] = 'admin/group/viewProfile';
 $routes['groups/ung-vien/chinh-sua'] = 'admin/group/updateProfile';
+$routes['groups/ung-vien/trang-thai'] = 'admin/group/changeStatusAccount';
 
 
 
