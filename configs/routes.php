@@ -42,3 +42,10 @@ $routes['groups/nhan-su/thong-tin'] = 'admin/group/viewProfilePersonnel';
 $routes['groups/nhan-su/chinh-sua'] = 'admin/group/updateProfilePersonnel';
 $routes['groups/nhan-su/trang-thai'] = 'admin/group/changeStatusAccountPersonnel';
 $routes['groups/nhan-su/xoa'] = 'admin/group/deletePersonnel';
+
+
+// Dashboard - Quản lý việc làm
+$routes['jobs'] = 'admin/job';
+$routes['jobs/danh-sach'] = 'admin/job/getListJob';
+$routes['jobs/danh-sach/trang-thai'] = 'admin/job/changeStatus';
+$routes['jobs/danh-sach/xoa'] = 'admin/job/delete';

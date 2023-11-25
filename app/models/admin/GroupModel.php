@@ -307,6 +307,7 @@ class GroupModel extends Model
         return false;
     }
 
+    // Xử lý xoá nhân sự
     public function handleDeletePersonnel($itemsToDelete = '')
     {
         $itemsToDelete = '(' . $itemsToDelete . ')';
@@ -322,6 +323,7 @@ class GroupModel extends Model
         return false;
     }
 
+    // Xử lý xoá ứng viên
     public function handleDeleteCandidate($itemsToDelete = '')
     {
         $itemsToDelete = '(' . $itemsToDelete . ')';

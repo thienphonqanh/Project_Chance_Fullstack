@@ -65,6 +65,23 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item <?php echo handleActiveSidebar('jobs') ? 'menu-open' : false; ?>">
+          <a href="#" class="nav-link  <?php echo handleActiveSidebar('jobs') ? 'active' : false; ?>">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Quản lý việc làm
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="<?php echo _WEB_ROOT; ?>/jobs/danh-sach" class="nav-link <?php echo handleActiveSidebar('jobs', 'danh-sach') ? 'active' : false; ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Danh sách việc làm</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tree"></i>

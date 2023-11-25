@@ -466,6 +466,7 @@ class Group extends Controller
         endif;
     }
 
+    // Xoá nhân sự
     public function deletePersonnel()
     {
         $request = new Request();
@@ -487,6 +488,7 @@ class Group extends Controller
         endif;
     }
 
+    // Xoá ứng viên
     public function deleteCandidate()
     {
         $request = new Request();
