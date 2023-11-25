@@ -111,6 +111,7 @@ class Group extends Controller
         $this->render('layouts/layout', $this->data, 'admin');
     }
 
+    // Sửa thông tin cá nhân của user
     public function updateProfile()
     {
         $request = new Request();
@@ -118,18 +119,22 @@ class Group extends Controller
         $data = $request->getFields();
         $userId = $_GET['id'];
 
-        $checkOld = $this->groupModel->handleGetOldEmail($userId);
+        $checkOld = $this->groupModel->handleGetOld($userId);
         $oldEmail = $checkOld['email'];
+        $oldPhone = $checkOld['phone'];
 
         if ($request->isPost()) :
-            if (!empty($oldEmail) && $oldEmail === $data['email']) :
+            if (
+                !empty($oldEmail) && (!empty($oldPhone))
+                && $oldEmail == $data['email'] && $oldPhone == $data['phone']
+            ) :
                 $request->rules([
                     'fullname' => 'required|min:5',
                     'email' => 'required|email|min:11',
                     'phone' => 'required|phone',
                     'dob' => 'required'
                 ]);
-
+    
                 $request->message([
                     'fullname.required' => 'Họ tên không được để trống',
                     'fullname.min' => 'Họ tên phải lớn hơn 4 ký tự',
@@ -140,14 +145,18 @@ class Group extends Controller
                     'phone.phone' => 'Số điện thoại không hợp lệ',
                     'dob.required' => 'Ngày sinh không được để trống',
                 ]);
-            else :
+    
+            elseif (
+                !empty($oldEmail) && (!empty($oldPhone))
+                && $oldEmail != $data['email'] && $oldPhone == $data['phone']
+            ) :
                 $request->rules([
                     'fullname' => 'required|min:5',
                     'email' => 'required|email|min:11|unique:candidates:email',
                     'phone' => 'required|phone',
                     'dob' => 'required'
                 ]);
-
+    
                 $request->message([
                     'fullname.required' => 'Họ tên không được để trống',
                     'fullname.min' => 'Họ tên phải lớn hơn 4 ký tự',
@@ -159,10 +168,52 @@ class Group extends Controller
                     'phone.phone' => 'Số điện thoại không hợp lệ',
                     'dob.required' => 'Ngày sinh không được để trống',
                 ]);
+    
+            elseif (
+                !empty($oldEmail) && (!empty($oldPhone))
+                && $oldEmail == $data['email'] && $oldPhone != $data['phone']
+            ) :
+                $request->rules([
+                    'fullname' => 'required|min:5',
+                    'email' => 'required|email|min:11',
+                    'phone' => 'required|phone|unique:candidates:phone',
+                    'dob' => 'required'
+                ]);
+    
+                $request->message([
+                    'fullname.required' => 'Họ tên không được để trống',
+                    'fullname.min' => 'Họ tên phải lớn hơn 4 ký tự',
+                    'email.required' => 'Email không được để trống',
+                    'email.email' => 'Định dạng email không hợp lệ',
+                    'email.min' => 'Email phải lớn hơn 11 ký tự',
+                    'phone.required' => 'Số điện thoại không được để trống',
+                    'phone.phone' => 'Số điện thoại không hợp lệ',
+                    'phone.unique' => 'Số điện thoại đã tồn tại',
+                    'dob.required' => 'Ngày sinh không được để trống',
+                ]);
+    
+            else :
+                $request->rules([
+                    'fullname' => 'required|min:5',
+                    'email' => 'required|email|min:11|unique:candidates:email',
+                    'phone' => 'required|phone|unique:candidates:phone',
+                    'dob' => 'required'
+                ]);
+    
+                $request->message([
+                    'fullname.required' => 'Họ tên không được để trống',
+                    'fullname.min' => 'Họ tên phải lớn hơn 4 ký tự',
+                    'email.required' => 'Email không được để trống',
+                    'email.email' => 'Định dạng email không hợp lệ',
+                    'email.min' => 'Email phải lớn hơn 11 ký tự',
+                    'email.unique' => 'Email đã tồn tại',
+                    'phone.required' => 'Số điện thoại không được để trống',
+                    'phone.phone' => 'Số điện thoại không hợp lệ',
+                    'phone.unique' => 'Số điện thoại đã tồn tại',
+                    'dob.required' => 'Ngày sinh không được để trống',
+                ]);
             endif;
-
-
-
+    
             $validate = $request->validate();
 
             if ($validate) :

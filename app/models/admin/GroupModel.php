@@ -156,10 +156,10 @@ class GroupModel extends Model
     }
 
     // Lấy email
-    public function handleGetOldEmail($userId)
+    public function handleGetOld($userId)
     {
         $queryGet = $this->db->table('candidates')
-            ->select('email')
+            ->select('email, phone')
             ->where('id', '=', $userId)
             ->first();
 
