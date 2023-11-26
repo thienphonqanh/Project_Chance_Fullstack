@@ -148,7 +148,7 @@
                                 foreach ($listJob as $item) :
                             ?>
                                     <li class="job-thumb">
-                                        <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam" class="d-flex w-100">
+                                        <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id']; ?>" class="d-flex w-100">
                                             <div class="job-image-wrap bg-white shadow-lg">
                                                 <img src="<?php echo $item['thumbnail'] ?>" class="job-image img-fluid" alt="">
                                             </div>

@@ -24,10 +24,18 @@ class Job extends Controller
 
     public function detail()
     {
+        $jobId = getJobId();
 
+        if (!empty($jobId)) :
+            $result = $this->jobModel->handleGetDetail($jobId);
+
+            if (!empty($result)) :
+                $dataDetail = $result;
+                $this->data['dataView']['dataDetail'] = $dataDetail;
+            endif;
+        endif;
 
         $this->data['body'] = 'client/job/detail';
-        $this->data['dataView'][''] = '';
         $this->render('layouts/main.layout', $this->data, 'client');
     }
 }

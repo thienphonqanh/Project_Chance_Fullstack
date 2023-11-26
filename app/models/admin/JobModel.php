@@ -64,7 +64,7 @@ class JobModel extends Model
     public function handleGetListJob()
     {
         $queryGet = $this->db->table('jobs')
-            ->select('jobs.title, jobs.thumbnail, jobs.slug, 
+            ->select('jobs.id, jobs.title, jobs.thumbnail, jobs.slug, 
                     jobs.salary, jobs.location, companies.name')
             ->join('companies', 'jobs.company_id = companies.id')
             ->get();
@@ -121,7 +121,7 @@ class JobModel extends Model
                         break;
                 endswitch;
             endif;
-           
+
 
             $updateStatus = $this->db->table('jobs')
                 ->where('id', '=', $userId)
@@ -149,5 +149,46 @@ class JobModel extends Model
         endif;
 
         return false;
+    }
+
+    // Xử lý lấy data trang thông tin 
+    public function handleViewJob($jobId)
+    {
+        $queryGet = $this->db->table('jobs')
+            ->select('jobs.id, jobs.title, jobs.slug, jobs.form_work, jobs.location, 
+                jobs.salary, jobs.deadline, jobs.rank, jobs.degree_required,
+                jobs.number_recruits, jobs.exp_required, jobs.requirement, 
+                jobs.description, jobs.welfare, jobs.other_info, job_categories.name as jobField,
+                companies.name')
+            ->join('job_categories', 'job_categories.id = jobs.job_category_id')
+            ->join('companies', 'companies.id = jobs.company_id')
+            ->where('jobs.id', '=', $jobId)
+            ->get();
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    // Xử lý lấy data chi tiết
+    public function handleGetDetail($jobId) {
+        $queryGet = $this->db->table('jobs')
+            ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.slug, jobs.form_work, jobs.location, 
+                jobs.salary, jobs.deadline, jobs.rank, jobs.degree_required, jobs.view_count,
+                jobs.number_recruits, jobs.exp_required, jobs.requirement, jobs.create_at,
+                jobs.description, jobs.welfare, jobs.other_info, job_categories.name as jobField,
+                companies.name, companies.location as company_location, companies.scales, companies.description')
+            ->join('job_categories', 'jobs.job_category_id = job_categories.id')
+            ->join('companies', 'jobs.company_id = companies.id')
+            ->where('jobs.id', '=', $jobId)
+            ->get();
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
     }
 }

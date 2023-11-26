@@ -45,9 +45,11 @@ class Request
             if (!empty($_GET)) :
                 foreach ($_GET as $key => $value) :
                     if (is_array($value)) :
-                        $dataFields[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+                        // $dataFields[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+                        $dataFields[$key] = filter_var($_GET[$key], FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
                     else :
-                        $dataFields[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                        // $dataFields[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                        $dataFields[$key] = filter_var($_GET[$key], FILTER_SANITIZE_SPECIAL_CHARS);
                     endif;
                 endforeach;
             endif;

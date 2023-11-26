@@ -115,3 +115,17 @@ function getDateTimeFormat($strDate, $format)
 
     return false;
 }
+
+function getJobId() {
+    $pattern ='/chi-tiet-viec-lam\/.+-(.+)/i';
+
+    $url = $_SERVER['PATH_INFO'];
+
+    // Kiểm tra xem URL có khớp với mẫu hay không
+    if (preg_match($pattern, $url, $matches)) {
+        // $matches[1] chứa giá trị ID
+        $id = $matches[1];
+    } 
+
+    return $id;
+}

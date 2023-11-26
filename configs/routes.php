@@ -2,7 +2,7 @@
 
 // Đường dẫn ảo -> đường dẫn thật
 $routes['default_controller'] = '';
-$routes['/'] = 'client/home';
+// $routes['/'] = 'client/home';
 $routes['trang-chu'] = 'client/home';
 $routes['admin'] = 'admin/dashboard';
 
@@ -19,6 +19,10 @@ $routes['active'] = 'auth/active';
 */
 $routes['tim-viec-lam'] = 'client/job';
 $routes['chi-tiet-viec-lam'] = 'client/job/detail';
+$routes['chi-tiet-viec-lam/{jobTitle}-(\d+)'] = 'client/job/detail&id=$1';
+// $routes['chi-tiet-viec-lam/.+-(.+)'] = 'client/job/detail&id=$1';
+
+
 $routes['cam-nang'] = 'client/handbook';
 $routes['cam-nang/la-ban-su-nghiep'] = 'client/handbook/firstPage';
 $routes['cam-nang/tram-sac-ky-nang'] = 'client/handbook/secondPage';
@@ -47,5 +51,6 @@ $routes['groups/nhan-su/xoa'] = 'admin/group/deletePersonnel';
 // Dashboard - Quản lý việc làm
 $routes['jobs'] = 'admin/job';
 $routes['jobs/danh-sach'] = 'admin/job/getListJob';
+$routes['jobs/danh-sach/thong-tin'] = 'admin/job/viewJob';
 $routes['jobs/danh-sach/trang-thai'] = 'admin/job/changeStatus';
 $routes['jobs/danh-sach/xoa'] = 'admin/job/delete';

@@ -99,4 +99,31 @@ class Job extends Controller
 
         endif;
     }
+
+    // Xem thông tin của việc làm
+    public function viewJob()
+    {
+        $request = new Request();
+
+        $data = $request->getFields();
+
+        if (!empty($data['id'])) :
+            $jobId = $data['id'];
+
+            $result = $this->jobModel->handleViewJob($jobId);
+
+            if (!empty($result)) :
+                $dataJob = $result;
+                $this->data['dataView']['dataJob'] = $dataJob;
+            else :
+                $emtyValue = 'Không có dữ liệu';
+                $this->data['dataView']['emptyValue'] = $emtyValue;
+            endif;
+        endif;
+
+
+        $this->data['body'] = 'admin/jobs/detail';
+                $this->data['dataView'][''] = '';
+        $this->render('layouts/layout', $this->data, 'admin');
+    }
 }
