@@ -174,100 +174,37 @@
                 <div class="col-lg-3 p-3">
                     <h6 class="mt-4 fs-4">Việc làm tương tự cho bạn</h6>
                     <hr width="40%" class="border border-primary border-3">
-
+                    <?php 
+                        if (!empty($randomData)):
+                            foreach ($randomData as $subItem):
+                    ?>
                     <div class="d-flex flex-column">
-                        <div class="d-flex shadow p-2 rounded border">
-                            <div>
-                                <img width="35px" height="32px" class="border rounded" src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/3c6a288e2ef6924f0890ece22e25a2b4_4786450_vieclam24h_1593421271.png" alt="">
-                            </div>
-                            <div class="special-span ms-2">
-                                <span class="fs-6 fw-semibold text-dark">Nhân Viên Kinh Doanh - Tư Vấn Bán Hàng Du Lịch Nghỉ Dưỡng (Thu Nhập Lên Tới 40M, Khách Hàng Có Sẵn - Tỷ Lệ Chốt Cao)</span>
-                                <br>
-                                <span class="fs-6">Công ty TNHH Khu Du Lịch Vịnh Thiên Đường (Công ty ALMA)</span>
-                                <div class="d-flex mt-1">
-                                    <i class="bi bi-geo-alt"></i>
-                                    <p class="fs-6 fw-semibold text-dark ms-2 m-0">Hà Nội, TP.HCM</p>
+                        <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $subItem['slug'].'-'.$subItem['id']; ?>">
+                            <div class="d-flex shadow p-2 rounded border mt-3 text-dark">
+                                <div>
+                                    <img width="35px" height="32px" class="border rounded" src="<?php echo $subItem['thumbnail'] ?>" alt="">
                                 </div>
-                                <div class="d-flex mt-1">
-                                    <i class="bi bi-currency-dollar"></i>
-                                    <p class="fs-6 fw-semibold text-dark ms-2 m-0">15- 40 triệu</p>
-                                </div>
-                                <div class="d-flex mt-1">
-                                    <i class="bi bi-suitcase-lg"></i>
-                                    <p class="fs-6 fw-semibold text-dark ms-2 m-0">Chưa có kinh nghiệm</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex shadow p-2 rounded border mt-3">
-                            <div>
-                                <img width="35px" height="32px" class="border rounded" src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/3c6a288e2ef6924f0890ece22e25a2b4_4786450_vieclam24h_1593421271.png" alt="">
-                            </div>
-                            <div class="special-span ms-2">
-                                <span class="fs-6 fw-semibold text-dark">Nhân Viên Kinh Doanh - Tư Vấn Bán Hàng Du Lịch Nghỉ Dưỡng (Thu Nhập Lên Tới 40M, Khách Hàng Có Sẵn - Tỷ Lệ Chốt Cao)</span>
-                                <br>
-                                <span class="fs-6">Công ty TNHH Khu Du Lịch Vịnh Thiên Đường (Công ty ALMA)</span>
-                                <div class="d-flex mt-1">
-                                    <i class="bi bi-geo-alt"></i>
-                                    <p class="fs-6 fw-semibold text-dark ms-2 m-0">Hà Nội, TP.HCM</p>
-                                </div>
-                                <div class="d-flex mt-1">
-                                    <i class="bi bi-currency-dollar"></i>
-                                    <p class="fs-6 fw-semibold text-dark ms-2 m-0">15- 40 triệu</p>
-                                </div>
-                                <div class="d-flex mt-1">
-                                    <i class="bi bi-suitcase-lg"></i>
-                                    <p class="fs-6 fw-semibold text-dark ms-2 m-0">Chưa có kinh nghiệm</p>
+                                <div class="special-span ms-2">
+                                    <span class="fs-6 fw-semibold"><?php echo $subItem['title'] ?></span>
+                                    <br>
+                                    <span class="fs-6"><?php echo $subItem['name'] ?></span>
+                                    <div class="d-flex mt-1">
+                                        <i class="text-primary bi bi-geo-alt"></i>
+                                        <p class="fs-6 fw-semibold ms-2 m-0"><?php echo $subItem['location'] ?></p>
+                                    </div>
+                                    <div class="d-flex mt-1">
+                                        <i class="text-primary bi bi-currency-dollar"></i>
+                                        <p class="fs-6 fw-semibold ms-2 m-0"><?php echo $subItem['salary'] ?></p>
+                                    </div>
+                                    <div class="d-flex mt-1">
+                                        <i class="text-primary bi bi-suitcase-lg"></i>
+                                        <p class="fs-6 fw-semibold ms-2 m-0"><?php echo $subItem['exp_required'] ?></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="d-flex shadow p-2 rounded border mt-3">
-                            <div>
-                                <img width="35px" height="32px" class="border rounded" src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/3c6a288e2ef6924f0890ece22e25a2b4_4786450_vieclam24h_1593421271.png" alt="">
-                            </div>
-                            <div class="special-span ms-2">
-                                <span class="fs-6 fw-semibold text-dark">Nhân Viên Kinh Doanh - Tư Vấn Bán Hàng Du Lịch Nghỉ Dưỡng (Thu Nhập Lên Tới 40M, Khách Hàng Có Sẵn - Tỷ Lệ Chốt Cao)</span>
-                                <br>
-                                <span class="fs-6">Công ty TNHH Khu Du Lịch Vịnh Thiên Đường (Công ty ALMA)</span>
-                                <div class="d-flex mt-1">
-                                    <i class="bi bi-geo-alt"></i>
-                                    <p class="fs-6 fw-semibold text-dark ms-2 m-0">Hà Nội, TP.HCM</p>
-                                </div>
-                                <div class="d-flex mt-1">
-                                    <i class="bi bi-currency-dollar"></i>
-                                    <p class="fs-6 fw-semibold text-dark ms-2 m-0">15- 40 triệu</p>
-                                </div>
-                                <div class="d-flex mt-1">
-                                    <i class="bi bi-suitcase-lg"></i>
-                                    <p class="fs-6 fw-semibold text-dark ms-2 m-0">Chưa có kinh nghiệm</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex shadow p-2 rounded border mt-3">
-                            <div>
-                                <img width="35px" height="32px" class="border rounded" src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/3c6a288e2ef6924f0890ece22e25a2b4_4786450_vieclam24h_1593421271.png" alt="">
-                            </div>
-                            <div class="special-span ms-2">
-                                <span class="fs-6 fw-semibold text-dark">Nhân Viên Kinh Doanh - Tư Vấn Bán Hàng Du Lịch Nghỉ Dưỡng (Thu Nhập Lên Tới 40M, Khách Hàng Có Sẵn - Tỷ Lệ Chốt Cao)</span>
-                                <br>
-                                <span class="fs-6">Công ty TNHH Khu Du Lịch Vịnh Thiên Đường (Công ty ALMA)</span>
-                                <div class="d-flex mt-1">
-                                    <i class="bi bi-geo-alt"></i>
-                                    <p class="fs-6 fw-semibold text-dark ms-2 m-0">Hà Nội, TP.HCM</p>
-                                </div>
-                                <div class="d-flex mt-1">
-                                    <i class="bi bi-currency-dollar"></i>
-                                    <p class="fs-6 fw-semibold text-dark ms-2 m-0">15- 40 triệu</p>
-                                </div>
-                                <div class="d-flex mt-1">
-                                    <i class="bi bi-suitcase-lg"></i>
-                                    <p class="fs-6 fw-semibold text-dark ms-2 m-0">Chưa có kinh nghiệm</p>
-                                </div>
-                            </div>
-                        </div>
+                        </a>
                     </div>
+                    <?php endforeach; endif; ?>
                 </div>
             </div>
         </div>

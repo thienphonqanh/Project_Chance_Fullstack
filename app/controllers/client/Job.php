@@ -24,18 +24,33 @@ class Job extends Controller
 
     public function detail()
     {
-        $jobId = getJobId();
+        $jobId = getIdInURL('chi-tiet-viec-lam');
 
         if (!empty($jobId)) :
-            $result = $this->jobModel->handleGetDetail($jobId);
+            $this->jobModel->handleSetViewCount($jobId);  // Tăng view 
 
+            $result = $this->jobModel->handleGetDetail($jobId); // Lấy data detail
+            
             if (!empty($result)) :
                 $dataDetail = $result;
+                $jobField = $dataDetail[0]['jobField'];
+
+                $randomData = $this->jobModel->handleRandomData($jobField);
+
                 $this->data['dataView']['dataDetail'] = $dataDetail;
+
+                if (!empty($randomData)) :
+                    $this->data['dataView']['randomData'] = $randomData;
+                endif;
             endif;
+
+           
         endif;
 
         $this->data['body'] = 'client/job/detail';
         $this->render('layouts/main.layout', $this->data, 'client');
     }
+
+
+
 }

@@ -191,4 +191,67 @@ class JobModel extends Model
 
         return $response;
     }
+
+    // Xử lý hàm tăng view
+    public function handleSetViewCount($jobId) {
+        $queryGet = $this->db->table('jobs')
+            ->select('view_count')
+            ->where('id', '=', $jobId)
+            ->first();
+
+        $check = false;
+
+        if (!empty($queryGet)):
+            $view = $queryGet['view_count'];
+            $view++;
+            $check = true;
+        else:
+            if (is_array($queryGet)):
+                $view = 1;
+                $check = true;
+            endif;
+        endif;
+
+        if ($check):
+            $dataUpdate = [
+                'view_count' => $view
+            ];
+
+            $this->db->table('jobs')->update($dataUpdate);
+        endif;
+    }
+
+    // Xử lý lấy data ngẫu nhiên
+    public function handleRandomData($jobField = '') {
+
+        $queryGet = $this->db->table('jobs')
+            ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.location, jobs.salary, 
+                jobs.exp_required, companies.name')
+            ->join('companies', 'jobs.company_id = companies.id')
+            ->join('job_categories', 'jobs.job_category_id = job_categories.id')
+            ->where('job_categories.name', '=', $jobField)
+            ->get();
+        
+        $length = count($queryGet);
+
+        if ($length != 0):
+            $randomIndex = mt_rand(0, $length - 1);
+
+            $queryGet = $this->db->table('jobs')
+            ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.location, jobs.salary, 
+                jobs.slug, jobs.exp_required, companies.name')
+            ->join('companies', 'jobs.company_id = companies.id')
+            ->join('job_categories', 'jobs.job_category_id = job_categories.id')
+            ->where('job_categories.name', '=', $jobField)
+            ->limit(3, $randomIndex)
+            ->get();
+        endif;
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+
+    }
 }

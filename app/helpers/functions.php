@@ -116,8 +116,8 @@ function getDateTimeFormat($strDate, $format)
     return false;
 }
 
-function getJobId() {
-    $pattern ='/chi-tiet-viec-lam\/.+-(.+)/i';
+function getIdInURL($module = '') {
+    $pattern ='/'.$module.'\/.+-(.+)/i';
 
     $url = $_SERVER['PATH_INFO'];
 
