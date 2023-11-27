@@ -240,26 +240,34 @@ class GroupModel extends Model
     }
 
     // Xử lý duyệt đăng ký dịch vụ của candidate
-    public function handleChangeStatusAccountCandidate($userId)
+    public function handleChangeStatusAccountCandidate($userId, $action)
     {
         $queryGet = $this->db->table('candidates')
             ->select('status')
             ->where('id', '=', $userId)
             ->first();
 
-
         if (!empty($queryGet)) :
-            if ($queryGet['status'] === 0) :
-                $dataUpdate = [
-                    'status' => 1,
-                    'update_at' => date('Y-m-d H:i:s')
-                ];
-            else :
-                $dataUpdate = [
-                    'status' => 0,
-                    'update_at' => date('Y-m-d H:i:s')
-                ];
-            endif;
+            switch ($action):
+                case 'active':
+                    $dataUpdate = [
+                        'status' => 1,
+                        'update_at' => date('Y-m-d H:i:s')
+                    ];
+                    break;
+                case 'inactive':
+                    $dataUpdate = [
+                        'status' => 0,
+                        'update_at' => date('Y-m-d H:i:s')
+                    ];
+                    break;
+                case 'unactive':
+                    $dataUpdate = [
+                        'status' => 2,
+                        'update_at' => date('Y-m-d H:i:s')
+                    ];
+                    break;
+            endswitch;
 
             $updateStatus = $this->db->table('candidates')
                 ->where('id', '=', $userId)
@@ -274,7 +282,7 @@ class GroupModel extends Model
     }
 
     // Xử lý duyệt đăng ký dịch vụ của personnel
-    public function handleChangeStatusAccountPersonnel($userId)
+    public function handleChangeStatusAccountPersonnel($userId, $action)
     {
         $queryGet = $this->db->table('admins')
             ->select('status')
@@ -283,18 +291,27 @@ class GroupModel extends Model
 
 
         if (!empty($queryGet)) :
-            if ($queryGet['status'] === 0) :
-                $dataUpdate = [
-                    'status' => 1,
-                    'update_at' => date('Y-m-d H:i:s')
-                ];
-            else :
-                $dataUpdate = [
-                    'status' => 0,
-                    'update_at' => date('Y-m-d H:i:s')
-                ];
-            endif;
-
+            switch ($action):
+                case 'active':
+                    $dataUpdate = [
+                        'status' => 1,
+                        'update_at' => date('Y-m-d H:i:s')
+                    ];
+                    break;
+                case 'inactive':
+                    $dataUpdate = [
+                        'status' => 0,
+                        'update_at' => date('Y-m-d H:i:s')
+                    ];
+                    break;
+                case 'unactive':
+                    $dataUpdate = [
+                        'status' => 2,
+                        'update_at' => date('Y-m-d H:i:s')
+                    ];
+                    break;
+            endswitch;
+            
             $updateStatus = $this->db->table('admins')
                 ->where('id', '=', $userId)
                 ->update($dataUpdate);

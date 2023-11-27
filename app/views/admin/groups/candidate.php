@@ -46,24 +46,41 @@
                                 <td class="text-center"><?php echo $item['email'] ?></td>
                                 <td class="text-center">
                                     <?php
-                                    echo ($item['status'] === 1) ?
-                                        '<div class="dropdown">
-                                        <button class="btn btn-success btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Đã kích hoạt
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="' . _WEB_ROOT . '/groups/ung-vien/trang-thai?id=' . $item['id'] . '">Huỷ kích hoạt</a></li>
-                                        </ul>
-                                    </div>'
-                                        :
-                                        '<div class="dropdown">
-                                        <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Chưa kích hoạt
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="' . _WEB_ROOT . '/groups/ung-vien/trang-thai?id=' . $item['id'] . '">Kích hoạt</a></li>
-                                        </ul>
-                                    </div>';
+                                    switch ($item['status']):
+                                        case 0:
+                                            echo '<div class="dropdown">
+                                                <button class="btn btn-warning btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Chưa kích hoạt
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="' . _WEB_ROOT . '/groups/ung-vien/trang-thai?id=' . $item['id'] . '&action=active">Kích hoạt</a></li>
+                                                    <li><a class="dropdown-item" href="' . _WEB_ROOT . '/groups/ung-vien/trang-thai?id=' . $item['id'] . '&action=unactive">Cấm người dùng</a></li>
+                                                </ul>
+                                            </div>';
+                                            break;
+                                        case 1:
+                                            echo '<div class="dropdown">
+                                                <button class="btn btn-success btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Đã kích hoạt
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="' . _WEB_ROOT . '/groups/ung-vien/trang-thai?id=' . $item['id'] . '&action=inactive">Huỷ kích hoạt</a></li>
+                                                    <li><a class="dropdown-item" href="' . _WEB_ROOT . '/groups/ung-vien/trang-thai?id=' . $item['id'] . '&action=unactive">Cấm người dùng</a></li>
+                                                </ul>
+                                            </div>';
+                                            break;
+                                        case 2:
+                                            echo '<div class="dropdown">
+                                                <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Đã cấm
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="' . _WEB_ROOT . '/groups/ung-vien/trang-thai?id=' . $item['id'] . '&action=active">Kích hoạt</a></li>
+                                                    <li><a class="dropdown-item" href="' . _WEB_ROOT . '/groups/ung-vien/trang-thai?id=' . $item['id'] . '&action=inactive">Chờ kích hoạt</a></li>
+                                                </ul>
+                                            </div>';
+                                            break;
+                                    endswitch;
                                     ?>
                                 </td>
                                 <td class="text-center">

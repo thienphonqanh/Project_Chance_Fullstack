@@ -434,10 +434,11 @@ class Group extends Controller
 
         $data = $request->getFields();
 
-        if (!empty($data['id'])) :
+        if (!empty($data['id']) && !empty($data['action'])) :
             $userId = $data['id'];
+            $action = $data['action'];
 
-            $result = $this->groupModel->handleChangeStatusAccountCandidate($userId); // Gọi xử lý ở Model
+            $result = $this->groupModel->handleChangeStatusAccountCandidate($userId, $action); // Gọi xử lý ở Model
 
             if ($result) :
                 $response->redirect('groups/ung-vien');
@@ -454,10 +455,11 @@ class Group extends Controller
 
         $data = $request->getFields();
 
-        if (!empty($data['id'])) :
+        if (!empty($data['id']) && !empty($data['action'])) :
             $userId = $data['id'];
+            $action = $data['action'];
 
-            $result = $this->groupModel->handleChangeStatusAccountPersonnel($userId); // Gọi xử lý ở Model
+            $result = $this->groupModel->handleChangeStatusAccountPersonnel($userId, $action); // Gọi xử lý ở Model
 
             if ($result) :
                 $response->redirect('groups/nhan-su');

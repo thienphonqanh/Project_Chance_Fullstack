@@ -66,6 +66,11 @@ class AuthModel extends Model
                     Session::flash('msg', 'Vui lòng kích hoạt tài khoản tại Gmail bạn dùng để đăng ký tài khoản');
                     Session::flash('msg_type', 'danger');
                 endif;
+
+                if ($statusAccount === 2) :
+                    Session::flash('msg', 'Tài khoản của bạn tạm thời đang bị khoá! Vui lòng liên hệ quản trị viên để được hỗ trợ');
+                    Session::flash('msg_type', 'danger');
+                endif;
             else :
                 Session::flash('msg', 'Mật khẩu chưa chính xác');
                 Session::flash('msg_type', 'danger');
