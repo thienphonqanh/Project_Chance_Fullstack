@@ -39,7 +39,7 @@ class Database
 
 
     //Sửa dữ liệu
-    function updateData($table, $data, $condition = '')
+    function updateData($table, $data, $condition = '', $innerJoin = null)
     {
 
         if (!empty($data)) :
@@ -52,6 +52,9 @@ class Database
 
             if (!empty($condition)) :
                 $sql = "UPDATE $table SET $updateStr WHERE $condition";
+                if (!empty($innerJoin)):
+                    $sql = "UPDATE $table $innerJoin SET $updateStr WHERE $condition";
+                endif;
             else :
                 $sql = "UPDATE $table SET $updateStr";
             endif;

@@ -180,7 +180,12 @@ trait QueryBuilder
         $whereUpdate = str_replace('WHERE', '', $this->where);
         $whereUpdate = trim($whereUpdate);
         $tableName = $this->tableName;
-        $statusUpdate = $this->updateData($tableName, $data, $whereUpdate);
+        if (!empty($this->innerJoin)):
+            $statusUpdate = $this->updateData($tableName, $data, $whereUpdate, $this->innerJoin);
+        else:
+            $statusUpdate = $this->updateData($tableName, $data, $whereUpdate);
+        endif;
+
         return $statusUpdate;
     }
 

@@ -126,4 +126,91 @@ class Job extends Controller
                 $this->data['dataView'][''] = '';
         $this->render('layouts/layout', $this->data, 'admin');
     }
+
+    // Xem thông tin của việc làm
+    public function updateJob()
+    {
+        $request = new Request();
+
+        $data = $request->getFields();
+        $jobId = $_GET['id'];
+
+        if ($request->isPost()) :
+            $request->rules([
+                'title' => 'required',
+                'company_name' => 'required',
+                'slug' => 'required',
+                'form_work' => 'required',
+                'job_field' => 'required',
+                'location' => 'required',
+                'salary' => 'required',
+                'deadline' => 'required',
+                'rank' => 'required',
+                'degree_required' => 'required',
+                'exp_required' => 'required',
+                'number_recruits' => 'required',
+                'requirement' => 'required',
+                'description' => 'required',
+                'welfare' => 'required',
+            ]);
+
+            $request->message([
+                'title.required' => 'Tiêu đề không được để trống',
+                'company_name.required' => 'Tên công ty không được để trống',
+                'slug.required' => 'Đường dẫn không được để trống',
+                'form_work.required' => 'Hình thức làm việc không được để trống',
+                'job_field.required' => 'Lĩnh vực không được để trống',
+                'location.required' => 'Địa điểm không được để trống',
+                'salary.required' => 'Lương không được để trống',
+                'deadline.required' => 'Thời hạn nộp không được để trống',
+                'rank.required' => 'Cấp bậc không được để trống',
+                'degree_required.required' => 'Yêu cầu bằng cấp không được để trống',
+                'exp_required.required' => 'Yêu cầu kinh nghiệm không được để trống',
+                'number_recruits.required' => 'Số lượng tuyển không được để trống',
+                'requirement.required' => 'Yêu cầu công việc không được để trống',
+                'description.required' => 'Mô tả công việc không được để trống',
+                'welfare.required' => 'Phúc lợi không được để trống',
+            ]);
+
+            $validate = $request->validate();
+
+            if ($validate) :
+                if (!empty($jobId)) :
+                    $resultUpdate = $this->jobModel->handleUpdateJob($jobId);
+                
+                endif;
+
+                if ($resultUpdate) :
+                    Session::flash('msg', 'Thay đổi thành công');
+                    Session::flash('msg_type', 'success');
+                else :
+                    Session::flash('msg', 'Thay đổi thất bại');
+                    Session::flash('msg_type', 'danger');
+                endif;
+            else :
+                Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
+                Session::flash('msg_type', 'danger');
+            endif;
+        endif;
+
+        if (!empty($jobId)) :
+            $result = $this->jobModel->handleViewJob($jobId);
+
+            if (!empty($result)) :
+                $dataJob = $result;
+                $this->data['dataView']['dataJob'] = $dataJob;
+            else :
+                $emtyValue = 'Không có dữ liệu';
+                $this->data['dataView']['emptyValue'] = $emtyValue;
+            endif;
+        endif;
+
+
+        $this->data['body'] = 'admin/jobs/edit';
+        $this->data['dataView']['msg'] = Session::flash('msg');
+        $this->data['dataView']['msgType'] = Session::flash('msg_type');
+        $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
+        $this->data['dataView']['old'] = Session::flash('chance_session_old');
+        $this->render('layouts/layout', $this->data, 'admin');
+    }
 }

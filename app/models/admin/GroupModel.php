@@ -171,7 +171,7 @@ class GroupModel extends Model
     }
 
     // Xử lý lấy update trang thông tin 
-    public function handleUpdateProfile($userId)
+    public function handleUpdateProfileCandidate($userId)
     {
         $queryGet = $this->db->table('candidates')
             ->where('id', '=', $userId)

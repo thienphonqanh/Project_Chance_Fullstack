@@ -53,4 +53,5 @@ $routes['jobs'] = 'admin/job';
 $routes['jobs/danh-sach'] = 'admin/job/getListJob';
 $routes['jobs/danh-sach/thong-tin'] = 'admin/job/viewJob';
 $routes['jobs/danh-sach/trang-thai'] = 'admin/job/changeStatus';
+$routes['jobs/danh-sach/chinh-sua'] = 'admin/job/updateJob';
 $routes['jobs/danh-sach/xoa'] = 'admin/job/delete';

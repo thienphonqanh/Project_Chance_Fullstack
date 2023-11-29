@@ -60,7 +60,7 @@
     <div class="section-main">
         <div class="container-lg">
             <div class="row">
-                <div class="col-lg-9 col-md-12 col-sm-12 col-12">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-12 p-0">
                     <ul class="nav nav-tabs mt-4">
                         <li class="nav-item w-25 border-primary border-top border-2">
                             <a class="nav-link active text-primary text-center rounded-0 fw-semibold" href="#">Chi tiết tin</a>
@@ -70,7 +70,7 @@
                         </li>
                     </ul>
                     <div class="shadow-lg px-5 py-4 rounded">
-                        <h5>Thông tin chung</h5>
+                        <h4>Thông tin chung</h4>
                         <div class="general-information p-4 rounded">
                             <div class="d-flex align-items-center">
                                 <div class="d-flex align-items-center w-25">
@@ -134,35 +134,35 @@
                             </div>
                         </div>
                         <!--  -->
-                        <h5 class="mt-4">Mô tả công việc</h5>
-                        <p class="text-dark fs-6 fw-normal">
-                            <?php echo $item['description']; ?>
+                        <h4 class="mt-4 fw-bold">Mô tả công việc</h4>
+                        <p class="text-dark fs-6 fw-bold">
+                            <?php echo $item['job_description']; ?>
                         </p>
 
                         <!--  -->
-                        <h5 class="mt-4">Yêu cầu công việc</h5>
-                        <p class="text-dark fs-6 fw-normal">
+                        <h4 class="mt-4 fw-bold">Yêu cầu công việc</h4>
+                        <p class="text-dark fs-6 fw-bold">
                             <?php echo $item['requirement']; ?>
                         </p>
 
                         <!--  -->
-                        <h5 class="mt-4">Quyền lợi</h5>
-                        <p class="text-dark fs-6 fw-normal">
+                        <h4 class="mt-4 fw-bold">Quyền lợi</h4>
+                        <p class="text-dark fs-6 fw-bold">
                             <?php echo $item['welfare']; ?>
                         </p>
 
                         <!--  -->
-                        <h5 class="mt-4">Thông tin khác</h5>
-                        <p class="text-dark fs-6 fw-normal">
+                        <h4 class="mt-4 fw-bold">Thông tin khác</h4>
+                        <p class="text-dark fs-6 fw-bold">
                             <?php echo $item['other_info']; ?>
                         </p>
                     </div>
                     <div id="section-company" class="shadow-lg d-flex flex-column border rounded px-5 py-4 mt-3">
-                        <h5 class="mt-2"><?php echo $item['name']; ?></h5>
+                        <h4 class="mt-2"><?php echo $item['name']; ?></h4>
                         <div class="text-dark fw-normal">
-                            <i class="bi bi-geo-alt"></i> <?php echo $item['company_location']; ?>
+                            <i class="text-primary bi bi-geo-alt"></i> <?php echo $item['company_location']; ?>
                             <br>
-                            <i class="bi bi-people"></i> <?php echo $item['scales']; ?>
+                            <i class="text-primary bi bi-people"></i> <?php echo $item['scales']; ?>
                             <br>
                             <p class="mt-3">
                                 <?php echo $item['description']; ?>

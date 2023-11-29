@@ -178,7 +178,7 @@ class JobModel extends Model
             ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.slug, jobs.form_work, jobs.location, 
                 jobs.salary, jobs.deadline, jobs.rank, jobs.degree_required, jobs.view_count,
                 jobs.number_recruits, jobs.exp_required, jobs.requirement, jobs.create_at,
-                jobs.description, jobs.welfare, jobs.other_info, job_categories.name as jobField,
+                jobs.description as job_description, jobs.welfare, jobs.other_info, job_categories.name as jobField,
                 companies.name, companies.location as company_location, companies.scales, companies.description')
             ->join('job_categories', 'jobs.job_category_id = job_categories.id')
             ->join('companies', 'jobs.company_id = companies.id')
@@ -252,6 +252,48 @@ class JobModel extends Model
         endif;
 
         return $response;
-
     }
+
+    // Xử lý update thông tin việc làm
+    public function handleUpdateJob($jobId)
+    {
+        $queryGet = $this->db->table('jobs')
+            ->where('id', '=', $jobId)
+            ->first();
+
+        if (!empty($queryGet)) :
+            $dataUpdate = [
+                'jobs.title' => $_POST['title'],
+                'jobs.slug' => $_POST['slug'],
+                'c.name' => $_POST['company_name'],
+                'jobs.job_category_id' => $_POST['job_field'],
+                'jobs.form_work' => $_POST['form_work'],
+                'jobs.location' => $_POST['location'],
+                'jobs.salary' => $_POST['salary'],
+                'jobs.deadline' => $_POST['deadline'],
+                'jobs.rank' => $_POST['rank'],
+                'jobs.degree_required' => $_POST['degree_required'],
+                'jobs.exp_required' => $_POST['exp_required'],
+                'jobs.number_recruits' => $_POST['number_recruits'],
+                'jobs.requirement' => $_POST['requirement'],
+                'jobs.description' => $_POST['description'],
+                'jobs.other_info' => $_POST['other_info'],
+                'jobs.welfare' => $_POST['welfare'],
+                'jobs.update_at' => date('Y-m-d H:i:s'),
+                'c.update_at' => date('Y-m-d H:i:s'),
+            ];
+
+            $updateStatus = $this->db->table('jobs')
+                ->join('companies AS c', 'c.id = jobs.company_id')
+                ->where('jobs.id', '=', $jobId)
+                ->update($dataUpdate);
+
+            if ($updateStatus) :
+                return true;
+            endif;
+        endif;
+
+        return false;
+    }
+
 }

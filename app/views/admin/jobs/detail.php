@@ -31,8 +31,8 @@
                         <div class="form-floating mb-3">
                             <select class="form-select" disabled id="floatingSelect" aria-label="Floating label select example">
                                 <option value="0">Chọn lĩnh vực</option>
-                                <option value="1" <?php echo $item['jobField'] === 'Bán hàng' ? 'selected' : false; ?>>Bán hàng
-                                </option>
+                                <option value="1" <?php echo $item['jobField'] === 'Bán hàng' ? 'selected' : false; ?>>Bán hàng</option>
+                                <option value="2" <?php echo $item['jobField'] === 'Kế toán' ? 'selected' : false; ?>>Kế toán</option>
                             </select>
                             <label for="floatingSelect">Lĩnh vực <span class="text-danger fw-bold">*</span></label>
                         </div>
