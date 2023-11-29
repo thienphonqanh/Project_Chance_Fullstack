@@ -31,6 +31,9 @@
   <!-- summernote -->
   <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/admin/assets/plugins/summernote/summernote-bs4.min.css">
 
+  <!-- custom css -->
+  <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/admin/assets/css/main.css?ver=<?php echo rand(); ?>">
+
   <!-- CkEditor -->
   <script type="text/javascript" src="<?php echo _WEB_ROOT; ?>/public/admin/assets/ckeditor/ckeditor.js"></script>
 </head>

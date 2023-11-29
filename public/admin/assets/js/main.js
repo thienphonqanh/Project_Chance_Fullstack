@@ -131,3 +131,56 @@ for (var i = 0; i < checkboxes.length; i++) {
 
     });
 }
+
+
+// Hàm hiển thị ảnh xem trước 
+function previewImage() {
+    var fileInput = document.getElementById('avatar-input');
+    var preview = document.getElementById('avatar-preview');
+
+    // Xóa tất cả các phần tử con trong phần hiển thị trước khi thêm mới
+    while (preview.firstChild) {
+        preview.removeChild(preview.firstChild);
+    }
+
+    var files = fileInput.files;
+    for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.width = '120px';
+            img.style.height = '120px';
+            preview.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    // Ẩn hoặc xoá ảnh mặc định
+    var defaultAvatar = document.getElementById('avatar-default');
+    if (defaultAvatar) {
+        defaultAvatar.style.display = 'none';
+        // hoặc defaultPreview.parentNode.removeChild(defaultPreview); để xoá hoàn toàn
+    }
+}
+
+// Hàm xoá ảnh đã chọn
+function deleteImage() {
+    var preview = document.getElementById('avatar-preview');
+    
+    // Xóa tất cả các phần tử con trong phần hiển thị trước khi thêm mới
+    while (preview.firstChild) {
+        preview.removeChild(preview.firstChild);
+    }
+
+    // Thêm ảnh mặc định vào phần hiển thị
+    var defaultImg = document.createElement('img');
+    defaultImg.src = rootUrl + '/public/client/assets/images/default_image.jpg'; // Đặt đường dẫn của ảnh mặc định
+    defaultImg.style.width = '120px';
+    defaultImg.style.height = '120px';
+    preview.appendChild(defaultImg);
+}
+
