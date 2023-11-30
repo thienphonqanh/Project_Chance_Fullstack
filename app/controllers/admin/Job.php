@@ -134,8 +134,63 @@ class Job extends Controller
 
         $data = $request->getFields();
         $jobId = $_GET['id'];
+        $checkOld = $this->jobModel->handleGetOld($jobId);
+        $oldThumbnail = $checkOld['thumbnail'];
 
         if ($request->isPost()) :
+            $uploadOk = 1;
+
+            if (empty($_FILES['avatar-input']['full_path'])):
+                if (!empty($data['delete-image'])):
+                    $avatarPath = 'public/client/assets/images/default_image.jpg';
+                    $uploadOk = 1;
+                else:
+                    if (!empty($oldThumbnail)) :
+                        $avatarPath = $oldThumbnail;
+                    else:
+                        $avatarPath = 'public/client/assets/images/default_image.jpg';
+                    endif;
+                    $uploadOk = 1;
+                endif;
+            else:
+                // Xử lý tệp được tải lên
+                $targetDir = "app/uploads/job/"; // Thư mục để lưu trữ ảnh đại diện
+                $targetFile = $targetDir . basename($_FILES["avatar-input"]["name"]);
+                $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+                // Kiểm tra xem tệp có phải là ảnh hợp lệ hay không
+                $check = getimagesize($_FILES["avatar-input"]["tmp_name"]);
+                if ($check !== false) :
+                    $uploadOk = 1;
+                else :
+                    Session::flash('msg', 'File không phải là ảnh');
+                    Session::flash('msg_type', 'danger');
+                    $uploadOk = 0;
+                endif;
+
+                // Kiểm tra kích thước tệp
+                $sizeFile = 5 * 1024 * 1024; // 5MB
+                if ($_FILES["avatar-input"]["size"] > $sizeFile) {
+                    Session::flash('msg', 'Kích thước file quá lớn (yêu cầu tối đa 5MB)');
+                    Session::flash('msg_type', 'danger');
+                    $uploadOk = 0;
+                }
+
+                // Kiểm tra định dạng ảnh
+                if ($imageFileType != "jpg" && $imageFileType != "png" 
+                    && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                    Session::flash('msg', 'File không đúng định dạng ảnh (.jpg, .png, .jpeg, .gif)');
+                    Session::flash('msg_type', 'danger');
+                    $uploadOk = 0;
+                }
+
+                // Kiểm tra nếu có lỗi xảy ra
+                if ($uploadOk == 0) :
+                    Session::flash('msg', 'Hiện tại không thể upload file');
+                    Session::flash('msg_type', 'danger');                
+                endif;
+            endif;
+
             $request->rules([
                 'title' => 'required',
                 'company_name' => 'required',
@@ -174,10 +229,16 @@ class Job extends Controller
 
             $validate = $request->validate();
 
-            if ($validate) :
+            if ($validate && $uploadOk == 1) :
                 if (!empty($jobId)) :
-                    $resultUpdate = $this->jobModel->handleUpdateJob($jobId);
-                
+                    if (!empty($targetFile)):
+                        if (move_uploaded_file($_FILES["avatar-input"]["tmp_name"], $targetFile)) :
+                            // Cập nhật đường dẫn ảnh đại diện vào database
+                            $avatarPath = $targetFile;
+                        endif;
+                    endif;
+
+                    $resultUpdate = $this->jobModel->handleUpdateJob($jobId, $avatarPath);
                 endif;
 
                 if ($resultUpdate) :

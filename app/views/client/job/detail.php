@@ -15,7 +15,13 @@
         <div class="row">
             <div class="col-2">
                 <div class="ms-2">
-                    <img src="<?php echo $item['thumbnail']; ?>" width="90%" alt="">
+                    <?php 
+                        $root = _WEB_ROOT;
+                        echo (!empty($item['thumbnail'])) ? 
+                        '<img src="'.$root.'/'.$item['thumbnail'].'" width="90%" alt="Avatar">' 
+                        : 
+                        '<img src="'.$root.'/public/client/assets/images/default_image.jpg" width="90%" alt="Avatar">';
+                    ?>
                 </div>
             </div>
            

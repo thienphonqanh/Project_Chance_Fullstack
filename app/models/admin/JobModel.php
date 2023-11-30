@@ -17,6 +17,23 @@ class JobModel extends Model
         return '';
     }
 
+    // Lấy thumbnail cũ
+    public function handleGetOld($jobId)
+    {
+        $queryGet = $this->db->table('jobs')
+            ->select('thumbnail')
+            ->where('id', '=', $jobId)
+            ->first();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
     // Xử lý lấy danh sách việc làm ở Dashboard
     public function handleGetListJobDashboard($filters = [], $keyword = '', $limit)
     {
@@ -155,11 +172,12 @@ class JobModel extends Model
     public function handleViewJob($jobId)
     {
         $queryGet = $this->db->table('jobs')
-            ->select('jobs.id, jobs.title, jobs.slug, jobs.form_work, jobs.location, 
+            ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.slug, jobs.form_work, jobs.location, 
                 jobs.salary, jobs.deadline, jobs.rank, jobs.degree_required,
                 jobs.number_recruits, jobs.exp_required, jobs.requirement, 
                 jobs.description, jobs.welfare, jobs.other_info, job_categories.name as jobField,
-                companies.name')
+                companies.name, companies.description as company_description, 
+                companies.location as company_location, companies.scales')
             ->join('job_categories', 'job_categories.id = jobs.job_category_id')
             ->join('companies', 'companies.id = jobs.company_id')
             ->where('jobs.id', '=', $jobId)
@@ -255,7 +273,7 @@ class JobModel extends Model
     }
 
     // Xử lý update thông tin việc làm
-    public function handleUpdateJob($jobId)
+    public function handleUpdateJob($jobId, $avatarPath)
     {
         $queryGet = $this->db->table('jobs')
             ->where('id', '=', $jobId)
@@ -265,7 +283,11 @@ class JobModel extends Model
             $dataUpdate = [
                 'jobs.title' => $_POST['title'],
                 'jobs.slug' => $_POST['slug'],
+                'jobs.thumbnail' => $avatarPath,
                 'c.name' => $_POST['company_name'],
+                'c.location' => $_POST['company_location'],
+                'c.scales' => $_POST['scales'],
+                'c.description' => $_POST['company_description'],
                 'jobs.job_category_id' => $_POST['job_field'],
                 'jobs.form_work' => $_POST['form_work'],
                 'jobs.location' => $_POST['location'],
