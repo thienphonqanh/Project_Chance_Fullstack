@@ -163,14 +163,19 @@ function previewImage() {
     var defaultAvatar = document.getElementById('avatar-default');
     if (defaultAvatar) {
         defaultAvatar.style.display = 'none';
-        // hoặc defaultPreview.parentNode.removeChild(defaultPreview); để xoá hoàn toàn
     }
 }
 
 // Hàm xoá ảnh đã chọn
 function deleteImage() {
     var preview = document.getElementById('avatar-preview');
+    var deleteInput = document.getElementById('delete-image');
     
+    deleteInput.style.display = 'block'
+    deleteInput.type = 'hidden'
+    deleteInput.name = 'delete-image'
+    deleteInput.value = 'delete-image-value'
+
     // Xóa tất cả các phần tử con trong phần hiển thị trước khi thêm mới
     while (preview.firstChild) {
         preview.removeChild(preview.firstChild);
@@ -179,8 +184,8 @@ function deleteImage() {
     // Thêm ảnh mặc định vào phần hiển thị
     var defaultImg = document.createElement('img');
     defaultImg.src = rootUrl + '/public/client/assets/images/default_image.jpg'; // Đặt đường dẫn của ảnh mặc định
-    defaultImg.style.width = '120px';
-    defaultImg.style.height = '120px';
+    defaultImg.style.width = '130px';
+    defaultImg.style.height = '130px';
     preview.appendChild(defaultImg);
 }
 

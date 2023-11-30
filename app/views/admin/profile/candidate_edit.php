@@ -12,11 +12,18 @@
             <?php if (!empty($dataProfile)) : ?>
                 <div class="col-12">
                     <div id="avatar-preview" class="avatar mb-3">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/default_image.jpg" style="width: 120px; height: 120px;" id="avatar-default" alt="Avatar">
+                        <?php 
+                            $root = _WEB_ROOT;
+                            echo (!empty($dataProfile['thumbnail'])) ? 
+                            '<img src="'.$root.'/'.$dataProfile['thumbnail'].'" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">' 
+                            : 
+                            '<img src="'.$root.'/public/client/assets/images/default_image.jpg" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">';
+                        ?>
                     </div>
                     <input type="file" name="avatar-input" id="avatar-input" accept="image/*" onchange="previewImage()" class="d-none">
                     <label for="avatar-input" class="text-info">Tải ảnh lên<i class="bi bi-arrow-up-short"></i></label>
-                    <label onclick="deleteImage()" class="text-danger px-3">Xoá</label>
+                    <label onclick="deleteImage()" for="delete-image" class="text-danger px-3">Xoá</label>
+                    <input style="display: none;" id="delete-image">
                 </div>
                 <div class="col-12">
                     <div class="form-floating mb-3 text-start">

@@ -108,7 +108,7 @@ class GroupModel extends Model
     public function handleViewProfileCandidate($userId)
     {
         $queryGet = $this->db->table('candidates')
-            ->select('fullname, email, dob, phone, gender, location, address,
+            ->select('fullname, thumbnail, email, dob, phone, gender, location, address,
                 contact_facebook, contact_twitter, contact_linkedin, about_content')
             ->where('id', '=', $userId)
             ->first();
@@ -124,7 +124,7 @@ class GroupModel extends Model
     public function handleViewProfilePersonnel($userId)
     {
         $queryGet = $this->db->table('admins')
-            ->select('fullname, email, dob, phone, gender, location, address,
+            ->select('fullname, thumbnail, email, dob, phone, gender, location, address,
                 contact_facebook, contact_twitter, about_content')
             ->where('id', '=', $userId)
             ->first();
@@ -137,7 +137,7 @@ class GroupModel extends Model
     }
 
     // Xử lý lấy update trang thông tin 
-    public function handleUpdateProfilePersonnel($userId)
+    public function handleUpdateProfilePersonnel($userId, $avatarPath)
     {
         $queryGet = $this->db->table('admins')
             ->where('id', '=', $userId)
@@ -146,6 +146,7 @@ class GroupModel extends Model
         if (!empty($queryGet)) :
             $dataUpdate = [
                 'fullname' => $_POST['fullname'],
+                'thumbnail' => $avatarPath,
                 'email' => $_POST['email'],
                 'phone' => $_POST['phone'],
                 'dob' => $_POST['dob'],
@@ -171,7 +172,7 @@ class GroupModel extends Model
     }
 
     // Xử lý lấy update trang thông tin 
-    public function handleUpdateProfileCandidate($userId)
+    public function handleUpdateProfileCandidate($userId, $avatarPath)
     {
         $queryGet = $this->db->table('candidates')
             ->where('id', '=', $userId)
@@ -180,6 +181,7 @@ class GroupModel extends Model
         if (!empty($queryGet)) :
             $dataUpdate = [
                 'fullname' => $_POST['fullname'],
+                'thumbnail' => $avatarPath,
                 'email' => $_POST['email'],
                 'phone' => $_POST['phone'],
                 'dob' => $_POST['dob'],
@@ -209,7 +211,7 @@ class GroupModel extends Model
     public function handleGetOldPersonnel($userId)
     {
         $queryGet = $this->db->table('admins')
-            ->select('email, phone')
+            ->select('email, phone, thumbnail')
             ->where('id', '=', $userId)
             ->first();
 
@@ -222,11 +224,11 @@ class GroupModel extends Model
         return $response;
     }
 
-    // Lấy email, phone cũ của candidate
+    // Lấy email, phone, ảnh cũ của candidate
     public function handleGetOldCandidate($userId)
     {
         $queryGet = $this->db->table('candidates')
-            ->select('email, phone')
+            ->select('email, phone, thumbnail')
             ->where('id', '=', $userId)
             ->first();
 

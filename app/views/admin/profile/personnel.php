@@ -4,6 +4,18 @@
         <div class="row">
             <?php if (!empty($dataProfile)) : ?>
                 <div class="col-12">
+                    <div class="avatar">
+                        <?php 
+                            $root = _WEB_ROOT;
+                            echo (!empty($dataProfile['thumbnail'])) ? 
+                            '<img src="'.$root.'/'.$dataProfile['thumbnail'].'" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">' 
+                            :
+                            '<img src="'.$root.'/public/client/assets/images/default_image.jpg" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">';
+                        ?>
+                    </div>
+                    <h6 class="fw-bold mb-3 mt-1">Ảnh đại diện</h6>
+                </div>
+                <div class="col-12">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" disabled id="floatingInput" name="fullname" placeholder="name@example.com" value="<?php echo $dataProfile['fullname']; ?>">
                         <label for="floatingInput">Họ và tên <span class="text-danger fw-bold">*</span></label>
