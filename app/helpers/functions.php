@@ -43,6 +43,15 @@ function getNameUserLogin()
     return false;
 }
 
+function getAvatarUserLogin()
+{
+    if (getUserData() && !empty(getUserData()['thumbnail'])) :
+        return getUserData()['thumbnail'];
+    endif;
+
+    return false;
+}
+
 function getModule()
 {
     if (!empty($_SERVER['PATH_INFO'])) :

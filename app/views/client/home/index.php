@@ -62,7 +62,7 @@
                 </div>
             </div>
         </section>
-
+ 
         <!-- Giới thiệu công cụ -->
         <section class="section-introducing" id="section-introducing">
             <h3 class="text-center">Công cụ tốt nhất cho hành trang ứng tuyển của bạn</h3>
@@ -101,129 +101,17 @@
             <h2 class="text-center">Ngành Nghề Trọng Điểm</h2>
             <div class="industries-block">
                 <div class="industries">
+                    <?php 
+                        if (!empty($jobCategory)):
+                            foreach ($jobCategory as $item):
+                    ?>
                     <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-1.png" alt="">
-                        <p>BÁN HÀNG</p>
-                        <span class="text-dark">1782 việc làm</span>
+                        <img src="<?php echo _WEB_ROOT.'/'.$item['icon']; ?>" alt="">
+                        <p class="text-uppercase"><?php echo $item['name']; ?></p>
+                        <span class="text-dark"><?php echo $item['quantity_job']; ?> việc làm</span>
                     </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-2.png" alt="">
-                        <p>TÀI CHÍNH/ĐẦU TƯ</p>
-                        <span class="text-dark">1542 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-3.png" alt="">
-                        <p>IT-PHẦN MỀM</p>
-                        <span class="text-dark">1005 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-4.png" alt="">
-                        <p>KẾ TOÁN</p>
-                        <span class="text-dark">959 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-5.png" alt="">
-                        <p>MARKETING</p>
-                        <span class="text-dark">914 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-6.png" alt="">
-                        <p>NGÂN HÀNG</p>
-                        <span class="text-dark">860 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-7.png" alt="">
-                        <p>HÀNH CHÍNH/THƯ KÝ</p>
-                        <span class="text-dark">852 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-8.png" alt="">
-                        <p>DỊCH VỤ KHÁCH HÀNG</p>
-                        <span class="text-dark">840 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-9.png" alt="">
-                        <p>ĐIỆN/ĐIỆN TỬ</p>
-                        <span class="text-dark">798 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-10.png" alt="">
-                        <p>SẢN XUẤT</p>
-                        <span class="text-dark">733 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-11.png" alt="">
-                        <p>KIỂM TOÁN</p>
-                        <span class="text-dark">675 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-12.png" alt="">
-                        <p>XÂY DỰNG</p>
-                        <span class="text-dark">583 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-13.png" alt="">
-                        <p>IT-PHẦN CỨNG/MẠNG</p>
-                        <span class="text-dark">571 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-14.png" alt="">
-                        <p>HOẠCH ĐỊNH/DỰ ÁN</p>
-                        <span class="text-dark">559 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-15.png" alt="">
-                        <p>NHÂN SỰ</p>
-                        <span class="text-dark">492 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-16.png" alt="">
-                        <p>QUẢNG CÁO</p>
-                        <span class="text-dark">491 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-17.png" alt="">
-                        <p>THU MUA/VẬT TƯ/CUNG VẬN</p>
-                        <span class="text-dark">348 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-18.png" alt="">
-                        <p>KIẾN TRÚC/NỘI THẤT</p>
-                        <span class="text-dark">337 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-19.png" alt="">
-                        <p>INTERNET/ONLINE MEDIA</p>
-                        <span class="text-dark">326 việc làm</span>
-                    </a>
-
-                    <a href="#" class="item">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/i-20.png" alt="">
-                        <p>BẤT ĐỘNG SẢN</p>
-                        <span class="text-dark">297 việc làm</span>
-                    </a>
+                    <?php endforeach; endif; ?>
                 </div>
-
-
-
             </div>
 
             <div class="direction">

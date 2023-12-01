@@ -12,7 +12,7 @@
     </div>
     
     <div class="container-lg d-flex border rounded p-4 w-100">
-        <div class="row">
+        <div class="row w-100">
             <div class="col-2">
                 <div class="ms-2">
                     <?php 
@@ -24,7 +24,6 @@
                     ?>
                 </div>
             </div>
-           
             <div class="col-10">
                 <div class="d-flex w-100 align-items-center w-75">
                     <p class="w-100 m-0 fw-normal"><?php echo $item['name']; ?></p>
@@ -134,7 +133,7 @@
                                     <i class="bi bi-suitcase-lg"></i>
                                     <div class="ms-3">
                                         <p class="fs-6 fw-normal m-0">Ngành nghề</p>
-                                        <p class="fs-6 fw-bold m-0"><?php echo $item['jobField']; ?></p>
+                                        <p class="fs-6 fw-bold m-0 text-primary"><?php echo $item['jobField']; ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -188,7 +187,7 @@
                         <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $subItem['slug'].'-'.$subItem['id']; ?>">
                             <div class="d-flex shadow p-2 rounded border mt-3 text-dark">
                                 <div>
-                                    <img width="35px" height="32px" class="border rounded" src="<?php echo $subItem['thumbnail'] ?>" alt="">
+                                    <img width="35px" height="32px" class="border rounded" src="<?php echo _WEB_ROOT.'/'.$subItem['thumbnail'] ?>" alt="">
                                 </div>
                                 <div class="special-span ms-2">
                                     <span class="fs-6 fw-semibold"><?php echo $subItem['title'] ?></span>

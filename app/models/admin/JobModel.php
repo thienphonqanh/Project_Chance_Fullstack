@@ -38,7 +38,7 @@ class JobModel extends Model
     public function handleGetListJobDashboard($filters = [], $keyword = '', $limit)
     {
         $queryGet = $this->db->table('jobs')
-            ->select('jobs.*, companies.name')
+            ->select('jobs.id, jobs.title, jobs.location, jobs.status, jobs.deadline, companies.name')
             ->join('companies', 'jobs.company_id = companies.id');
 
         $checkNull = false;
@@ -317,5 +317,121 @@ class JobModel extends Model
 
         return false;
     }
+
+     // Xử lý thêm việc làm
+     public function handleAddJob($avatarPath)
+     {
+        $checkEmpty = $this->db->table('companies')
+            ->select('id')
+            ->where('name', '=', $_POST['company_name'])
+            ->first();
+
+        if (empty($checkEmpty)):
+            $dataInsertCompany = [
+                'name' => $_POST['company_name'],
+                'location' => $_POST['company_location'],
+                'scales' => $_POST['scales'],
+                'description' => $_POST['company_description'],
+                'create_at' => date('Y-m-d H:i:s'),
+            ];
+
+            $insertStatusCompany = $this->db->table('companies')
+                ->insert($dataInsertCompany);
+            
+            if ($insertStatusCompany):
+                $dataInsertJob = [
+                    'title' => $_POST['title'],
+                    'slug' => $_POST['slug'],
+                    'thumbnail' => $avatarPath,
+                    'job_category_id' => $_POST['job_field'],
+                    'admin_id' => 1,
+                    'form_work' => $_POST['form_work'],
+                    'location' => $_POST['location'],
+                    'salary' => $_POST['salary'],
+                    'deadline' => $_POST['deadline'],
+                    'rank' => $_POST['rank'],
+                    'company_id' => $this->db->lastInsertId(),
+                    'degree_required' => $_POST['degree_required'],
+                    'exp_required' => $_POST['exp_required'],
+                    'number_recruits' => $_POST['number_recruits'],
+                    'requirement' => $_POST['requirement'],
+                    'description' => $_POST['description'],
+                    'other_info' => $_POST['other_info'],
+                    'welfare' => $_POST['welfare'],
+                    'create_at' => date('Y-m-d H:i:s'),
+                ];
+        
+                $insertStatusJob = $this->db->table('jobs')
+                    ->insert($dataInsertJob);
+
+                if ($insertStatusJob) :
+                    $currentQuantity = $this->db->table('job_categories')
+                    ->select('quantity_job')
+                    ->where('job_categories.id', '=', $_POST['job_field'])
+                    ->first();
+
+                    $dataUpdate = [
+                        'quantity_job' => $currentQuantity['quantity_job'] + 1,
+                    ];
+
+                    $updateQuantityCategory = $this->db->table('job_categories')
+                        ->where('job_categories.id', '=', $_POST['job_field'])
+                        ->update($dataUpdate);
+
+                    if ($updateQuantityCategory):
+                        return true;
+                    endif;
+                endif;
+            endif;
+        else:
+            $companyId = $checkEmpty['id'];
+
+            $dataInsertJob = [
+                'title' => $_POST['title'],
+                'slug' => $_POST['slug'],
+                'thumbnail' => $avatarPath,
+                'job_category_id' => $_POST['job_field'],
+                'admin_id' => 1,
+                'form_work' => $_POST['form_work'],
+                'location' => $_POST['location'],
+                'salary' => $_POST['salary'],
+                'deadline' => $_POST['deadline'],
+                'rank' => $_POST['rank'],
+                'company_id' => $companyId,
+                'degree_required' => $_POST['degree_required'],
+                'exp_required' => $_POST['exp_required'],
+                'number_recruits' => $_POST['number_recruits'],
+                'requirement' => $_POST['requirement'],
+                'description' => $_POST['description'],
+                'other_info' => $_POST['other_info'],
+                'welfare' => $_POST['welfare'],
+                'create_at' => date('Y-m-d H:i:s'),
+            ];
+    
+            $insertStatusJob = $this->db->table('jobs')
+                ->insert($dataInsertJob);
+
+            if ($insertStatusJob) :
+                $currentQuantity = $this->db->table('job_categories')
+                ->select('quantity_job')
+                ->where('job_categories.id', '=', $_POST['job_field'])
+                ->first();
+
+                $dataUpdate = [
+                    'quantity_job' => $currentQuantity['quantity_job'] + 1,
+                ];
+
+                $updateQuantityCategory = $this->db->table('job_categories')
+                    ->where('job_categories.id', '=', $_POST['job_field'])
+                    ->update($dataUpdate);
+
+                if ($updateQuantityCategory):
+                    return true;
+                endif;
+            endif;
+        endif;
+
+        return false;
+     }
 
 }
