@@ -69,6 +69,37 @@ class Database
         return false;
     }
 
+    //Sửa dữ liệu
+    function updateDataDecrement($table, $data, $condition = '', $innerJoin = null)
+    {
+
+        if (!empty($data)) :
+            $updateStr = '';
+            foreach ($data as $key => $value) :
+                $updateStr .= "$key=$value,";
+            endforeach;
+
+            $updateStr = rtrim($updateStr, ',');
+
+            if (!empty($condition)) :
+                $sql = "UPDATE $table SET $updateStr WHERE $condition";
+                if (!empty($innerJoin)):
+                    $sql = "UPDATE $table $innerJoin SET $updateStr WHERE $condition";
+                endif;
+            else :
+                $sql = "UPDATE $table SET $updateStr";
+            endif;
+
+            $status = $this->query($sql);
+
+            if ($status) :
+                return true;
+            endif;
+        endif;
+
+        return false;
+    }
+
     //Xoá dữ liệu
     function deleteData($table, $condition = '')
     {

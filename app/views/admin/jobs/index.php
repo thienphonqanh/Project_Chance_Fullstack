@@ -111,7 +111,7 @@
                     <button type="submit" class="btn btn-danger delete-button" disabled>Xoá đã chọn (0)</button>
                 </div>
                 <div class="col-6">
-                    <nav class="d-flex justify-content-end"></nav>
+                    <nav class="d-flex justify-content-end"><?php echo $links; ?></nav>
                 </div>
             </div>
         </form>

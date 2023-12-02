@@ -152,7 +152,7 @@ class JobModel extends Model
         return false;
     }
 
-    // Xử lý xoá việc làm
+    // Xử lý xoá và update số lượng
     public function handleDelete($itemsToDelete = '')
     {
         $itemsToDelete = '(' . $itemsToDelete . ')';
@@ -161,11 +161,33 @@ class JobModel extends Model
             ->where('id', 'IN', $itemsToDelete)
             ->delete();
 
-        if ($queryDelete) :
-            return true;
-        endif;
+        return $queryDelete ? true : false;
+    }
 
-        return false;
+    // Cập nhật lại số lượng việc làm sau khi xoá
+    public function handleDeleteCategory($itemsToDelete = '') {
+        $itemsToDelete = '(' . $itemsToDelete . ')';
+
+        $queryGetJobCategory = $this->db->table('jobs')
+            ->select('job_category_id')
+            ->where('id', 'IN', $itemsToDelete)
+            ->get();
+        
+        $arrayJobCategory = array_column($queryGetJobCategory, 'job_category_id');
+        $itemsDeleteCategory = implode(',', $arrayJobCategory);
+        $itemsDeleteCategory = '('.$itemsDeleteCategory.')';
+
+        $dataUpdate = [
+            'quantity_job' => 'quantity_job - 1'
+        ];
+
+        $updateStatus = $this->db->table('job_categories')
+            ->where('id', 'IN', $itemsDeleteCategory)
+            ->decrement($dataUpdate);
+
+        $this->db->resetQuery();
+        
+        return $updateStatus ? true : false;
     }
 
     // Xử lý lấy data trang thông tin 
@@ -433,5 +455,43 @@ class JobModel extends Model
 
         return false;
      }
+
+    //  public function a() {
+        
+    //     $queryGetJobCategory = $this->db->table('jobs')
+    //         ->select('job_category_id')
+    //         ->where('id', 'IN', '(36, 45, 46)')
+    //         ->get();
+
+    //     $arrayJobCategory = array_column($queryGetJobCategory, 'job_category_id');
+
+    //     $itemsDeleteCategory = implode(',', $arrayJobCategory);
+    //     $itemsDeleteCategory = '('. $itemsDeleteCategory . ')';
+
+    //     $currentQuantity = $this->db->table('job_categories')
+    //         ->select('quantity_job')
+    //         ->where('id', 'IN', $itemsDeleteCategory)
+    //         ->get();
+    
+    //     if (!empty($currentQuantity)):
+    //         $itemsDeleteCategory = ltrim($itemsDeleteCategory, '(');
+    //         $itemsDeleteCategory = rtrim($itemsDeleteCategory, ')');
+    //         $itemsDeleteCategory = explode(',', $itemsDeleteCategory);
+    //         // foreach ($currentQuantity as $item):
+    //         //     echo $item['quantity_job'].'<br>';
+    //             foreach ($itemsDeleteCategory as $subItem):
+    //                 // $dataUpdate = [
+    //                 //     'quantity_job' => $item['quantity_job'] - 1
+    //                 // ];
+
+    //                 // $this->db->table('job_categories')
+    //                 //     ->where('id', '=', $subItem)
+    //                 //     ->update($dataUpdate);
+    //                 echo $subItem.'<br>';
+    //             endforeach;
+    //         // endforeach;
+    //         // return $itemsDeleteCategory;
+    //     endif;
+    //  }
 
 }

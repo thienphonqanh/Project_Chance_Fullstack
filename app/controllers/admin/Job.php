@@ -91,14 +91,19 @@ class Job extends Controller
             $itemsToDelete = implode(',', $itemsToDelete);
 
 
-            $result = $this->jobModel->handleDelete($itemsToDelete);
+            $subResult = $this->jobModel->handleDeleteCategory($itemsToDelete);
 
-            if ($result) :
-                $response->redirect('jobs/danh-sach');
+            if ($subResult):
+                $result = $this->jobModel->handleDelete($itemsToDelete);
+                
+                if ($result):
+                    $response->redirect('jobs/danh-sach');
+                endif;
             endif;
 
         endif;
     }
+    
 
     // Xem thông tin của việc làm
     public function viewJob()
