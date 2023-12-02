@@ -208,4 +208,114 @@ class AuthModel extends Model
 
         return false;
     }
+
+    public function handleForgotPassword($email) {
+        $queryGet = $this->db->table('candidates')
+            ->select('fullname, email')
+            ->where('email', '=', $email)
+            ->first();
+        
+        if (!empty($queryGet)):
+            $forgotToken = sha1(uniqid() . time());
+
+            $dataUpdate = [
+                'forgot_token' => $forgotToken
+            ];
+
+            $insertStatus = $this->db->table('candidates')
+                ->where('email', '=', $email)
+                ->update($dataUpdate);
+            
+            if ($insertStatus):
+                // Tạo link 
+                $linkReset = _WEB_ROOT . '/check?token=' . $forgotToken;
+                // Thiết lập mail
+                $subject = 'ĐẶT LẠI MẬT KHẨU';
+                $content = 'Chào bạn: ' . ucwords($queryGet['fullname']) . '<br>';
+                $content .= 'Vui lòng click vào link dưới đây để tiến hành đặt lại mật khẩu: <br>';
+                $content .= $linkReset . '<br>';
+                $content .= 'Nếu không phải là bạn, vui lòng liên hệ cho đội ngũ hỗ trợ. <br>';
+                $content .= 'Trân trọng!';
+
+                $sendStatus = Mailer::sendMail($queryGet['email'], $subject, $content);
+
+                if ($sendStatus) :
+                    return true;
+                else :
+                    Session::flash('msg', 'Hệ thống đang gặp sự cố');
+                    Session::flash('msg_type', 'danger');
+                endif;
+            endif;
+        else:
+            Session::flash('msg', 'Email không tồn tại');
+            Session::flash('msg_type', 'danger');
+        endif;
+
+        return false;
+    }
+
+    public function handleConfirmForgotToken($token)
+    {
+        if (!empty($token)) :
+            // Truy vấn sql để so sánh
+            $tokenQuery = $this->db->table('candidates')
+                ->select('id')
+                ->where('forgot_token', '=', $token)
+                ->first();
+
+            if (!empty($tokenQuery)) :
+                $userId = $tokenQuery['id'];
+                $dataUpdate = [
+                    'forgot_token' => null
+                ];
+
+                $updateStatus = $this->db->table('candidates')
+                    ->where('id', '=', $userId)
+                    ->update($dataUpdate);
+
+                if ($updateStatus) :
+                    $this->db->resetQuery();
+                    return $userId;
+                endif;
+            endif;
+        endif;
+
+        return false;
+    }
+
+    public function handleResetPassword($userId) {
+        $queryGet = $this->db->table('candidates')
+            ->select('id, fullname, email')
+            ->where('id', '=', $userId)
+            ->first();
+
+        if (!empty($queryGet)):
+            $dataUpdate = [
+                'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+            ];
+
+            $updateStatus = $this->db->table('candidates')
+                ->where('id', '=', $userId)
+                ->update($dataUpdate);
+
+            if ($updateStatus):
+                $subject = 'ĐẶT LẠI MẬT KHẨU THÀNH CÔNG';
+                $content = 'Chào bạn: ' . ucwords($queryGet['fullname']) . '<br>';
+                $content .= 'Bạn vừa thay đổi mật khẩu ở Chance. <br>';
+                $content .= 'Nếu không phải là bạn, vui lòng liên hệ cho đội ngũ hỗ trợ. <br>';
+                $content .= 'Trân trọng!';
+
+                $sendStatus = Mailer::sendMail($queryGet['email'], $subject, $content);
+
+                if ($sendStatus) :
+                    return true;
+                else :
+                    Session::flash('msg', 'Hệ thống đang gặp sự cố');
+                    Session::flash('msg_type', 'danger');
+                endif;
+            endif;
+        endif;
+
+        return false;
+    }
 }

@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="form-group text-end">
-        <a href="#">Quên mật khẩu</a>
+        <a href="<?php echo _WEB_ROOT; ?>/forgot">Quên mật khẩu</a>
     </div>
     <button type="submit" class="btn btn-primary btn-lg w-100 mt-2">Đăng nhập</button>
     <p class="m-0 text-center fs-6 mt-3">Hoặc đăng nhập bằng</p>

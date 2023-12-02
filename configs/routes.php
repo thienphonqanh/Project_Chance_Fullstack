@@ -12,6 +12,9 @@ $routes['dang-nhap'] = 'auth/login';
 $routes['dang-ky'] = 'auth/register';
 $routes['dang-xuat'] = 'auth/logout';
 $routes['active'] = 'auth/active';
+$routes['forgot'] = 'auth/forgot';
+$routes['check'] = 'auth/check';
+$routes['reset'] = 'auth/reset';
 
 
 /*

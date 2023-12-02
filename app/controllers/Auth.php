@@ -159,4 +159,100 @@ class Auth extends Controller
             endif;
         endif;
     }
+
+    public function forgot() {
+        $request = new Request();
+        $response = new Response();
+
+        if ($request->isPost()):
+            $data = $request->getFields();
+            $email = $data['email'];
+
+            $request->rules([
+                'email' => 'required',
+            ]);
+
+            $request->message([
+                'email.required' => 'Email không được để trống',
+            ]);
+
+            $validate = $request->validate();
+
+            if ($validate && !empty($email)):
+                $result = $this->authModel->handleForgotPassword($email);
+
+                if ($result):
+                    Session::flash('msg', 'Truy cập vào email của bạn để tiến hành đặt lại mật khẩu');
+                    Session::flash('msg_type', 'success');
+                endif;
+            else:
+                Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
+                Session::flash('msg_type', 'danger');
+            endif;
+        endif;
+
+        $this->data['body'] = 'auth/forgot';
+        $this->data['title'] = 'Lấy lại mật khẩu';
+        $this->data['msg'] = Session::flash('msg');
+        $this->data['msgType'] = Session::flash('msg_type');
+        $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
+        $this->data['dataView']['old'] = Session::flash('chance_session_old');
+        $this->render('layouts/auth', $this->data, '');
+    }
+
+    public function check() {
+        $response = new Response();
+        $token = $_GET['token'];
+
+        if (!empty($token)) :
+            $result = $this->authModel->handleConfirmForgotToken($token);
+            
+            if (is_numeric($result)):
+                $response->redirect('reset?id='.$result);
+            endif;
+        endif;
+    }
+
+    public function reset() {
+        $request = new Request();
+        $response = new Response();
+
+        $userId = $_GET['id'];
+
+        if ($request->isPost()):
+            $request->rules([
+                'password' => 'required|min:8|special',
+                're_password' => 'required|match:password'
+            ]);
+
+            $request->message([
+                'password.required' => 'Mật khẩu không được để trống',
+                'password.min' => 'Mật khẩu phải lớn hơn 7 ký tự',
+                'password.special' => 'Mật khẩu phải có ít nhất 1 ký tự hoa và 1 ký tự đặc biệt',
+                're_password.required' => 'Mật khẩu không được để trống',
+                're_password.match' => 'Mật khẩu không trùng khớp',
+            ]);
+
+            $validate = $request->validate();
+
+            if ($validate && !empty($userId)):
+                $result = $this->authModel->handleResetPassword($userId);
+
+                if ($result):
+                    $response->redirect('dang-nhap');
+                endif;
+            else:
+                Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
+                Session::flash('msg_type', 'danger');
+            endif;
+        endif;
+
+        $this->data['body'] = 'auth/reset';
+        $this->data['title'] = 'Đặt lại mật khẩu';
+        $this->data['msg'] = Session::flash('msg');
+        $this->data['msgType'] = Session::flash('msg_type');
+        $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
+        $this->data['dataView']['old'] = Session::flash('chance_session_old');
+        $this->render('layouts/auth', $this->data, '');
+    }
 }
