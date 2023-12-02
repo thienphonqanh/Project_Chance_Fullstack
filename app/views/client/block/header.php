@@ -94,7 +94,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
-                                <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                                <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/doi-mat-khau">Đổi mật khẩu</a></li>
                                 <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/dang-xuat">Đăng xuất</a></li>
                             </ul>
                         </li>

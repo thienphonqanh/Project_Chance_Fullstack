@@ -17,7 +17,7 @@ class HomeModel extends Model {
 
     public function handleGetJobCategory() {
         $queryGet = $this->db->table('job_categories')
-            ->select('id, name, icon, slug, quantity_job')
+            ->select('id, name, icon, slug')
             ->get();
 
         $response = [];
@@ -26,6 +26,24 @@ class HomeModel extends Model {
             $response = $queryGet;
         endif;
         
+        return $response;
+    }
+
+    public function handleGetOutstandingJob() {
+        $queryGet = $this->db->table('jobs')
+            ->select('jobs.id, jobs.title, jobs.thumbnail, jobs.location, 
+                jobs.slug, jobs.salary, companies.name')
+            ->orderBy('jobs.create_at', 'DESC')
+            ->join('companies', 'companies.id = jobs.company_id')
+            ->where('jobs.view_count', '>', '100')
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)):
+            $response = $queryGet;
+        endif;
+
         return $response;
     }
 

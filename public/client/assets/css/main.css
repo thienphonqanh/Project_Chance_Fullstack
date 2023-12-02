@@ -1419,3 +1419,15 @@ nav[aria-label="breadcrumb"] {
   font-style: italic;
   color: red;
 }
+
+.avatar-profile-edit .avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  image-rendering: auto;
+}
+
+/* .profile-page .form-control:focus,
+.profile-page .form-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(251, 68, 123, 0.25);
+  border: none;
+} */

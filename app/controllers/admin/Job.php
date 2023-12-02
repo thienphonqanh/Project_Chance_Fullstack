@@ -90,17 +90,11 @@ class Job extends Controller
             $itemsToDelete = isset($data['item']) ? $data['item'] : [];
             $itemsToDelete = implode(',', $itemsToDelete);
 
-
-            $subResult = $this->jobModel->handleDeleteCategory($itemsToDelete);
-
-            if ($subResult):
-                $result = $this->jobModel->handleDelete($itemsToDelete);
-                
-                if ($result):
-                    $response->redirect('jobs/danh-sach');
-                endif;
+            $result = $this->jobModel->handleDelete($itemsToDelete);
+            
+            if ($result):
+                $response->redirect('jobs/danh-sach');
             endif;
-
         endif;
     }
     

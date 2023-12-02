@@ -121,7 +121,7 @@
 
         <!-- Việc làm nổi bật -->
         <section class="job-section job-featured-section section-padding" id="section-job">
-            <div class="container">
+            <div class="container-lg">
                 <div class="row">
                     <div class="col-lg-6 col-12 text-center mx-auto mb-4">
                         <h2>Việc làm nổi bật</h2>
@@ -131,43 +131,49 @@
 
                     <div class="col-lg-12 col-12">
                         <ul class="list-job">
+                        <?php 
+                            if (!empty($outstandingJob)):
+                                foreach ($outstandingJob as $item):
+                        ?>
                             <li class="job-thumb">
-                                <div class="job-image-wrap bg-white shadow-lg">
-                                    <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-1.png" class="job-image img-fluid" alt="">
-                                </div>
-
-                                <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
-                                    <div class="mb-3">
-                                        <h5 class="job-title mb-lg-0 pb-2">
-                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="job-title-link">Nhân Viên Kinh Doanh (Có trình độ ngoại ngữ)</a>
-                                        </h5>
-
-                                        <div class="d-flex flex-wrap align-items-center">
-                                            <p class="job-location mb-0">
-                                                <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
-                                                Công ty TNHH Zeng Hsing Industrial<br>
-                                                <strong class="text-info mx-1">Bình Dương</strong>
-                                            </p>
-
-                                            <p class="job-date mb-0">
-                                                <i class="fa-regular fa-clock text-primary-emphasis"></i>
-                                                10 giờ trước
-                                            </p>
-
-                                            <p class="job-price mb-0">
-                                                <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
-                                                20 - 30 triệu
-                                            </p>
+                                <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id']; ?>">
+                                    <div class="job-image-wrap bg-white shadow-lg">
+                                        <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" class="job-image img-fluid" alt="">
+                                    </div>
+                                    
+                                    <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
+                                        <div class="mb-3">
+                                            <h5 class="job-title mb-lg-0 pb-2">
+                                                <?php echo $item['title']; ?>
+                                            </h5>
+                                    
+                                            <div class="d-flex flex-wrap align-items-center">
+                                                <p class="job-location mb-0">
+                                                    <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
+                                                    <?php echo $item['name']; ?><br>
+                                                    <strong class="text-info mx-1"><?php echo $item['location']; ?></strong>
+                                                </p>
+                                    
+                                                <p class="job-date mb-0">
+                                                    <i class="fa-regular fa-clock text-primary-emphasis"></i>
+                                                    10 giờ trước
+                                                </p>
+                                    
+                                                <p class="job-price mb-0">
+                                                    <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
+                                                    <?php echo $item['salary']; ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="job-section-btn-wrap">
+                                            <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id']; ?>" class="btn-details">Ứng tuyển</a>
                                         </div>
                                     </div>
-
-                                    <div class="job-section-btn-wrap">
-                                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
-                                    </div>
-                                </div>
+                                </a>
                             </li>
-
-                            <li class="job-thumb">
+                        <?php endforeach; endif; ?>
+                            <!-- <li class="job-thumb">
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-2.png" class="job-image img-fluid" alt="">
                                 </div>
@@ -848,7 +854,7 @@
                                         <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="btn-details">Ứng tuyển</a>
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
                         </ul>
 
                         <div class="paging">

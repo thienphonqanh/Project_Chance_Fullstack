@@ -52,6 +52,25 @@ function getAvatarUserLogin()
     return false;
 }
 
+function getEmailUserLogin()
+{
+    if (getUserData() && !empty(getUserData()['email'])) :
+        return getUserData()['email'];
+    endif;
+
+    return false;
+}
+
+function getIdUserLogin()
+{
+    if (getUserData() && !empty(getUserData()['id'])) :
+        return getUserData()['id'];
+    endif;
+
+    return false;
+}
+
+
 function getModule()
 {
     if (!empty($_SERVER['PATH_INFO'])) :
