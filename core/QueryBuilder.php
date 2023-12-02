@@ -189,20 +189,6 @@ trait QueryBuilder
         return $statusUpdate;
     }
 
-    public function decrement($data)
-    {
-        $whereUpdate = str_replace('WHERE', '', $this->where);
-        $whereUpdate = trim($whereUpdate);
-        $tableName = $this->tableName;
-        if (!empty($this->innerJoin)):
-            $statusUpdate = $this->updateDataDecrement($tableName, $data, $whereUpdate, $this->innerJoin);
-        else:
-            $statusUpdate = $this->updateDataDecrement($tableName, $data, $whereUpdate);
-        endif;
-
-        return $statusUpdate;
-    }
-
     //Delete
 
     public function delete()

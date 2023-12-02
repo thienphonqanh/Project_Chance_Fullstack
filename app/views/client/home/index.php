@@ -108,7 +108,6 @@
                     <a href="#" class="item">
                         <img src="<?php echo _WEB_ROOT.'/'.$item['icon']; ?>" alt="">
                         <p class="text-uppercase"><?php echo $item['name']; ?></p>
-                        <span class="text-dark"><?php echo $item['quantity_job']; ?> việc làm</span>
                     </a>
                     <?php endforeach; endif; ?>
                 </div>
