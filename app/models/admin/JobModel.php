@@ -78,16 +78,49 @@ class JobModel extends Model
     }
 
     // Xử lý lấy danh sách việc làm ở Client
-    public function handleGetListJob()
+    public function handleGetListJob($filters = [], $keyword = [])
     {
         $queryGet = $this->db->table('jobs')
             ->select('jobs.id, jobs.title, jobs.thumbnail, jobs.slug, 
-                    jobs.salary, jobs.location, companies.name')
+                jobs.salary, jobs.location, companies.name, jobs.create_at,
+                job_categories.name as jobField')
+            ->join('job_categories', 'jobs.job_category_id = job_categories.id')
             ->join('companies', 'jobs.company_id = companies.id')
-            ->get();
+            ->orderBy('jobs.create_at', 'DESC')
+            ->where('jobs.status', '=', '1');
 
         $response = [];
         $checkNull = false;
+
+        if (!empty($filters)) :
+            foreach ($filters as $key => $value) :
+                $queryGet->where($key, '=', $value);
+            endforeach;
+        endif;
+
+        if (!empty($keyword)) :
+            $title = $keyword['job_title'];
+            $location = $keyword['job_location'];
+            if (!empty($title) && empty($location)):
+                $queryGet->where(function ($query) use ($title) {
+                    $query
+                        ->where('jobs.title', 'LIKE', "%$title%");
+                });
+            elseif (empty($title) && !empty($location)) :
+                $queryGet->where(function ($query) use ($location) {
+                    $query
+                        ->where('jobs.location', 'LIKE', "%$location%");
+                });
+            elseif (!empty($title) && !empty($location)) :
+                $queryGet->where(function ($query) use ($title, $location) {
+                    $query
+                        ->where('jobs.title', 'LIKE', "%$title%")
+                        ->where('jobs.location', 'LIKE', "%$location%");
+                });
+            endif;
+        endif;
+
+        $queryGet = $queryGet->get();
 
         if (!empty($queryGet)) :
             foreach ($queryGet as $key => $item) :
@@ -113,7 +146,6 @@ class JobModel extends Model
             ->select('status')
             ->where('id', '=', $userId)
             ->first();
-
 
         if (!empty($queryGet)) :
             if (!empty($action)) :
@@ -231,7 +263,9 @@ class JobModel extends Model
                 'view_count' => $view
             ];
 
-            $this->db->table('jobs')->update($dataUpdate);
+            $this->db->table('jobs')
+                ->where('jobs.id', '=', $jobId)
+                ->update($dataUpdate);
         endif;
     }
 
@@ -398,5 +432,19 @@ class JobModel extends Model
         endif;
 
         return false;
+     }
+
+     public function handleGetJobField() {
+        $queryGet = $this->db->table('job_categories')
+            ->select('id, name')
+            ->get();
+        
+        $response = [];
+
+        if (!empty($queryGet)):
+            $response = $queryGet;
+        endif;
+
+        return $response;
      }
 }

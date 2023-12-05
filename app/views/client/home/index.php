@@ -9,30 +9,36 @@
                         <div class="hero-section-text mt-5">
                             <h6 class="text-white">Bạn đang tìm kiếm công việc mơ ước?</h6>
 
-                            <h1 class="hero-title text-white mt-4 mb-4">Việc làm trực tuyến. <br> <span class="text-info">WEBSITE</span> tuyển dụng hàng đầu</h1>
+                            <h1 class="hero-title text-white mt-4 mb-4">Việc làm trực tuyến. <br> <span
+                                    class="text-info">WEBSITE</span> tuyển dụng hàng đầu</h1>
 
                             <a href="#categories-section" class="custom-btn custom-border-btn btn">Duyệt danh mục</a>
                         </div>
                     </div>
 
                     <div class="col-lg-6 col-12">
-                        <form class="custom-form hero-form" action="#" method="get" role="form">
+                        <form class="custom-form hero-form" action="<?php echo _WEB_ROOT; ?>/tim-viec-lam" method="post"
+                            role="form">
                             <h3 class="text-white mb-3">Tìm kiếm công việc mơ ước</h3>
 
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1"><i class="bi-person custom-icon"></i></span>
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="bi-person custom-icon"></i></span>
 
-                                        <input type="text" name="job-title" id="job-title" class="form-control" placeholder="Tiêu đề" required>
+                                        <input type="text" name="job_title" id="job-title" class="form-control"
+                                            placeholder="Tiêu đề">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon2"><i class="bi-geo-alt custom-icon"></i></span>
+                                        <span class="input-group-text" id="basic-addon2"><i
+                                                class="bi-geo-alt custom-icon"></i></span>
 
-                                        <input type="text" name="job-location" id="job-location" class="form-control" placeholder="Vị trí" required>
+                                        <input type="text" name="job_location" id="job-location" class="form-control"
+                                            placeholder="Vị trí">
                                     </div>
                                 </div>
 
@@ -51,7 +57,8 @@
 
                                             <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="badge">Marketing</a>
 
-                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="badge">Customer support</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" class="badge">Customer
+                                                support</a>
                                         </div>
                                     </div>
                                 </div>
@@ -62,34 +69,49 @@
                 </div>
             </div>
         </section>
- 
+
         <!-- Giới thiệu công cụ -->
         <section class="section-introducing" id="section-introducing">
             <h3 class="text-center">Công cụ tốt nhất cho hành trang ứng tuyển của bạn</h3>
             <p class="text-center">Khẳng định bản thân qua hồ sơ "chất" với công cụ và kiến thức bổ ích từ Chance.</p>
             <div class="d-lg-flex mt-5">
-                <div class="d-flex flex-column align-items-center rounded p-lg-4 py-lg-5 p-md-4 py-md-5 p-sm-4 py-sm-5 p-5">
-                    <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/site-header/job_search.png" width="100px" alt="">
+                <div
+                    class="d-flex flex-column align-items-center rounded p-lg-4 py-lg-5 p-md-4 py-md-5 p-sm-4 py-sm-5 p-5">
+                    <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/site-header/job_search.png"
+                        width="100px" alt="">
                     <div>
                         <h4 class="text-center">Tìm kiếm việc làm</h4>
-                        <p class="text-center fw-normal text-dark">Danh sách việc làm "chất" liên tục cập nhật các lựa chọn mới nhất theo thị trường và xu hướng tìm kiếm.</p>
-                        <a href="#" type="button" class="discover-1 border border-primary text-primary d-block w-50 p-2 text-center m-auto  rounded fw-bold fs-5">Khám phá</a>
+                        <p class="text-center fw-normal text-dark">Danh sách việc làm "chất" liên tục cập nhật các lựa
+                            chọn mới nhất theo thị trường và xu hướng tìm kiếm.</p>
+                        <a href="<?php echo _WEB_ROOT; ?>/tim-viec-lam" type="button"
+                            class="discover-1 border border-primary text-primary d-block w-50 p-2 text-center m-auto  rounded fw-bold fs-5">Khám
+                            phá</a>
                     </div>
                 </div>
-                <div class="d-flex flex-column align-items-center shadow-lg rounded p-lg-4 py-lg-5 p-md-4 py-md-5 p-sm-4 py-sm-5 p-5">
-                    <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/site-header/user_profile.png" width="100px" alt="">
+                <div
+                    class="d-flex flex-column align-items-center shadow-lg rounded p-lg-4 py-lg-5 p-md-4 py-md-5 p-sm-4 py-sm-5 p-5">
+                    <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/site-header/user_profile.png"
+                        width="100px" alt="">
                     <div>
                         <h4 class="text-center">Hồ sơ cá nhân</h4>
-                        <p class="text-center fw-normal text-dark">Kiến tạo hồ sơ với bố cục chuẩn mực, chuyên nghiệp cho các ngành nghề, được nhiều nhà tuyển dụng đề xuất.</p>
-                        <a href="#" type="button" class="discover-2 border border-primary btn btn-primary text-white d-block w-50 p-2 text-center m-auto rounded fw-bold fs-5">Khám phá</a>
+                        <p class="text-center fw-normal text-dark">Kiến tạo hồ sơ với bố cục chuẩn mực, chuyên nghiệp
+                            cho các ngành nghề, được nhiều nhà tuyển dụng đề xuất.</p>
+                        <a href="#" type="button"
+                            class="discover-2 border border-primary btn btn-primary text-white d-block w-50 p-2 text-center m-auto rounded fw-bold fs-5">Khám
+                            phá</a>
                     </div>
                 </div>
-                <div class="d-flex flex-column align-items-center rounded p-lg-4 py-lg-5 p-md-4 py-md-5 p-sm-4 py-sm-5 p-5">
-                    <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/site-header/blog.png" width="100px" alt="">
+                <div
+                    class="d-flex flex-column align-items-center rounded p-lg-4 py-lg-5 p-md-4 py-md-5 p-sm-4 py-sm-5 p-5">
+                    <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/site-header/blog.png" width="100px"
+                        alt="">
                     <div>
                         <h4 class="text-center">Blog về việc làm</h4>
-                        <p class="text-center fw-normal text-dark">Đừng bỏ lỡ cơ hội cập nhật thông tin lương thưởng, chế độ làm việc, nghề nghiệp và kiến thức các ngành nghề.</p>
-                        <a href="#" type="button" class="discover-3 border border-primary text-primary d-block w-50 p-2 text-center m-auto rounded fw-bold fs-5">Khám phá</a>
+                        <p class="text-center fw-normal text-dark">Đừng bỏ lỡ cơ hội cập nhật thông tin lương thưởng,
+                            chế độ làm việc, nghề nghiệp và kiến thức các ngành nghề.</p>
+                        <a href="<?php echo _WEB_ROOT; ?>/cam-nang" type="button"
+                            class="discover-3 border border-primary text-primary d-block w-50 p-2 text-center m-auto rounded fw-bold fs-5">Khám
+                            phá</a>
                     </div>
                 </div>
             </div>
@@ -126,53 +148,58 @@
                     <div class="col-lg-6 col-12 text-center mx-auto mb-4">
                         <h2>Việc làm nổi bật</h2>
 
-                        <p><strong>Hơn 10k công việc đang chờ đón bạn</strong> Cơ hội việc làm đang rộng mở, còn chần chừ gì nữa mà không ứng tuyển ngay bây giờ.</p>
+                        <p><strong>Hơn 10k công việc đang chờ đón bạn</strong> Cơ hội việc làm đang rộng mở, còn chần
+                            chừ gì nữa mà không ứng tuyển ngay bây giờ.</p>
                     </div>
 
                     <div class="col-lg-12 col-12">
                         <ul class="list-job">
-                        <?php 
+                            <?php 
                             if (!empty($outstandingJob)):
                                 foreach ($outstandingJob as $item):
                         ?>
                             <li class="job-thumb">
-                                <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id']; ?>">
+                                <a
+                                    href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id']; ?>">
                                     <div class="job-image-wrap bg-white shadow-lg">
-                                        <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" class="job-image img-fluid" alt="">
+                                        <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>"
+                                            class="job-image img-fluid" alt="">
                                     </div>
-                                    
+
                                     <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
                                         <div class="mb-3">
                                             <h5 class="job-title mb-lg-0 pb-2">
                                                 <?php echo $item['title']; ?>
                                             </h5>
-                                    
+
                                             <div class="d-flex flex-wrap align-items-center">
                                                 <p class="job-location mb-0">
                                                     <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
                                                     <?php echo $item['name']; ?><br>
-                                                    <strong class="text-info mx-1"><?php echo $item['location']; ?></strong>
+                                                    <strong
+                                                        class="text-info mx-1"><?php echo $item['location']; ?></strong>
                                                 </p>
-                                    
+
                                                 <p class="job-date mb-0">
                                                     <i class="fa-regular fa-clock text-primary-emphasis"></i>
                                                     10 giờ trước
                                                 </p>
-                                    
+
                                                 <p class="job-price mb-0">
                                                     <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
                                                     <?php echo $item['salary']; ?>
                                                 </p>
                                             </div>
                                         </div>
-                                    
+
                                         <div class="job-section-btn-wrap">
-                                            <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id']; ?>" class="btn-details">Ứng tuyển</a>
+                                            <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id']; ?>"
+                                                class="btn-details">Ứng tuyển</a>
                                         </div>
                                     </div>
                                 </a>
                             </li>
-                        <?php endforeach; endif; ?>
+                            <?php endforeach; endif; ?>
                             <!-- <li class="job-thumb">
                                 <div class="job-image-wrap bg-white shadow-lg">
                                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/jobs/j-2.png" class="job-image img-fluid" alt="">
@@ -874,23 +901,30 @@
             <div class="handbook-block">
                 <a href="<?php echo _WEB_ROOT; ?>/cam-nang" class="handbook">
                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/h-1.jpg" class="img-fluid" alt="">
-                    <p class="text-dark">Vì sao nhiều người trẻ bỏ việc văn phòng, ước mơ làm việc tự do thu nhập trăm củ?</p>
-                    <span class="text-dark">Người trẻ chán việc văn phòng không phải chỉ vì lý do lương thấp. Kỳ thực, chỉ cần bạn có năng lực tốt, dù làm việc ở văn phòng hay làm việc tự do, bạn đều có thể đạt...</span>
+                    <p class="text-dark">Vì sao nhiều người trẻ bỏ việc văn phòng, ước mơ làm việc tự do thu nhập trăm
+                        củ?</p>
+                    <span class="text-dark">Người trẻ chán việc văn phòng không phải chỉ vì lý do lương thấp. Kỳ thực,
+                        chỉ cần bạn có năng lực tốt, dù làm việc ở văn phòng hay làm việc tự do, bạn đều có thể
+                        đạt...</span>
                 </a>
 
                 <a href="<?php echo _WEB_ROOT; ?>/cam-nang" class="handbook">
                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/h-2.jpg" class="img-fluid" alt="">
                     <p class="text-dark">6 điều cần chuẩn bị trước khi nghỉ việc mà người lao động cần biết</p>
-                    <span class="text-dark">Xin nghỉ việc bao giờ cũng là một quyết định quan trọng, mang ý nghĩa “sống còn” trong sự nghiệp của mỗi người. Nhưng khoan hãy nóng vội, dù là chuyện gì cũng cần có...</span>
+                    <span class="text-dark">Xin nghỉ việc bao giờ cũng là một quyết định quan trọng, mang ý nghĩa “sống
+                        còn” trong sự nghiệp của mỗi người. Nhưng khoan hãy nóng vội, dù là chuyện gì cũng cần
+                        có...</span>
                 </a>
 
                 <a href="<?php echo _WEB_ROOT; ?>/cam-nang" class="handbook">
                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/h-3.jpg" class="img-fluid" alt="">
                     <p class="text-dark">Các khoản thu nhập không phải đóng BHXH mà người lao động cần biết</p>
-                    <span class="text-dark">Khi tham gia lao động tại bất kỳ công ty hay doanh nghiệp nào, bảo hiểm xã hội (BHXH) đã trở thành phúc lợi quan trọng trong việc đảm bảo cuộc sống ổn định cho...</span>
+                    <span class="text-dark">Khi tham gia lao động tại bất kỳ công ty hay doanh nghiệp nào, bảo hiểm xã
+                        hội (BHXH) đã trở thành phúc lợi quan trọng trong việc đảm bảo cuộc sống ổn định cho...</span>
                 </a>
 
             </div>
             <!-- <button type="button" class="btn-loadHandBook">Xem thêm cẩm nang nghề nghiệp</button> -->
-            <a href="<?php echo _WEB_ROOT; ?>/cam-nang" class="more-handbook d-block p-2 m-auto mt-3 text-center rounded">Xem thêm cẩm nang nghề nghiệp</a>
+            <a href="<?php echo _WEB_ROOT; ?>/cam-nang"
+                class="more-handbook d-block p-2 m-auto mt-3 text-center rounded">Xem thêm cẩm nang nghề nghiệp</a>
         </section>

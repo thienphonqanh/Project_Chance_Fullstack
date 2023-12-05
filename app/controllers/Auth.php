@@ -160,11 +160,12 @@ class Auth extends Controller
         endif;
     }
 
-    public function forgot() {
+    public function forgot()
+    {
         $request = new Request();
         $response = new Response();
 
-        if ($request->isPost()):
+        if ($request->isPost()) :
             $data = $request->getFields();
             $email = $data['email'];
 
@@ -178,14 +179,14 @@ class Auth extends Controller
 
             $validate = $request->validate();
 
-            if ($validate && !empty($email)):
+            if ($validate && !empty($email)) :
                 $result = $this->authModel->handleForgotPassword($email);
 
-                if ($result):
+                if ($result) :
                     Session::flash('msg', 'Truy cập vào email của bạn để tiến hành đặt lại mật khẩu');
                     Session::flash('msg_type', 'success');
                 endif;
-            else:
+            else :
                 Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
                 Session::flash('msg_type', 'danger');
             endif;
@@ -200,26 +201,28 @@ class Auth extends Controller
         $this->render('layouts/auth', $this->data, '');
     }
 
-    public function check() {
+    public function check()
+    {
         $response = new Response();
         $token = $_GET['token'];
 
         if (!empty($token)) :
             $result = $this->authModel->handleConfirmForgotToken($token);
-            
-            if (is_numeric($result)):
-                $response->redirect('reset?id='.$result);
+
+            if (is_numeric($result)) :
+                $response->redirect('reset?id=' . $result);
             endif;
         endif;
     }
 
-    public function reset() {
+    public function reset()
+    {
         $request = new Request();
         $response = new Response();
 
         $userId = $_GET['id'];
 
-        if ($request->isPost()):
+        if ($request->isPost()) :
             $request->rules([
                 'password' => 'required|min:8|special',
                 're_password' => 'required|match:password'
@@ -235,13 +238,13 @@ class Auth extends Controller
 
             $validate = $request->validate();
 
-            if ($validate && !empty($userId)):
+            if ($validate && !empty($userId)) :
                 $result = $this->authModel->handleResetPassword($userId);
 
-                if ($result):
+                if ($result) :
                     $response->redirect('dang-nhap');
                 endif;
-            else:
+            else :
                 Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
                 Session::flash('msg_type', 'danger');
             endif;

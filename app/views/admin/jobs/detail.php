@@ -20,7 +20,7 @@
                             echo (!empty($item['thumbnail'])) ? 
                             '<img src="'.$root.'/'.$item['thumbnail'].'" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">' 
                             :
-                            '<img src="'.$root.'/public/client/assets/images/default_image.jpg" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">';
+                            '<img src="'.$root.'/public/client/assets/images/default_job.jpg" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">';
                         ?>
                     </div>
                     <h6 class="fw-bold mb-3 mt-1">Ảnh việc làm</h6>
@@ -49,10 +49,15 @@
                         <select class="form-select" disabled id="floatingSelect"
                             aria-label="Floating label select example">
                             <option value="0">Chọn lĩnh vực</option>
-                            <option value="1" <?php echo $item['jobField'] === 'Bán hàng' ? 'selected' : false; ?>>Bán
-                                hàng</option>
-                            <option value="2" <?php echo $item['jobField'] === 'Kế toán' ? 'selected' : false; ?>>Kế
-                                toán</option>
+                            <?php 
+                                if (!empty($jobField)): 
+                                    foreach ($jobField as $subItem):
+                            ?>
+                            <option value="<?php echo $subItem['id']; ?>"
+                                <?php echo $item['jobField'] === $subItem['name'] ? 'selected' : false;?>>
+                                <?php echo $subItem['name']; ?>
+                            </option>
+                            <?php endforeach; endif; ?>
                         </select>
                         <label for="floatingSelect">Lĩnh vực <span class="text-danger fw-bold">*</span></label>
                     </div>

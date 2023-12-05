@@ -7,15 +7,14 @@ class Profile extends Controller
     public function __construct()
     {
         $this->profileModel = $this->model('ProfileModel', 'user');
-
     }
 
     public function changePassword()
-    {   
+    {
         $request = new Request();
         $userId = getIdUserLogin();
 
-        if ($request->isPost()):
+        if ($request->isPost()) :
             $request->rules([
                 'old_password' => 'required',
                 'new_password' => 'required|min:8|special',
@@ -33,20 +32,20 @@ class Profile extends Controller
 
             $validate = $request->validate();
 
-            if ($validate && !empty($userId)):
+            if ($validate && !empty($userId)) :
                 $result = $this->profileModel->handleChangePassword($userId);
 
-                if ($result):
+                if ($result) :
                     Session::flash('msg', 'Thay đổi mật khẩu thành công');
                     Session::flash('msg_type', 'success');
                 endif;
-            else:
+            else :
                 Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
                 Session::flash('msg_type', 'danger');
             endif;
         endif;
 
-       
+
         $this->data['body'] = 'client/profile/changepassword';
         $this->data['dataView']['msg'] = Session::flash('msg');
         $this->data['dataView']['msgType'] = Session::flash('msg_type');

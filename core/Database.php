@@ -52,7 +52,7 @@ class Database
 
             if (!empty($condition)) :
                 $sql = "UPDATE $table SET $updateStr WHERE $condition";
-                if (!empty($innerJoin)):
+                if (!empty($innerJoin)) :
                     $sql = "UPDATE $table $innerJoin SET $updateStr WHERE $condition";
                 endif;
             else :

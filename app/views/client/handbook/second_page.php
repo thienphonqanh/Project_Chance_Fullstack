@@ -12,7 +12,13 @@
                     <div class="mt-2 w-100 px-3 py-2 d-flex flex-column">
                         <p class="text-uppercase fw-normal fs-5 text-dark m-0">Kiến thức văn phòng</p>
                         <h3 class="tilte-handbook">AI Anxiety: Làm sao để vượt qua nỗi sợ bị AI vượt mặt?</h3>
-                        <span class="special-content text-dark fw-lighter fs-5">AI hay trí tuệ nhân tạo đã được phát triển trong nhiều thập kỷ. Sự xuất hiện của ChatGPT, Midjourney và các công nghệ khác đã cho thấy tương lai rực rỡ của trí tuệ nhân tạo. Đi cùng với đó là rất nhiều câu hỏi và lo lắng về sự đe dọa của AI. Liệu công việc của chúng ta còn tồn tại đến bao lâu, khi nào con người sẽ bị thay thế? Có một thuật ngữ đề cập tới nỗi lo âu này là “AI Anxiety”. Vậy thực chất AI Anxiety là gì, tại sao con người lại hoảng sợ trước sự xuất hiện của AI và làm thế nào để vượt qua AI Anxiety? Hãy cùng Chance khám phá ở bài viết dưới đây.</span>
+                        <span class="special-content text-dark fw-lighter fs-5">AI hay trí tuệ nhân tạo đã được phát
+                            triển trong nhiều thập kỷ. Sự xuất hiện của ChatGPT, Midjourney và các công nghệ khác đã cho
+                            thấy tương lai rực rỡ của trí tuệ nhân tạo. Đi cùng với đó là rất nhiều câu hỏi và lo lắng
+                            về sự đe dọa của AI. Liệu công việc của chúng ta còn tồn tại đến bao lâu, khi nào con người
+                            sẽ bị thay thế? Có một thuật ngữ đề cập tới nỗi lo âu này là “AI Anxiety”. Vậy thực chất AI
+                            Anxiety là gì, tại sao con người lại hoảng sợ trước sự xuất hiện của AI và làm thế nào để
+                            vượt qua AI Anxiety? Hãy cùng Chance khám phá ở bài viết dưới đây.</span>
                     </div>
                 </div>
             </div>
@@ -30,7 +36,8 @@
                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/handbook/tram-sac-ky-nang/Survivors-Guilt.webp" class="img-fluid rounded-3" alt="">
                     <div class="mt-2 w-100 px-3 py-2 d-flex flex-column">
                         <p class="text-uppercase fw-normal fs-6 text-dark m-0">Kiến thức văn phòng</p>
-                        <h5 class="tilte-handbook">Survivor’s Guilt: Vượt qua cảm giác tội lỗi khi đồng nghiệp bị sa thải</h5>
+                        <h5 class="tilte-handbook">Survivor’s Guilt: Vượt qua cảm giác tội lỗi khi đồng nghiệp bị sa
+                            thải</h5>
                     </div>
                 </a>
             </div>
@@ -48,7 +55,8 @@
                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/handbook/tram-sac-ky-nang/kiem-nhiem-la-gi.webp" class="img-fluid rounded-3" alt="">
                     <div class="mt-2 w-100 px-3 py-2 d-flex flex-column">
                         <p class="text-uppercase fw-normal fs-6 text-dark m-0">Kiến thức văn phòng</p>
-                        <h5 class="tilte-handbook">Kiêm nhiệm là gì? Các phúc lợi hấp dẫn có thể nhận được khi kiêm nhiệm</h5>
+                        <h5 class="tilte-handbook">Kiêm nhiệm là gì? Các phúc lợi hấp dẫn có thể nhận được khi kiêm
+                            nhiệm</h5>
 
                     </div>
                 </a>
@@ -86,7 +94,8 @@
                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/handbook/tram-sac-ky-nang/vision-board.webp" class="img-fluid rounded-3" alt="">
                     <div class="mt-2 w-100 px-3 py-2 d-flex flex-column">
                         <p class="text-uppercase fw-normal fs-6 text-dark m-0">Kiến thức văn phòng</p>
-                        <h5 class="tilte-handbook">Vision Board là gì? Hướng dẫn cách làm Vision Board trên máy tính chi tiết</h5>
+                        <h5 class="tilte-handbook">Vision Board là gì? Hướng dẫn cách làm Vision Board trên máy tính chi
+                            tiết</h5>
                     </div>
                 </a>
             </div>
@@ -104,7 +113,8 @@
                     <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/handbook/tram-sac-ky-nang/luu-y-truoc-khi-chuyen-viec.webp" class="img-fluid rounded-3" alt="">
                     <div class="mt-2 w-100 px-3 py-2 d-flex flex-column">
                         <p class="text-uppercase fw-normal fs-6 text-dark m-0">Trạm sạc kỹ năng</p>
-                        <h5 class="tilte-handbook">5 điều cần lưu ý trước khi chuyển việc trong giai đoạn suy thoái kinh tế</h5>
+                        <h5 class="tilte-handbook">5 điều cần lưu ý trước khi chuyển việc trong giai đoạn suy thoái kinh
+                            tế</h5>
                     </div>
                 </a>
             </div>

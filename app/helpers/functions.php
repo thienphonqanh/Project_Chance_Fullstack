@@ -144,8 +144,29 @@ function getDateTimeFormat($strDate, $format)
     return false;
 }
 
-function getIdInURL($module = '') {
-    $pattern ='/'.$module.'\/.+-(.+)/i';
+function getTimeAgo($strDate)
+{
+    // Ngày hiện tại
+    $currentDate = new DateTime();
+    // Ngày cần kiểm tra
+    $specifiedDate = new DateTime($strDate);
+
+    $interval = $currentDate->diff($specifiedDate);
+
+    // Lấy số ngày và giờ
+    $days = $interval->days;
+    $hours = $interval->h;
+
+    if ($days == 0) :
+        return $hours . ' giờ trước';
+    else :
+        return $days . ' ngày trước';
+    endif;
+}
+
+function getIdInURL($module = '')
+{
+    $pattern = '/' . $module . '\/.+-(.+)/i';
 
     $url = $_SERVER['PATH_INFO'];
 
@@ -153,7 +174,7 @@ function getIdInURL($module = '') {
     if (preg_match($pattern, $url, $matches)) {
         // $matches[1] chứa giá trị ID
         $id = $matches[1];
-    } 
+    }
 
     return $id;
 }

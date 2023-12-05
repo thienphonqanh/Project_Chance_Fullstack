@@ -1265,17 +1265,17 @@ nav[aria-label="breadcrumb"] {
   overflow: hidden;
 }
 
-.input-group input:focus {
+.login-page .input-group input:focus {
   border: 1px solid var(--white-color);
   box-shadow: none;
 }
 
-.input-group:focus-within {
+.login-page .input-group:focus-within {
   outline: 1px solid var(--dark-color);
   border-radius: 6px;
 }
 
-.input-group-text i {
+.login-page .input-group-text i {
   transform: translateY(2px);
 }
 

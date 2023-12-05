@@ -91,13 +91,13 @@ class Job extends Controller
             $itemsToDelete = implode(',', $itemsToDelete);
 
             $result = $this->jobModel->handleDelete($itemsToDelete);
-            
-            if ($result):
+
+            if ($result) :
                 $response->redirect('jobs/danh-sach');
             endif;
         endif;
     }
-    
+
 
     // Xem thông tin của việc làm
     public function viewJob()
@@ -120,9 +120,13 @@ class Job extends Controller
             endif;
         endif;
 
+        $jobField = $this->jobModel->handleGetJobField();
+
+        if (!empty($jobField)) :
+            $this->data['dataView']['jobField'] = $jobField;
+        endif;
 
         $this->data['body'] = 'admin/jobs/detail';
-                $this->data['dataView'][''] = '';
         $this->render('layouts/layout', $this->data, 'admin');
     }
 
@@ -139,19 +143,19 @@ class Job extends Controller
         if ($request->isPost()) :
             $uploadOk = 1;
 
-            if (empty($_FILES['avatar-input']['full_path'])):
-                if (!empty($data['delete-image'])):
-                    $avatarPath = 'public/client/assets/images/default_image.jpg';
+            if (empty($_FILES['avatar-input']['full_path'])) :
+                if (!empty($data['delete-image'])) :
+                    $avatarPath = 'public/client/assets/images/default_job.jpg';
                     $uploadOk = 1;
-                else:
+                else :
                     if (!empty($oldThumbnail)) :
                         $avatarPath = $oldThumbnail;
-                    else:
-                        $avatarPath = 'public/client/assets/images/default_image.jpg';
+                    else :
+                        $avatarPath = 'public/client/assets/images/default_job.jpg';
                     endif;
                     $uploadOk = 1;
                 endif;
-            else:
+            else :
                 // Xử lý tệp được tải lên
                 $targetDir = "app/uploads/job/"; // Thư mục để lưu trữ ảnh đại diện
                 $targetFile = $targetDir . basename($_FILES["avatar-input"]["name"]);
@@ -176,8 +180,10 @@ class Job extends Controller
                 }
 
                 // Kiểm tra định dạng ảnh
-                if ($imageFileType != "jpg" && $imageFileType != "png" 
-                    && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                if (
+                    $imageFileType != "jpg" && $imageFileType != "png"
+                    && $imageFileType != "jpeg" && $imageFileType != "gif"
+                ) {
                     Session::flash('msg', 'File không đúng định dạng ảnh (.jpg, .png, .jpeg, .gif)');
                     Session::flash('msg_type', 'danger');
                     $uploadOk = 0;
@@ -186,7 +192,7 @@ class Job extends Controller
                 // Kiểm tra nếu có lỗi xảy ra
                 if ($uploadOk == 0) :
                     Session::flash('msg', 'Hiện tại không thể upload file');
-                    Session::flash('msg_type', 'danger');                
+                    Session::flash('msg_type', 'danger');
                 endif;
             endif;
 
@@ -230,7 +236,7 @@ class Job extends Controller
 
             if ($validate && $uploadOk == 1) :
                 if (!empty($jobId)) :
-                    if (!empty($targetFile)):
+                    if (!empty($targetFile)) :
                         if (move_uploaded_file($_FILES["avatar-input"]["tmp_name"], $targetFile)) :
                             // Cập nhật đường dẫn ảnh đại diện vào database
                             $avatarPath = $targetFile;
@@ -265,6 +271,11 @@ class Job extends Controller
             endif;
         endif;
 
+        $jobField = $this->jobModel->handleGetJobField();
+
+        if (!empty($jobField)) :
+            $this->data['dataView']['jobField'] = $jobField;
+        endif;
 
         $this->data['body'] = 'admin/jobs/edit';
         $this->data['dataView']['msg'] = Session::flash('msg');
@@ -284,9 +295,9 @@ class Job extends Controller
         if ($request->isPost()) :
             $uploadOk = 1;
 
-            if (empty($_FILES['avatar-input']['full_path'])):
-                $avatarPath = 'public/client/assets/images/default_image.jpg';
-            else:
+            if (empty($_FILES['avatar-input']['full_path'])) :
+                $avatarPath = 'public/client/assets/images/default_job.jpg';
+            else :
                 // Xử lý tệp được tải lên
                 $targetDir = "app/uploads/job/"; // Thư mục để lưu trữ ảnh đại diện
                 $targetFile = $targetDir . basename($_FILES["avatar-input"]["name"]);
@@ -311,8 +322,10 @@ class Job extends Controller
                 }
 
                 // Kiểm tra định dạng ảnh
-                if ($imageFileType != "jpg" && $imageFileType != "png" 
-                    && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                if (
+                    $imageFileType != "jpg" && $imageFileType != "png"
+                    && $imageFileType != "jpeg" && $imageFileType != "gif"
+                ) {
                     Session::flash('msg', 'File không đúng định dạng ảnh (.jpg, .png, .jpeg, .gif)');
                     Session::flash('msg_type', 'danger');
                     $uploadOk = 0;
@@ -321,7 +334,7 @@ class Job extends Controller
                 // Kiểm tra nếu có lỗi xảy ra
                 if ($uploadOk == 0) :
                     Session::flash('msg', 'Hiện tại không thể upload file');
-                    Session::flash('msg_type', 'danger');                
+                    Session::flash('msg_type', 'danger');
                 endif;
             endif;
 
@@ -364,7 +377,7 @@ class Job extends Controller
             $validate = $request->validate();
 
             if ($validate && $uploadOk == 1) :
-                if (!empty($targetFile)):
+                if (!empty($targetFile)) :
                     if (move_uploaded_file($_FILES["avatar-input"]["tmp_name"], $targetFile)) :
                         // Cập nhật đường dẫn ảnh đại diện vào database
                         $avatarPath = $targetFile;
@@ -386,6 +399,11 @@ class Job extends Controller
             endif;
         endif;
 
+        $jobField = $this->jobModel->handleGetJobField();
+
+        if (!empty($jobField)) :
+            $this->data['dataView']['jobField'] = $jobField;
+        endif;
 
         $this->data['body'] = 'admin/jobs/add';
         $this->data['dataView']['msg'] = Session::flash('msg');

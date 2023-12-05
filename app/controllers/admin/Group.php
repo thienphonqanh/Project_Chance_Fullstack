@@ -153,22 +153,22 @@ class Group extends Controller
         $oldThumbnail = $checkOld['thumbnail'];
 
         if ($request->isPost()) :
-           
+
             $uploadOk = 1;
 
-            if (empty($_FILES['avatar-input']['full_path'])):
-                if (!empty($data['delete-image'])):
+            if (empty($_FILES['avatar-input']['full_path'])) :
+                if (!empty($data['delete-image'])) :
                     $avatarPath = 'public/client/assets/images/default_image.jpg';
                     $uploadOk = 1;
-                else:
+                else :
                     if (!empty($oldThumbnail)) :
                         $avatarPath = $oldThumbnail;
-                    else:
+                    else :
                         $avatarPath = 'public/client/assets/images/default_image.jpg';
                     endif;
                     $uploadOk = 1;
                 endif;
-            else:
+            else :
                 // Xử lý tệp được tải lên
                 $targetDir = "app/uploads/avatar/"; // Thư mục để lưu trữ ảnh đại diện
                 $targetFile = $targetDir . basename($_FILES["avatar-input"]["name"]);
@@ -193,8 +193,10 @@ class Group extends Controller
                 }
 
                 // Kiểm tra định dạng ảnh
-                if ($imageFileType != "jpg" && $imageFileType != "png" 
-                    && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                if (
+                    $imageFileType != "jpg" && $imageFileType != "png"
+                    && $imageFileType != "jpeg" && $imageFileType != "gif"
+                ) {
                     Session::flash('msg', 'File không đúng định dạng ảnh (.jpg, .png, .jpeg, .gif)');
                     Session::flash('msg_type', 'danger');
                     $uploadOk = 0;
@@ -203,7 +205,7 @@ class Group extends Controller
                 // Kiểm tra nếu có lỗi xảy ra
                 if ($uploadOk == 0) :
                     Session::flash('msg', 'Hiện tại không thể upload file');
-                    Session::flash('msg_type', 'danger');                
+                    Session::flash('msg_type', 'danger');
                 endif;
             endif;
 
@@ -302,7 +304,7 @@ class Group extends Controller
 
             if ($validate && $uploadOk == 1) :
                 if (!empty($userId)) :
-                    if (!empty($targetFile)):
+                    if (!empty($targetFile)) :
                         if (move_uploaded_file($_FILES["avatar-input"]["tmp_name"], $targetFile)) :
                             // Cập nhật đường dẫn ảnh đại diện vào database
                             $avatarPath = $targetFile;
@@ -362,19 +364,19 @@ class Group extends Controller
         if ($request->isPost()) :
             $uploadOk = 1;
 
-            if (empty($_FILES['avatar-input']['full_path'])):
-                if (!empty($data['delete-image'])):
+            if (empty($_FILES['avatar-input']['full_path'])) :
+                if (!empty($data['delete-image'])) :
                     $avatarPath = 'public/client/assets/images/default_image.jpg';
                     $uploadOk = 1;
-                else:
+                else :
                     if (!empty($oldThumbnail)) :
                         $avatarPath = $oldThumbnail;
-                    else:
+                    else :
                         $avatarPath = 'public/client/assets/images/default_image.jpg';
                     endif;
                     $uploadOk = 1;
                 endif;
-            else:
+            else :
                 // Xử lý tệp được tải lên
                 $targetDir = "app/uploads/avatar/"; // Thư mục để lưu trữ ảnh đại diện
                 $targetFile = $targetDir . basename($_FILES["avatar-input"]["name"]);
@@ -399,8 +401,10 @@ class Group extends Controller
                 }
 
                 // Kiểm tra định dạng ảnh
-                if ($imageFileType != "jpg" && $imageFileType != "png" 
-                    && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                if (
+                    $imageFileType != "jpg" && $imageFileType != "png"
+                    && $imageFileType != "jpeg" && $imageFileType != "gif"
+                ) {
                     Session::flash('msg', 'File không đúng định dạng ảnh (.jpg, .png, .jpeg, .gif)');
                     Session::flash('msg_type', 'danger');
                     $uploadOk = 0;
@@ -409,11 +413,11 @@ class Group extends Controller
                 // Kiểm tra nếu có lỗi xảy ra
                 if ($uploadOk == 0) :
                     Session::flash('msg', 'Hiện tại không thể upload file');
-                    Session::flash('msg_type', 'danger');                
+                    Session::flash('msg_type', 'danger');
                 endif;
             endif;
 
-            
+
             if (
                 !empty($oldEmail) && (!empty($oldPhone))
                 && $oldEmail == $data['email'] && $oldPhone == $data['phone']
@@ -508,7 +512,7 @@ class Group extends Controller
 
             if ($validate && $uploadOk == 1) :
                 if (!empty($userId)) :
-                    if (!empty($targetFile)):
+                    if (!empty($targetFile)) :
                         if (move_uploaded_file($_FILES["avatar-input"]["tmp_name"], $targetFile)) :
                             // Cập nhật đường dẫn ảnh đại diện vào database
                             $avatarPath = $targetFile;

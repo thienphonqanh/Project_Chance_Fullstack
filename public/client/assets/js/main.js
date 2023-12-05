@@ -2,7 +2,7 @@ const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
 var thisPage = 1;
-var limitPage = 6;
+var limitPage = 8;
 var listJobItem = $$(".list-job .job-thumb");
 
 function loadJobItem() {
