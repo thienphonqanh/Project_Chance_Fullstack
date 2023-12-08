@@ -117,5 +117,5 @@
         </div>
     </nav>
     <?php
-    $this->render($body);
+    $this->render($body, $dataView);
     $this->render('block/footer', [], 'client');

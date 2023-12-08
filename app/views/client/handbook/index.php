@@ -12,7 +12,7 @@
                          SEO</a>
                  </div>
 
-                 <a href="#">
+                 <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet">
                      <div class="mt-3 w-100">
                          <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/handbook/la-ban-su-nghiep/cong-viec-cho-nguoi-huong-noi-1.webp"
                              class="img-fluid rounded-4" alt="">

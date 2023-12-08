@@ -32,7 +32,7 @@ class HomeModel extends Model {
     public function handleGetOutstandingJob() {
         $queryGet = $this->db->table('jobs')
             ->select('jobs.id, jobs.title, jobs.thumbnail, jobs.location, 
-                jobs.slug, jobs.salary, companies.name')
+                jobs.slug, jobs.salary, companies.name, jobs.create_at')
             ->orderBy('jobs.create_at', 'DESC')
             ->join('companies', 'companies.id = jobs.company_id')
             ->where('jobs.view_count', '>', '100')

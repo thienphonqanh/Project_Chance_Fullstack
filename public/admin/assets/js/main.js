@@ -69,6 +69,69 @@ if (classTextArea !== null) {
   });
 }
 
+
+function loadMainCategories() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', rootUrl + '/admin/handbook/getCategory', true);
+  xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+          var mainCategories = JSON.parse(xhr.responseText);
+          var mainCategoryDropdown = document.getElementById('mainCategory');
+          
+          mainCategories.forEach(function(category) {
+              var option = document.createElement('option');
+              option.value = category.id;
+              option.text = category.name;
+              mainCategoryDropdown.add(option);
+          });
+
+          // Gọi hàm để load danh sách danh mục phụ cho danh mục chính đầu tiên
+          loadSubCategories();
+      }
+  };
+  xhr.send();
+}
+
+function loadSubCategories() {
+  var mainCategoryId = document.getElementById('mainCategory').value;
+  var subCategoryDropdown = document.getElementById('subCategory');
+
+  if (mainCategoryId == '0') {
+    subCategoryDropdown.innerHTML = '';
+
+    var defaultOptionSub = document.createElement('option');
+    defaultOptionSub.value = '0';
+    defaultOptionSub.text = 'Chọn danh mục';
+    subCategoryDropdown.add(defaultOptionSub);
+    subCategoryDropdown.disabled = true;
+
+  } else {
+    subCategoryDropdown.disabled = false;
+  }
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', rootUrl + '/admin/handbook/getSubCategory?category=' + mainCategoryId, true);
+  xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+          var subCategories = JSON.parse(xhr.responseText);
+
+          // Xóa tất cả các option cũ trong dropdown danh mục phụ
+          subCategoryDropdown.innerHTML = '';
+
+          subCategories.forEach(function(category) {
+              var option = document.createElement('option');
+              option.value = category.id;
+              option.text = category.name;
+              subCategoryDropdown.add(option);
+          });
+      }
+  };
+  xhr.send();
+}
+
+// Gọi hàm để load danh sách danh mục chính khi trang được tải
+loadMainCategories();
+
 // Xử lý chọn checkbox và button xoá
 var selectAllCheckbox = document.querySelector(".checkbox-select-all");
 var checkboxes = document.querySelectorAll(".checkbox-item");
@@ -142,8 +205,8 @@ function previewImage() {
     reader.onload = function (e) {
       var img = document.createElement("img");
       img.src = e.target.result;
-      img.style.width = "120px";
-      img.style.height = "120px";
+      img.style.width = "200px";
+      img.style.height = "150px";
       preview.appendChild(img);
     };
 
@@ -175,7 +238,8 @@ function deleteImage(thumbnail) {
   // Thêm ảnh mặc định vào phần hiển thị
   var defaultImg = document.createElement("img");
   defaultImg.src = rootUrl + "/public/client/assets/images/" + thumbnail; // Đặt đường dẫn của ảnh mặc định
-  defaultImg.style.width = "130px";
-  defaultImg.style.height = "130px";
+  defaultImg.style.width = "200px";
+  defaultImg.style.height = "150px";
   preview.appendChild(defaultImg);
 }
+

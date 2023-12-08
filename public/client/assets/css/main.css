@@ -1018,6 +1018,14 @@ nav[aria-label="breadcrumb"] {
   text-overflow: ellipsis;
 }
 
+.special-content-1 {
+  white-space: normal; /* Cho phép văn bản xuống dòng tự động */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; /* Số dòng tối đa hiển thị */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 /*---------------------------------------
     CTA               
   -----------------------------------------*/

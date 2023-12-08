@@ -1,7 +1,7 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-        <form action="" method="GET">
+        <form action="" method="post">
             <div class="row">
                 <div class="col-4">
                     <select class="form-select" name="status">
@@ -18,7 +18,7 @@
                     </select>
                 </div>
                 <div class="col-5">
-                    <input type="search" name="keyword" class="form-control" placeholder="Nhập từ khoá..."
+                    <input type="search" name="keyword" class="form-control" placeholder="Nhập từ khoá (Tiêu đề, công ty, địa điểm)..."
                         value="<?php isset($request->getFields()['keyword']) ?? '' ?>">
                 </div>
                 <div class="col-3">

@@ -23,7 +23,8 @@ $routes['reset'] = 'auth/reset';
 $routes['tim-viec-lam'] = 'client/job';
 $routes['chi-tiet-viec-lam'] = 'client/job/detail';
 $routes['chi-tiet-viec-lam/{jobTitle}-(\d+)'] = 'client/job/detail&id=$1';
-// $routes['chi-tiet-viec-lam/.+-(.+)'] = 'client/job/detail&id=$1';
+$routes['chi-tiet-bai-viet'] = 'client/handbook/detail';
+$routes['chi-tiet-bai-viet/{handbookTitle}-(\d+)'] = 'client/handbook/detail&id=$1';
 
 
 $routes['cam-nang'] = 'client/handbook';
@@ -60,5 +61,18 @@ $routes['jobs/danh-sach/chinh-sua'] = 'admin/job/updateJob';
 $routes['jobs/danh-sach/xoa'] = 'admin/job/delete';
 $routes['jobs/them-moi'] = 'admin/job/addJob';
 
+// Dashboard - Quản lý tin tức nghề nghiệp
+$routes['handbooks'] = 'admin/handbook';
+$routes['handbooks/danh-sach'] = 'admin/handbook/getListHandbook';
+$routes['handbooks/them-moi'] = 'admin/handbook/addHandbook';
+
+$routes['admin/handbook/getCategory'] = 'admin/handbook/getCategory';
+$routes['admin/handbook/getSubCategory'] = 'admin/handbook/getSubCategory';
+
+
+
+/*
+    Route trang user
+*/
 // Trang người dùng
 $routes['doi-mat-khau'] = 'client/profile/changePassword';

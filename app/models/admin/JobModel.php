@@ -122,8 +122,8 @@ class JobModel extends Model
 
         $queryGet = $queryGet->get();
 
-        if (!empty($queryGet)) :
-            foreach ($queryGet as $key => $item) :
+        if (!empty($queryGet['data'])) :
+            foreach ($queryGet['data'] as $key => $item) :
                 foreach ($item as $subKey => $subItem) :
                     if ($subItem === NULL || $subItem === '') :
                         $checkNull = true;
