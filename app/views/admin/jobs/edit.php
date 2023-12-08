@@ -14,21 +14,21 @@
                         type="button" class="btn btn-primary px-4">Xem trang</a>
                 </div>
                 <?php
-                        if (!empty($msg)) :
-                            echo '<div class="alert alert-' . $msgType . '">';
-                            echo $msg;
-                            echo '</div>';
-                        endif;
-                        ?>
+                    if (!empty($msg)) :
+                        echo '<div class="alert alert-' . $msgType . '">';
+                        echo $msg;
+                        echo '</div>';
+                    endif;
+                ?>
                 <div class="col-12">
                     <div id="avatar-preview" class="avatar mb-3">
                         <?php 
-                                    $root = _WEB_ROOT;
-                                    echo (!empty($item['thumbnail'])) ? 
-                                    '<img src="'.$root.'/'.$item['thumbnail'].'" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">' 
-                                    : 
-                                    '<img src="'.$root.'/public/client/assets/images/default_job.jpg" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">';
-                                ?>
+                            $root = _WEB_ROOT;
+                            echo (!empty($item['thumbnail'])) ? 
+                            '<img src="'.$root.'/'.$item['thumbnail'].'" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">' 
+                            : 
+                            '<img src="'.$root.'/public/client/assets/images/default_job.jpg" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">';
+                        ?>
                     </div>
                     <input type="file" name="avatar-input" id="avatar-input" accept="image/*" onchange="previewImage()"
                         class="d-none">

@@ -29,7 +29,7 @@
         <hr>
         <a type="button" href="<?php echo _WEB_ROOT; ?>/handbooks/them-moi" class="btn btn-primary px-3"><i
                 class="bi bi-plus-circle-dotted px-1"></i> Thêm bài viết</a>
-        <form action="" method="post" class="form-delete">
+        <form action="<?php echo _WEB_ROOT; ?>/handbooks/danh-sach/xoa" method="post" class="form-delete">
             <table class="table table-bordered mt-4">
                 <thead>
                     <tr>
@@ -61,11 +61,11 @@
                         <td class="text-center"><?php echo $item['view_count']; ?></td>
                         <td class="text-center"><?php echo getDateTimeFormat($item['create_at'], 'd-m-Y'); ?></td>
                         <td class="text-center"><a
-                                href=""
+                                href="<?php echo _WEB_ROOT; ?>/handbooks/thong-tin?id=<?php echo $item['id']; ?>"
                                 class="btn btn-primary btn-sm"><i class="bi bi-eye"></i>
                                 Xem</a></td>
                         <td class="text-center"><a
-                                href=""
+                                href="<?php echo _WEB_ROOT; ?>/handbooks/chinh-sua?id=<?php echo $item['id']; ?>"
                                 class="btn btn-warning btn-sm"><i class="fa fa-edit"></i>
                                 Sửa</a></td>
                     </tr>

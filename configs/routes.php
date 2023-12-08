@@ -65,6 +65,9 @@ $routes['jobs/them-moi'] = 'admin/job/addJob';
 $routes['handbooks'] = 'admin/handbook';
 $routes['handbooks/danh-sach'] = 'admin/handbook/getListHandbook';
 $routes['handbooks/them-moi'] = 'admin/handbook/addHandbook';
+$routes['handbooks/thong-tin'] = 'admin/handbook/viewHandbook';
+$routes['handbooks/chinh-sua'] = 'admin/handbook/updateHandbook';
+$routes['handbooks/danh-sach/xoa'] = 'admin/handbook/delete';
 
 $routes['admin/handbook/getCategory'] = 'admin/handbook/getCategory';
 $routes['admin/handbook/getSubCategory'] = 'admin/handbook/getSubCategory';

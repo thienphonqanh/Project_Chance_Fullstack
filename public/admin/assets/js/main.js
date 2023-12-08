@@ -69,7 +69,6 @@ if (classTextArea !== null) {
   });
 }
 
-
 function loadMainCategories() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', rootUrl + '/admin/handbook/getCategory', true);
@@ -128,9 +127,12 @@ function loadSubCategories() {
   };
   xhr.send();
 }
+var subCategoryDropdown = document.getElementById('subCategory');
 
+if (subCategoryDropdown != null && subCategoryDropdown.value == 0){
 // Gọi hàm để load danh sách danh mục chính khi trang được tải
 loadMainCategories();
+}
 
 // Xử lý chọn checkbox và button xoá
 var selectAllCheckbox = document.querySelector(".checkbox-select-all");
@@ -205,8 +207,8 @@ function previewImage() {
     reader.onload = function (e) {
       var img = document.createElement("img");
       img.src = e.target.result;
-      img.style.width = "200px";
-      img.style.height = "150px";
+      img.style.width = "120px";
+      img.style.height = "120px";
       preview.appendChild(img);
     };
 
@@ -238,8 +240,8 @@ function deleteImage(thumbnail) {
   // Thêm ảnh mặc định vào phần hiển thị
   var defaultImg = document.createElement("img");
   defaultImg.src = rootUrl + "/public/client/assets/images/" + thumbnail; // Đặt đường dẫn của ảnh mặc định
-  defaultImg.style.width = "200px";
-  defaultImg.style.height = "150px";
+  defaultImg.style.width = "130px";
+  defaultImg.style.height = "130px";
   preview.appendChild(defaultImg);
 }
 

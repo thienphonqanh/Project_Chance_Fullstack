@@ -23,7 +23,7 @@ class HandbookModel extends Model {
             'handbook_category_id' => $data['main_category'],
             'handbook_sub_category_id' => $data['sub_category'],
             'descr' => $_POST['descr'],
-            'admin_id' => 1,
+            'admin_id' => getIdUserLogin(),
             'content' => $_POST['content'],
             'create_at' => date('Y-m-d H:i:s'),
         ];
@@ -36,6 +36,47 @@ class HandbookModel extends Model {
         endif;
 
         return false;
+    }
+
+    public function handleUpdateHandbook($data, $handbookId, $avatarPath) {
+        $queryGet = $this->db->table('handbooks')
+            ->where('id', '=', $handbookId)
+            ->first();
+
+        if (!empty($queryGet)):
+            $dataUpdate = [
+                'title' => $data['title'],
+                'slug' => $data['slug'],
+                'thumbnail' => $avatarPath,
+                'handbook_category_id' => $data['main_category'],
+                'handbook_sub_category_id' => $data['sub_category'],
+                'descr' => $_POST['descr'],
+                'admin_id' => getIdUserLogin(),
+                'content' => $_POST['content'],
+                'update_at' => date('Y-m-d H:i:s'),
+            ];
+    
+            $updateStatus = $this->db->table('handbooks')
+                ->where('handbooks.id', '=', $handbookId)
+                ->update($dataUpdate);
+    
+            if ($updateStatus):
+                return true;
+            endif;
+        endif;
+        
+        return false;
+    }
+
+    public function handleDelete($itemsToDelete = '')
+    {
+        $itemsToDelete = '(' . $itemsToDelete . ')';
+
+        $queryDelete = $this->db->table('handbooks')
+            ->where('id', 'IN', $itemsToDelete)
+            ->delete();
+
+        return $queryDelete ? true : false;
     }
 
     public function handleGetCategory() {
@@ -69,6 +110,20 @@ class HandbookModel extends Model {
 
     public function handleGetAllCategory() {
         $queryGet = $this->db->table('handbook_categories')
+            ->select('id, name, slug')
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)):
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetAllSubCategory() {
+        $queryGet = $this->db->table('handbook_sub_categories')
             ->select('id, name, slug')
             ->get();
 
@@ -175,6 +230,42 @@ class HandbookModel extends Model {
                 ->where('handbooks.id', '=', $handbookId)
                 ->update($dataUpdate);
         endif;
+    }
+
+    // Xử lý lấy data trang thông tin 
+    public function handleViewHandbook($handbookId)
+    {
+        $queryGet = $this->db->table('handbooks')
+            ->select('handbooks.id, handbooks.title, handbooks.slug, handbooks.thumbnail, 
+                handbooks.descr, handbooks.content, handbook_categories.name as main_category_name,
+                handbook_sub_categories.name as sub_category_name')
+            ->join('handbook_categories', 'handbook_categories.id = handbooks.handbook_category_id')
+            ->join('handbook_sub_categories', 'handbook_sub_categories.id = handbooks.handbook_sub_category_id')
+            ->where('handbooks.id', '=', $handbookId)
+            ->get();
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    // Lấy thumbnail cũ
+    public function handleGetOld($handbookId)
+    {
+        $queryGet = $this->db->table('handbooks')
+            ->select('thumbnail')
+            ->where('id', '=', $handbookId)
+            ->first();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
     }
 
 }

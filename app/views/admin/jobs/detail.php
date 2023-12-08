@@ -78,12 +78,12 @@
                             <span class="text-danger fw-bold">*</span></label>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" disabled placeholder="Leave a comment here"
+                        <textarea class="form-control editor" disabled placeholder="Leave a comment here"
                             id="floatingTextarea2" style="height: 200px"><?php echo $item['requirement'] ?></textarea>
                         <label for="floatingTextarea2">Yêu cầu công việc</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" disabled placeholder="Leave a comment here"
+                        <textarea class="form-control editor" disabled placeholder="Leave a comment here"
                             id="floatingTextarea2" style="height: 200px"><?php echo $item['welfare'] ?></textarea>
                         <label for="floatingTextarea2">Phúc lợi</label>
                     </div>
@@ -118,12 +118,12 @@
                             <span class="text-danger fw-bold">*</span></label>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" disabled placeholder="Leave a comment here"
+                        <textarea class="form-control editor" disabled placeholder="Leave a comment here"
                             id="floatingTextarea2" style="height: 200px"><?php echo $item['description'] ?></textarea>
                         <label for="floatingTextarea2">Mô tả công việc</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" disabled placeholder="Leave a comment here"
+                        <textarea class="form-control editor" disabled placeholder="Leave a comment here"
                             id="floatingTextarea2" style="height: 200px"><?php echo $item['other_info'] ?></textarea>
                         <label for="floatingTextarea2">Thông tin khác</label>
                     </div>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="col-12 mt-3">
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" disabled placeholder="Leave a comment here"
+                        <textarea class="form-control editor" disabled placeholder="Leave a comment here"
                             id="floatingTextarea2"
                             style="height: 200px"><?php echo $item['company_description'] ?></textarea>
                         <label for="floatingTextarea2">Giới thiệu công ty</label>
