@@ -236,7 +236,7 @@ class HandbookModel extends Model {
     public function handleViewHandbook($handbookId)
     {
         $queryGet = $this->db->table('handbooks')
-            ->select('handbooks.id, handbooks.title, handbooks.slug, handbooks.thumbnail, 
+            ->select('handbooks.id, handbooks.title, handbooks.slug, handbooks.thumbnail,
                 handbooks.descr, handbooks.content, handbook_categories.name as main_category_name,
                 handbook_sub_categories.name as sub_category_name')
             ->join('handbook_categories', 'handbook_categories.id = handbooks.handbook_category_id')
@@ -251,6 +251,19 @@ class HandbookModel extends Model {
         return $response;
     }
 
+    public function handleCheckHandbookId($handbookId) {
+        $queryGet = $this->db->table('handbooks')
+            ->select('id')
+            ->where('id', '=', $handbookId)
+            ->first();
+
+        if (!empty($queryGet)):
+            return true;
+        endif;
+        
+        return false;
+    }
+
     // Lấy thumbnail cũ
     public function handleGetOld($handbookId)
     {
@@ -263,6 +276,51 @@ class HandbookModel extends Model {
 
         if (!empty($queryGet)) :
             $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+    
+    // Xử lý lấy danh sách việc làm mới
+    public function handleGetListNewJob() {
+        $queryGet = $this->db->table('jobs')
+            ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.location, jobs.salary, 
+                jobs.exp_required, companies.name')
+            ->join('companies', 'jobs.company_id = companies.id')
+            ->join('job_categories', 'jobs.job_category_id = job_categories.id')
+            ->orderBy('jobs.create_at', 'DESC')
+            ->limit(10)
+            ->get();
+        
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetListSameCategory($handbookId) {
+        $queryGetSubCategory = $this->db->table('handbooks')
+            ->select('handbook_sub_category_id')
+            ->where('handbooks.id', '=', $handbookId)
+            ->first();
+
+        $response = [];
+
+        if (!empty($queryGetSubCategory)):
+            $queryGet = $this->db->table('handbooks')
+                ->select('handbooks.id, handbooks.title, handbooks.slug, 
+                    handbooks.thumbnail, handbook_sub_categories.name')
+                ->join('handbook_sub_categories', 'handbook_sub_categories.id = handbooks.handbook_sub_category_id')
+                ->where('handbooks.handbook_sub_category_id', '=', $queryGetSubCategory['handbook_sub_category_id'])
+                ->where('handbooks.id', '!=', $handbookId)
+                ->orderBy('handbooks.create_at', 'DESC')
+                ->limit(4)
+                ->get();
+
+            if (!empty($queryGet)):
+                $response = $queryGet;
+            endif;
         endif;
 
         return $response;

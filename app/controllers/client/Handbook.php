@@ -19,31 +19,41 @@ class Handbook extends Controller
 
     public function detail()
     {
+        $response = new Response();
+        
         $handbookId = getIdInURL('chi-tiet-bai-viet');
 
-        if (!empty($handbookId)) :
-            $this->handbookModel->handleSetViewCount($handbookId);  // Tăng view 
+        if (!empty($handbookId)):
+            $check = $this->handbookModel->handleCheckHandbookId($handbookId);
 
-            $result = $this->handbookModel->handleGetDetail($handbookId); // Lấy data detail
+            if ($check):
+                $this->handbookModel->handleSetViewCount($handbookId);  // Tăng view 
 
-            if (!empty($result)) :
-                $dataDetail = $result;
-                // $jobField = $dataDetail[0]['jobField'];
-
-                // $randomData = $this->handbookModel->handleRandomData($jobField);
-
-                $this->data['dataView']['dataDetail'] = $dataDetail;
-
-                // if (!empty($randomData)) :
-                //     $this->data['dataView']['randomData'] = $randomData;
-                // endif;
+                $result = $this->handbookModel->handleGetDetail($handbookId); // Lấy data detail
+    
+                if (!empty($result)) :
+                    $dataDetail = $result;
+                    $this->data['dataView']['dataDetail'] = $dataDetail;
+    
+                    $listNewJob = $this->handbookModel->handleGetListNewJob();
+                    $listSameCategory = $this->handbookModel->handleGetListSameCategory($handbookId);
+    
+                    if (!empty($listNewJob)) :
+                        $this->data['dataView']['listNewJob'] = $listNewJob;
+                    endif;
+    
+                    if (!empty($listSameCategory)) :
+                        $this->data['dataView']['listSameCategory'] = $listSameCategory;
+                    endif;
+                endif;
+            else:
+                $response->redirect('errors/404.php');
             endif;
-
-
         endif;
 
         $this->data['body'] = 'client/handbook/detail';
         $this->data['page'] = 'handbook-detai-page';
+        $this->data['dataView'][''] = '';
         $this->render('layouts/handbook.layout', $this->data, 'client');
     }
 
