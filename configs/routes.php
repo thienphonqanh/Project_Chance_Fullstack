@@ -65,8 +65,8 @@ $routes['jobs/them-moi'] = 'admin/job/addJob';
 $routes['handbooks'] = 'admin/handbook';
 $routes['handbooks/danh-sach'] = 'admin/handbook/getListHandbook';
 $routes['handbooks/them-moi'] = 'admin/handbook/addHandbook';
-$routes['handbooks/thong-tin'] = 'admin/handbook/viewHandbook';
-$routes['handbooks/chinh-sua'] = 'admin/handbook/updateHandbook';
+$routes['handbooks/danh-sach/thong-tin'] = 'admin/handbook/viewHandbook';
+$routes['handbooks/danh-sach/chinh-sua'] = 'admin/handbook/updateHandbook';
 $routes['handbooks/danh-sach/xoa'] = 'admin/handbook/delete';
 
 $routes['admin/handbook/getCategory'] = 'admin/handbook/getCategory';
@@ -79,3 +79,5 @@ $routes['admin/handbook/getSubCategory'] = 'admin/handbook/getSubCategory';
 */
 // Trang người dùng
 $routes['doi-mat-khau'] = 'client/profile/changePassword';
+$routes['thong-tin-ca-nhan'] = 'client/profile/personalInformation';
+$routes['thong-tin-ca-nhan/chinh-sua'] = 'client/profile/editPersonalInformation';

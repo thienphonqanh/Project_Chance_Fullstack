@@ -106,7 +106,7 @@
                             <i class="bi bi-person-circle m-2"></i> <?php echo getNameUserLogin(); ?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+                            <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/thong-tin-ca-nhan">Thông tin cá nhân</a></li>
                             <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/doi-mat-khau">Đổi mật khẩu</a>
                             </li>
                             <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/dang-xuat">Đăng xuất</a></li>

@@ -61,11 +61,11 @@
                         <td class="text-center"><?php echo $item['view_count']; ?></td>
                         <td class="text-center"><?php echo getDateTimeFormat($item['create_at'], 'd-m-Y'); ?></td>
                         <td class="text-center"><a
-                                href="<?php echo _WEB_ROOT; ?>/handbooks/thong-tin?id=<?php echo $item['id']; ?>"
+                                href="<?php echo _WEB_ROOT; ?>/handbooks/danh-sach/thong-tin?id=<?php echo $item['id']; ?>"
                                 class="btn btn-primary btn-sm"><i class="bi bi-eye"></i>
                                 Xem</a></td>
                         <td class="text-center"><a
-                                href="<?php echo _WEB_ROOT; ?>/handbooks/chinh-sua?id=<?php echo $item['id']; ?>"
+                                href="<?php echo _WEB_ROOT; ?>/handbooks/danh-sach/chinh-sua?id=<?php echo $item['id']; ?>"
                                 class="btn btn-warning btn-sm"><i class="fa fa-edit"></i>
                                 Sửa</a></td>
                     </tr>

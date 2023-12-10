@@ -1439,3 +1439,16 @@ nav[aria-label="breadcrumb"] {
   box-shadow: 0 0 0 0.25rem rgba(251, 68, 123, 0.25);
   border: none;
 } */
+
+.profile-user {
+  width: 100vw;
+  height: auto;
+  background-color: var(--section-bg-color);
+}
+
+.avatar img {
+  border-radius: 50%;
+  object-fit: cover;
+  image-rendering: auto;
+  border: 1px solid #000000;
+}
