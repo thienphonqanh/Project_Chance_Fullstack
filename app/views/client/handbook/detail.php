@@ -31,7 +31,7 @@
                 </div>
                 <div class="content">
                     <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" width="100%" class="rounded-3" alt="Ảnh">
-                    <p class="text-dark">
+                    <p class="text-dark mt-3">
                         <?php echo $item['descr']; ?>
                     </p>
                     <p class="text-dark">
@@ -85,7 +85,9 @@
     <?php endforeach; endif; ?>
     <div class="same-category p-4">
         <div class="container-lg">
+            <?php if (!empty($listSameCategory)): ?>
             <h4>Cùng chuyên mục</h4>
+            <?php endif;?>
             <div class="row">
             <?php 
                 if (!empty($listSameCategory)):

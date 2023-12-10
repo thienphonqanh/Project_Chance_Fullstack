@@ -163,7 +163,8 @@ class HandbookModel extends Model {
                 handbooks.view_count, handbook_categories.name as main_category_name, 
                 admins.fullname as author')
             ->join('handbook_categories', 'handbook_categories.id = handbooks.handbook_category_id')
-            ->join('admins', 'admins.id = handbooks.admin_id');
+            ->join('admins', 'admins.id = handbooks.admin_id')
+            ->orderBy('handbooks.create_at', 'DESC');
 
         $response = [];
         $checkNull = false;
@@ -326,4 +327,40 @@ class HandbookModel extends Model {
         return $response;
     }
 
+    public function handleGetRandomHandbook() {
+        $queryGet = $this->db->table('handbooks')
+            ->select('handbooks.id, handbooks.slug, handbooks.title, handbooks.thumbnail,
+                handbooks.descr, handbook_sub_categories.name')
+            ->join('handbook_sub_categories', 'handbooks.handbook_sub_category_id = handbook_sub_categories.id')
+            ->orderBy('handbooks.create_at', 'DESC')
+            ->limit(3)
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)):
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetHandbookFromPage($categoryId) {
+        $queryGet = $this->db->table('handbooks')
+            ->select('handbooks.id, handbooks.thumbnail, handbooks.slug, handbooks.title, 
+                handbooks.descr, handbook_sub_categories.name')
+            ->join('handbook_sub_categories', 'handbooks.handbook_sub_category_id = handbook_sub_categories.id')
+            ->where('handbooks.handbook_category_id', '=', $categoryId)
+            ->orderBy('handbooks.create_at', 'DESC')
+            ->limit(6)
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)):
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
 }

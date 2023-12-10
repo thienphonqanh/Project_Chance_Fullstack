@@ -11,6 +11,27 @@ class Handbook extends Controller
 
     public function index()
     {
+        $randomHandbook = $this->handbookModel->handleGetRandomHandbook();
+        $firstPageHandbook = $this->handbookModel->handleGetHandbookFromPage(1);
+        $secondPageHandbook = $this->handbookModel->handleGetHandbookFromPage(2);
+        $fourthPageHandbook = $this->handbookModel->handleGetHandbookFromPage(4);
+
+        if (!empty($randomHandbook)):
+            $this->data['dataView']['randomHandbook'] = $randomHandbook;
+        endif;
+        
+        if (!empty($firstPageHandbook)):
+            $this->data['dataView']['firstPageHandbook'] = $firstPageHandbook;
+        endif;
+
+        if (!empty($secondPageHandbook)):
+            $this->data['dataView']['secondPageHandbook'] = $secondPageHandbook;
+        endif;
+
+        if (!empty($fourthPageHandbook)):
+            $this->data['dataView']['fourthPageHandbook'] = $fourthPageHandbook;
+        endif;
+    
         $this->data['body'] = 'client/handbook/index';
         $this->data['page'] = 'handbook-page';
         $this->data['dataView'][''] = '';

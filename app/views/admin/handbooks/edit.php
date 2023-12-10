@@ -91,7 +91,7 @@
                 <div class="col-12">
                     <div class="form-group text-start">
                         <label for="descr">Mô tả ngắn</label>
-                        <textarea name="descr" rows="5" class="form-control editor"><?php echo $item['descr'] ?></textarea>
+                        <textarea name="descr" rows="5" class="form-control"><?php echo $item['descr'] ?></textarea>
                     </div>
                 </div>
                 <div class="col-12">
