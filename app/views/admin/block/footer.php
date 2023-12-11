@@ -59,7 +59,7 @@ $.widget.bridge('uibutton', $.ui.button)
  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
  <script src="<?php echo _WEB_ROOT; ?>/public/admin/assets/js/pages/dashboard.js"></script>
  <script type="text/javascript">
-    let rootUrl = '<?php echo _WEB_ROOT; ?>';
+let rootUrl = '<?php echo _WEB_ROOT; ?>';
  </script>
  <!-- Custom -->
  <script src="<?php echo _WEB_ROOT; ?>/public/admin/assets/js/main.js?ver=<?php echo rand(); ?>"></script>

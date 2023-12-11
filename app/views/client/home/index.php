@@ -217,16 +217,17 @@
             <h3 class="text-center">Cẩm Nang Nghề Nghiệp</h3>
             <p class="text-center">Những kinh nghiệm bạn có thể cần trong quá trình tìm kiếm và làm việc</p>
             <div class="handbook-block">
-            <?php 
+                <?php 
                 if (!empty($someHandbooks)):
                     foreach ($someHandbooks as $item):
             ?>
-                <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>" class="handbook">
+                <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>"
+                    class="handbook">
                     <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" class="img-fluid" alt="">
                     <p class="text-dark"><?php echo $item['title'] ?></p>
                     <span class="special-content text-dark fw-lighter fs-5"><?php echo $item['descr']; ?></span>
                 </a>
-            <?php endforeach; endif; ?>
+                <?php endforeach; endif; ?>
             </div>
             <!-- <button type="button" class="btn-loadHandBook">Xem thêm cẩm nang nghề nghiệp</button> -->
             <a href="<?php echo _WEB_ROOT; ?>/cam-nang"

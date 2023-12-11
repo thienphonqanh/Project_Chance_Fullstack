@@ -209,13 +209,14 @@ class AuthModel extends Model
         return false;
     }
 
-    public function handleForgotPassword($email) {
+    public function handleForgotPassword($email)
+    {
         $queryGet = $this->db->table('candidates')
             ->select('fullname, email')
             ->where('email', '=', $email)
             ->first();
-        
-        if (!empty($queryGet)):
+
+        if (!empty($queryGet)) :
             $forgotToken = sha1(uniqid() . time());
 
             $dataUpdate = [
@@ -225,8 +226,8 @@ class AuthModel extends Model
             $insertStatus = $this->db->table('candidates')
                 ->where('email', '=', $email)
                 ->update($dataUpdate);
-            
-            if ($insertStatus):
+
+            if ($insertStatus) :
                 // Tạo link 
                 $linkReset = _WEB_ROOT . '/check?token=' . $forgotToken;
                 // Thiết lập mail
@@ -246,7 +247,7 @@ class AuthModel extends Model
                     Session::flash('msg_type', 'danger');
                 endif;
             endif;
-        else:
+        else :
             Session::flash('msg', 'Email không tồn tại');
             Session::flash('msg_type', 'danger');
         endif;
@@ -283,13 +284,14 @@ class AuthModel extends Model
         return false;
     }
 
-    public function handleResetPassword($userId) {
+    public function handleResetPassword($userId)
+    {
         $queryGet = $this->db->table('candidates')
             ->select('id, fullname, email')
             ->where('id', '=', $userId)
             ->first();
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $dataUpdate = [
                 'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
             ];
@@ -298,7 +300,7 @@ class AuthModel extends Model
                 ->where('id', '=', $userId)
                 ->update($dataUpdate);
 
-            if ($updateStatus):
+            if ($updateStatus) :
                 $subject = 'ĐẶT LẠI MẬT KHẨU THÀNH CÔNG';
                 $content = 'Chào bạn: ' . ucwords($queryGet['fullname']) . '<br>';
                 $content .= 'Bạn vừa thay đổi mật khẩu ở Chance. <br>';

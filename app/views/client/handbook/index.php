@@ -12,16 +12,19 @@
                          SEO</a>
                  </div>
 
-            
-                 <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $randomHandbook[0]['slug'].'-'.$randomHandbook[0]['id']; ?>">
+
+                 <a
+                     href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $randomHandbook[0]['slug'].'-'.$randomHandbook[0]['id']; ?>">
                      <div class="mt-3 w-100">
                          <img src="<?php echo _WEB_ROOT.'/'.$randomHandbook[0]['thumbnail'] ?>"
                              class="img-fluid rounded-4" alt="">
                          <div class="mt-3 p-2">
-                             <p class="text-uppercase fw-normal text-dark m-0"><?php echo $randomHandbook[0]['name']; ?></p>
-                             <h3 class="mt-2 fw-bold tilte-handbook text-uppercase"><?php echo $randomHandbook[0]['title']; ?></h3>
+                             <p class="text-uppercase fw-normal text-dark m-0"><?php echo $randomHandbook[0]['name']; ?>
+                             </p>
+                             <h3 class="mt-2 fw-bold tilte-handbook text-uppercase">
+                                 <?php echo $randomHandbook[0]['title']; ?></h3>
                              <span class="special-content text-dark fw-lighter fs-5">
-                                <?php echo $randomHandbook[0]['descr']; ?>
+                                 <?php echo $randomHandbook[0]['descr']; ?>
                              </span>
                          </div>
                      </div>
@@ -36,7 +39,7 @@
                      </div>
                  </form>
                  <div>
-                <?php
+                     <?php
                     unset($randomHandbook[0]);
                     $randomHandbook = array_values($randomHandbook); 
                     if (!empty($randomHandbook)):
@@ -44,20 +47,22 @@
                 ?>
                      <div class="row">
                          <div class="col-lg-12 col-md-12 col-sm-6">
-                            <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>">
-                                <div class="mt-2">
+                             <a
+                                 href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>">
+                                 <div class="mt-2">
                                      <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>"
                                          class="img-fluid rounded-4" alt="">
                                      <div class="mt-2">
-                                         <p class="text-uppercase fw-normal text-dark m-0"><?php echo $item['name']; ?></p>
+                                         <p class="text-uppercase fw-normal text-dark m-0"><?php echo $item['name']; ?>
+                                         </p>
                                          <h4 class="tilte-handbook"><?php echo $item['title']; ?></h4>
                                      </div>
                                  </div>
-                            </a>
+                             </a>
                          </div>
                      </div>
                  </div>
-                <?php endforeach; endif; ?>
+                 <?php endforeach; endif; ?>
              </div>
          </div>
      </div>
@@ -77,19 +82,20 @@
              </div>
              <div>
                  <div class="row">
-                    <?php 
+                     <?php 
                         if (!empty($secondPageHandbook)):
                             foreach ($secondPageHandbook as $item):
                     ?>
                      <div class="col-lg-4 col-md-4 mt-3">
-                         <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>" class="handbook-item d-block">
-                             <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>"
-                                 class="img-fluid rounded-3" alt="">
+                         <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>"
+                             class="handbook-item d-block">
+                             <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" class="img-fluid rounded-3"
+                                 alt="">
                              <div class="mt-2 w-100 px-3 py-2 d-flex flex-column">
                                  <p class="text-uppercase fw-normal fs-6 text-dark m-0"><?php echo $item['name'] ?></p>
                                  <h5 class="tilte-handbook"><?php echo $item['title'] ?></h5>
                                  <span class="special-content text-dark fw-lighter fs-5">
-                                    <?php echo $item['descr'] ?>
+                                     <?php echo $item['descr'] ?>
                                  </span>
                              </div>
                          </a>
@@ -110,23 +116,25 @@
              </div>
              <div>
                  <div class="row">
-                 <?php 
+                     <?php 
                     if (!empty($firstPageHandbook)):
                         foreach ($firstPageHandbook as $item):
                 ?>
                      <div class="col-lg-4 col-md-4 mt-3">
-                         <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>" class="handbook-item d-block">
-                             <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>"
-                                 class="img-fluid rounded-3" alt="">
+                         <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>"
+                             class="handbook-item d-block">
+                             <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" class="img-fluid rounded-3"
+                                 alt="">
                              <div class="mt-2 w-100 px-3 py-2 d-flex flex-column">
                                  <p class="text-uppercase fw-normal fs-6 text-dark m-0"><?php echo $item['name'] ?></p>
                                  <h5 class="tilte-handbook"><?php echo $item['title'] ?></h5>
-                                 <span class="special-content text-dark fw-lighter fs-5"><?php echo $item['descr'] ?></span>
+                                 <span
+                                     class="special-content text-dark fw-lighter fs-5"><?php echo $item['descr'] ?></span>
 
                              </div>
                          </a>
                      </div>
-                    <?php endforeach; endif; ?>
+                     <?php endforeach; endif; ?>
                  </div>
              </div>
          </div>
@@ -142,23 +150,25 @@
              </div>
              <div>
                  <div class="row">
-                 <?php 
+                     <?php 
                     if (!empty($fourthPageHandbook)):
                         foreach ($fourthPageHandbook as $item):
                 ?>
                      <div class="col-lg-4 col-md-4 mt-3">
-                         <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>" class="handbook-item d-block">
-                             <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>"
-                                 class="img-fluid rounded-3" alt="">
+                         <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>"
+                             class="handbook-item d-block">
+                             <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" class="img-fluid rounded-3"
+                                 alt="">
                              <div class="mt-2 w-100 px-3 py-2 d-flex flex-column">
                                  <p class="text-uppercase fw-normal fs-6 text-dark m-0"><?php echo $item['name'] ?></p>
                                  <h5 class="tilte-handbook"><?php echo $item['title'] ?></h5>
-                                 <span class="special-content text-dark fw-lighter fs-5"><?php echo $item['descr'] ?></span>
+                                 <span
+                                     class="special-content text-dark fw-lighter fs-5"><?php echo $item['descr'] ?></span>
 
                              </div>
                          </a>
                      </div>
-                <?php endforeach; endif; ?>
+                     <?php endforeach; endif; ?>
                  </div>
              </div>
          </div>

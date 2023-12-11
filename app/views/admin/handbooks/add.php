@@ -14,8 +14,9 @@
                 ?>
                 <div class="col-12">
                     <div id="avatar-preview" class="mb-3">
-                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/default_post.jpg" class="border border-2"
-                            style="width: 120px; height: 120px;" id="avatar-default" alt="Avatar">
+                        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/default_post.jpg"
+                            class="border border-2" style="width: 120px; height: 120px;" id="avatar-default"
+                            alt="Avatar">
                     </div>
                     <input type="file" name="avatar-input" id="avatar-input" accept="image/*" onchange="previewImage()"
                         class="d-none">
@@ -72,7 +73,8 @@
                 </div>
                 <div class="col-12 text-end mt-2">
                     <button type="submit" class="btn btn-primary btn-md px-3">Lưu thay đổi</button>
-                    <a href="<?php echo _WEB_ROOT; ?>/handbooks/danh-sach" class="btn btn-md px-4 btn-danger">Quay lại</a>
+                    <a href="<?php echo _WEB_ROOT; ?>/handbooks/danh-sach" class="btn btn-md px-4 btn-danger">Quay
+                        lại</a>
                 </div>
             </div>
         </div>

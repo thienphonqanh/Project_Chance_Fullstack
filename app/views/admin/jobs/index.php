@@ -18,7 +18,8 @@
                     </select>
                 </div>
                 <div class="col-5">
-                    <input type="search" name="keyword" class="form-control" placeholder="Nhập từ khoá (Tiêu đề, công ty, địa điểm)..."
+                    <input type="search" name="keyword" class="form-control"
+                        placeholder="Nhập từ khoá (Tiêu đề, công ty, địa điểm)..."
                         value="<?php isset($request->getFields()['keyword']) ?? '' ?>">
                 </div>
                 <div class="col-3">

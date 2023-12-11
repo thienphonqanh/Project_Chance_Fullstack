@@ -35,7 +35,7 @@ class App
         else :
             $url = '/';
         endif;
-        
+
         return $url;
     }
 

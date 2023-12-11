@@ -20,7 +20,7 @@
                     echo '</div>';
                 endif;
                 ?>
-                 <div class="col-12">
+                <div class="col-12">
                     <div id="avatar-preview" class="mb-3">
                         <?php 
                             $root = _WEB_ROOT;
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                <div class="form-floating mb-3 text-start">
+                    <div class="form-floating mb-3 text-start">
                         <select class="form-select" id="mainCategory" name="main_category"
                             aria-label="Floating label select example" onchange="loadSubCategories()">
                             <option value="0" selected>Chọn danh mục</option>
@@ -97,13 +97,15 @@
                 <div class="col-12">
                     <div class="form-group text-start">
                         <label for="content">Nội dung bài viết <span class="text-danger fw-bold">*</span></label>
-                        <textarea name="content" rows="10" class="form-control editor"><?php echo $item['content'] ?></textarea>
+                        <textarea name="content" rows="10"
+                            class="form-control editor"><?php echo $item['content'] ?></textarea>
                         <?php echo form_error('content', $errors, '<span class="fst-italic fs-6 text-danger px-2">', '</span>') ?>
                     </div>
                 </div>
                 <div class="col-12 text-end mt-2">
                     <button type="submit" class="btn btn-primary btn-md px-3">Lưu thay đổi</button>
-                    <a href="<?php echo _WEB_ROOT; ?>/handbooks/danh-sach" class="btn btn-md px-4 btn-danger">Quay lại</a>
+                    <a href="<?php echo _WEB_ROOT; ?>/handbooks/danh-sach" class="btn btn-md px-4 btn-danger">Quay
+                        lại</a>
                 </div>
             </div>
         </div>

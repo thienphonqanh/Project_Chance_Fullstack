@@ -101,7 +101,7 @@ class JobModel extends Model
         if (!empty($keyword)) :
             $title = $keyword['job_title'];
             $location = $keyword['job_location'];
-            if (!empty($title) && empty($location)):
+            if (!empty($title) && empty($location)) :
                 $queryGet->where(function ($query) use ($title) {
                     $query
                         ->where('jobs.title', 'LIKE', "%$title%");
@@ -219,7 +219,8 @@ class JobModel extends Model
     }
 
     // Xử lý lấy data chi tiết
-    public function handleGetDetail($jobId) {
+    public function handleGetDetail($jobId)
+    {
         $queryGet = $this->db->table('jobs')
             ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.slug, jobs.form_work, jobs.location, 
                 jobs.salary, jobs.deadline, jobs.rank, jobs.degree_required, jobs.view_count,
@@ -239,7 +240,8 @@ class JobModel extends Model
     }
 
     // Xử lý hàm tăng view
-    public function handleSetViewCount($jobId) {
+    public function handleSetViewCount($jobId)
+    {
         $queryGet = $this->db->table('jobs')
             ->select('view_count')
             ->where('id', '=', $jobId)
@@ -247,18 +249,18 @@ class JobModel extends Model
 
         $check = false;
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $view = $queryGet['view_count'];
             $view++;
             $check = true;
-        else:
-            if (is_array($queryGet)):
+        else :
+            if (is_array($queryGet)) :
                 $view = 1;
                 $check = true;
             endif;
         endif;
 
-        if ($check):
+        if ($check) :
             $dataUpdate = [
                 'view_count' => $view
             ];
@@ -270,7 +272,8 @@ class JobModel extends Model
     }
 
     // Xử lý lấy data ngẫu nhiên
-    public function handleRandomData($jobField = '') {
+    public function handleRandomData($jobField = '')
+    {
 
         $queryGet = $this->db->table('jobs')
             ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.location, jobs.salary, 
@@ -279,20 +282,20 @@ class JobModel extends Model
             ->join('job_categories', 'jobs.job_category_id = job_categories.id')
             ->where('job_categories.name', '=', $jobField)
             ->get();
-        
+
         $length = count($queryGet);
 
-        if ($length != 0):
+        if ($length != 0) :
             $randomIndex = mt_rand(0, $length - 1);
 
             $queryGet = $this->db->table('jobs')
-            ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.location, jobs.salary, 
+                ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.location, jobs.salary, 
                 jobs.slug, jobs.exp_required, companies.name')
-            ->join('companies', 'jobs.company_id = companies.id')
-            ->join('job_categories', 'jobs.job_category_id = job_categories.id')
-            ->where('job_categories.name', '=', $jobField)
-            ->limit(3, $randomIndex)
-            ->get();
+                ->join('companies', 'jobs.company_id = companies.id')
+                ->join('job_categories', 'jobs.job_category_id = job_categories.id')
+                ->where('job_categories.name', '=', $jobField)
+                ->limit(3, $randomIndex)
+                ->get();
         endif;
 
         if (!empty($queryGet)) :
@@ -348,15 +351,15 @@ class JobModel extends Model
         return false;
     }
 
-     // Xử lý thêm việc làm
-     public function handleAddJob($avatarPath)
-     {
+    // Xử lý thêm việc làm
+    public function handleAddJob($avatarPath)
+    {
         $checkEmpty = $this->db->table('companies')
             ->select('id')
             ->where('name', '=', $_POST['company_name'])
             ->first();
 
-        if (empty($checkEmpty)):
+        if (empty($checkEmpty)) :
             $dataInsertCompany = [
                 'name' => $_POST['company_name'],
                 'location' => $_POST['company_location'],
@@ -367,8 +370,8 @@ class JobModel extends Model
 
             $insertStatusCompany = $this->db->table('companies')
                 ->insert($dataInsertCompany);
-            
-            if ($insertStatusCompany):
+
+            if ($insertStatusCompany) :
                 $dataInsertJob = [
                     'title' => $_POST['title'],
                     'slug' => $_POST['slug'],
@@ -390,7 +393,7 @@ class JobModel extends Model
                     'welfare' => $_POST['welfare'],
                     'create_at' => date('Y-m-d H:i:s'),
                 ];
-        
+
                 $insertStatusJob = $this->db->table('jobs')
                     ->insert($dataInsertJob);
 
@@ -398,7 +401,7 @@ class JobModel extends Model
                     return true;
                 endif;
             endif;
-        else:
+        else :
             $companyId = $checkEmpty['id'];
 
             $dataInsertJob = [
@@ -422,7 +425,7 @@ class JobModel extends Model
                 'welfare' => $_POST['welfare'],
                 'create_at' => date('Y-m-d H:i:s'),
             ];
-    
+
             $insertStatusJob = $this->db->table('jobs')
                 ->insert($dataInsertJob);
 
@@ -432,19 +435,20 @@ class JobModel extends Model
         endif;
 
         return false;
-     }
+    }
 
-     public function handleGetJobField() {
+    public function handleGetJobField()
+    {
         $queryGet = $this->db->table('job_categories')
             ->select('id, name')
             ->get();
-        
+
         $response = [];
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
 
         return $response;
-     }
+    }
 }

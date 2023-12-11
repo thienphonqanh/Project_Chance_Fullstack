@@ -4,20 +4,22 @@
         <form action="" method="post">
             <div class="row">
                 <div class="col-4">
-                    
+
                     <select class="form-select" name="category">
                         <option value="0">--- Tất cả danh mục ---</option>
-                    <?php 
+                        <?php 
                         if (!empty($allCategories)):
                             foreach ($allCategories as $item):
                     ?>
                         <option value="<?php echo $item['id']; ?>"
-                            <?php isset($request->getFields()['category']) && $request->getFields()['category'] === $item['id'] ? 'selected' : '' ?>><?php echo $item['name']; ?></option>
-                    <?php endforeach; endif; ?>
+                            <?php isset($request->getFields()['category']) && $request->getFields()['category'] === $item['id'] ? 'selected' : '' ?>>
+                            <?php echo $item['name']; ?></option>
+                        <?php endforeach; endif; ?>
                     </select>
                 </div>
                 <div class="col-5">
-                    <input type="search" name="keyword" class="form-control" placeholder="Nhập từ khoá (Tiêu đề, người đăng)..."
+                    <input type="search" name="keyword" class="form-control"
+                        placeholder="Nhập từ khoá (Tiêu đề, người đăng)..."
                         value="<?php isset($request->getFields()['keyword']) ?? '' ?>">
                 </div>
                 <div class="col-3">
@@ -70,9 +72,9 @@
                                 Sửa</a></td>
                     </tr>
                     <?php endforeach; else: ?>
-                        <tr>
-                            <td colspan="8" class="bg-danger text-white text-center">Không có dữ liệu</td>
-                        </tr>
+                    <tr>
+                        <td colspan="8" class="bg-danger text-white text-center">Không có dữ liệu</td>
+                    </tr>
                     <?php endif; ?>
                 </tbody>
             </table>

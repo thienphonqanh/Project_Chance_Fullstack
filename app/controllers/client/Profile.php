@@ -54,13 +54,14 @@ class Profile extends Controller
         $this->render('layouts/main.layout', $this->data, 'client');
     }
 
-    public function personalInformation() {
+    public function personalInformation()
+    {
         $userId = getIdUserLogin();
 
-        if (!empty($userId)):
+        if (!empty($userId)) :
             $result = $this->profileModel->handleGetPersonalInformation($userId);
 
-            if (!empty($result)):
+            if (!empty($result)) :
                 $information = $result;
 
                 $this->data['dataView']['information'] = $information;
@@ -73,7 +74,8 @@ class Profile extends Controller
         $this->render('layouts/main.layout', $this->data, 'client');
     }
 
-    public function editPersonalInformation() {
+    public function editPersonalInformation()
+    {
         $request = new Request();
 
         $data = $request->getFields();

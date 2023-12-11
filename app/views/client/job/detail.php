@@ -203,11 +203,13 @@
                                         src="<?php echo _WEB_ROOT.'/'.$subItem['thumbnail'] ?>" alt="">
                                 </div>
                                 <div class="special-span ms-2">
-                                    <span class="fs-6 fw-semibold special-content-1"><?php echo $subItem['title'] ?></span>
+                                    <span
+                                        class="fs-6 fw-semibold special-content-1"><?php echo $subItem['title'] ?></span>
                                     <span class="fs-6 special-content-1"><?php echo $subItem['name'] ?></span>
                                     <div class="d-flex mt-1">
                                         <i class="text-primary bi bi-geo-alt"></i>
-                                        <p class="fs-6 fw-semibold ms-2 m-0 special-content-1"><?php echo $subItem['location'] ?></p>
+                                        <p class="fs-6 fw-semibold ms-2 m-0 special-content-1">
+                                            <?php echo $subItem['location'] ?></p>
                                     </div>
                                     <div class="d-flex mt-1">
                                         <i class="text-primary bi bi-currency-dollar"></i>

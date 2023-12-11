@@ -80,7 +80,6 @@ btnPrevIndustries.onclick = function () {
   $(".industries-block").scrollLeft -= widthItem;
 };
 
-
 // Hàm hiển thị ảnh xem trước
 function previewImage() {
   var fileInput = document.getElementById("avatar-input");

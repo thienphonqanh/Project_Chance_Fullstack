@@ -12,7 +12,7 @@
             <?php if (!empty($dataProfile)) : ?>
             <div class="col-12">
                 <div id="avatar-preview" class="avatar mb-3">
-                <?php 
+                    <?php 
                     $root = _WEB_ROOT;
                     echo (!empty($dataProfile['thumbnail'])) ? 
                     '<img src="'.$root.'/'.$dataProfile['thumbnail'].'" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">' 

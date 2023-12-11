@@ -14,7 +14,7 @@
                         type="button" class="btn btn-primary px-4">Xem bài viết</a>
                 </div>
                 <div class="col-12">
-                <?php 
+                    <?php 
                     $root = _WEB_ROOT;
                     echo (!empty($item['thumbnail'])) ? 
                     '<img src="'.$root.'/'.$item['thumbnail'].'" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">' 
@@ -36,8 +36,7 @@
                         <label for="floatingInput">Đường dẫn <span class="text-danger fw-bold">*</span></label>
                     </div>
                     <div class="form-floating mb-3 text-start">
-                        <select class="form-select" 
-                            aria-label="Floating label select example" disabled>
+                        <select class="form-select" aria-label="Floating label select example" disabled>
                             <?php 
                                 if (!empty($allSubCategories)):
                                     foreach ($allSubCategories as $subItem):
@@ -53,8 +52,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-floating mb-3 text-start">
-                        <select class="form-select"
-                            aria-label="Floating label select example" disabled>
+                        <select class="form-select" aria-label="Floating label select example" disabled>
                             <?php 
                                 if (!empty($allCategories)):
                                     foreach ($allCategories as $subItem):
@@ -71,17 +69,20 @@
                 <div class="col-12">
                     <div class="form-group text-start">
                         <label for="descr">Mô tả ngắn</label>
-                        <textarea name="descr" rows="5" class="form-control" disabled><?php echo $item['descr'] ?></textarea>
+                        <textarea name="descr" rows="5" class="form-control"
+                            disabled><?php echo $item['descr'] ?></textarea>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-group text-start">
                         <label for="content">Nội dung bài viết <span class="text-danger fw-bold">*</span></label>
-                        <textarea name="content" rows="10" class="form-control editor" disabled><?php echo $item['content'] ?></textarea>
+                        <textarea name="content" rows="10" class="form-control editor"
+                            disabled><?php echo $item['content'] ?></textarea>
                     </div>
                 </div>
                 <div class="col-12 text-start mt-2">
-                    <a href="<?php echo _WEB_ROOT; ?>/handbooks/danh-sach" class="btn btn-md px-4 btn-danger">Quay lại</a>
+                    <a href="<?php echo _WEB_ROOT; ?>/handbooks/danh-sach" class="btn btn-md px-4 btn-danger">Quay
+                        lại</a>
                 </div>
             </div>
         </div>

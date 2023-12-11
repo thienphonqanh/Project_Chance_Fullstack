@@ -71,67 +71,70 @@ if (classTextArea !== null) {
 
 function loadMainCategories() {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', rootUrl + '/admin/handbook/getCategory', true);
-  xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-          var mainCategories = JSON.parse(xhr.responseText);
-          var mainCategoryDropdown = document.getElementById('mainCategory');
-          
-          mainCategories.forEach(function(category) {
-              var option = document.createElement('option');
-              option.value = category.id;
-              option.text = category.name;
-              mainCategoryDropdown.add(option);
-          });
+  xhr.open("GET", rootUrl + "/admin/handbook/getCategory", true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      var mainCategories = JSON.parse(xhr.responseText);
+      var mainCategoryDropdown = document.getElementById("mainCategory");
 
-          // Gọi hàm để load danh sách danh mục phụ cho danh mục chính đầu tiên
-          loadSubCategories();
-      }
+      mainCategories.forEach(function (category) {
+        var option = document.createElement("option");
+        option.value = category.id;
+        option.text = category.name;
+        mainCategoryDropdown.add(option);
+      });
+
+      // Gọi hàm để load danh sách danh mục phụ cho danh mục chính đầu tiên
+      loadSubCategories();
+    }
   };
   xhr.send();
 }
 
 function loadSubCategories() {
-  var mainCategoryId = document.getElementById('mainCategory').value;
-  var subCategoryDropdown = document.getElementById('subCategory');
+  var mainCategoryId = document.getElementById("mainCategory").value;
+  var subCategoryDropdown = document.getElementById("subCategory");
 
-  if (mainCategoryId == '0') {
-    subCategoryDropdown.innerHTML = '';
+  if (mainCategoryId == "0") {
+    subCategoryDropdown.innerHTML = "";
 
-    var defaultOptionSub = document.createElement('option');
-    defaultOptionSub.value = '0';
-    defaultOptionSub.text = 'Chọn danh mục';
+    var defaultOptionSub = document.createElement("option");
+    defaultOptionSub.value = "0";
+    defaultOptionSub.text = "Chọn danh mục";
     subCategoryDropdown.add(defaultOptionSub);
     subCategoryDropdown.disabled = true;
-
   } else {
     subCategoryDropdown.disabled = false;
   }
 
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', rootUrl + '/admin/handbook/getSubCategory?category=' + mainCategoryId, true);
-  xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-          var subCategories = JSON.parse(xhr.responseText);
+  xhr.open(
+    "GET",
+    rootUrl + "/admin/handbook/getSubCategory?category=" + mainCategoryId,
+    true
+  );
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      var subCategories = JSON.parse(xhr.responseText);
 
-          // Xóa tất cả các option cũ trong dropdown danh mục phụ
-          subCategoryDropdown.innerHTML = '';
+      // Xóa tất cả các option cũ trong dropdown danh mục phụ
+      subCategoryDropdown.innerHTML = "";
 
-          subCategories.forEach(function(category) {
-              var option = document.createElement('option');
-              option.value = category.id;
-              option.text = category.name;
-              subCategoryDropdown.add(option);
-          });
-      }
+      subCategories.forEach(function (category) {
+        var option = document.createElement("option");
+        option.value = category.id;
+        option.text = category.name;
+        subCategoryDropdown.add(option);
+      });
+    }
   };
   xhr.send();
 }
-var subCategoryDropdown = document.getElementById('subCategory');
+var subCategoryDropdown = document.getElementById("subCategory");
 
-if (subCategoryDropdown != null && subCategoryDropdown.value == 0){
-// Gọi hàm để load danh sách danh mục chính khi trang được tải
-loadMainCategories();
+if (subCategoryDropdown != null && subCategoryDropdown.value == 0) {
+  // Gọi hàm để load danh sách danh mục chính khi trang được tải
+  loadMainCategories();
 }
 
 // Xử lý chọn checkbox và button xoá
@@ -244,4 +247,3 @@ function deleteImage(thumbnail) {
   defaultImg.style.height = "130px";
   preview.appendChild(defaultImg);
 }
-
