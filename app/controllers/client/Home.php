@@ -13,6 +13,7 @@ class Home extends Controller
     {
         $jobCategory = $this->homeModel->handleGetJobCategory();
         $outstandingJob = $this->homeModel->handleGetOutstandingJob();
+        $someHandbooks = $this->homeModel->handleGetSomeHandbooks();
 
         if (!empty($jobCategory)) :
             $this->data['dataView']['jobCategory'] = $jobCategory;
@@ -20,6 +21,10 @@ class Home extends Controller
 
         if (!empty($outstandingJob)) :
             $this->data['dataView']['outstandingJob'] = $outstandingJob;
+        endif;
+
+        if (!empty($someHandbooks)):
+            $this->data['dataView']['someHandbooks'] = $someHandbooks;
         endif;
 
         $this->data['body'] = 'client/home/index';

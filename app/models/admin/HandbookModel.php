@@ -345,7 +345,7 @@ class HandbookModel extends Model {
         return $response;
     }
 
-    public function handleGetHandbookFromPage($categoryId) {
+    public function handleGetHandbookFromPageLimit($categoryId) {
         $queryGet = $this->db->table('handbooks')
             ->select('handbooks.id, handbooks.thumbnail, handbooks.slug, handbooks.title, 
                 handbooks.descr, handbook_sub_categories.name')
@@ -353,6 +353,24 @@ class HandbookModel extends Model {
             ->where('handbooks.handbook_category_id', '=', $categoryId)
             ->orderBy('handbooks.create_at', 'DESC')
             ->limit(6)
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)):
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetHandbookFromPage($categoryId) {
+        $queryGet = $this->db->table('handbooks')
+            ->select('handbooks.id, handbooks.thumbnail, handbooks.slug, handbooks.title, 
+                handbooks.descr, handbook_sub_categories.name')
+            ->join('handbook_sub_categories', 'handbooks.handbook_sub_category_id = handbook_sub_categories.id')
+            ->where('handbooks.handbook_category_id', '=', $categoryId)
+            ->orderBy('handbooks.create_at', 'DESC')
             ->get();
 
         $response = [];

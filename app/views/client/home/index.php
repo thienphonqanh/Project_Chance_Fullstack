@@ -217,30 +217,16 @@
             <h3 class="text-center">Cẩm Nang Nghề Nghiệp</h3>
             <p class="text-center">Những kinh nghiệm bạn có thể cần trong quá trình tìm kiếm và làm việc</p>
             <div class="handbook-block">
-                <a href="<?php echo _WEB_ROOT; ?>/cam-nang" class="handbook">
-                    <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/h-1.jpg" class="img-fluid" alt="">
-                    <p class="text-dark">Vì sao nhiều người trẻ bỏ việc văn phòng, ước mơ làm việc tự do thu nhập trăm
-                        củ?</p>
-                    <span class="text-dark">Người trẻ chán việc văn phòng không phải chỉ vì lý do lương thấp. Kỳ thực,
-                        chỉ cần bạn có năng lực tốt, dù làm việc ở văn phòng hay làm việc tự do, bạn đều có thể
-                        đạt...</span>
+            <?php 
+                if (!empty($someHandbooks)):
+                    foreach ($someHandbooks as $item):
+            ?>
+                <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>" class="handbook">
+                    <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" class="img-fluid" alt="">
+                    <p class="text-dark"><?php echo $item['title'] ?></p>
+                    <span class="special-content text-dark fw-lighter fs-5"><?php echo $item['descr']; ?></span>
                 </a>
-
-                <a href="<?php echo _WEB_ROOT; ?>/cam-nang" class="handbook">
-                    <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/h-2.jpg" class="img-fluid" alt="">
-                    <p class="text-dark">6 điều cần chuẩn bị trước khi nghỉ việc mà người lao động cần biết</p>
-                    <span class="text-dark">Xin nghỉ việc bao giờ cũng là một quyết định quan trọng, mang ý nghĩa “sống
-                        còn” trong sự nghiệp của mỗi người. Nhưng khoan hãy nóng vội, dù là chuyện gì cũng cần
-                        có...</span>
-                </a>
-
-                <a href="<?php echo _WEB_ROOT; ?>/cam-nang" class="handbook">
-                    <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/h-3.jpg" class="img-fluid" alt="">
-                    <p class="text-dark">Các khoản thu nhập không phải đóng BHXH mà người lao động cần biết</p>
-                    <span class="text-dark">Khi tham gia lao động tại bất kỳ công ty hay doanh nghiệp nào, bảo hiểm xã
-                        hội (BHXH) đã trở thành phúc lợi quan trọng trong việc đảm bảo cuộc sống ổn định cho...</span>
-                </a>
-
+            <?php endforeach; endif; ?>
             </div>
             <!-- <button type="button" class="btn-loadHandBook">Xem thêm cẩm nang nghề nghiệp</button> -->
             <a href="<?php echo _WEB_ROOT; ?>/cam-nang"

@@ -47,4 +47,20 @@ class HomeModel extends Model {
         return $response;
     }
 
+    public function handleGetSomeHandbooks() {
+        $queryGet = $this->db->table('handbooks')
+            ->select('id, thumbnail, slug, title, descr')
+            ->orderBy('create_at', 'DESC')
+            ->limit(3)
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)):
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
 }
