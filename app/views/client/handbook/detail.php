@@ -54,28 +54,32 @@
                         if (!empty($listNewJob)):
                             foreach ($listNewJob as $item):
                     ?>
-                    <div class="d-flex p-2 rounded border border-1 mt-3 text-dark">
-                        <div>
-                            <img width="35px" height="32px" class="border rounded"
-                                src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" alt="">
-                        </div>
-                        <div class="special-span ms-2">
-                            <span class="fs-6 fw-semibold special-content-1"><?php echo $item['title']; ?></span>
-                            <span class="fs-6 special-content-1"><?php echo $item['name']; ?></span>
-                            <div class="d-flex mt-1">
-                                <i class="text-primary bi bi-geo-alt"></i>
-                                <p class="fs-6 fw-semibold ms-2 m-0 special-content-1"><?php echo $item['location']; ?>
-                                </p>
+                    <div>
+                        <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id']; ?>">
+                            <div class="d-flex p-2 rounded border border-1 mt-3 text-dark">
+                                <div>
+                                    <img width="35px" height="32px" class="border rounded"
+                                        src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" alt="">
+                                </div>
+                                <div class="special-span ms-2">
+                                    <span class="fs-6 fw-semibold special-content-1"><?php echo $item['title']; ?></span>
+                                    <span class="fs-6 special-content-1"><?php echo $item['name']; ?></span>
+                                    <div class="d-flex mt-1">
+                                        <i class="text-primary bi bi-geo-alt"></i>
+                                        <p class="fs-6 fw-semibold ms-2 m-0 special-content-1"><?php echo $item['location']; ?>
+                                        </p>
+                                    </div>
+                                    <div class="d-flex mt-1">
+                                        <i class="text-primary bi bi-currency-dollar"></i>
+                                        <p class="fs-6 fw-semibold ms-2 m-0"><?php echo $item['salary']; ?></p>
+                                    </div>
+                                    <div class="d-flex mt-1">
+                                        <i class="text-primary bi bi-suitcase-lg"></i>
+                                        <p class="fs-6 fw-semibold ms-2 m-0"><?php echo $item['exp_required']; ?></p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="d-flex mt-1">
-                                <i class="text-primary bi bi-currency-dollar"></i>
-                                <p class="fs-6 fw-semibold ms-2 m-0"><?php echo $item['salary']; ?></p>
-                            </div>
-                            <div class="d-flex mt-1">
-                                <i class="text-primary bi bi-suitcase-lg"></i>
-                                <p class="fs-6 fw-semibold ms-2 m-0"><?php echo $item['exp_required']; ?></p>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                     <?php endforeach; endif; ?>
                 </div>
@@ -91,7 +95,7 @@
     <div class="same-category p-4">
         <div class="container-lg">
             <?php if (!empty($listSameCategory)): ?>
-            <h4>Cùng chuyên mục</h4>
+            <h3>Cùng chuyên mục</h3>
             <?php endif;?>
             <div class="row">
                 <?php 

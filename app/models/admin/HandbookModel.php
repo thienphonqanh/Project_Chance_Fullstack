@@ -286,7 +286,7 @@ class HandbookModel extends Model {
     public function handleGetListNewJob() {
         $queryGet = $this->db->table('jobs')
             ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.location, jobs.salary, 
-                jobs.exp_required, companies.name')
+                jobs.slug, jobs.exp_required, companies.name')
             ->join('companies', 'jobs.company_id = companies.id')
             ->join('job_categories', 'jobs.job_category_id = job_categories.id')
             ->orderBy('jobs.create_at', 'DESC')
