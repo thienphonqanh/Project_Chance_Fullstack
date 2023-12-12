@@ -100,6 +100,50 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-12 col-md-11 col-sm-11 col-11 m-auto bg-white ms-lg-auto shadow-lg rounded-3 mt-4 p-3 h-auto">
+                <h4 class="text-center">Việc làm đã ứng tuyển</h4>
+            <?php 
+                if (!empty($listJobApplied)):
+            ?>
+                <table class="table table-striped mt-2">
+                    <thead>
+                        <tr>
+                            <th width="5%">#</th>
+                            <th>Việc làm</th>
+                            <th>Công ty</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                <?php 
+                    $count = 0;
+                    foreach ($listJobApplied as $item):
+                        $count++;
+                ?>
+                    <tbody>
+                        <tr>
+                            <th><?php echo $count; ?></th>
+                            <td><?php echo $item['title']; ?></td>
+                            <td><?php echo $item['name']; ?></td>
+                            <?php  
+                                if ($item['status'] === 1):
+                                    echo '<td><button class="btn btn-success btn-sm">Đã duyệt</button></td>';
+                                elseif($item['status'] == 2):
+                                    echo '<td><button class="btn btn-danger btn-sm">Bị loại</button></td>';
+                                else:
+                                    echo '<td><button class="btn btn-warning btn-sm">Chờ duyệt</button></td>';
+                                endif;
+                            ?>
+                        </tr>
+                    </tbody>
+                <?php endforeach; ?>
+                </table>
+            <?php else: ?>
+                <div class="m-auto text-center border border-2 w-50 p-2 rounded-2">
+                    <h5>Bạn chưa ứng tuyển việc làm nào</h5>
+                    <p>Hãy nhanh tay ứng tuyển vào những công việc yêu thích của bản thân</p>
+                </div>
+            <?php endif; ?>
+            </div>
         </div>
     </div>
 </section>

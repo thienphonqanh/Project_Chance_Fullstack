@@ -126,4 +126,21 @@ class ProfileModel extends Model {
         return false;
     }
 
+    public function handleGetJobApplied($userId) {
+        $queryGet = $this->db->table('job_applications')
+            ->select('job_applications.id, job_applications.status, jobs.title, companies.name')
+            ->join('jobs', 'job_applications.job_id = jobs.id')
+            ->join('companies', 'jobs.company_id = companies.id')
+            ->where('job_applications.candidate_id', '=', $userId)
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)):
+            $response = $queryGet;
+        endif;
+        
+        return $response;
+    }
+
 }

@@ -60,11 +60,18 @@ class Profile extends Controller
 
         if (!empty($userId)) :
             $result = $this->profileModel->handleGetPersonalInformation($userId);
+            $jobApplied = $this->profileModel->handleGetJobApplied($userId);
 
             if (!empty($result)) :
                 $information = $result;
 
                 $this->data['dataView']['information'] = $information;
+            endif;
+
+            if (!empty($jobApplied)) :
+                $listJobApplied = $jobApplied;
+
+                $this->data['dataView']['listJobApplied'] = $listJobApplied;
             endif;
         endif;
 
@@ -277,4 +284,5 @@ class Profile extends Controller
         $this->data['dataView']['old'] = Session::flash('chance_session_old');
         $this->render('layouts/main.layout', $this->data, 'client');
     }
+
 }
