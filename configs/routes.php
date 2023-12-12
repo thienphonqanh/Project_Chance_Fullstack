@@ -68,11 +68,12 @@ $routes['handbooks/them-moi'] = 'admin/handbook/addHandbook';
 $routes['handbooks/danh-sach/thong-tin'] = 'admin/handbook/viewHandbook';
 $routes['handbooks/danh-sach/chinh-sua'] = 'admin/handbook/updateHandbook';
 $routes['handbooks/danh-sach/xoa'] = 'admin/handbook/delete';
-
 $routes['admin/handbook/getCategory'] = 'admin/handbook/getCategory';
 $routes['admin/handbook/getSubCategory'] = 'admin/handbook/getSubCategory';
 
-
+// Dashboard - Quản lý liên hệ
+$routes['contacts'] = 'admin/contact';
+$routes['contacts/danh-sach'] = 'admin/contact/getListContact';
 
 /*
     Route trang user

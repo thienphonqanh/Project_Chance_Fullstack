@@ -61,8 +61,13 @@
                     <div class="d-flex align-items-lg-center align-items-sm-center align-items-md-center 
                             w-100 mt-3 flex-lg-row flex-md-row flex-sm-row flex-column">
                         <div class="d-flex align-items-center">
+                            <?php 
+                                if (isLogin()):
+                            ?>
                             <a type="button" href="<?php echo _WEB_ROOT; ?>/ung-tuyen?id=<?php echo $item['id']; ?>" class="btn btn-primary px-4"><i class="bi bi-send"></i> Nộp hồ sơ</a>
-                            <!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"><i class="bi bi-send"></i> Nộp hồ sơ</button> -->
+                            <?php else: ?>
+                                <a type="button" href="<?php echo _WEB_ROOT; ?>/dang-nhap" class="btn btn-primary px-4"><i class="bi bi-send"></i> Nộp hồ sơ</a>
+                            <?php endif; ?>
                             <button class="btn btn-lg border-0 mt-2 fs-5"><i class="bi bi-heart"></i></button>
                         </div>
                         <p class="text-dark fs-6 fw-normal m-0 ms-lg-auto ms-md-auto ms-sm-auto "><i class="bi bi-eye"></i> Lượt xem
