@@ -13,6 +13,14 @@
   .google-map {
     height: 100%;
   }
+
+  .job-tab {
+    width: 25%;
+  }
+
+  .criteria {
+    width: 25%;
+  }
 }
 
 @media screen and (max-width: 991px) {
@@ -162,6 +170,14 @@
     width: 100vw;
     height: 100vh;
   }
+
+  .job-tab {
+    width: 25%;
+  }
+  
+  .criteria {
+    width: 25%;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -184,6 +200,14 @@
 
   .tilte-handbook {
     font-size: 28px;
+  }
+
+  .job-tab {
+    width: 25%;
+  }
+
+  .criteria {
+    width: 25%;
   }
 }
 
@@ -283,5 +307,17 @@
 
   .tilte-handbook {
     font-size: var(--h4-font-size);
+  }
+
+  .job-tab {
+    width: 50%;
+  }
+
+  .criteria {
+    width: 100%;
+  }
+  
+  .second-criteria {
+    width: 100%;
   }
 }

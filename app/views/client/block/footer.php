@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="site-footer">
+<footer class="site-footer mt-0">
     <div class="container">
         <div class="row">
 

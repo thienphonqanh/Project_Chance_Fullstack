@@ -96,9 +96,15 @@
                         <h4 class="text-center">Hồ sơ cá nhân</h4>
                         <p class="text-center fw-normal text-dark">Kiến tạo hồ sơ với bố cục chuẩn mực, chuyên nghiệp
                             cho các ngành nghề, được nhiều nhà tuyển dụng đề xuất.</p>
-                        <a href="#" type="button"
-                            class="discover-2 border border-primary btn btn-primary text-white d-block w-50 p-2 text-center m-auto rounded fw-bold fs-5">Khám
+                        <?php if (isUser()): ?>
+                            <a href="<?php echo _WEB_ROOT; ?>/thong-tin-ca-nhan" type="button"
+                                class="discover-2 border border-primary btn btn-primary text-white d-block w-50 p-2 text-center m-auto rounded fw-bold fs-5">Khám
                             phá</a>
+                        <?php else: ?>
+                            <a href="#" type="button"
+                                class="discover-2 border border-primary btn btn-primary text-white d-block w-50 p-2 text-center m-auto rounded fw-bold fs-5">Khám
+                            phá</a>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div

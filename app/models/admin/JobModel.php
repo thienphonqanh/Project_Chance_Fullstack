@@ -451,4 +451,39 @@ class JobModel extends Model
 
         return $response;
     }
+
+    public function handleRecruitment($userId, $jobId, $cvPath) {
+        $dataInsert = [
+            'candidate_id' => $userId, 
+            'job_id' => $jobId, 
+            'fullname' => $_POST['fullname'],
+            'email' => $_POST['email'],
+            'phone' => $_POST['phone'],
+            'cv_file' => $cvPath,
+            'letter' => $_POST['letter'],
+            'create_at' => date('Y-m-d H:i:s')
+        ];
+
+        $insertStatus = $this->db->table('job_applications')
+            ->insert($dataInsert);
+        
+        if ($insertStatus):
+            return true;
+        endif;
+
+        return false;
+    }
+
+    public function isJobId($jobId) {
+        $checkId = $this->db->table('jobs')
+            ->select('id')
+            ->where('id', '=', $jobId)
+            ->first();
+
+        if (!empty($checkId)):
+            return true;
+        endif;
+
+        return false;
+    }
 }

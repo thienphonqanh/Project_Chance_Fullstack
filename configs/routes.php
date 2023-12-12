@@ -81,3 +81,4 @@ $routes['admin/handbook/getSubCategory'] = 'admin/handbook/getSubCategory';
 $routes['doi-mat-khau'] = 'client/profile/changePassword';
 $routes['thong-tin-ca-nhan'] = 'client/profile/personalInformation';
 $routes['thong-tin-ca-nhan/chinh-sua'] = 'client/profile/editPersonalInformation';
+$routes['ung-tuyen'] = 'client/job/recruitment';

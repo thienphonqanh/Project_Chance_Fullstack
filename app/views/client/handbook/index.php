@@ -69,7 +69,7 @@
  </section>
 
  <!-- Nội dung chính -->
- <section class="section-main">
+ <section class="section-main pb-3">
      <div class="container-lg">
          <!-- Trạm sạc kỹ năng -->
          <div class="mt-2">

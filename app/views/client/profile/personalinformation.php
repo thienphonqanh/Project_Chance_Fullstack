@@ -1,4 +1,4 @@
-<section class="section-main profile-user">
+<section class="section-main profile-user pb-3">
     <div class="container-lg">
         <div class="row">
             <?php 

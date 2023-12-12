@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main pb-3">
     <?php 
         if (!empty($dataDetail)):
             foreach ($dataDetail as $item):
@@ -58,12 +58,14 @@
                                     class="text-dark"><?php echo $item['location']; ?></strong></p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center w-100 mt-3">
+                    <div class="d-flex align-items-lg-center align-items-sm-center align-items-md-center 
+                            w-100 mt-3 flex-lg-row flex-md-row flex-sm-row flex-column">
                         <div class="d-flex align-items-center">
-                            <button class="btn btn-primary btn-lg px-4"><i class="bi bi-send"></i> Nộp hồ sơ</button>
-                            <button class="btn btn-lg border-0 mt-2 fs-4"><i class="bi bi-heart"></i></button>
+                            <a type="button" href="<?php echo _WEB_ROOT; ?>/ung-tuyen?id=<?php echo $item['id']; ?>" class="btn btn-primary px-4"><i class="bi bi-send"></i> Nộp hồ sơ</a>
+                            <!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"><i class="bi bi-send"></i> Nộp hồ sơ</button> -->
+                            <button class="btn btn-lg border-0 mt-2 fs-5"><i class="bi bi-heart"></i></button>
                         </div>
-                        <p class="text-dark fs-6 fw-normal m-0 ms-auto"><i class="bi bi-eye"></i> Lượt xem
+                        <p class="text-dark fs-6 fw-normal m-0 ms-lg-auto ms-md-auto ms-sm-auto "><i class="bi bi-eye"></i> Lượt xem
                             <?php echo $item['view_count']; ?></p>
                     </div>
                 </div>
@@ -76,72 +78,72 @@
             <div class="row">
                 <div class="col-lg-9 col-md-12 col-sm-12 col-12 p-0">
                     <ul class="nav nav-tabs mt-4">
-                        <li class="nav-item w-25 border-primary border-top border-2">
+                        <li class="nav-item border-primary border-top border-2 job-tab">
                             <a class="nav-link active text-primary text-center rounded-0 fw-semibold" href="#">Chi tiết
                                 tin</a>
                         </li>
-                        <li class="nav-item w-25 bg-light">
+                        <li class="nav-item bg-light job-tab">
                             <a class="nav-link text-dark text-center fw-normal" href="#section-company">Công ty</a>
                         </li>
                     </ul>
-                    <div class="shadow-lg px-5 py-4 rounded">
+                    <div class="shadow-lg px-lg-5 px-md-5 px-sm-3 px-2 py-4 rounded">
                         <h4>Thông tin chung</h4>
                         <div class="general-information p-4 rounded">
-                            <div class="d-flex align-items-center">
-                                <div class="d-flex align-items-center w-25">
-                                    <i class="bi bi-calendar-check"></i>
+                            <div class="d-flex flex-column flex-lg-row flex-sm-row flex-lg-row align-items-center">
+                                <div class="d-flex align-items-center criteria">
+                                    <i class="bi bi-calendar-check text-primary"></i>
                                     <div class="ms-3">
                                         <p class="fs-6 fw-normal m-0">Ngày đăng</p>
                                         <p class="fs-6 fw-bold m-0">
                                             <?php echo getDateTimeFormat($item['create_at'], 'd-m-Y'); ?></p>
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center ms-5">
-                                    <i class="fa-solid fa-medal"></i>
+                                <div class="d-flex align-items-center ms-lg-5 ms-md-5 ms-sm-5 second-criteria">
+                                    <i class="fa-solid fa-medal text-primary"></i>
                                     <div class="ms-3">
                                         <p class="fs-6 fw-normal m-0">Cấp bậc</p>
                                         <p class="fs-6 fw-bold m-0"><?php echo $item['rank']; ?></p>
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <div class="d-flex align-items-center w-25">
-                                    <i class="bi bi-people"></i>
+                            <hr class="d-lg-block d-sm-block d-md-block d-none">
+                            <div class="d-flex flex-column flex-lg-row flex-sm-row flex-lg-row align-items-center">
+                                <div class="d-flex align-items-center criteria">
+                                    <i class="bi bi-people text-primary"></i>
                                     <div class="ms-3">
                                         <p class="fs-6 fw-normal m-0">Số lượng tuyển</p>
                                         <p class="fs-6 fw-bold m-0"><?php echo $item['number_recruits']; ?></p>
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center ms-5">
-                                    <i class="bi bi-brightness-high-fill"></i>
+                                <div class="d-flex align-items-center ms-lg-5 ms-md-5 ms-sm-5 second-criteria">
+                                    <i class="bi bi-brightness-high-fill text-primary"></i>
                                     <div class="ms-3">
                                         <p class="fs-6 fw-normal m-0">Hình thức làm việc</p>
                                         <p class="fs-6 fw-bold m-0"><?php echo $item['form_work']; ?></p>
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <div class="d-flex align-items-center w-25">
-                                    <i class="bi bi-mortarboard"></i>
+                            <hr class="d-lg-block d-sm-block d-md-block d-none">
+                            <div class="d-flex flex-column flex-lg-row flex-sm-row flex-lg-row align-items-center">
+                                <div class="d-flex align-items-center criteria">
+                                    <i class="bi bi-mortarboard text-primary"></i>
                                     <div class="ms-3">
                                         <p class="fs-6 fw-normal m-0">Yêu cầu bằng cấp</p>
                                         <p class="fs-6 fw-bold m-0"><?php echo $item['degree_required']; ?></p>
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center ms-5">
-                                    <i class="fa-solid fa-wand-sparkles"></i>
+                                <div class="d-flex align-items-center ms-lg-5 ms-md-5 ms-sm-5 second-criteria">
+                                    <i class="fa-solid fa-wand-sparkles text-primary"></i>
                                     <div class="ms-3">
                                         <p class="fs-6 fw-normal m-0">Yêu cầu kinh nghiệm</p>
                                         <p class="fs-6 fw-bold m-0"><?php echo $item['exp_required']; ?></p>
                                     </div>
                                 </div>
                             </div>
-                            <hr>
+                            <hr class="d-lg-block d-sm-block d-md-block d-none">
                             <div class="d-flex align-items-center">
                                 <div class="d-flex align-items-center">
-                                    <i class="bi bi-suitcase-lg"></i>
+                                    <i class="bi bi-suitcase-lg text-primary"></i>
                                     <div class="ms-3">
                                         <p class="fs-6 fw-normal m-0">Ngành nghề</p>
                                         <p class="fs-6 fw-bold m-0 text-primary"><?php echo $item['jobField']; ?></p>
@@ -173,7 +175,7 @@
                             <?php echo $item['other_info']; ?>
                         </p>
                     </div>
-                    <div id="section-company" class="shadow-lg d-flex flex-column border rounded px-5 py-4 mt-3">
+                    <div id="section-company" class="shadow-lg d-flex flex-column border rounded px-lg-5 px-md-5 px-sm-3 px-2 py-4 mt-3">
                         <h4 class="mt-2"><?php echo $item['name']; ?></h4>
                         <div class="text-dark fw-normal">
                             <i class="text-primary bi bi-geo-alt pe-4"></i> <?php echo $item['company_location']; ?>
@@ -230,3 +232,9 @@
     </div>
     <?php endforeach; endif; ?>
 </div>
+<?php 
+    if (!empty($result)):
+        echo $result;
+    endif;
+?>
+

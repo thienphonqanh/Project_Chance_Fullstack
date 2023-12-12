@@ -31,7 +31,7 @@
 </section>
 
 <!-- Nội dung chính -->
-<section class="section-main">
+<section class="section-main pb-3">
     <div class="container-lg">
         <div class="row mt-lg-4">
             <?php
