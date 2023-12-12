@@ -14,8 +14,8 @@ class Contact extends Controller
         $request = new Request();
         $userId = getIdUserLogin();
 
-        if (!empty($userId)):
-            if ($request->isPost()):
+        if (!empty($userId)) :
+            if ($request->isPost()) :
                 $request->rules([
                     'fullname' => 'required|min:5',
                     'email' => 'required|email',
@@ -32,17 +32,17 @@ class Contact extends Controller
 
                 $validate = $request->validate();
 
-                if ($validate):
+                if ($validate) :
                     $result = $this->contactModel->handleContact($userId);
 
-                    if ($result):
+                    if ($result) :
                         Session::flash('msg', 'Gửi thành công. Chúng tôi sẽ liên hệ lại với bạn qua Email vừa cung cấp');
                         Session::flash('msg_type', 'success');
-                    else:
+                    else :
                         Session::flash('msg', 'Gửi thât bại');
                         Session::flash('msg_type', 'danger');
                     endif;
-                else:
+                else :
                     Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
                     Session::flash('msg_type', 'danger');
                 endif;
@@ -57,6 +57,5 @@ class Contact extends Controller
         $this->data['body'] = 'client/contact/index';
         $this->data['dataView'][''] = '';
         $this->render('layouts/main.layout', $this->data, 'client');
-
     }
 }

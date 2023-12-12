@@ -1,5 +1,6 @@
-<?php 
-class HandbookModel extends Model {
+<?php
+class HandbookModel extends Model
+{
     public function tableFill()
     {
         return '';
@@ -15,7 +16,8 @@ class HandbookModel extends Model {
         return '';
     }
 
-    public function handleAddHandbook($data, $avatarPath) {
+    public function handleAddHandbook($data, $avatarPath)
+    {
         $dataInsert = [
             'title' => $data['title'],
             'slug' => $data['slug'],
@@ -31,19 +33,20 @@ class HandbookModel extends Model {
         $insertStatus = $this->db->table('handbooks')
             ->insert($dataInsert);
 
-        if ($insertStatus):
+        if ($insertStatus) :
             return true;
         endif;
 
         return false;
     }
 
-    public function handleUpdateHandbook($data, $handbookId, $avatarPath) {
+    public function handleUpdateHandbook($data, $handbookId, $avatarPath)
+    {
         $queryGet = $this->db->table('handbooks')
             ->where('id', '=', $handbookId)
             ->first();
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $dataUpdate = [
                 'title' => $data['title'],
                 'slug' => $data['slug'],
@@ -55,16 +58,16 @@ class HandbookModel extends Model {
                 'content' => $_POST['content'],
                 'update_at' => date('Y-m-d H:i:s'),
             ];
-    
+
             $updateStatus = $this->db->table('handbooks')
                 ->where('handbooks.id', '=', $handbookId)
                 ->update($dataUpdate);
-    
-            if ($updateStatus):
+
+            if ($updateStatus) :
                 return true;
             endif;
         endif;
-        
+
         return false;
     }
 
@@ -79,21 +82,23 @@ class HandbookModel extends Model {
         return $queryDelete ? true : false;
     }
 
-    public function handleGetCategory() {
+    public function handleGetCategory()
+    {
         $queryGet = $this->db->table('handbook_categories')
             ->select('id, name, slug')
             ->get();
 
         $response = [];
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
 
         return $response;
     }
 
-    public function handleGetSubCategory($categoryId) {
+    public function handleGetSubCategory($categoryId)
+    {
         $queryGet = $this->db->table('handbook_sub_categories')
             ->select('id, name, slug')
             ->where('handbook_category_id', '=', $categoryId)
@@ -101,42 +106,45 @@ class HandbookModel extends Model {
 
         $response = [];
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
 
         return $response;
     }
 
-    public function handleGetAllCategory() {
+    public function handleGetAllCategory()
+    {
         $queryGet = $this->db->table('handbook_categories')
             ->select('id, name, slug')
             ->get();
 
         $response = [];
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
 
         return $response;
     }
 
-    public function handleGetAllSubCategory() {
+    public function handleGetAllSubCategory()
+    {
         $queryGet = $this->db->table('handbook_sub_categories')
             ->select('id, name, slug')
             ->get();
 
         $response = [];
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
 
         return $response;
     }
 
-    public function handleGetDetail($handbookId) {
+    public function handleGetDetail($handbookId)
+    {
         $queryGet = $this->db->table('handbooks')
             ->select('handbooks.title, handbooks.slug, handbooks.thumbnail, handbooks.descr, handbooks.create_at,
                 handbooks.content, handbooks.view_count, handbook_categories.name as main_category_name,
@@ -150,14 +158,15 @@ class HandbookModel extends Model {
 
         $response = [];
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
 
         return $response;
     }
 
-    public function handleGetListHandbook($filters = [], $keyword = '', $limit) {
+    public function handleGetListHandbook($filters = [], $keyword = '', $limit)
+    {
         $queryGet = $this->db->table('handbooks')
             ->select('handbooks.id, handbooks.title, handbooks.slug, handbooks.create_at, 
                 handbooks.view_count, handbook_categories.name as main_category_name, 
@@ -202,8 +211,9 @@ class HandbookModel extends Model {
         return $response;
     }
 
-     // Xử lý hàm tăng view
-     public function handleSetViewCount($handbookId) {
+    // Xử lý hàm tăng view
+    public function handleSetViewCount($handbookId)
+    {
         $queryGet = $this->db->table('handbooks')
             ->select('view_count')
             ->where('id', '=', $handbookId)
@@ -211,18 +221,18 @@ class HandbookModel extends Model {
 
         $check = false;
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $view = $queryGet['view_count'];
             $view++;
             $check = true;
-        else:
-            if (is_array($queryGet)):
+        else :
+            if (is_array($queryGet)) :
                 $view = 1;
                 $check = true;
             endif;
         endif;
 
-        if ($check):
+        if ($check) :
             $dataUpdate = [
                 'view_count' => $view
             ];
@@ -252,16 +262,17 @@ class HandbookModel extends Model {
         return $response;
     }
 
-    public function handleCheckHandbookId($handbookId) {
+    public function handleCheckHandbookId($handbookId)
+    {
         $queryGet = $this->db->table('handbooks')
             ->select('id')
             ->where('id', '=', $handbookId)
             ->first();
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             return true;
         endif;
-        
+
         return false;
     }
 
@@ -281,9 +292,10 @@ class HandbookModel extends Model {
 
         return $response;
     }
-    
+
     // Xử lý lấy danh sách việc làm mới
-    public function handleGetListNewJob() {
+    public function handleGetListNewJob()
+    {
         $queryGet = $this->db->table('jobs')
             ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.location, jobs.salary, 
                 jobs.slug, jobs.exp_required, companies.name')
@@ -292,7 +304,7 @@ class HandbookModel extends Model {
             ->orderBy('jobs.create_at', 'DESC')
             ->limit(10)
             ->get();
-        
+
         if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
@@ -300,7 +312,8 @@ class HandbookModel extends Model {
         return $response;
     }
 
-    public function handleGetListSameCategory($handbookId) {
+    public function handleGetListSameCategory($handbookId)
+    {
         $queryGetSubCategory = $this->db->table('handbooks')
             ->select('handbook_sub_category_id')
             ->where('handbooks.id', '=', $handbookId)
@@ -308,7 +321,7 @@ class HandbookModel extends Model {
 
         $response = [];
 
-        if (!empty($queryGetSubCategory)):
+        if (!empty($queryGetSubCategory)) :
             $queryGet = $this->db->table('handbooks')
                 ->select('handbooks.id, handbooks.title, handbooks.slug, 
                     handbooks.thumbnail, handbook_sub_categories.name')
@@ -319,7 +332,7 @@ class HandbookModel extends Model {
                 ->limit(4)
                 ->get();
 
-            if (!empty($queryGet)):
+            if (!empty($queryGet)) :
                 $response = $queryGet;
             endif;
         endif;
@@ -327,7 +340,8 @@ class HandbookModel extends Model {
         return $response;
     }
 
-    public function handleGetRandomHandbook() {
+    public function handleGetRandomHandbook()
+    {
         $queryGet = $this->db->table('handbooks')
             ->select('handbooks.id, handbooks.slug, handbooks.title, handbooks.thumbnail,
                 handbooks.descr, handbook_sub_categories.name')
@@ -338,14 +352,15 @@ class HandbookModel extends Model {
 
         $response = [];
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
 
         return $response;
     }
 
-    public function handleGetHandbookFromPageLimit($categoryId) {
+    public function handleGetHandbookFromPageLimit($categoryId)
+    {
         $queryGet = $this->db->table('handbooks')
             ->select('handbooks.id, handbooks.thumbnail, handbooks.slug, handbooks.title, 
                 handbooks.descr, handbook_sub_categories.name')
@@ -357,14 +372,15 @@ class HandbookModel extends Model {
 
         $response = [];
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
 
         return $response;
     }
 
-    public function handleGetHandbookFromPage($categoryId) {
+    public function handleGetHandbookFromPage($categoryId)
+    {
         $queryGet = $this->db->table('handbooks')
             ->select('handbooks.id, handbooks.thumbnail, handbooks.slug, handbooks.title, 
                 handbooks.descr, handbook_sub_categories.name')
@@ -375,7 +391,7 @@ class HandbookModel extends Model {
 
         $response = [];
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
 

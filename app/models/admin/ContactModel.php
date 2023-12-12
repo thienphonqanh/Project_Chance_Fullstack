@@ -1,5 +1,6 @@
-<?php 
-class ContactModel extends Model {
+<?php
+class ContactModel extends Model
+{
     public function tableFill()
     {
         return '';
@@ -15,20 +16,21 @@ class ContactModel extends Model {
         return '';
     }
 
-    public function handleGetListContact($filters = [], $keyword = '', $limit) {
+    public function handleGetListContact($filters = [], $keyword = '', $limit)
+    {
         $queryGet = $this->db->table('contacts')
             ->select('contacts.id, contacts.candidate_id, contacts.fullname, 
                 contacts.email, contacts.status, contacts.message, contacts.create_at')
             ->join('candidates', 'candidates.id = contacts.candidate_id');
-            
+
         $response = [];
         $checkNull = false;
-        
+
         if (!empty($filters)) :
             foreach ($filters as $key => $value) :
                 $queryGet->where($key, '=', $value);
             endforeach;
-        else:
+        else :
             $this->db->where = '';
         endif;
 
@@ -114,7 +116,8 @@ class ContactModel extends Model {
         return $queryDelete ? true : false;
     }
 
-    public function handleGetMessage($contactId) {
+    public function handleGetMessage($contactId)
+    {
         $queryGet = $this->db->table('contacts')
             ->select('message, fullname, email')
             ->where('id', '=', $contactId)
@@ -122,18 +125,19 @@ class ContactModel extends Model {
 
         $response = [];
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
 
         return $response;
     }
 
-    public function hanldeSendMessage($fullname, $email, $question) {
+    public function hanldeSendMessage($fullname, $email, $question)
+    {
         $subject = 'PHẢN HỒI CÂU HỎI';
         $content = 'Chào bạn: ' . ucwords($fullname) . '<br>';
-        $content .= 'Với tin nhắn: .'.$question.'. Chúng tôi xin phản hồi lại với bạn như sau:'.'<br>';
-        $content .= $_POST['reply'].'<br>';
+        $content .= 'Với tin nhắn: .' . $question . '. Chúng tôi xin phản hồi lại với bạn như sau:' . '<br>';
+        $content .= $_POST['reply'] . '<br>';
         $content .= 'Nếu có bất cứ vấn đề gì hãy liên hệ ngay cho chúng tôi.';
         $content .= 'Trân trọng!';
 

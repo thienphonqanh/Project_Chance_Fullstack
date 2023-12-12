@@ -1,6 +1,6 @@
 <div class="p-2">
     <div class="shadow-lg p-2 px-3 rounded-3">
-    <?php
+        <?php
         if (!empty($msg)) :
             echo '<div class="alert alert-' . $msgType . '">';
             echo $msg;
@@ -10,7 +10,8 @@
         <form method="post">
             <div class="form-group mt-2">
                 <label for="message">Tin nhắn của người dùng</label>
-                <textarea name="message" rows="4" class="form-control" disabled><?php echo (!empty($message)) ? $message : ''; ?></textarea>
+                <textarea name="message" rows="4" class="form-control"
+                    disabled><?php echo (!empty($message)) ? $message : ''; ?></textarea>
             </div>
             <div class="form-group mt-2">
                 <label for="message">Phản hồi</label>

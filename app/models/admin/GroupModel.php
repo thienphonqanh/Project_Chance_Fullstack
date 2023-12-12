@@ -313,7 +313,7 @@ class GroupModel extends Model
                     ];
                     break;
             endswitch;
-            
+
             $updateStatus = $this->db->table('admins')
                 ->where('id', '=', $userId)
                 ->update($dataUpdate);

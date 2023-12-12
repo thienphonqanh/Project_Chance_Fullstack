@@ -118,26 +118,27 @@ class Job extends Controller
         $this->render('layouts/main.layout', $this->data, 'client');
     }
 
-    public function recruitment() {
+    public function recruitment()
+    {
         $request = new Request();
         $response = new Response();
 
-        if (isUser()):
+        if (isUser()) :
             $userId = getIdUserLogin();
             $jobId = $_GET['id'];
-            
-            if (!empty($jobId)):
-                if ($this->jobModel->isJobId($jobId)):
-                    if($request->isPost()) :
+
+            if (!empty($jobId)) :
+                if ($this->jobModel->isJobId($jobId)) :
+                    if ($request->isPost()) :
                         if (empty($_FILES['upload-cv']['full_path'])) :
                             Session::flash('msg', 'Vui lòng upload file CV');
                             Session::flash('msg_type', 'danger');
-                        else:
+                        else :
                             $target_dir = "app/uploads/cv/";
                             $target_file = $target_dir . basename($_FILES["upload-cv"]["name"]);
                             $uploadOk = 1;
                             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-                
+
                             // Kiểm tra kích thước file
                             $sizeFile = 5 * 1024 * 1024;
                             if ($_FILES["upload-cv"]["size"] > $sizeFile) :
@@ -145,20 +146,20 @@ class Job extends Controller
                                 Session::flash('msg_type', 'danger');
                                 $uploadOk = 0;
                             endif;
-                
+
                             // Cho phép các định dạng file
-                            if($imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "docx") :
+                            if ($imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "docx") :
                                 Session::flash('msg', 'File không dúng định dạng');
                                 Session::flash('msg_type', 'danger');
                                 $uploadOk = 0;
                             endif;
-            
+
                             $request->rules([
-                                    'fullname' => 'required|min:6',
-                                    'email' => 'required|email',
-                                    'phone' => 'required|phone',
-                                ]);
-                    
+                                'fullname' => 'required|min:6',
+                                'email' => 'required|email',
+                                'phone' => 'required|phone',
+                            ]);
+
                             $request->message([
                                 'fullname.required' => 'Họ và tên không được để trống',
                                 'fullname.min' => 'Họ và tên phải có ít nhất 6 ký tự',
@@ -167,36 +168,36 @@ class Job extends Controller
                                 'phone.required' => 'Số điện thoại không được để trống',
                                 'phone.phone' => 'Định dạng số điện thoại không hợp lệ',
                             ]);
-                
+
                             $validate = $request->validate();
-                
+
                             // Kiểm tra nếu $uploadOk = 0
                             if ($uploadOk == 1) :
-                                if ($validate):
+                                if ($validate) :
                                     if (move_uploaded_file($_FILES["upload-cv"]["tmp_name"], $target_file)) :
-                                        if (!empty($userId) && !empty($jobId)):
+                                        if (!empty($userId) && !empty($jobId)) :
                                             $result = $this->jobModel->handleRecruitment($userId, $jobId, $target_file);
-            
-                                            if ($result):
+
+                                            if ($result) :
                                                 Session::flash('msg', 'Đã nộp thành công. Hãy chờ Nhà tuyển dụng thông báo đến bạn');
                                                 Session::flash('msg_type', 'success');
-                                            else:
+                                            else :
                                                 Session::flash('msg', 'Nộp thất bại');
                                                 Session::flash('msg_type', 'danger');
                                             endif;
                                         endif;
                                     endif;
-                                else:
+                                else :
                                     Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
                                     Session::flash('msg_type', 'danger');
                                 endif;
                             endif;
                         endif;
                     endif;
-                else:
+                else :
                     $response->redirect('tim-viec-lam');
                 endif;
-            else:
+            else :
                 $response->redirect('tim-viec-lam');
             endif;
 
@@ -205,12 +206,12 @@ class Job extends Controller
             $this->data['dataView']['msgType'] = Session::flash('msg_type');
             $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
             $this->data['dataView']['old'] = Session::flash('chance_session_old');
-        else:
+        else :
             $this->data['body'] = 'client/job/blockpermission';
             $this->data['dataView'][''] = '';
         endif;
-        
-        
+
+
         $this->render('layouts/main.layout', $this->data, 'client');
     }
 }

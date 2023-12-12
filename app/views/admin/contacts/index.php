@@ -18,7 +18,7 @@
                     </select>
                 </div>
                 <div class="col-5">
-                    <input type="search" name="keyword" class="form-control" placeholder="Nhập từ khoá (Tên, email)..." 
+                    <input type="search" name="keyword" class="form-control" placeholder="Nhập từ khoá (Tên, email)..."
                         value="<?php isset($request->getFields()['keyword']) ?? '' ?>">
                 </div>
                 <div class="col-3">
@@ -46,16 +46,17 @@
                         if (!empty($listContact)):
                             foreach ($listContact as $item):
                     ?>
-                            <tr>
-                                <td class="text-center">
-                                    <input type="checkbox" class="checkbox-item" name="item[]" value="<?php echo $item['id']; ?>">
-                                </td>
-                                <td class="text-center"><?php echo $item['fullname']; ?></td>
-                                <td class="text-center"><?php echo $item['email']; ?></td>
-                                <td class="text-center"><?php echo $item['message']; ?></td>
-                                <td class="text-center"><?php echo getDateTimeFormat($item['create_at'], 'd-m-Y'); ?></td>
-                                <td class="text-center">
-                                <?php
+                    <tr>
+                        <td class="text-center">
+                            <input type="checkbox" class="checkbox-item" name="item[]"
+                                value="<?php echo $item['id']; ?>">
+                        </td>
+                        <td class="text-center"><?php echo $item['fullname']; ?></td>
+                        <td class="text-center"><?php echo $item['email']; ?></td>
+                        <td class="text-center"><?php echo $item['message']; ?></td>
+                        <td class="text-center"><?php echo getDateTimeFormat($item['create_at'], 'd-m-Y'); ?></td>
+                        <td class="text-center">
+                            <?php
                                 switch ($item['status']):
                                     case 0:
                                         echo '<div class="dropdown">
@@ -92,14 +93,16 @@
                                         break;
                                 endswitch; 
                                 ?>
-                                </td>
-                                <td class="text-center"><a href="<?php echo _WEB_ROOT; ?>/contacts/danh-sach/tra-loi?id=<?php echo $item['id']; ?>" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> Trả lời</a></td>
-                            </tr>
+                        </td>
+                        <td class="text-center"><a
+                                href="<?php echo _WEB_ROOT; ?>/contacts/danh-sach/tra-loi?id=<?php echo $item['id']; ?>"
+                                class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> Trả lời</a></td>
+                    </tr>
                     <?php endforeach; else: ?>
-                        <tr>
-                            <td colspan="7" class="text-center bg-danger text-white">Không có dữ liệu</td>
-                        </tr>
-                        <?php endif; ?>
+                    <tr>
+                        <td colspan="7" class="text-center bg-danger text-white">Không có dữ liệu</td>
+                    </tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
             <div class="row">

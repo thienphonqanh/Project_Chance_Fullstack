@@ -43,12 +43,12 @@ class Contact extends Controller
 
         $links = $resultPaginate['link'];
 
-        if (!empty($result)):
+        if (!empty($result)) :
             $listContact = $result;
 
             $this->data['dataView']['listContact'] = $listContact;
         endif;
-         
+
 
         $this->data['body'] = 'admin/contacts/index';
         $this->data['dataView']['request'] = $request;
@@ -95,18 +95,19 @@ class Contact extends Controller
         endif;
     }
 
-    public function reply() {
+    public function reply()
+    {
         $request = new Request();
         $contactId = $_GET['id'];
 
-        if (!empty($contactId)):
+        if (!empty($contactId)) :
             $result = $this->contactModel->handleGetMessage($contactId);
 
-            if (!empty($result)):
+            if (!empty($result)) :
                 $message = $result['message'];
                 $this->data['dataView']['message'] = $message;
 
-                if ($request->isPost()):
+                if ($request->isPost()) :
                     $request->rules([
                         'reply' => 'required'
                     ]);
@@ -117,13 +118,13 @@ class Contact extends Controller
 
                     $validate = $request->validate();
 
-                    if ($validate):
+                    if ($validate) :
                         $sendMess = $this->contactModel->hanldeSendMessage($result['fullname'], $result['email'], $result['message']);
 
-                        if ($sendMess):
+                        if ($sendMess) :
                             Session::flash('msg', 'Phản hồi thành công');
                             Session::flash('msg_type', 'success');
-                        else:
+                        else :
                             Session::flash('msg', 'Phản hồi thất bại');
                             Session::flash('msg_type', 'danger');
                         endif;
@@ -139,5 +140,4 @@ class Contact extends Controller
         $this->data['dataView']['old'] = Session::flash('chance_session_old');
         $this->render('layouts/layout', $this->data, 'admin');
     }
-
 }

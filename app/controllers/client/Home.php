@@ -23,7 +23,7 @@ class Home extends Controller
             $this->data['dataView']['outstandingJob'] = $outstandingJob;
         endif;
 
-        if (!empty($someHandbooks)):
+        if (!empty($someHandbooks)) :
             $this->data['dataView']['someHandbooks'] = $someHandbooks;
         endif;
 

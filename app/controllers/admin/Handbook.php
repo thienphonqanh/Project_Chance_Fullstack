@@ -28,19 +28,19 @@ class Handbook extends Controller
         endif;
 
         $resultPaginate = $this->handbookModel->handleGetListHandbook($filters, $keyword ?? '', $this->config['page_limit']);
-        
+
         $allCategories = $this->handbookModel->handleGetAllCategory();
 
         $result = $resultPaginate['data'];
 
         $links = $resultPaginate['link'];
 
-        if (!empty($result)):
+        if (!empty($result)) :
             $listHandbook = $result;
             $this->data['dataView']['listHandbook'] = $listHandbook;
         endif;
 
-        if (!empty($allCategories)):
+        if (!empty($allCategories)) :
             $this->data['dataView']['allCategories'] = $allCategories;
         endif;
 
@@ -54,7 +54,7 @@ class Handbook extends Controller
     {
         $request = new Request();
 
-        if ($request->isPost()):
+        if ($request->isPost()) :
             $data = $request->getFields();
             $uploadOk = 1;
 
@@ -117,7 +117,7 @@ class Handbook extends Controller
 
             $validate = $request->validate();
 
-            if ($validate && $uploadOk == 1):
+            if ($validate && $uploadOk == 1) :
                 if (!empty($targetFile)) :
                     if (move_uploaded_file($_FILES["avatar-input"]["tmp_name"], $targetFile)) :
                         // Cập nhật đường dẫn ảnh đại diện vào database
@@ -126,7 +126,7 @@ class Handbook extends Controller
                 endif;
 
                 $result = $this->handbookModel->handleAddHandbook($data, $avatarPath);
-                
+
                 if ($result) :
                     Session::flash('msg', 'Thêm mới thành công');
                     Session::flash('msg_type', 'success');
@@ -134,7 +134,7 @@ class Handbook extends Controller
                     Session::flash('msg', 'Thêm mới thất bại');
                     Session::flash('msg_type', 'danger');
                 endif;
-            else:
+            else :
                 Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
                 Session::flash('msg_type', 'danger');
             endif;
@@ -148,29 +148,32 @@ class Handbook extends Controller
         $this->render('layouts/layout', $this->data, 'admin');
     }
 
-    public function getCategory() {
+    public function getCategory()
+    {
 
         $categories = $this->handbookModel->handleGetCategory();
 
-        if (!empty($categories)):
+        if (!empty($categories)) :
             echo json_encode($categories);
         endif;
     }
 
-    public function getSubCategory() {
+    public function getSubCategory()
+    {
 
-        if (!empty($_GET['category'])):
+        if (!empty($_GET['category'])) :
             $categoryId = $_GET['category'];
 
             $subCategories = $this->handbookModel->handleGetSubCategory($categoryId);
 
-            if (!empty($subCategories)):
+            if (!empty($subCategories)) :
                 echo json_encode($subCategories);
             endif;
         endif;
     }
 
-    public function viewHandbook() {
+    public function viewHandbook()
+    {
         $request = new Request();
 
         $data = $request->getFields();
@@ -187,11 +190,11 @@ class Handbook extends Controller
                 $this->data['dataView']['dataHandbook'] = $dataHandbook;
             endif;
 
-            if (!empty($allCategories)):
+            if (!empty($allCategories)) :
                 $this->data['dataView']['allCategories'] = $allCategories;
             endif;
 
-            if (!empty($allSubCategories)):
+            if (!empty($allSubCategories)) :
                 $this->data['dataView']['allSubCategories'] = $allSubCategories;
             endif;
 
@@ -200,7 +203,7 @@ class Handbook extends Controller
         $this->data['body'] = 'admin/handbooks/detail';
         $this->render('layouts/layout', $this->data, 'admin');
     }
-    
+
     public function updateHandbook()
     {
         $request = new Request();
@@ -209,7 +212,7 @@ class Handbook extends Controller
         $checkOld = $this->handbookModel->handleGetOld($handbookId);
         $oldThumbnail = $checkOld['thumbnail'];
 
-        if ($request->isPost()):
+        if ($request->isPost()) :
             $data = $request->getFields();
             $uploadOk = 1;
 
@@ -282,7 +285,7 @@ class Handbook extends Controller
 
             $validate = $request->validate();
 
-            if ($validate && $uploadOk == 1):
+            if ($validate && $uploadOk == 1) :
                 if (!empty($targetFile)) :
                     if (move_uploaded_file($_FILES["avatar-input"]["tmp_name"], $targetFile)) :
                         // Cập nhật đường dẫn ảnh đại diện vào database
@@ -291,7 +294,7 @@ class Handbook extends Controller
                 endif;
 
                 $result = $this->handbookModel->handleUpdateHandbook($data, $handbookId, $avatarPath);
-                
+
                 if ($result) :
                     Session::flash('msg', 'Thay đổi thành công');
                     Session::flash('msg_type', 'success');
@@ -299,7 +302,7 @@ class Handbook extends Controller
                     Session::flash('msg', 'Thay đổi thất bại');
                     Session::flash('msg_type', 'danger');
                 endif;
-            else:
+            else :
                 Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
                 Session::flash('msg_type', 'danger');
             endif;
@@ -317,11 +320,11 @@ class Handbook extends Controller
         $allCategories = $this->handbookModel->handleGetAllCategory();
         $allSubCategories = $this->handbookModel->handleGetAllSubCategory();
 
-        if (!empty($allCategories)):
+        if (!empty($allCategories)) :
             $this->data['dataView']['allCategories'] = $allCategories;
         endif;
 
-        if (!empty($allSubCategories)):
+        if (!empty($allSubCategories)) :
             $this->data['dataView']['allSubCategories'] = $allSubCategories;
         endif;
 
