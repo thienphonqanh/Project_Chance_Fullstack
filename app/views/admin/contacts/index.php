@@ -93,7 +93,7 @@
                                 endswitch; 
                                 ?>
                                 </td>
-                                <td class="text-center"><a href="" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> Trả lời</a></td>
+                                <td class="text-center"><a href="<?php echo _WEB_ROOT; ?>/contacts/danh-sach/tra-loi?id=<?php echo $item['id']; ?>" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> Trả lời</a></td>
                             </tr>
                     <?php endforeach; else: ?>
                         <tr>

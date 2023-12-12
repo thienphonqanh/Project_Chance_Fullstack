@@ -76,6 +76,7 @@ $routes['contacts'] = 'admin/contact';
 $routes['contacts/danh-sach'] = 'admin/contact/getListContact';
 $routes['contacts/danh-sach/trang-thai'] = 'admin/contact/changeStatus';
 $routes['contacts/danh-sach/xoa'] = 'admin/contact/delete';
+$routes['contacts/danh-sach/tra-loi'] = 'admin/contact/reply';
 
 /*
     Route trang user

@@ -113,4 +113,36 @@ class ContactModel extends Model {
 
         return $queryDelete ? true : false;
     }
+
+    public function handleGetMessage($contactId) {
+        $queryGet = $this->db->table('contacts')
+            ->select('message, fullname, email')
+            ->where('id', '=', $contactId)
+            ->first();
+
+        $response = [];
+
+        if (!empty($queryGet)):
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function hanldeSendMessage($fullname, $email, $question) {
+        $subject = 'PHẢN HỒI CÂU HỎI';
+        $content = 'Chào bạn: ' . ucwords($fullname) . '<br>';
+        $content .= 'Với tin nhắn: .'.$question.'. Chúng tôi xin phản hồi lại với bạn như sau:'.'<br>';
+        $content .= $_POST['reply'].'<br>';
+        $content .= 'Nếu có bất cứ vấn đề gì hãy liên hệ ngay cho chúng tôi.';
+        $content .= 'Trân trọng!';
+
+        $sendStatus = Mailer::sendMail($email, $subject, $content);
+
+        if ($sendStatus) :
+            return true;
+        endif;
+
+        return false;
+    }
 }

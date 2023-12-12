@@ -95,4 +95,49 @@ class Contact extends Controller
         endif;
     }
 
+    public function reply() {
+        $request = new Request();
+        $contactId = $_GET['id'];
+
+        if (!empty($contactId)):
+            $result = $this->contactModel->handleGetMessage($contactId);
+
+            if (!empty($result)):
+                $message = $result['message'];
+                $this->data['dataView']['message'] = $message;
+
+                if ($request->isPost()):
+                    $request->rules([
+                        'reply' => 'required'
+                    ]);
+
+                    $request->message([
+                        'reply.required' => 'Không được để trống'
+                    ]);
+
+                    $validate = $request->validate();
+
+                    if ($validate):
+                        $sendMess = $this->contactModel->hanldeSendMessage($result['fullname'], $result['email'], $result['message']);
+
+                        if ($sendMess):
+                            Session::flash('msg', 'Phản hồi thành công');
+                            Session::flash('msg_type', 'success');
+                        else:
+                            Session::flash('msg', 'Phản hồi thất bại');
+                            Session::flash('msg_type', 'danger');
+                        endif;
+                    endif;
+                endif;
+            endif;
+        endif;
+
+        $this->data['body'] = 'admin/contacts/reply';
+        $this->data['dataView']['msg'] = Session::flash('msg');
+        $this->data['dataView']['msgType'] = Session::flash('msg_type');
+        $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
+        $this->data['dataView']['old'] = Session::flash('chance_session_old');
+        $this->render('layouts/layout', $this->data, 'admin');
+    }
+
 }
