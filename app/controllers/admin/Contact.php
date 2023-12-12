@@ -55,4 +55,44 @@ class Contact extends Controller
         $this->data['dataView']['links'] = $links;
         $this->render('layouts/layout', $this->data, 'admin');
     }
+
+    public function changeStatus()
+    {
+        $request = new Request();
+        $response = new Response();
+
+        $data = $request->getFields();
+
+        if (!empty($data['id']) && !empty($data['action'])) :
+            $userId = $data['id'];
+            $action = $data['action'];
+
+            $result = $this->contactModel->handleChangeStatus($userId, $action); // Gọi xử lý ở Model
+
+            if ($result) :
+                $response->redirect('contacts/danh-sach');
+            endif;
+
+        endif;
+    }
+
+    public function delete()
+    {
+        $request = new Request();
+        $response = new Response();
+
+        $data = $request->getFields();
+
+        if (!empty($data)) :
+            $itemsToDelete = isset($data['item']) ? $data['item'] : [];
+            $itemsToDelete = implode(',', $itemsToDelete);
+
+            $result = $this->contactModel->handleDelete($itemsToDelete);
+
+            if ($result) :
+                $response->redirect('contacts/danh-sach');
+            endif;
+        endif;
+    }
+
 }

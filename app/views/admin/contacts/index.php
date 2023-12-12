@@ -28,7 +28,7 @@
             <input type="hidden" name="module" value="groups">
         </form>
         <hr>
-        <form action=" method="post" class="form-delete">
+        <form action="<?php echo _WEB_ROOT; ?>/contacts/danh-sach/xoa" method="post" class="form-delete">
             <table class="table table-bordered mt-4">
                 <thead>
                     <tr>
@@ -63,8 +63,8 @@
                                             Chưa xử lý
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="">Đã xử lý</a></li>
-                                                <li><a class="dropdown-item" href="">Loại bỏ</a></li>
+                                                <li><a class="dropdown-item" href="' . _WEB_ROOT . '/contacts/danh-sach/trang-thai?action=active&id=' . $item['id'] . '">Đã xử lý</a></li>
+                                                <li><a class="dropdown-item" href="' . _WEB_ROOT . '/contacts/danh-sach/trang-thai?action=unactive&id=' . $item['id'] . '">Loại bỏ</a></li>
                                             </ul>
                                         </div>';
                                         break;
@@ -74,8 +74,8 @@
                                             Đã xử lý
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="">Chờ xử lý</a></li>
-                                                <li><a class="dropdown-item" href="">Loại bỏ</a></li>
+                                                <li><a class="dropdown-item" href="' . _WEB_ROOT . '/contacts/danh-sach/trang-thai?action=inactive&id=' . $item['id'] . '">Chờ xử lý</a></li>
+                                                <li><a class="dropdown-item" href="' . _WEB_ROOT . '/contacts/danh-sach/trang-thai?action=unactive&id=' . $item['id'] . '">Loại bỏ</a></li>
                                             </ul>
                                         </div>';
                                         break;
@@ -85,8 +85,8 @@
                                             Đã loại bỏ
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="">Đã xử lý</a></li>
-                                                <li><a class="dropdown-item" href="">Chờ xử lý</a></li>
+                                                <li><a class="dropdown-item" href="' . _WEB_ROOT . '/contacts/danh-sach/trang-thai?action=active&id=' . $item['id'] . '">Đã xử lý</a></li>
+                                                <li><a class="dropdown-item" href="' . _WEB_ROOT . '/contacts/danh-sach/trang-thai?action=inactive&id=' . $item['id'] . '">Chờ xử lý</a></li>
                                             </ul>
                                         </div>';
                                         break;
@@ -107,7 +107,7 @@
                     <button type="submit" class="btn btn-danger delete-button" disabled>Xoá đã chọn (0)</button>
                 </div>
                 <div class="col-6">
-                    <nav class="d-flex justify-content-end"></nav>
+                    <nav class="d-flex justify-content-end"><?php echo $links ?></nav>
                 </div>
             </div>
         </form>

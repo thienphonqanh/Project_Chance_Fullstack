@@ -58,4 +58,59 @@ class ContactModel extends Model {
 
         return $response;
     }
+
+    public function handleChangeStatus($userId, $action)
+    {
+        $queryGet = $this->db->table('contacts')
+            ->select('status')
+            ->where('id', '=', $userId)
+            ->first();
+
+        if (!empty($queryGet)) :
+            if (!empty($action)) :
+                switch ($action):
+                    case 'active';
+                        $dataUpdate = [
+                            'status' => 1,
+                            'update_at' => date('Y-m-d H:i:s')
+                        ];
+                        break;
+                    case 'inactive';
+                        $dataUpdate = [
+                            'status' => 0,
+                            'update_at' => date('Y-m-d H:i:s')
+                        ];
+                        break;
+                    case 'unactive';
+                        $dataUpdate = [
+                            'status' => 2,
+                            'update_at' => date('Y-m-d H:i:s')
+                        ];
+                        break;
+                endswitch;
+            endif;
+
+
+            $updateStatus = $this->db->table('contacts')
+                ->where('id', '=', $userId)
+                ->update($dataUpdate);
+
+            if ($updateStatus) :
+                return true;
+            endif;
+        endif;
+
+        return false;
+    }
+
+    public function handleDelete($itemsToDelete = '')
+    {
+        $itemsToDelete = '(' . $itemsToDelete . ')';
+
+        $queryDelete = $this->db->table('contacts')
+            ->where('id', 'IN', $itemsToDelete)
+            ->delete();
+
+        return $queryDelete ? true : false;
+    }
 }

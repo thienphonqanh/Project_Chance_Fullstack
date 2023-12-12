@@ -74,6 +74,8 @@ $routes['admin/handbook/getSubCategory'] = 'admin/handbook/getSubCategory';
 // Dashboard - Quản lý liên hệ
 $routes['contacts'] = 'admin/contact';
 $routes['contacts/danh-sach'] = 'admin/contact/getListContact';
+$routes['contacts/danh-sach/trang-thai'] = 'admin/contact/changeStatus';
+$routes['contacts/danh-sach/xoa'] = 'admin/contact/delete';
 
 /*
     Route trang user
