@@ -7,7 +7,7 @@
         <?php if (!empty($secondPageHandbook)): ?>
         <div>
             <a
-                href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $secondPageHandbook[0]['slug'].'-'.$secondPageHandbook[0]['id']; ?>">
+                href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $secondPageHandbook[0]['slug'].'-'.$secondPageHandbook[0]['id'].'.html'; ?>">
                 <div class="row mt-4 w-full">
                     <div class="col-lg-6 ">
                         <img src="<?php echo _WEB_ROOT.'/'.$secondPageHandbook[0]['thumbnail']; ?>"
@@ -41,7 +41,7 @@
                 foreach ($secondPageHandbook as $item):
         ?>
             <div class="col-lg-4 col-md-4 mt-3">
-                <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>"
+                <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id'].'.html'; ?>"
                     class="handbook-item d-block">
                     <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" class="img-fluid rounded-3" alt="">
                     <div class="mt-2 w-100 px-3 py-2 d-flex flex-column">

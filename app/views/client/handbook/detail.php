@@ -55,7 +55,7 @@
                             foreach ($listNewJob as $item):
                     ?>
                     <div>
-                        <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id']; ?>">
+                        <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id'].'.html'; ?>">
                             <div class="d-flex p-2 rounded border border-1 mt-3 text-dark">
                                 <div>
                                     <img width="35px" height="32px" class="border rounded"
@@ -103,7 +103,7 @@
                     foreach ($listSameCategory as $item):
             ?>
                 <div class="col-lg-3 col-md-3">
-                    <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id'] ?>"
+                    <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id'].'.html'; ?>"
                         class="handbook-item d-block">
                         <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" class="img-fluid rounded-3" alt="">
                         <div class="mt-2 w-100 px-3 py-2 d-flex flex-column">

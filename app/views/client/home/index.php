@@ -166,7 +166,7 @@
                         ?>
                             <li class="job-thumb">
                                 <a
-                                    href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id']; ?>">
+                                    href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id'].'.html'; ?>">
                                     <div class="job-image-wrap bg-white shadow-lg">
                                         <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>"
                                             class="job-image img-fluid" alt="">
@@ -199,7 +199,7 @@
                                         </div>
 
                                         <div class="job-section-btn-wrap">
-                                            <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id']; ?>"
+                                            <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id'].'.html'; ?>"
                                                 class="btn-details">Ứng tuyển</a>
                                         </div>
                                     </div>
@@ -227,7 +227,7 @@
                 if (!empty($someHandbooks)):
                     foreach ($someHandbooks as $item):
             ?>
-                <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>"
+                <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id'].'.html'; ?>"
                     class="handbook">
                     <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" class="img-fluid" alt="">
                     <p class="text-dark"><?php echo $item['title'] ?></p>

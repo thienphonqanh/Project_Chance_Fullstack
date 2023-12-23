@@ -22,9 +22,9 @@ $routes['reset'] = 'auth/reset';
 */
 $routes['tim-viec-lam'] = 'client/job';
 $routes['chi-tiet-viec-lam'] = 'client/job/detail';
-$routes['chi-tiet-viec-lam/{jobTitle}-(\d+)'] = 'client/job/detail&id=$1';
+$routes['chi-tiet-viec-lam/{jobTitle}-(\d+).html'] = 'client/job/detail&id=$1.html';
 $routes['chi-tiet-bai-viet'] = 'client/handbook/detail';
-$routes['chi-tiet-bai-viet/{handbookTitle}-(\d+)'] = 'client/handbook/detail&id=$1';
+$routes['chi-tiet-bai-viet/{handbookTitle}-(\d+).html'] = 'client/handbook/detail&id=$1.html';
 
 
 $routes['cam-nang'] = 'client/handbook';

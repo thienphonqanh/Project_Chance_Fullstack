@@ -31,15 +31,25 @@
 <body class="<?php echo $page; ?>" id="top">
     <!-- Thanh header -->
     <nav class="navbar p-1 navbar-expand-lg">
+    <?php if (isUser() || !isLogin()): ?>
         <div class="container-lg flex-md-row-reverse flex-sm-row-reverse flex-row-reverse flex-lg-row">
+    <?php else: ?>
+        <div class="container-lg">
+    <?php endif; ?>
             <?php 
-                if (isLogin()): 
+                if (isLogin() && isUser()): 
             ?>
             <button class="btn d-lg-none d-sm-block d-md-block d-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
                 <div class="avatar-profile-edit text-center">
                     <img src="<?php echo _WEB_ROOT . '/' . getAvatarUserLogin(); ?>" height="38px" width="38px" class="avatar" alt="">
                 </div>
             </button>
+            <?php elseif (isLogin() && !isUser()): ?>
+                <div class="d-none">
+                    <a href="<?php echo _WEB_ROOT; ?>/dang-nhap">
+                        <i class="text-dark bi bi-person fs-2"></i>
+                    </a>
+                </div>
             <?php else: ?>
                 <div class="d-lg-none d-sm-block d-md-block d-block">
                     <a href="<?php echo _WEB_ROOT; ?>/dang-nhap">
@@ -90,7 +100,7 @@
 
                     <?php elseif (!isUser()) : ?>
 
-                        <li class="nav-item dropdown ms-lg-auto d-none d-sm-none d-md-none d-lg-block">
+                        <li class="nav-item dropdown ms-lg-auto">
                             <a class="nav-link dropdown-toggle d-flex flex-row align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="avatar-profile-edit text-center">
                                     <img src="<?php echo _WEB_ROOT . '/' . getAvatarUserLogin(); ?>" height="34px" width="34px" class="avatar" alt="">
@@ -130,4 +140,6 @@
     </nav>
     <?php
     $this->render($body, $dataView);
+    $this->render('block/sidebar_candidate', [], 'client');
     $this->render('block/footer', [], 'client');
+

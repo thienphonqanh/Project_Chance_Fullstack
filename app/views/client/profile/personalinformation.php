@@ -101,10 +101,11 @@
                 </div>
             </div>
             <div class="col-lg-12 col-md-11 col-sm-11 col-11 m-auto bg-white ms-lg-auto shadow-lg rounded-3 mt-4 p-3 h-auto">
-                <h4 class="text-center">Việc làm đã ứng tuyển</h4>
             <?php 
                 if (!empty($listJobApplied)):
             ?>
+                <h4 class="text-center">Việc làm đã ứng tuyển</h4>
+
                 <table class="table table-striped mt-2">
                     <thead>
                         <tr>
@@ -138,9 +139,9 @@
                 <?php endforeach; ?>
                 </table>
             <?php else: ?>
-                <div class="m-auto text-center border border-2 w-50 p-2 rounded-2">
-                    <h5>Bạn chưa ứng tuyển việc làm nào</h5>
-                    <p>Hãy nhanh tay ứng tuyển vào những công việc yêu thích của bản thân</p>
+                <div class="m-auto text-center w-50 p-2">
+                    <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/empty.webp" class="mt-3" alt="Ảnh">
+                    <h5 class="mt-3 text-secondary">Bạn chưa ứng tuyển việc làm nào</h5>
                 </div>
             <?php endif; ?>
             </div>

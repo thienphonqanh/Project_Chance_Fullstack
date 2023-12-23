@@ -1452,3 +1452,11 @@ nav[aria-label="breadcrumb"] {
   image-rendering: auto;
   border: 1px solid #000000;
 }
+
+.sidebar-candidates-header {
+  background: var(--section-bg-color);
+}
+
+.offcanvas-body ul {
+  list-style-type: none;
+}

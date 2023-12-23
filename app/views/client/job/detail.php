@@ -203,7 +203,7 @@
                     ?>
                     <div class="d-flex flex-column">
                         <a
-                            href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $subItem['slug'].'-'.$subItem['id']; ?>">
+                            href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $subItem['slug'].'-'.$subItem['id'].'.html'; ?>">
                             <div class="d-flex shadow p-2 rounded border mt-3 text-dark">
                                 <div>
                                     <img width="35px" height="32px" class="border rounded"

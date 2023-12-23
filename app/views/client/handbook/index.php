@@ -14,7 +14,7 @@
 
 
                  <a
-                     href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $randomHandbook[0]['slug'].'-'.$randomHandbook[0]['id']; ?>">
+                     href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $randomHandbook[0]['slug'].'-'.$randomHandbook[0]['id'].'.html'; ?>">
                      <div class="mt-3 w-100">
                          <img src="<?php echo _WEB_ROOT.'/'.$randomHandbook[0]['thumbnail'] ?>"
                              class="img-fluid rounded-4" alt="">
@@ -48,7 +48,7 @@
                      <div class="row">
                          <div class="col-lg-12 col-md-12 col-sm-6">
                              <a
-                                 href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>">
+                                 href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id'].'.html'; ?>">
                                  <div class="mt-2">
                                      <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>"
                                          class="img-fluid rounded-4" alt="">
@@ -87,7 +87,7 @@
                             foreach ($secondPageHandbook as $item):
                     ?>
                      <div class="col-lg-4 col-md-4 mt-3">
-                         <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>"
+                         <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id'].'.html'; ?>"
                              class="handbook-item d-block">
                              <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" class="img-fluid rounded-3"
                                  alt="">
@@ -121,7 +121,7 @@
                         foreach ($firstPageHandbook as $item):
                 ?>
                      <div class="col-lg-4 col-md-4 mt-3">
-                         <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>"
+                         <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id'].'.html'; ?>"
                              class="handbook-item d-block">
                              <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" class="img-fluid rounded-3"
                                  alt="">
@@ -155,7 +155,7 @@
                         foreach ($fourthPageHandbook as $item):
                 ?>
                      <div class="col-lg-4 col-md-4 mt-3">
-                         <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id']; ?>"
+                         <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id'].'.html'; ?>"
                              class="handbook-item d-block">
                              <img src="<?php echo _WEB_ROOT.'/'.$item['thumbnail']; ?>" class="img-fluid rounded-3"
                                  alt="">

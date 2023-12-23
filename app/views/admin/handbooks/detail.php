@@ -10,7 +10,7 @@
                     <h4 class="text-start fw-bold text-uppercase">Thông tin bài viết</h4>
                 </div>
                 <div class="col-6 text-end">
-                    <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo ($item['slug'].'-'.$item['id']); ?>"
+                    <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-bai-viet/<?php echo $item['slug'].'-'.$item['id'].'.html'; ?>"
                         type="button" class="btn btn-primary px-4">Xem bài viết</a>
                 </div>
                 <div class="col-12">
