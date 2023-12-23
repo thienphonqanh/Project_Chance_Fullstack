@@ -43,6 +43,21 @@ function getNameUserLogin()
     return false;
 }
 
+function getFirstName() 
+{
+    if (!empty(getNameUserLogin())):
+        $fullname = getNameUserLogin();
+        $fullname = explode(' ', $fullname);
+        $firstName = end($fullname);
+
+        if (!empty($firstName)):
+            return $firstName;
+        endif;
+    endif;
+
+    return false;
+}
+
 function getAvatarUserLogin()
 {
     if (getUserData() && !empty(getUserData()['thumbnail'])) :

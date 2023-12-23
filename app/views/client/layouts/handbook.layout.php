@@ -31,7 +31,23 @@
 <body class="<?php echo $page; ?>" id="top">
     <!-- Thanh header -->
     <nav class="navbar p-1 navbar-expand-lg">
-        <div class="container">
+        <div class="container-lg flex-md-row-reverse flex-sm-row-reverse flex-row-reverse flex-lg-row">
+            <?php 
+                if (isLogin()): 
+            ?>
+            <button class="btn d-lg-none d-sm-block d-md-block d-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                <div class="avatar-profile-edit text-center">
+                    <img src="<?php echo _WEB_ROOT . '/' . getAvatarUserLogin(); ?>" height="38px" width="38px" class="avatar" alt="">
+                </div>
+            </button>
+            <?php else: ?>
+                <div class="d-lg-none d-sm-block d-md-block d-block">
+                    <a href="<?php echo _WEB_ROOT; ?>/dang-nhap">
+                        <i class="text-dark bi bi-person fs-2"></i>
+                    </a>
+                </div>
+            <?php endif; ?>
+
             <a class="navbar-brand d-flex align-items-center" href="<?php echo _WEB_ROOT; ?>/cam-nang">
                 <div class="d-flex flex-column">
                     <strong class="logo-text">Chance</strong>
@@ -67,16 +83,21 @@
 
                     <?php if (!isLogin()) : ?>
 
-                        <li class="nav-item ms-lg-auto">
+                        <li class="nav-item ms-lg-auto d-lg-block d-sm-none d-md-none d-none">
                             <a class="nav-link handbook-login text-dark p-2 fw-bold" type="button" href="<?php echo _WEB_ROOT; ?>/dang-nhap"><i class="bi bi-person-circle p-1"></i> Đăng
                                 nhập</a>
                         </li>
 
                     <?php elseif (!isUser()) : ?>
 
-                        <li class="nav-item dropdown ms-lg-auto">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-person-circle m-2"></i> <?php echo getNameUserLogin(); ?>
+                        <li class="nav-item dropdown ms-lg-auto d-none d-sm-none d-md-none d-lg-block">
+                            <a class="nav-link dropdown-toggle d-flex flex-row align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="avatar-profile-edit text-center">
+                                    <img src="<?php echo _WEB_ROOT . '/' . getAvatarUserLogin(); ?>" height="34px" width="34px" class="avatar" alt="">
+                                </div>
+                                <span class="px-2 m-0">
+                                    <?php echo getFirstName(); ?>
+                                </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/admin">Trang quản trị</a></li>
@@ -86,9 +107,14 @@
 
                     <?php else : ?>
 
-                        <li class="nav-item dropdown ms-lg-auto">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-person-circle m-2"></i> <?php echo getNameUserLogin(); ?>
+                        <li class="nav-item dropdown ms-lg-auto d-none d-sm-none d-md-none d-lg-block">
+                            <a class="nav-link dropdown-toggle d-flex flex-row align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="avatar-profile-edit text-center">
+                                    <img src="<?php echo _WEB_ROOT . '/' . getAvatarUserLogin(); ?>" height="34px" width="34px" class="avatar" alt="">
+                                </div>
+                                <span class="px-2 m-0">
+                                    <?php echo getFirstName(); ?>
+                                </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>

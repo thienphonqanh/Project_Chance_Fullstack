@@ -357,7 +357,7 @@ nav[aria-label="breadcrumb"] {
 
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
-  color: var(--custom-btn-bg-color);
+  color: var(--custom-btn-bg-color) !important;
 }
 
 .dropdown-menu {
