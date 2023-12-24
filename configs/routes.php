@@ -83,6 +83,6 @@ $routes['contacts/danh-sach/tra-loi'] = 'admin/contact/reply';
 */
 // Trang người dùng
 $routes['doi-mat-khau'] = 'client/profile/changePassword';
-$routes['thong-tin-ca-nhan'] = 'client/profile/personalInformation';
-$routes['thong-tin-ca-nhan/chinh-sua'] = 'client/profile/editPersonalInformation';
+$routes['quan-ly-tai-khoan/tai-khoan'] = 'client/profile/editPersonalInformation';
+// $routes['thong-tin-ca-nhan/chinh-sua'] = 'client/profile/editPersonalInformation';
 $routes['ung-tuyen'] = 'client/job/recruitment';

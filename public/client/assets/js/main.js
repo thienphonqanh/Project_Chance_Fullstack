@@ -175,3 +175,9 @@ function deleteFile() {
   fileNameDisplay.innerText = '';
   deleteButton.style.display = 'none';
 }
+
+function editEmail() {
+  const inputEditEmail = document.querySelector('.input-edit-email')
+  inputEditEmail.style.display = 'block'
+}
+

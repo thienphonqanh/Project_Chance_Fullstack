@@ -54,33 +54,6 @@ class Profile extends Controller
         $this->render('layouts/main.layout', $this->data, 'client');
     }
 
-    public function personalInformation()
-    {
-        $userId = getIdUserLogin();
-
-        if (!empty($userId)) :
-            $result = $this->profileModel->handleGetPersonalInformation($userId);
-            $jobApplied = $this->profileModel->handleGetJobApplied($userId);
-
-            if (!empty($result)) :
-                $information = $result;
-
-                $this->data['dataView']['information'] = $information;
-            endif;
-
-            if (!empty($jobApplied)) :
-                $listJobApplied = $jobApplied;
-
-                $this->data['dataView']['listJobApplied'] = $listJobApplied;
-            endif;
-        endif;
-
-        $this->data['body'] = 'client/profile/personalinformation';
-        $this->data['dataView'][''] = '';
-        $this->data['page'] = 'user-profile-page';
-        $this->render('layouts/main.layout', $this->data, 'client');
-    }
-
     public function editPersonalInformation()
     {
         $request = new Request();
@@ -98,13 +71,13 @@ class Profile extends Controller
 
             if (empty($_FILES['avatar-input']['full_path'])) :
                 if (!empty($data['delete-image'])) :
-                    $avatarPath = 'public/client/assets/images/default_image.jpg';
+                    $avatarPath = 'public/client/assets/images/4259794-200.png';
                     $uploadOk = 1;
                 else :
                     if (!empty($oldThumbnail)) :
                         $avatarPath = $oldThumbnail;
                     else :
-                        $avatarPath = 'public/client/assets/images/default_image.jpg';
+                        $avatarPath = 'public/client/assets/images/4259794-200.png';
                     endif;
                     $uploadOk = 1;
                 endif;
@@ -268,16 +241,16 @@ class Profile extends Controller
         endif;
 
         if (!empty($userId)) :
-            $result = $this->profileModel->handleViewProfileCandidate($userId);
+            $result = $this->profileModel->handleGetPersonalInformation($userId);
 
             if (!empty($result)) :
-                $dataProfile = $result;
-                $this->data['dataView']['dataProfile'] = $dataProfile;
+                $information = $result;
+
+                $this->data['dataView']['information'] = $information;
             endif;
         endif;
 
-
-        $this->data['body'] = 'client/profile/personalinformation_edit';
+        $this->data['body'] = 'client/profile/personalinformation';
         $this->data['dataView']['msg'] = Session::flash('msg');
         $this->data['dataView']['msgType'] = Session::flash('msg_type');
         $this->data['dataView']['errors'] = Session::flash('chance_session_errors');

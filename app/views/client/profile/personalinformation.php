@@ -1,150 +1,141 @@
-<section class="section-main profile-user pb-3">
-    <div class="container-lg">
-        <div class="row">
-            <?php 
-                if (!empty($information)):
-            ?>
-            <div class="col-lg-3 col-md-11 col-sm-11 col-11 m-auto bg-white shadow-lg rounded-3 mt-4 p-3 h-auto">
-                <div class="text-center">
-                    <div class="avatar-profile-edit text-center p-3 mt-3">
-                        <img src="<?php echo _WEB_ROOT.'/'.$information['thumbnail']; ?>" height="100px" width="100px"
-                            class="avatar" alt="">
-                    </div>
-                    <h6><?php echo $information['fullname']; ?></h6>
-                    <hr class="m-auto mt-4">
-                    <div class="p-2">
-                        <div class="row">
-                            <div class="col-6 text-start px-3">
-                                <i class="text-info mx-1 bi bi-facebook"></i> Facebook
-                            </div>
-                            <div class="col-6 text-secondary">
-                                <?php echo $information['contact_facebook']; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="m-auto">
-                    <div class="p-2">
-                        <div class="row">
-                            <div class="col-6 text-start px-3">
-                                <i class="text-info mx-1 bi bi-twitter-x"></i> Twitter
-                            </div>
-                            <div class="col-6 text-secondary">
-                                <?php echo $information['contact_twitter']; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="m-auto">
-                    <div class="p-2">
-                        <div class="row">
-                            <div class="col-6 text-start px-3">
-                                <i class="text-info mx-1 bi bi-linkedin"></i> Linkedin
-                            </div>
-                            <div class="col-6 text-secondary">
-                                <?php echo $information['contact_linkedin']; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <a type="button"
-                        href="<?php echo _WEB_ROOT; ?>/thong-tin-ca-nhan/chinh-sua?id=<?php echo $information['id']; ?>"
-                        class="btn btn-primary mt-3 px-3">Chỉnh sửa</a>
-                </div>
+<aside class="sidebar-candidates mb-4">
+    <div class="d-flex">
+    <?php  
+        $this->render('block/sidebar_candidate', [], 'client');
+    ?>
+    <?php if (!empty($information)): ?>
+        <form method="post" style="width: 78%; height: auto;" class="m-auto" enctype="multipart/form-data">
+            <div class="w-100 text-start">
+                <h5 class="text-secondary">Xin chào, <span class="text-dark"><?php echo $information['fullname']; ?></span></h5>
             </div>
-            <?php endif; ?>
-            <div class="col-lg-8 col-md-11 col-sm-11 col-11 m-auto bg-white ms-lg-auto shadow-lg rounded-3 mt-4 p-3 h-auto">
-                <div class="row">
-                    <div class="col-12">
-                        <form action="">
-                            <div class="form-group d-flex flex-lg-row flex-md-row flex-sm-column 
-                                flex-column align-items-lg-center align-items-md-center mt-2">
-                                <label for="fullname" class="text-start px-lg-3 px-md-3 px-sm-1 px-1 w-50">Họ và tên</label>
-                                <input type="text" class="form-control" value="<?php echo $information['fullname']; ?>"
-                                    disabled>
-                            </div>
-                            <div class="form-group d-flex flex-lg-row flex-md-row flex-sm-column 
-                                flex-column align-items-lg-center align-items-md-center mt-2">
-                                <label for="email" class="text-start px-3 px-lg-3 px-md-3 px-sm-1 px-1 w-50">Email</label>
-                                <input type="email" class="form-control" value="<?php echo $information['email']; ?>"
-                                    disabled>
-                            </div>
-                            <div class="form-group d-flex flex-lg-row flex-md-row flex-sm-column 
-                                flex-column align-items-lg-center align-items-md-center mt-2">
-                                <label for="phone" class="text-start px-3 px-lg-3 px-md-3 px-sm-1 px-1 w-50">Số điện thoại</label>
-                                <input type="text" class="form-control" value="<?php echo $information['phone']; ?>"
-                                    disabled>
-                            </div>
-                            <div class="form-group d-flex flex-lg-row flex-md-row flex-sm-column 
-                                flex-column align-items-lg-center align-items-md-center mt-2">
-                                <label for="dob" class="text-start px-3 px-lg-3 px-md-3 px-sm-1 px-1 w-50">Ngày sinh</label>
-                                <input type="date" class="form-control" value="<?php echo $information['dob']; ?>"
-                                    disabled>
-                            </div>
-                            <div class="form-group d-flex flex-lg-row flex-md-row flex-sm-column 
-                                flex-column align-items-lg-center align-items-md-center mt-2">
-                                <label for="fullname" class="text-start px-3 px-lg-3 px-md-3 px-sm-1 px-1 w-50">Giới tính</label>
-                                <select name="" class="form-control" disabled>
-                                    <option value="1" <?php echo ($information['gender'] == '1') ? 'selected' : ''; ?>>
-                                        Nam</option>
-                                    <option value="2" <?php echo ($information['gender'] == '2') ? 'selected' : ''; ?>>
-                                        Nữ</option>
-                                    <option value="3" <?php echo ($information['gender'] == '3') ? 'selected' : ''; ?>>
-                                        Khác</option>
-                                </select>
-                            </div>
-                            <div class="form-group d-flex flex-lg-row flex-md-row flex-sm-column 
-                                flex-column align-items-lg-center align-items-md-center mt-2">
-                                <label for="dob" class="text-start px-3 px-lg-3 px-md-3 px-sm-1 px-1 w-50">Giới thiệu bản thân</label>
-                                <textarea name="" rows="7" class="form-control"
-                                    disabled><?php echo $information['about_content']; ?></textarea>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 col-md-11 col-sm-11 col-11 m-auto bg-white ms-lg-auto shadow-lg rounded-3 mt-4 p-3 h-auto">
-            <?php 
-                if (!empty($listJobApplied)):
+            <?php
+            if (!empty($msg)) :
+                echo '<div class="alert alert-' . $msgType . '">';
+                echo $msg;
+                echo '</div>';
+            endif;
             ?>
-                <h4 class="text-center">Việc làm đã ứng tuyển</h4>
+            <div class="shadow p-2 rounded-2">
+                <h5 class="p-0 m-0 py-2 px-4">Thông tin đăng ký</h5>
+                <hr class="p-0 m-0">
+                <div class="form-group row align-items-center py-4">
+                    <div class="col-lg-2 text-center">
+                        <label for="email" class="w-25 fw-semibold">Email</label>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="input-group w-50">
+                            <input type="email" name="email" class="form-control border-0" value="<?php echo $information['email']; ?>" disabled>
+                            <span class="input-group-text p-0 m-0 px-2" style="background-color: #e9ecef;"><i class="text-primary bi bi-check-circle"></i></span>
+                        </div>
 
-                <table class="table table-striped mt-2">
-                    <thead>
-                        <tr>
-                            <th width="5%">#</th>
-                            <th>Việc làm</th>
-                            <th>Công ty</th>
-                            <th>Trạng thái</th>
-                        </tr>
-                    </thead>
-                <?php 
-                    $count = 0;
-                    foreach ($listJobApplied as $item):
-                        $count++;
-                ?>
-                    <tbody>
-                        <tr>
-                            <th><?php echo $count; ?></th>
-                            <td><?php echo $item['title']; ?></td>
-                            <td><?php echo $item['name']; ?></td>
-                            <?php  
-                                if ($item['status'] === 1):
-                                    echo '<td><button class="btn btn-success btn-sm">Đã duyệt</button></td>';
-                                elseif($item['status'] == 2):
-                                    echo '<td><button class="btn btn-danger btn-sm">Bị loại</button></td>';
-                                else:
-                                    echo '<td><button class="btn btn-warning btn-sm">Chờ duyệt</button></td>';
-                                endif;
+                        <div class="form-group w-50">
+                            <input type="email" name="email" class="form-control input-edit-email border-1 border-primary mt-3" style="display: none;" value="<?php echo $information['email']; ?>">
+                            <?php 
+                                if (!empty(form_error('email', $errors, '<span class="fst-italic fs-6 text-danger px-2">', '</span>'))):
                             ?>
-                        </tr>
-                    </tbody>
-                <?php endforeach; ?>
-                </table>
-            <?php else: ?>
-                <div class="m-auto text-center w-50 p-2">
-                    <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/empty.webp" class="mt-3" alt="Ảnh">
-                    <h5 class="mt-3 text-secondary">Bạn chưa ứng tuyển việc làm nào</h5>
+                            <input type="email" name="email" class="form-control border-1 border-primary mt-3" value="<?php echo $information['email']; ?>">
+                            <?php endif; ?>
+                            <?php echo form_error('email', $errors, '<span class="fst-italic fs-6 text-danger px-2">', '</span>') ?>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <button class="btn border border-primary text-primary" type="button" onclick="editEmail()"><i class="bi bi-pencil"></i> Sửa email</button>
+                    </div>
                 </div>
-            <?php endif; ?>
             </div>
-        </div>
+            <div class="shadow p-2 rounded-2 mt-3">
+                <h5 class="p-0 m-0 py-2 px-4">Thông tin cá nhân</h5>
+                <hr class="p-0 m-0">
+                <p class="fw-semibold text-dark fs-6 p-0 px-4 mt-3">Ảnh đại diện</p>
+                <div class="form-group d-flex align-items-center">
+                    <div id="avatar-preview" class="avatar px-3 text-start">
+                        <?php 
+                        $root = _WEB_ROOT;
+                        echo (!empty($information['thumbnail'])) ? 
+                        '<img src="'.$root.'/'.$information['thumbnail'].'" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">' 
+                        : 
+                        '<img src="'.$root.'/public/client/assets/images/4259794-200.png" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">';
+                    ?>
+                    </div>
+                    <div>
+                        <input type="file" name="avatar-input" id="avatar-input" accept="image/*" onchange="previewImage()" class="d-none">
+                        <label for="avatar-input" class="text-primary border border-1 px-4 py-2 border-primary rounded-2 btn-upload-avatar"><i class="bi bi-upload"></i> Tải ảnh lên</label>
+                        <label onclick="deleteImage('4259794-200.png')" for="delete-image"
+                            class="text-danger px-3 border border-1 rounded-2 px-4 py-2 border-danger btn-delete-avatar">Xoá</label>
+                        <input style="display: none;" id="delete-image">
+                        <p class="fw-normal fs-6 mt-2">Chỉ chấp nhận ảnh có định dạng .JPG, .JPEG, .PNG</p>
+                    </div>
+                </div>
+                <hr width="95%" class="m-auto mt-4">
+                <div class="row p-4">
+                    <div class="col-lg-6">
+                        <div class="form-group mb-3">
+                            <label for="fullname" class="fw-semibold mb-2">Họ và tên</label>
+                            <input type="text" class="form-control" name="fullname" value="<?php echo $information['fullname']; ?>">
+                            <?php echo form_error('fullname', $errors, '<span class="fst-italic fs-6 text-danger px-2">', '</span>') ?>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="location" class="fw-semibold mb-2">Tỉnh/Thành phố</label>
+                            <input type="text" class="form-control" name="location" value="<?php echo $information['location']; ?>">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="gender" class="fw-semibold mb-2">Giới tính</label>
+                            <select name="gender" class="form-control">
+                                <option value="1" <?php echo ($information['gender'] == '1') ? 'selected' : ''; ?>>
+                                    Nam</option>
+                                <option value="2" <?php echo ($information['gender'] == '2') ? 'selected' : ''; ?>>
+                                    Nữ</option>
+                                <option value="3" <?php echo ($information['gender'] == '3') ? 'selected' : ''; ?>>
+                                    Khác</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group mb-3">
+                            <label for="dob" class="fw-semibold mb-2">Ngày sinh</label>
+                            <input type="date" class="form-control" name="dob" value="<?php echo $information['dob']; ?>">
+                            <?php echo form_error('dob', $errors, '<span class="fst-italic fs-6 text-danger px-2">', '</span>') ?>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="address" class="fw-semibold mb-2">Địa chỉ</label>
+                            <input type="text" class="form-control" name="address" value="<?php echo $information['address']; ?>">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="phone" class="fw-semibold mb-2">Số điện thoại</label>
+                            <input type="text" class="form-control" name="phone" value="<?php echo $information['phone']; ?>">
+                            <?php echo form_error('phone', $errors, '<span class="fst-italic fs-6 text-danger px-2">', '</span>') ?>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                    <div class="form-group mb-3">
+                        <label for="contact_facebook" class="fw-semibold mb-2">Link Facebook</label>
+                        <input type="text" class="form-control" name="contact_facebook" value="<?php echo $information['contact_facebook']; ?>">
+                    </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group mb-3">
+                            <label for="contact_twitter" class="fw-semibold mb-2">Link Twitter</label>
+                            <input type="text" class="form-control" name="contact_twitter" value="<?php echo $information['contact_twitter']; ?>">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group mb-3">
+                            <label for="contact_linkedin" class="fw-semibold mb-2">Link LinkedIn</label>
+                            <input type="text" class="form-control" name="contact_linkedin" value="<?php echo $information['contact_linkedin']; ?>">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group mb-3">
+                            <label for="about_content" class="fw-semibold mb-2">Giới thiệu bản thân</label>
+                            <textarea name="about_content" rows="6" class="form-control"><?php echo $information['about_content']; ?></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 text-end mt-3">
+                        <button type="submit" class="btn border border-1 border-primary py-2 px-5 text-primary btn-save-info">Lưu thông tin</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    <?php endif; ?>
     </div>
-</section>
+</aside>

@@ -1460,3 +1460,24 @@ nav[aria-label="breadcrumb"] {
 .offcanvas-body ul {
   list-style-type: none;
 }
+
+.sidebar-candidates ul {
+  list-style-type: none;
+}
+
+.btn-save-info:hover, .btn-upload-avatar:hover {
+  cursor: pointer;
+  background: var(--section-bg-color);
+  transition: .3s all;
+}
+
+.btn-delete-avatar:hover {
+  cursor: pointer;
+  transition: .3s all;
+  background: var(--custom-section-color);
+}
+
+.sidebar-candidates .collapse .active {
+  background: var(--section-bg-color);
+  
+}

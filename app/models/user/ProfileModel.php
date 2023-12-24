@@ -76,21 +76,6 @@ class ProfileModel extends Model {
         return $response;
     }
 
-    public function handleViewProfileCandidate($userId)
-    {
-        $queryGet = $this->db->table('candidates')
-            ->select('fullname, thumbnail, email, dob, phone, gender, location, address,
-                contact_facebook, contact_twitter, contact_linkedin, about_content')
-            ->where('id', '=', $userId)
-            ->first();
-
-        if (!empty($queryGet)) :
-            $response = $queryGet;
-        endif;
-
-        return $response;
-    }
-
     public function handleUpdateProfileCandidate($userId, $avatarPath)
     {
         $queryGet = $this->db->table('candidates')
@@ -119,11 +104,22 @@ class ProfileModel extends Model {
                 ->update($dataUpdate);
 
             if ($updateStatus) :
+                $this->handleSaveUserData('candidates', $userId);
                 return true;
             endif;
         endif;
 
         return false;
+    }
+
+    // Xử lý lưu data login vào session
+    public function handleSaveUserData($role = '', $userId = '')
+    {
+        $userData = $this->db->table($role)
+            ->where('id', '=', $userId)
+            ->first();
+
+        Session::data('user_data', $userData);
     }
 
     public function handleGetJobApplied($userId) {
