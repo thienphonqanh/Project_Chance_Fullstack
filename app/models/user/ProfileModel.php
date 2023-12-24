@@ -227,6 +227,7 @@ class ProfileModel extends Model {
                 'academic_level' => $_POST['current_rank'],
                 'year_experience' => $_POST['rank_desired'],
                 'cv_file' => $cvPath,
+                'file_name' => $_FILES["upload-cv"]["name"],
                 'skills' => $_POST['skills'],
                 'create_at' => date('Y-m-d H:i:s')
             ];
@@ -267,6 +268,7 @@ class ProfileModel extends Model {
                 'academic_level' => $_POST['current_rank'],
                 'year_experience' => $_POST['rank_desired'],
                 'cv_file' => $cvPath,
+                'file_name' => $_FILES["upload-cv"]["name"],
                 'skills' => $_POST['skills'],
                 'update_at' => date('Y-m-d H:i:s')
             ];

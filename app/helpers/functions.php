@@ -43,14 +43,14 @@ function getNameUserLogin()
     return false;
 }
 
-function getFirstName() 
+function getFirstName()
 {
-    if (!empty(getNameUserLogin())):
+    if (!empty(getNameUserLogin())) :
         $fullname = getNameUserLogin();
         $fullname = explode(' ', $fullname);
         $firstName = end($fullname);
 
-        if (!empty($firstName)):
+        if (!empty($firstName)) :
             return $firstName;
         endif;
     endif;
@@ -194,7 +194,7 @@ function getIdInURL($module = '')
     return $id;
 }
 
-function issetProfile() 
+function issetProfile()
 {
     $db = new Database();
     $result = $db->table('profile')
@@ -203,6 +203,21 @@ function issetProfile()
 
     if (!empty($result)) :
         return true;
+    endif;
+
+    return false;
+}
+
+function checkFileType($fileName = '')
+{
+    // Lấy thông tin về đường dẫn tệp tin
+    $pathInfo = pathinfo($fileName);
+
+    // Lấy định dạng của tệp tin
+    $fileExtension = $pathInfo['extension'];
+
+    if (!empty($fileExtension)) :
+        return $fileExtension;
     endif;
 
     return false;
