@@ -84,5 +84,7 @@ $routes['contacts/danh-sach/tra-loi'] = 'admin/contact/reply';
 // Trang người dùng
 $routes['doi-mat-khau'] = 'client/profile/changePassword';
 $routes['quan-ly-tai-khoan/tai-khoan'] = 'client/profile/editPersonalInformation';
-$routes['quan-ly-ho-so/ho-so'] = 'client/profile/editPersonalProfile';
+$routes['quan-ly-ho-so/them-ho-so'] = 'client/profile/addPersonalProfile';
+$routes['quan-ly-ho-so/ho-so'] = 'client/profile/viewPersonalProfile';
+$routes['quan-ly-ho-so/sua-ho-so'] = 'client/profile/editPersonalProfile';
 $routes['ung-tuyen'] = 'client/job/recruitment';

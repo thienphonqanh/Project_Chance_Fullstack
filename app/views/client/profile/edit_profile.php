@@ -120,10 +120,12 @@
                 <h5 class="p-0 m-0 py-2 px-4">Thông tin chung</h5>
                 <hr class="p-0 m-0">
                 <div class="row p-4">
+                <?php if (!empty($profileInformation)): ?>
                     <div class="col-lg-12">
                         <div class="form-group mb-3">
                             <label for="job_desired" class="fw-semibold mb-2">Vị trí mong muốn</label>
-                            <input type="text" class="form-control" name="job_desired" placeholder="E.g. Nhân viên kinh doanh">
+                            <input type="text" class="form-control" name="job_desired" placeholder="E.g. Nhân viên kinh doanh"
+                                value="<?php echo $profileInformation['job_desired'] ?>">
                             <?php echo form_error('job_desired', $errors, '<span class="fst-italic fs-6 text-danger px-2">', '</span>') ?>
                         </div>
                     </div>
@@ -136,7 +138,9 @@
                                 if (!empty($jobField)) :
                                     foreach ($jobField as $item) :
                                 ?>
-                                <option value="<?php echo $item['id']; ?>"><?php echo $item['name']; ?></option>
+                                <option value="<?php echo $item['id']; ?>" 
+                                    <?php echo ($profileInformation['job_category_id'] === $item['id']) ? 'selected' : false; ?>>
+                                        <?php echo $item['name']; ?></option>
                                 <?php endforeach;
                                 endif; ?>
                             </select>
@@ -150,7 +154,9 @@
                                 if (!empty($rank)) :
                                     foreach ($rank as $item) :
                                 ?>
-                                <option value="<?php echo $item['id']; ?>"><?php echo $item['name']; ?></option>
+                                <option value="<?php echo $item['id']; ?>"
+                                    <?php echo ($profileInformation['current_rank'] === $item['id']) ? 'selected' : false; ?>>
+                                        <?php echo $item['name']; ?></option>
                                 <?php endforeach;
                                 endif; ?>
                             </select>
@@ -164,7 +170,9 @@
                                 if (!empty($education)) :
                                     foreach ($education as $item) :
                                 ?>
-                                <option value="<?php echo $item['id']; ?>"><?php echo $item['name']; ?></option>
+                                <option value="<?php echo $item['id']; ?>"
+                                    <?php echo ($profileInformation['academic_level'] === $item['id']) ? 'selected' : false; ?>>
+                                        <?php echo $item['name']; ?></option>
                                 <?php endforeach;
                                 endif; ?>
                             </select>
@@ -180,7 +188,9 @@
                                 if (!empty($formWork)) :
                                     foreach ($formWork as $item) :
                                 ?>
-                                <option value="<?php echo $item['id']; ?>"><?php echo $item['name']; ?></option>
+                                <option value="<?php echo $item['id']; ?>"
+                                    <?php echo ($profileInformation['form_work'] === $item['id']) ? 'selected' : false; ?>>
+                                        <?php echo $item['name']; ?></option>
                                 <?php endforeach;
                                 endif; ?>
                             </select>
@@ -194,7 +204,9 @@
                                 if (!empty($rank)) :
                                     foreach ($rank as $item) :
                                 ?>
-                                <option value="<?php echo $item['id']; ?>"><?php echo $item['name']; ?></option>
+                                <option value="<?php echo $item['id']; ?>"
+                                    <?php echo ($profileInformation['rank_desired'] === $item['id']) ? 'selected' : false; ?>>
+                                        <?php echo $item['name']; ?></option>
                                 <?php endforeach;
                                 endif; ?>
                             </select>
@@ -208,7 +220,9 @@
                                 if (!empty($yearExp)) :
                                     foreach ($yearExp as $item) :
                                 ?>
-                                <option value="<?php echo $item['id']; ?>"><?php echo $item['name']; ?></option>
+                                <option value="<?php echo $item['id']; ?>"
+                                    <?php echo ($profileInformation['year_experience'] === $item['id']) ? 'selected' : false; ?>>
+                                        <?php echo $item['name']; ?></option>
                                 <?php endforeach;
                                 endif; ?>
                             </select>
@@ -218,15 +232,17 @@
                     <div class="col-lg-12">
                         <div class="form-group mb-3">
                             <label for="skills" class="fw-semibold mb-2">Kỹ năng cứng & mềm <span class="text-secondary">(không bắt buộc)</span></label>
-                            <input type="text" class="form-control" name="skills" placeholder="Nhập tên kỹ năng mềm hoặc cứng, (phân cách bởi dấu phẩy)">
+                            <input type="text" class="form-control" name="skills" placeholder="Nhập tên kỹ năng mềm hoặc cứng, (phân cách bởi dấu phẩy)"
+                                value="<?php echo $profileInformation['skills'] ?>">
                         </div>
                     </div>
+                <?php endif; ?>
                 </div>
             </div>
             
             <div class="sticky-bottom text-end ms-lg-auto mt-3 p-3" style="background-color: var(--section-color);">
                 <button type="submit" href="<?php echo _WEB_ROOT; ?>/quan-ly-tai-khoan/tai-khoan" style="background-color: var(--primary-color);"
-                     class="btn border border-1 px-5 py-2 rounded-2 text-white fw-semibold">Lưu và đăng hồ sơ</button>
+                     class="btn border border-1 px-5 py-2 rounded-3 text-white fw-semibold">Lưu và đăng hồ sơ</button>
             </div>
         </form>
     <?php endif; ?>

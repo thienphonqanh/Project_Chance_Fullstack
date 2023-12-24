@@ -193,3 +193,17 @@ function getIdInURL($module = '')
 
     return $id;
 }
+
+function issetProfile() 
+{
+    $db = new Database();
+    $result = $db->table('profile')
+        ->where('candidate_id', '=', getIdUserLogin())
+        ->first();
+
+    if (!empty($result)) :
+        return true;
+    endif;
+
+    return false;
+}

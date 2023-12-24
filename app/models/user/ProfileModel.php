@@ -214,9 +214,9 @@ class ProfileModel extends Model {
         return $response;
     }
 
-    public function handleEditPersonalProfile($userId, $cvPath)
+    public function handleAddPersonalProfile($userId, $cvPath)
     {
-        if (isset($cvPath)):
+        if (!empty($cvPath)):
             $dataInsert = [
                 'candidate_id' => $userId,
                 'job_category_id' => $_POST['job_field'],
@@ -255,6 +255,46 @@ class ProfileModel extends Model {
         return false;
     }
 
+    public function handleEditPersonalProfile($profileId, $cvPath)
+    {
+        if (!empty($cvPath)):
+            $dataUpdate = [
+                'job_category_id' => $_POST['job_field'],
+                'job_desired' => $_POST['job_desired'],
+                'form_work' => $_POST['form_work'],
+                'current_rank' => $_POST['current_rank'],
+                'rank_desired' => $_POST['rank_desired'],
+                'academic_level' => $_POST['current_rank'],
+                'year_experience' => $_POST['rank_desired'],
+                'cv_file' => $cvPath,
+                'skills' => $_POST['skills'],
+                'update_at' => date('Y-m-d H:i:s')
+            ];
+        else:
+            $dataUpdate = [
+                'job_category_id' => $_POST['job_field'],
+                'job_desired' => $_POST['job_desired'],
+                'form_work' => $_POST['form_work'],
+                'current_rank' => $_POST['current_rank'],
+                'rank_desired' => $_POST['rank_desired'],
+                'academic_level' => $_POST['current_rank'],
+                'year_experience' => $_POST['rank_desired'],
+                'skills' => $_POST['skills'],
+                'update_at' => date('Y-m-d H:i:s')
+            ];
+        endif;
+
+        $updateStatus = $this->db->table('profile')
+            ->where('id', '=', $profileId)
+            ->update($dataUpdate);
+
+        if ($updateStatus) :
+            return true;
+        endif;
+
+        return false;
+    }
+
     public function handleGetPersonalProfile($userId) {
         $queryGet = $this->db->table('profile')
             ->where('candidate_id', '=', $userId)
@@ -267,5 +307,17 @@ class ProfileModel extends Model {
         endif;
 
         return $response;
+    }
+
+    public function handleCheckProfile() {
+        $queryCheck = $this->db->table('profile')
+            ->where('candidate_id', '=', getIdUserLogin())
+            ->first();
+
+        if (!empty($queryCheck)) :
+            return true;
+        endif;
+
+        return false;
     }
 }

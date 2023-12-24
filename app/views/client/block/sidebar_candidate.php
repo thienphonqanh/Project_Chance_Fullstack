@@ -29,12 +29,21 @@
                 </div>
                 <div class="collapse show" id="collapseExample-2">
                     <ul class="p-0 m-0 px-2 rounded-1">
+                    <?php if (issetProfile()): ?>
                         <li
                             class="py-1 <?php echo (handleActiveSidebar('quan-ly-ho-so', 'ho-so') ? 'active' : false) ?>">
                             <a href="<?php echo _WEB_ROOT; ?>/quan-ly-ho-so/ho-so" class="text-dark fw-normal fs-6 mx-3">
                                 <i class="bi bi-file-text text-primary"></i> Hồ sơ của bạn
                             </a>
                         </li>
+                    <?php else: ?>
+                        <li
+                            class="py-1 <?php echo (handleActiveSidebar('quan-ly-ho-so', 'them-ho-so') ? 'active' : false) ?>">
+                            <a href="<?php echo _WEB_ROOT; ?>/quan-ly-ho-so/them-ho-so" class="text-dark fw-normal fs-6 mx-3">
+                                <i class="bi bi-file-text text-primary"></i> Hồ sơ của bạn
+                            </a>
+                        </li>
+                    <?php endif; ?>
                     </ul>
                 </div>
             </li>
