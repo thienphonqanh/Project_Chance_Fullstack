@@ -139,4 +139,133 @@ class ProfileModel extends Model {
         return $response;
     }
 
+    public function handleGetJobField()
+    {
+        $queryGet = $this->db->table('job_categories')
+            ->select('id, name')
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetFormWork()
+    {
+        $queryGet = $this->db->table('form_work')
+            ->select('id, name')
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetJobRank()
+    {
+        $queryGet = $this->db->table('job_rank')
+            ->select('id, name')
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetYearExp()
+    {
+        $queryGet = $this->db->table('year_experience')
+            ->select('id, name')
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetEducation()
+    {
+        $queryGet = $this->db->table('education')
+            ->select('id, name')
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleEditPersonalProfile($userId, $cvPath)
+    {
+        if (isset($cvPath)):
+            $dataInsert = [
+                'candidate_id' => $userId,
+                'job_category_id' => $_POST['job_field'],
+                'job_desired' => $_POST['job_desired'],
+                'form_work' => $_POST['form_work'],
+                'current_rank' => $_POST['current_rank'],
+                'rank_desired' => $_POST['rank_desired'],
+                'academic_level' => $_POST['current_rank'],
+                'year_experience' => $_POST['rank_desired'],
+                'cv_file' => $cvPath,
+                'skills' => $_POST['skills'],
+                'create_at' => date('Y-m-d H:i:s')
+            ];
+        else:
+            $dataInsert = [
+                'candidate_id' => $userId,
+                'job_category_id' => $_POST['job_field'],
+                'job_desired' => $_POST['job_desired'],
+                'form_work' => $_POST['form_work'],
+                'current_rank' => $_POST['current_rank'],
+                'rank_desired' => $_POST['rank_desired'],
+                'academic_level' => $_POST['current_rank'],
+                'year_experience' => $_POST['rank_desired'],
+                'skills' => $_POST['skills'],
+                'create_at' => date('Y-m-d H:i:s')
+            ];
+        endif;
+
+        $insertStatus = $this->db->table('profile')
+            ->insert($dataInsert);
+
+        if ($insertStatus) :
+            return true;
+        endif;
+
+        return false;
+    }
+
+    public function handleGetPersonalProfile($userId) {
+        $queryGet = $this->db->table('profile')
+            ->where('candidate_id', '=', $userId)
+            ->first();
+
+        $response = [];
+
+        if (!empty($queryGet)):
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
 }

@@ -148,18 +148,20 @@ function validateFile() {
 
       if (allowedFormats.indexOf(`.${fileExtension}`) === -1) {
           // Display error message
-          errorMessage.innerText = 'Chỉ chấp nhận file có định dạng .pdf, .doc, hoặc .docx.';
+          errorMessage.innerText = 'Chỉ chấp nhận file có định dạng .PDF, .DOC, hoặc .DOCX.';
 
           // Reset file input and clear file name display
           fileInput.value = '';
           fileNameDisplay.innerText = '';
+          fileNameDisplay.classList.remove('border', 'border-1', 'border-secondary');
           deleteButton.style.display = 'none'
       } else {
           // Clear error message
           errorMessage.innerText = '';
 
           // Display file name
-          fileNameDisplay.innerText = `File đã chọn: ${fileInput.files[0].name}`;
+          fileNameDisplay.innerText = `${fileInput.files[0].name}`;
+          fileNameDisplay.classList.add('border', 'border-1', 'border-secondary');
           deleteButton.style.display = 'inline-block'
       }
 
@@ -173,6 +175,7 @@ function deleteFile() {
 
   fileInput.value = '';
   fileNameDisplay.innerText = '';
+  fileNameDisplay.classList.remove('border', 'border-1', 'border-secondary');
   deleteButton.style.display = 'none';
 }
 

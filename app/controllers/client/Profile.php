@@ -257,4 +257,159 @@ class Profile extends Controller
         $this->render('layouts/main.layout', $this->data, 'client');
     }
 
+    public function editPersonalProfile()
+    {
+        $request = new Request();
+
+        $userId = getIdUserLogin();
+
+        if ($request->isPost()) :
+            if (!empty($_FILES['upload-cv']['full_path'])) :
+                $target_dir = "app/uploads/cv/";
+                $target_file = $target_dir . basename($_FILES["upload-cv"]["name"]);
+                $uploadOk = 1;
+                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+                // Kiểm tra kích thước file
+                $sizeFile = 5 * 1024 * 1024;
+                if ($_FILES["upload-cv"]["size"] > $sizeFile) :
+                    Session::flash('msg', 'Kích thước file quá lớn');
+                    Session::flash('msg_type', 'danger');
+                    $uploadOk = 0;
+                endif;
+
+                // Cho phép các định dạng file
+                if ($imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "docx") :
+                    Session::flash('msg', 'File không dúng định dạng');
+                    Session::flash('msg_type', 'danger');
+                    $uploadOk = 0;
+                endif;
+
+                $request->rules([
+                    'job_desired' => 'required',
+                    'job_field' => 'required',
+                    'current_rank' => 'required',
+                    'academic_level' => 'required',
+                    'form_work' => 'required',
+                    'rank_desired' => 'required',
+                    'year_experience' => 'required',
+                ]);
+
+                $request->message([
+                    'job_desired.required' => 'Họ và tên không được để trống',
+                    'job_field.required' => 'Họ và tên không được để trống',
+                    'current_rank.required' => 'Họ và tên không được để trống',
+                    'academic_level.required' => 'Họ và tên không được để trống',
+                    'form_work.required' => 'Họ và tên không được để trống',
+                    'rank_desired.required' => 'Họ và tên không được để trống',
+                    'year_experience.required' => 'Họ và tên không được để trống',
+                ]);
+
+                $validate = $request->validate();
+
+                // Kiểm tra nếu $uploadOk = 0
+                if ($uploadOk == 1) :
+                    if ($validate) :
+                        if (move_uploaded_file($_FILES["upload-cv"]["tmp_name"], $target_file)) :
+                            if (!empty($userId)) :
+                                $result = $this->profileModel->handleEditPersonalProfile($userId, $target_file);
+
+                                if ($result) :
+                                    Session::flash('msg', 'Đã lưu thông tin thành công');
+                                    Session::flash('msg_type', 'success');
+                                else :
+                                    Session::flash('msg', 'Lưu thông tin thất bại');
+                                    Session::flash('msg_type', 'danger');
+                                endif;
+                            endif;
+                        endif;
+                    else :
+                        Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
+                        Session::flash('msg_type', 'danger');
+                    endif;
+                endif;
+            else:
+                $request->rules([
+                    'job_desired' => 'required',
+                    'job_field' => 'required',
+                    'current_rank' => 'required',
+                    'academic_level' => 'required',
+                    'form_work' => 'required',
+                    'rank_desired' => 'required',
+                    'year_experience' => 'required',
+                ]);
+
+                $request->message([
+                    'job_desired.required' => 'Họ và tên không được để trống',
+                    'job_field.required' => 'Họ và tên không được để trống',
+                    'current_rank.required' => 'Họ và tên không được để trống',
+                    'academic_level.required' => 'Họ và tên không được để trống',
+                    'form_work.required' => 'Họ và tên không được để trống',
+                    'rank_desired.required' => 'Họ và tên không được để trống',
+                    'year_experience.required' => 'Họ và tên không được để trống',
+                ]);
+
+                $validate = $request->validate();
+
+                if ($validate) :
+                    if (!empty($userId)) :
+                        $result = $this->profileModel->handleEditPersonalProfile($userId);
+
+                        if ($result) :
+                            Session::flash('msg', 'Đã lưu thông tin thành công');
+                            Session::flash('msg_type', 'success');
+                        else :
+                            Session::flash('msg', 'Lưu thông tin thất bại');
+                            Session::flash('msg_type', 'danger');
+                        endif;
+                    endif;
+                else :
+                    Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
+                    Session::flash('msg_type', 'danger');
+                endif;
+            endif;
+        endif;
+            
+        if (!empty($userId)) :
+            $result = $this->profileModel->handleGetPersonalInformation($userId);
+
+            if (!empty($result)) :
+                $information = $result;
+
+                $this->data['dataView']['information'] = $information;
+            endif;
+        endif;
+        
+        $jobField = $this->profileModel->handleGetJobField();
+        $rank = $this->profileModel->handleGetJobRank();
+        $education = $this->profileModel->handleGetEducation();
+        $yearExp = $this->profileModel->handleGetYearExp();
+        $formWork = $this->profileModel->handleGetFormWork();
+
+        if (
+            !empty($jobField) && !empty($rank)
+            && !empty($education) && !empty($yearExp) && !empty($formWork)
+        ) :
+
+            $this->data['dataView']['jobField'] = $jobField;
+            $this->data['dataView']['rank'] = $rank;
+            $this->data['dataView']['education'] = $education;
+            $this->data['dataView']['yearExp'] = $yearExp;
+            $this->data['dataView']['formWork'] = $formWork;
+        endif;
+
+        $profileInformation = $this->profileModel->handleGetPersonalProfile($userId);
+
+        if (!empty($profileInformation)):
+            $this->data['dataView']['profileInformation'] = $profileInformation;
+        endif;
+
+        $this->data['body'] = 'client/profile/profile';
+        $this->data['dataView']['msg'] = Session::flash('msg');
+        $this->data['dataView']['msgType'] = Session::flash('msg_type');
+        $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
+        $this->data['dataView']['old'] = Session::flash('chance_session_old');
+        $this->render('layouts/main.layout', $this->data, 'client');
+    }
+
 }
