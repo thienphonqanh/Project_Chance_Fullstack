@@ -423,6 +423,12 @@ class Profile extends Controller
     
             if (!empty($profileInformation)):
                 $this->data['dataView']['profileInformation'] = $profileInformation;
+
+                $sameJobFieldData = $this->profileModel->handleGetSameData($profileInformation['job_category_id']);
+
+                if (!empty($sameJobFieldData)):
+                    $this->data['dataView']['sameJobFieldData'] = $sameJobFieldData;
+                endif;
             endif;
     
             $this->data['body'] = 'client/profile/view_profile';

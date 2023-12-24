@@ -322,4 +322,24 @@ class ProfileModel extends Model {
 
         return false;
     }
+
+    public function handleGetSameData($jobField = '')
+    {
+        $queryGet = $this->db->table('jobs')
+            ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.location, jobs.salary, 
+                jobs.slug, jobs.exp_required, companies.name, year_experience.name as exp_required')
+            ->join('companies', 'jobs.company_id = companies.id')
+            ->join('job_categories', 'jobs.job_category_id = job_categories.id')
+            ->join('year_experience', 'year_experience.id = jobs.exp_required')
+            ->where('job_categories.id', '=', $jobField)
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
 }

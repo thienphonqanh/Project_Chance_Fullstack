@@ -61,6 +61,45 @@
                     </div>
                 </div>
             </div>
+            <div class="shadow rounded-2 mt-4 p-3">
+                <h3><i class="bi bi-lightbulb text-primary"></i> Việc làm gợi ý</h3>
+                <div class="row">
+                    <?php 
+                        if (!empty($sameJobFieldData)):
+                            foreach ($sameJobFieldData as $subItem):
+                    ?>
+                    <div class="col-lg-6 d-flex flex-column">
+                        <a
+                            href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $subItem['slug'].'-'.$subItem['id'].'.html'; ?>">
+                            <div class="d-flex shadow p-2 rounded border mt-3 text-dark">
+                                <div>
+                                    <img width="35px" height="32px" class="border rounded"
+                                        src="<?php echo _WEB_ROOT.'/'.$subItem['thumbnail'] ?>" alt="">
+                                </div>
+                                <div class="special-span ms-2">
+                                    <span
+                                        class="fs-6 fw-semibold special-content-1"><?php echo $subItem['title'] ?></span>
+                                    <span class="fs-6 special-content-1"><?php echo $subItem['name'] ?></span>
+                                    <div class="d-flex mt-1">
+                                        <i class="text-primary bi bi-geo-alt"></i>
+                                        <p class="fs-6 fw-semibold ms-2 m-0 special-content-1">
+                                            <?php echo $subItem['location'] ?></p>
+                                    </div>
+                                    <div class="d-flex mt-1">
+                                        <i class="text-primary bi bi-currency-dollar"></i>
+                                        <p class="fs-6 fw-semibold ms-2 m-0"><?php echo $subItem['salary'] ?></p>
+                                    </div>
+                                    <div class="d-flex mt-1">
+                                        <i class="text-primary bi bi-suitcase-lg"></i>
+                                        <p class="fs-6 fw-semibold ms-2 m-0"><?php echo $subItem['exp_required'] ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <?php endforeach; endif; ?>
+                </div>
+            </div>
         </div>
         <?php endif; ?>
     </div>
