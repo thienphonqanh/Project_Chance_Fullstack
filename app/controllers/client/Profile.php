@@ -264,9 +264,9 @@ class Profile extends Controller
 
         $checkProfile = $this->profileModel->handleCheckProfile();
 
-        if ($checkProfile):
+        if ($checkProfile) :
             $response->redirect('quan-ly-ho-so/ho-so');
-        else:
+        else :
             $userId = getIdUserLogin();
 
             if ($request->isPost()) :
@@ -333,7 +333,7 @@ class Profile extends Controller
                             Session::flash('msg_type', 'danger');
                         endif;
                     endif;
-                else:
+                else :
                     $request->rules([
                         'job_desired' => 'required',
                         'job_field' => 'required',
@@ -373,7 +373,7 @@ class Profile extends Controller
                     endif;
                 endif;
             endif;
-                
+
             if (!empty($userId)) :
                 $result = $this->profileModel->handleGetPersonalInformation($userId);
 
@@ -382,7 +382,7 @@ class Profile extends Controller
                     $this->data['dataView']['information'] = $information;
                 endif;
             endif;
-            
+
             $jobField = $this->profileModel->handleGetJobField();
             $rank = $this->profileModel->handleGetJobRank();
             $education = $this->profileModel->handleGetEducation();
@@ -416,26 +416,26 @@ class Profile extends Controller
 
         $checkProfile = $this->profileModel->handleCheckProfile();
 
-        if ($checkProfile):
+        if ($checkProfile) :
             $userId = getIdUserLogin();
 
             $profileInformation = $this->profileModel->handleGetPersonalProfile($userId);
-    
-            if (!empty($profileInformation)):
+
+            if (!empty($profileInformation)) :
                 $this->data['dataView']['profileInformation'] = $profileInformation;
 
                 $sameJobFieldData = $this->profileModel->handleGetSameData($profileInformation['job_category_id']);
 
-                if (!empty($sameJobFieldData)):
+                if (!empty($sameJobFieldData)) :
                     $this->data['dataView']['sameJobFieldData'] = $sameJobFieldData;
                 endif;
             endif;
-    
+
             $this->data['body'] = 'client/profile/view_profile';
             $this->data['dataView'][''] = '';
             $this->render('layouts/main.layout', $this->data, 'client');
 
-        else:
+        else :
             $response->redirect('quan-ly-ho-so/them-ho-so');
         endif;
     }
@@ -448,63 +448,105 @@ class Profile extends Controller
         $userId = getIdUserLogin();
         $profileId = $_GET['id'];
 
-        if ($request->isPost()) :
-            if (!empty($_FILES['upload-cv']['full_path'])) :
-                $target_dir = "app/uploads/cv/";
-                $target_file = $target_dir . basename($_FILES["upload-cv"]["name"]);
-                $uploadOk = 1;
-                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $checkProfile = $this->profileModel->handleCheckProfile();
 
-                // Kiểm tra kích thước file
-                $sizeFile = 5 * 1024 * 1024;
-                if ($_FILES["upload-cv"]["size"] > $sizeFile) :
-                    Session::flash('msg', 'Kích thước file quá lớn');
-                    Session::flash('msg_type', 'danger');
-                    $uploadOk = 0;
-                endif;
+        if ($checkProfile && !empty($profileId)) :
+            if ($request->isPost()) :
+                if (!empty($_FILES['upload-cv']['full_path'])) :
+                    $target_dir = "app/uploads/cv/";
+                    $target_file = $target_dir . basename($_FILES["upload-cv"]["name"]);
+                    $uploadOk = 1;
+                    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-                // Cho phép các định dạng file
-                if ($imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "docx") :
-                    Session::flash('msg', 'File không dúng định dạng');
-                    Session::flash('msg_type', 'danger');
-                    $uploadOk = 0;
-                endif;
+                    // Kiểm tra kích thước file
+                    $sizeFile = 5 * 1024 * 1024;
+                    if ($_FILES["upload-cv"]["size"] > $sizeFile) :
+                        Session::flash('msg', 'Kích thước file quá lớn');
+                        Session::flash('msg_type', 'danger');
+                        $uploadOk = 0;
+                    endif;
 
-                $request->rules([
-                    'job_desired' => 'required',
-                    'job_field' => 'required',
-                    'current_rank' => 'required',
-                    'academic_level' => 'required',
-                    'form_work' => 'required',
-                    'rank_desired' => 'required',
-                    'year_experience' => 'required',
-                ]);
+                    // Cho phép các định dạng file
+                    if ($imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "docx") :
+                        Session::flash('msg', 'File không dúng định dạng');
+                        Session::flash('msg_type', 'danger');
+                        $uploadOk = 0;
+                    endif;
 
-                $request->message([
-                    'job_desired.required' => 'Họ và tên không được để trống',
-                    'job_field.required' => 'Họ và tên không được để trống',
-                    'current_rank.required' => 'Họ và tên không được để trống',
-                    'academic_level.required' => 'Họ và tên không được để trống',
-                    'form_work.required' => 'Họ và tên không được để trống',
-                    'rank_desired.required' => 'Họ và tên không được để trống',
-                    'year_experience.required' => 'Họ và tên không được để trống',
-                ]);
+                    $request->rules([
+                        'job_desired' => 'required',
+                        'job_field' => 'required',
+                        'current_rank' => 'required',
+                        'academic_level' => 'required',
+                        'form_work' => 'required',
+                        'rank_desired' => 'required',
+                        'year_experience' => 'required',
+                    ]);
 
-                $validate = $request->validate();
+                    $request->message([
+                        'job_desired.required' => 'Họ và tên không được để trống',
+                        'job_field.required' => 'Họ và tên không được để trống',
+                        'current_rank.required' => 'Họ và tên không được để trống',
+                        'academic_level.required' => 'Họ và tên không được để trống',
+                        'form_work.required' => 'Họ và tên không được để trống',
+                        'rank_desired.required' => 'Họ và tên không được để trống',
+                        'year_experience.required' => 'Họ và tên không được để trống',
+                    ]);
 
-                // Kiểm tra nếu $uploadOk = 0
-                if ($uploadOk == 1) :
-                    if ($validate) :
-                        if (move_uploaded_file($_FILES["upload-cv"]["tmp_name"], $target_file)) :
-                            if (!empty($profileId)) :
-                                $result = $this->profileModel->handleEditPersonalProfile($profileId, $target_file);
+                    $validate = $request->validate();
 
-                                if ($result) :
-                                    $response->redirect('quan-ly-ho-so/ho-so');
-                                else :
-                                    Session::flash('msg', 'Lưu thông tin thất bại');
-                                    Session::flash('msg_type', 'danger');
+                    // Kiểm tra nếu $uploadOk = 0
+                    if ($uploadOk == 1) :
+                        if ($validate) :
+                            if (move_uploaded_file($_FILES["upload-cv"]["tmp_name"], $target_file)) :
+                                if (!empty($profileId)) :
+                                    $result = $this->profileModel->handleEditPersonalProfile($profileId, $target_file);
+
+                                    if ($result) :
+                                        $response->redirect('quan-ly-ho-so/ho-so');
+                                    else :
+                                        Session::flash('msg', 'Lưu thông tin thất bại');
+                                        Session::flash('msg_type', 'danger');
+                                    endif;
                                 endif;
+                            endif;
+                        else :
+                            Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
+                            Session::flash('msg_type', 'danger');
+                        endif;
+                    endif;
+                else :
+                    $request->rules([
+                        'job_desired' => 'required',
+                        'job_field' => 'required',
+                        'current_rank' => 'required',
+                        'academic_level' => 'required',
+                        'form_work' => 'required',
+                        'rank_desired' => 'required',
+                        'year_experience' => 'required',
+                    ]);
+
+                    $request->message([
+                        'job_desired.required' => 'Họ và tên không được để trống',
+                        'job_field.required' => 'Họ và tên không được để trống',
+                        'current_rank.required' => 'Họ và tên không được để trống',
+                        'academic_level.required' => 'Họ và tên không được để trống',
+                        'form_work.required' => 'Họ và tên không được để trống',
+                        'rank_desired.required' => 'Họ và tên không được để trống',
+                        'year_experience.required' => 'Họ và tên không được để trống',
+                    ]);
+
+                    $validate = $request->validate();
+
+                    if ($validate) :
+                        if (!empty($profileId)) :
+                            $result = $this->profileModel->handleEditPersonalProfile($profileId, '');
+
+                            if ($result) :
+                                $response->redirect('quan-ly-ho-so/ho-so');
+                            else :
+                                Session::flash('msg', 'Lưu thông tin thất bại');
+                                Session::flash('msg_type', 'danger');
                             endif;
                         endif;
                     else :
@@ -512,85 +554,49 @@ class Profile extends Controller
                         Session::flash('msg_type', 'danger');
                     endif;
                 endif;
-            else:
-                $request->rules([
-                    'job_desired' => 'required',
-                    'job_field' => 'required',
-                    'current_rank' => 'required',
-                    'academic_level' => 'required',
-                    'form_work' => 'required',
-                    'rank_desired' => 'required',
-                    'year_experience' => 'required',
-                ]);
+            endif;
 
-                $request->message([
-                    'job_desired.required' => 'Họ và tên không được để trống',
-                    'job_field.required' => 'Họ và tên không được để trống',
-                    'current_rank.required' => 'Họ và tên không được để trống',
-                    'academic_level.required' => 'Họ và tên không được để trống',
-                    'form_work.required' => 'Họ và tên không được để trống',
-                    'rank_desired.required' => 'Họ và tên không được để trống',
-                    'year_experience.required' => 'Họ và tên không được để trống',
-                ]);
+            if (!empty($userId)) :
+                $result = $this->profileModel->handleGetPersonalInformation($userId);
 
-                $validate = $request->validate();
-
-                if ($validate) :
-                    if (!empty($profileId)) :
-                        $result = $this->profileModel->handleEditPersonalProfile($profileId, '');
-
-                        if ($result) :
-                            $response->redirect('quan-ly-ho-so/ho-so');
-                        else :
-                            Session::flash('msg', 'Lưu thông tin thất bại');
-                            Session::flash('msg_type', 'danger');
-                        endif;
-                    endif;
-                else :
-                    Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
-                    Session::flash('msg_type', 'danger');
+                if (!empty($result)) :
+                    $information = $result;
+                    $this->data['dataView']['information'] = $information;
                 endif;
             endif;
-        endif;
-            
-        if (!empty($userId)) :
-            $result = $this->profileModel->handleGetPersonalInformation($userId);
 
-            if (!empty($result)) :
-                $information = $result;
-                $this->data['dataView']['information'] = $information;
+            $jobField = $this->profileModel->handleGetJobField();
+            $rank = $this->profileModel->handleGetJobRank();
+            $education = $this->profileModel->handleGetEducation();
+            $yearExp = $this->profileModel->handleGetYearExp();
+            $formWork = $this->profileModel->handleGetFormWork();
+
+            if (
+                !empty($jobField) && !empty($rank)
+                && !empty($education) && !empty($yearExp) && !empty($formWork)
+            ) :
+
+                $this->data['dataView']['jobField'] = $jobField;
+                $this->data['dataView']['rank'] = $rank;
+                $this->data['dataView']['education'] = $education;
+                $this->data['dataView']['yearExp'] = $yearExp;
+                $this->data['dataView']['formWork'] = $formWork;
             endif;
+
+            $profileInformation = $this->profileModel->handleGetPersonalProfile($userId);
+
+            if (!empty($profileInformation)) :
+                $this->data['dataView']['profileInformation'] = $profileInformation;
+            endif;
+
+            $this->data['body'] = 'client/profile/edit_profile';
+            $this->data['dataView']['msg'] = Session::flash('msg');
+            $this->data['dataView']['msgType'] = Session::flash('msg_type');
+            $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
+            $this->data['dataView']['old'] = Session::flash('chance_session_old');
+            $this->render('layouts/main.layout', $this->data, 'client');
+        else :
+            $response->redirect('quan-ly-ho-so/them-ho-so');
         endif;
-        
-        $jobField = $this->profileModel->handleGetJobField();
-        $rank = $this->profileModel->handleGetJobRank();
-        $education = $this->profileModel->handleGetEducation();
-        $yearExp = $this->profileModel->handleGetYearExp();
-        $formWork = $this->profileModel->handleGetFormWork();
-
-        if (
-            !empty($jobField) && !empty($rank)
-            && !empty($education) && !empty($yearExp) && !empty($formWork)
-        ) :
-
-            $this->data['dataView']['jobField'] = $jobField;
-            $this->data['dataView']['rank'] = $rank;
-            $this->data['dataView']['education'] = $education;
-            $this->data['dataView']['yearExp'] = $yearExp;
-            $this->data['dataView']['formWork'] = $formWork;
-        endif;
-
-        $profileInformation = $this->profileModel->handleGetPersonalProfile($userId);
-
-        if (!empty($profileInformation)):
-            $this->data['dataView']['profileInformation'] = $profileInformation;
-        endif;
-
-        $this->data['body'] = 'client/profile/edit_profile';
-        $this->data['dataView']['msg'] = Session::flash('msg');
-        $this->data['dataView']['msgType'] = Session::flash('msg_type');
-        $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
-        $this->data['dataView']['old'] = Session::flash('chance_session_old');
-        $this->render('layouts/main.layout', $this->data, 'client');
     }
 }

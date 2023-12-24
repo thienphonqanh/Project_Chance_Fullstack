@@ -4,7 +4,7 @@
         $this->render('block/sidebar_candidate', [], 'client');
     ?>
         <?php if (!empty($profileInformation)): ?>
-        <div style="width: 80%; height: auto;" class="mx-4">
+        <div class="mx-lg-4 mx-md-3 mx-sm-3 mx-3 custom-form-profile">
             <div class="mt-2 w-100 text-start">
                 <h4>Hồ sơ của bạn</h4>
                 <div>
@@ -32,17 +32,21 @@
                                     <?php 
                                     if ($profileInformation['status'] === 0) :
                                 ?>
-                                    <button type="button" class="btn btn-warning p-0 px-3">Chờ duyệt</button>
+                                    <button type="button" class="btn btn-warning p-0 px-lg-3 px-md-2 px-sm-1 px-1">Chờ
+                                        duyệt</button>
                                     <?php elseif ($profileInformation['status'] === 1) :?>
-                                    <button type="button" class="btn btn-success p-0 px-3">Đã duyệt</button>
+                                    <button type="button" class="btn btn-success p-0 px-lg-3 px-md-2 px-sm-1 px-1">Đã
+                                        duyệt</button>
                                     <?php else: ?>
-                                    <button type="button" class="btn btn-danger p-0 px-3">Bị loại</button>
+                                    <button type="button" class="btn btn-danger p-0 px-lg-3 px-md-2 px-sm-1 px-1">Bị
+                                        loại</button>
                                     <?php endif; ?>
                                 </div>
                             </div>
-                            <div class="col-lg-6 ms-lg-auto">
-                                <div class="d-flex align-items-center justify-content-around">
-                                    <p class="text-secondary px-3 m-0 fw-normal fs-6 border-end border-start border-2">
+                            <div class="col-lg-6 ms-lg-auto mt-md-2 mt-sm-2 mt-lg-0 mt-2">
+                                <div class="d-flex align-items-center flex-wrap justify-content-around">
+                                    <p
+                                        class="text-secondary px-3 m-0 fw-normal fs-6 border-end border-lg-start border-2">
                                         Lượt xem: <span
                                             class="text-dark"><?php echo $profileInformation['view_count'] ?></span></p>
                                     <div class="form-check form-switch">
@@ -53,7 +57,8 @@
                                     </div>
                                     <a type="button"
                                         href="<?php echo _WEB_ROOT; ?>/quan-ly-ho-so/sua-ho-so?id=<?php echo $profileInformation['id']; ?>"
-                                        class="btn border-primary text-primary px-4 py-2"><i class="bi bi-pencil"></i>
+                                        class="btn border-primary text-primary px-4 py-2 custom-btn-profile mt-sm-2 mt-md-2 mt-2 mt-lg-0"><i
+                                            class="bi bi-pencil"></i>
                                         Cập nhật hồ sơ</a>
                                 </div>
                             </div>

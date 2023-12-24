@@ -21,6 +21,15 @@
   .criteria {
     width: 25%;
   }
+
+  .custom-form-profile {
+    width: 78%;
+    height: auto;
+  }
+
+  .custom-input-profile {
+    width: 50%;
+  }
 }
 
 @media screen and (max-width: 991px) {
@@ -157,6 +166,15 @@
     width: 0;
     height: 0;
   }
+
+  .custom-form-profile {
+    width: 95%;
+    height: auto;
+  }
+
+  .custom-btn-profile {
+    width: 100%;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -174,7 +192,7 @@
   .job-tab {
     width: 25%;
   }
-  
+
   .criteria {
     width: 25%;
   }
@@ -316,7 +334,7 @@
   .criteria {
     width: 100%;
   }
-  
+
   .second-criteria {
     width: 100%;
   }
