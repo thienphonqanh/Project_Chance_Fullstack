@@ -64,13 +64,16 @@
                             <?php 
                                 if (isLogin()):
                             ?>
-                            <a type="button" href="<?php echo _WEB_ROOT; ?>/ung-tuyen?id=<?php echo $item['id']; ?>" class="btn btn-primary px-4"><i class="bi bi-send"></i> Nộp hồ sơ</a>
+                            <a type="button" href="<?php echo _WEB_ROOT; ?>/ung-tuyen?id=<?php echo $item['id']; ?>"
+                                class="btn btn-primary px-4"><i class="bi bi-send"></i> Nộp hồ sơ</a>
                             <?php else: ?>
-                                <a type="button" href="<?php echo _WEB_ROOT; ?>/dang-nhap" class="btn btn-primary px-4"><i class="bi bi-send"></i> Nộp hồ sơ</a>
+                            <a type="button" href="<?php echo _WEB_ROOT; ?>/dang-nhap" class="btn btn-primary px-4"><i
+                                    class="bi bi-send"></i> Nộp hồ sơ</a>
                             <?php endif; ?>
                             <button class="btn btn-lg border-0 mt-2 fs-5"><i class="bi bi-heart"></i></button>
                         </div>
-                        <p class="text-dark fs-6 fw-normal m-0 ms-lg-auto ms-md-auto ms-sm-auto "><i class="bi bi-eye"></i> Lượt xem
+                        <p class="text-dark fs-6 fw-normal m-0 ms-lg-auto ms-md-auto ms-sm-auto "><i
+                                class="bi bi-eye"></i> Lượt xem
                             <?php echo $item['view_count']; ?></p>
                     </div>
                 </div>
@@ -134,7 +137,7 @@
                                     <i class="bi bi-mortarboard text-primary"></i>
                                     <div class="ms-3">
                                         <p class="fs-6 fw-normal m-0">Yêu cầu bằng cấp</p>
-                                        <p class="fs-6 fw-bold m-0"><?php echo $item['degree_required']; ?></p>
+                                        <p class="fs-6 fw-bold m-0"><?php echo $item['education_required']; ?></p>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center ms-lg-5 ms-md-5 ms-sm-5 second-criteria">
@@ -180,7 +183,8 @@
                             <?php echo $item['other_info']; ?>
                         </p>
                     </div>
-                    <div id="section-company" class="shadow-lg d-flex flex-column border rounded px-lg-5 px-md-5 px-sm-3 px-2 py-4 mt-3">
+                    <div id="section-company"
+                        class="shadow-lg d-flex flex-column border rounded px-lg-5 px-md-5 px-sm-3 px-2 py-4 mt-3">
                         <h4 class="mt-2"><?php echo $item['name']; ?></h4>
                         <div class="text-dark fw-normal">
                             <i class="text-primary bi bi-geo-alt pe-4"></i> <?php echo $item['company_location']; ?>
@@ -242,4 +246,3 @@
         echo $result;
     endif;
 ?>
-

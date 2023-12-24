@@ -121,9 +121,21 @@ class Job extends Controller
         endif;
 
         $jobField = $this->jobModel->handleGetJobField();
+        $rank = $this->jobModel->handleGetJobRank();
+        $education = $this->jobModel->handleGetEducation();
+        $yearExp = $this->jobModel->handleGetYearExp();
+        $formWork = $this->jobModel->handleGetFormWork();
 
-        if (!empty($jobField)) :
+        if (
+            !empty($jobField) && !empty($rank)
+            && !empty($education) && !empty($yearExp) && !empty($formWork)
+        ) :
+
             $this->data['dataView']['jobField'] = $jobField;
+            $this->data['dataView']['rank'] = $rank;
+            $this->data['dataView']['education'] = $education;
+            $this->data['dataView']['yearExp'] = $yearExp;
+            $this->data['dataView']['formWork'] = $formWork;
         endif;
 
         $this->data['body'] = 'admin/jobs/detail';
@@ -206,7 +218,7 @@ class Job extends Controller
                 'salary' => 'required',
                 'deadline' => 'required',
                 'rank' => 'required',
-                'degree_required' => 'required',
+                'education_required' => 'required',
                 'exp_required' => 'required',
                 'number_recruits' => 'required',
                 'requirement' => 'required',
@@ -224,7 +236,7 @@ class Job extends Controller
                 'salary.required' => 'Lương không được để trống',
                 'deadline.required' => 'Thời hạn nộp không được để trống',
                 'rank.required' => 'Cấp bậc không được để trống',
-                'degree_required.required' => 'Yêu cầu bằng cấp không được để trống',
+                'education_required.required' => 'Yêu cầu bằng cấp không được để trống',
                 'exp_required.required' => 'Yêu cầu kinh nghiệm không được để trống',
                 'number_recruits.required' => 'Số lượng tuyển không được để trống',
                 'requirement.required' => 'Yêu cầu công việc không được để trống',
@@ -272,9 +284,21 @@ class Job extends Controller
         endif;
 
         $jobField = $this->jobModel->handleGetJobField();
+        $rank = $this->jobModel->handleGetJobRank();
+        $education = $this->jobModel->handleGetEducation();
+        $yearExp = $this->jobModel->handleGetYearExp();
+        $formWork = $this->jobModel->handleGetFormWork();
 
-        if (!empty($jobField)) :
+        if (
+            !empty($jobField) && !empty($rank)
+            && !empty($education) && !empty($yearExp) && !empty($formWork)
+        ) :
+
             $this->data['dataView']['jobField'] = $jobField;
+            $this->data['dataView']['rank'] = $rank;
+            $this->data['dataView']['education'] = $education;
+            $this->data['dataView']['yearExp'] = $yearExp;
+            $this->data['dataView']['formWork'] = $formWork;
         endif;
 
         $this->data['body'] = 'admin/jobs/edit';
@@ -348,7 +372,7 @@ class Job extends Controller
                 'salary' => 'required',
                 'deadline' => 'required',
                 'rank' => 'required',
-                'degree_required' => 'required',
+                'education_required' => 'required',
                 'exp_required' => 'required',
                 'number_recruits' => 'required',
                 'requirement' => 'required',
@@ -366,7 +390,7 @@ class Job extends Controller
                 'salary.required' => 'Lương không được để trống',
                 'deadline.required' => 'Thời hạn nộp không được để trống',
                 'rank.required' => 'Cấp bậc không được để trống',
-                'degree_required.required' => 'Yêu cầu bằng cấp không được để trống',
+                'education_required.required' => 'Yêu cầu bằng cấp không được để trống',
                 'exp_required.required' => 'Yêu cầu kinh nghiệm không được để trống',
                 'number_recruits.required' => 'Số lượng tuyển không được để trống',
                 'requirement.required' => 'Yêu cầu công việc không được để trống',
@@ -400,9 +424,21 @@ class Job extends Controller
         endif;
 
         $jobField = $this->jobModel->handleGetJobField();
+        $rank = $this->jobModel->handleGetJobRank();
+        $education = $this->jobModel->handleGetEducation();
+        $yearExp = $this->jobModel->handleGetYearExp();
+        $formWork = $this->jobModel->handleGetFormWork();
 
-        if (!empty($jobField)) :
+        if (
+            !empty($jobField) && !empty($rank)
+            && !empty($education) && !empty($yearExp) && !empty($formWork)
+        ) :
+
             $this->data['dataView']['jobField'] = $jobField;
+            $this->data['dataView']['rank'] = $rank;
+            $this->data['dataView']['education'] = $education;
+            $this->data['dataView']['yearExp'] = $yearExp;
+            $this->data['dataView']['formWork'] = $formWork;
         endif;
 
         $this->data['body'] = 'admin/jobs/add';

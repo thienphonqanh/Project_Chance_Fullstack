@@ -48,7 +48,7 @@
                     <div class="form-floating mb-3">
                         <select class="form-select" disabled id="floatingSelect"
                             aria-label="Floating label select example">
-                            <option value="0">Chọn lĩnh vực</option>
+                            <option value="0">Chọn</option>
                             <?php 
                                 if (!empty($jobField)): 
                                     foreach ($jobField as $subItem):
@@ -67,8 +67,19 @@
                         <label for="floatingInput">Lương <span class="text-danger fw-bold">*</span></label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" disabled class="form-control" id="floatingInput"
-                            placeholder="name@example.com" value="<?php echo $item['rank'] ?>" />
+                        <select class="form-select" disabled id="floatingSelect"
+                            aria-label="Floating label select example">
+                            <option value="0">Chọn</option>
+                            <?php 
+                                if (!empty($rank)): 
+                                    foreach ($rank as $subItem):
+                            ?>
+                            <option value="<?php echo $subItem['id']; ?>"
+                                <?php echo $item['rank'] === $subItem['id'] ? 'selected' : false;?>>
+                                <?php echo $subItem['name']; ?>
+                            </option>
+                            <?php endforeach; endif; ?>
+                        </select>
                         <label for="floatingInput">Cấp bậc <span class="text-danger fw-bold">*</span></label>
                     </div>
                     <div class="form-floating mb-3">
@@ -90,8 +101,19 @@
                 </div>
                 <div class="col-6">
                     <div class="form-floating mb-3">
-                        <input type="text" disabled class="form-control" id="floatingInput"
-                            placeholder="name@example.com" value="<?php echo $item['form_work'] ?>" />
+                        <select class="form-select" disabled id="floatingSelect"
+                            aria-label="Floating label select example">
+                            <option value="0">Chọn</option>
+                            <?php 
+                                if (!empty($formWork)): 
+                                    foreach ($formWork as $subItem):
+                            ?>
+                            <option value="<?php echo $subItem['id']; ?>"
+                                <?php echo $item['form_work'] === $subItem['id'] ? 'selected' : false;?>>
+                                <?php echo $subItem['name']; ?>
+                            </option>
+                            <?php endforeach; endif; ?>
+                        </select>
                         <label for="floatingInput">Hình thức làm việc
                             <span class="text-danger fw-bold">*</span></label>
                     </div>
@@ -106,14 +128,36 @@
                         <label for="floatingInput">Hạn nộp <span class="text-danger fw-bold">*</span></label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" disabled class="form-control" id="floatingInput"
-                            placeholder="name@example.com" value="<?php echo $item['degree_required'] ?>" />
+                        <select class="form-select" disabled id="floatingSelect"
+                            aria-label="Floating label select example">
+                            <option value="0">Chọn</option>
+                            <?php 
+                                if (!empty($education)): 
+                                    foreach ($education as $subItem):
+                            ?>
+                            <option value="<?php echo $subItem['id']; ?>"
+                                <?php echo $item['education_required'] === $subItem['id'] ? 'selected' : false;?>>
+                                <?php echo $subItem['name']; ?>
+                            </option>
+                            <?php endforeach; endif; ?>
+                        </select>
                         <label for="floatingInput">Yêu cầu bằng cấp
                             <span class="text-danger fw-bold">*</span></label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" disabled class="form-control" id="floatingInput"
-                            placeholder="name@example.com" value="<?php echo $item['exp_required'] ?>" />
+                        <select class="form-select" disabled id="floatingSelect"
+                            aria-label="Floating label select example">
+                            <option value="0">Chọn</option>
+                            <?php 
+                                if (!empty($yearExp)): 
+                                    foreach ($yearExp as $subItem):
+                            ?>
+                            <option value="<?php echo $subItem['id']; ?>"
+                                <?php echo $item['exp_required'] === $subItem['id'] ? 'selected' : false;?>>
+                                <?php echo $subItem['name']; ?>
+                            </option>
+                            <?php endforeach; endif; ?>
+                        </select>
                         <label for="floatingInput">Yêu cầu kinh nghiệm
                             <span class="text-danger fw-bold">*</span></label>
                     </div>

@@ -27,41 +27,12 @@ class Job extends Controller
                 ];
             endif;
 
-            if (isset($time_working)) :
-                if ($time_working === 'fulltime') :
-                    $filters['form_work'] = $time_working = 'Toàn thời gian cố định';
-                elseif ($time_working === 'parttime') :
-                    $filters['form_work'] = $time_working = 'Bán thời gian cố định';
-                endif;
+            if (isset($form_work) && $form_work != 0) :
+                $filters['form_work'] = $form_work;
             endif;
 
-            if (isset($job_exp)) :
-                switch ($job_exp):
-                    case 'no_exp':
-                        $filters['exp_required'] = $job_exp = 'Chưa có kinh nghiệm';
-                        break;
-                    case 'less_one':
-                        $filters['exp_required'] = $job_exp = 'Dưới 1 năm';
-                        break;
-                    case 'one':
-                        $filters['exp_required'] = $job_exp = '1 năm';
-                        break;
-                    case 'two':
-                        $filters['exp_required'] = $job_exp = '2 năm';
-                        break;
-                    case 'three':
-                        $filters['exp_required'] = $job_exp = '3 năm';
-                        break;
-                    case 'four':
-                        $filters['exp_required'] = $job_exp = '4 năm';
-                        break;
-                    case 'five':
-                        $filters['exp_required'] = $job_exp = '5 năm';
-                        break;
-                    case 'over_five':
-                        $filters['exp_required'] = $job_exp = 'Trên 5 năm';
-                        break;
-                endswitch;
+            if (isset($exp_required) && $exp_required != 0) :
+                $filters['exp_required'] = $exp_required;
             endif;
 
             if (isset($job_field) && $job_field != 0) :
@@ -79,9 +50,13 @@ class Job extends Controller
         endif;
 
         $jobField = $this->jobModel->handleGetJobField();
+        $yearExp = $this->jobModel->handleGetYearExp();
+        $formWork = $this->jobModel->handleGetFormWork();
 
-        if (!empty($jobField)) :
+        if (!empty($jobField) && !empty($yearExp) && !empty($formWork)) :
             $this->data['dataView']['jobField'] = $jobField;
+            $this->data['dataView']['yearExp'] = $yearExp;
+            $this->data['dataView']['formWork'] = $formWork;
         endif;
 
         $this->data['body'] = 'client/job/index';

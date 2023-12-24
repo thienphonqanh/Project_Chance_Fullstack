@@ -30,66 +30,86 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi-person custom-icon"></i></span>
+                                <span class="input-group-text" id="basic-addon1"><i
+                                        class="bi-person custom-icon"></i></span>
 
-                                <input type="text" name="job_title" id="job-title" class="form-control" placeholder="Tiêu đề" value="<?php isset($request->getFields()['job_title']) ?? '' ?>">
+                                <input type="text" name="job_title" id="job-title" class="form-control"
+                                    placeholder="Tiêu đề"
+                                    value="<?php isset($request->getFields()['job_title']) ?? '' ?>">
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi-geo-alt custom-icon"></i></span>
+                                <span class="input-group-text" id="basic-addon1"><i
+                                        class="bi-geo-alt custom-icon"></i></span>
 
-                                <input type="text" name="job_location" id="job-location" class="form-control" placeholder="Vị trí" value="<?php isset($request->getFields()['job_location']) ?? '' ?>">
+                                <input type="text" name="job_location" id="job-location" class="form-control"
+                                    placeholder="Vị trí"
+                                    value="<?php isset($request->getFields()['job_location']) ?? '' ?>">
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi-laptop custom-icon"></i></span>
+                                <span class="input-group-text" id="basic-addon1"><i
+                                        class="bi-laptop custom-icon"></i></span>
 
-                                <select class="form-select form-control" name="job_exp" id="job-exp" aria-label="Default select example">
-                                    <option selected>Tất cả kinh nghiệm</option>
-                                    <option value="no_exp">Chưa có kinh nghiệm</option>
-                                    <option value="less_one">Dưới 1 năm</option>
-                                    <option value="one">1 năm</option>
-                                    <option value="two">2 năm</option>
-                                    <option value="three">3 năm</option>
-                                    <option value="four">4 năm</option>
-                                    <option value="five">5 năm</option>
-                                    <option value="over_five">Trên 5 năm</option>
+                                <select class="form-select form-control" name="exp_required" id="exp_required"
+                                    aria-label="Default select example">
+                                    <option value="0" selected>Tất cả hình thức làm việc</option>
+                                    <?php
+                                    if (!empty($yearExp)) :
+                                        foreach ($yearExp as $item) :
+                                    ?>
+                                    <option value="<?php echo $item['id']; ?>" <?php isset($request->getFields()['exp_required'])
+                                        && $request->getFields()['exp_required'] == $item['id'] ? 'selected' : '' ?>>
+                                        <?php echo $item['name']; ?>
+                                    </option>
+                                    <?php endforeach;
+                                    endif; ?>
                                 </select>
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi-laptop custom-icon"></i></span>
+                                <span class="input-group-text" id="basic-addon1"><i
+                                        class="bi-laptop custom-icon"></i></span>
 
-                                <select class="form-select form-control" name="time_working" id="time-working" aria-label="Default select example">
-                                    <option selected>Tất cả thời gian làm việc</option>
-                                    <option value="fulltime" <?php isset($request->getFields()['time_working']) && $request->getFields()['time_working'] == 'fulltime' ? 'selected' : '' ?>>
-                                        Toàn thời gian</option>
-                                    <option value="parttime" <?php isset($request->getFields()['time_working']) && $request->getFields()['time_working'] == 'parttime' ? 'selected' : '' ?>>
-                                        Bán thời gian</option>
+                                <select class="form-select form-control" name="form_work" id="form_work"
+                                    aria-label="Default select example">
+                                    <option value="0" selected>Tất cả hình thức làm việc</option>
+                                    <?php
+                                    if (!empty($formWork)) :
+                                        foreach ($formWork as $item) :
+                                    ?>
+                                    <option value="<?php echo $item['id']; ?>" <?php isset($request->getFields()['form_work'])
+                                        && $request->getFields()['form_work'] == $item['id'] ? 'selected' : '' ?>>
+                                        <?php echo $item['name']; ?>
+                                    </option>
+                                    <?php endforeach;
+                                    endif; ?>
                                 </select>
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi-laptop custom-icon"></i></span>
+                                <span class="input-group-text" id="basic-addon1"><i
+                                        class="bi-laptop custom-icon"></i></span>
 
-                                <select class="form-select form-control" name="job_field" id="job-field" aria-label="Default select example">
+                                <select class="form-select form-control" name="job_field" id="job-field"
+                                    aria-label="Default select example">
                                     <option value="0" selected>Tất cả lĩnh vực</option>
                                     <?php
                                     if (!empty($jobField)) :
                                         foreach ($jobField as $item) :
                                     ?>
-                                            <option value="<?php echo $item['id']; ?>" <?php isset($request->getFields()['job_field'])
-                                                                                            && $request->getFields()['job_field'] == $item['id'] ? 'selected' : '' ?>><?php echo $item['name'];
-                                                                                                                        ?>
-                                            </option>
+                                    <option value="<?php echo $item['id']; ?>" <?php isset($request->getFields()['job_field'])
+                                        && $request->getFields()['job_field'] == $item['id'] ? 'selected' : '' ?>>
+                                        <?php echo $item['name']; ?>
+                                    </option>
                                     <?php endforeach;
                                     endif; ?>
                                 </select>
@@ -127,7 +147,8 @@
         <div class="row align-items-center">
 
             <div class="col-lg-6 col-12 mb-lg-4">
-                <h4>Kết quả của <?php echo (!empty($quantityJob)) ? '(' . $quantityJob . ' tin đăng)' : '(0 tin đăng)'; ?>
+                <h4>Kết quả của
+                    <?php echo (!empty($quantityJob)) ? '(' . $quantityJob . ' tin đăng)' : '(0 tin đăng)'; ?>
                 </h4>
             </div>
 
@@ -135,7 +156,8 @@
                 <p class="mb-0 ms-lg-auto">Sắp xếp:</p>
 
                 <div class="dropdown dropdown-sorting ms-3 me-4">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSortingButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSortingButton"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         Mới nhất
                     </button>
 
@@ -160,56 +182,58 @@
                             if (!empty($listJob)) :
                                 foreach ($listJob as $item) :
                             ?>
-                                    <li class="job-thumb">
-                                        <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'] . '-' . $item['id'].'.html'; ?>" class="d-flex w-100">
-                                            <div class="job-image-wrap bg-white shadow-lg">
-                                                <img src="<?php echo $item['thumbnail'] ?>" class="job-image img-fluid" alt="">
-                                            </div>
-                                            <div class="job-body d-flex flex-wrap align-items-center ms-4 w-100">
-                                                <div class="mb-3">
-                                                    <h5 class="text-dark mb-lg-0 pb-2">
-                                                        <?php echo $item['title'] ?>
-                                                    </h5>
+                            <li class="job-thumb">
+                                <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'] . '-' . $item['id'].'.html'; ?>"
+                                    class="d-flex w-100">
+                                    <div class="job-image-wrap bg-white shadow-lg">
+                                        <img src="<?php echo $item['thumbnail'] ?>" class="job-image img-fluid" alt="">
+                                    </div>
+                                    <div class="job-body d-flex flex-wrap align-items-center ms-4 w-100">
+                                        <div class="mb-3">
+                                            <h5 class="text-dark mb-lg-0 pb-2">
+                                                <?php echo $item['title'] ?>
+                                            </h5>
 
-                                                    <div class="row align-items-center">
-                                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                                            <p class="job-location mb-0">
-                                                                <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
-                                                                <?php echo $item['name'] ?><br>
-                                                                <strong class="text-info mx-1"><?php echo $item['location'] ?></strong>
-                                                            </p>
-                                                        </div>
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <p class="job-location mb-0">
+                                                        <i class="fa-solid fa-location-dot text-primary-emphasis"></i>
+                                                        <?php echo $item['name'] ?><br>
+                                                        <strong
+                                                            class="text-info mx-1"><?php echo $item['location'] ?></strong>
+                                                    </p>
+                                                </div>
 
-                                                        <div class="col-lg-3 col-md-3 col-sm-12">
-                                                            <p class="job-date mb-0">
-                                                                <i class="fa-regular fa-clock text-primary-emphasis"></i>
-                                                                <?php echo getTimeAgo($item['create_at']) ?>
-                                                            </p>
-                                                        </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                                    <p class="job-date mb-0">
+                                                        <i class="fa-regular fa-clock text-primary-emphasis"></i>
+                                                        <?php echo getTimeAgo($item['create_at']) ?>
+                                                    </p>
+                                                </div>
 
-                                                        <div class="col-lg-3 col-md-3 col-sm-12">
-                                                            <p class="job-price mb-0">
-                                                                <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
-                                                                <?php echo $item['salary'] ?>
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                                    <p class="job-price mb-0">
+                                                        <i class="fa-regular fa-money-bill-1 text-primary-emphasis"></i>
+                                                        <?php echo $item['salary'] ?>
+                                                    </p>
                                                 </div>
                                             </div>
-                                        </a>
-                                    </li>
-                                <?php endforeach; ?>
-                                <div class="paging">
-                                    <ul class="list-page"></ul>
-                                </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <?php endforeach; ?>
+                            <div class="paging">
+                                <ul class="list-page"></ul>
+                            </div>
                             <?php else : ?>
-                                <div class="text-center mt-2">
-                                    <h5>Không tìm thấy kết quả nào</h5>
-                                    <p class="fw-normal">Chưa tìm được việc làm phù hợp với tiêu chí của bạn</p>
-                                </div>
+                            <div class="text-center mt-5">
+                                <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/empty.webp" alt="Ảnh"
+                                    class="mb-3">
+                                <h5>Không tìm thấy kết quả nào</h5>
+                                <p class="fw-normal">Chưa tìm được việc làm phù hợp với tiêu chí của bạn</p>
+                            </div>
                             <?php endif; ?>
-
-
                         </ul>
                     </div>
                     <div class="col-lg-3">
@@ -231,9 +255,12 @@
                                 </div>
                             </div>
                             <div class="adver">
-                                <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/adver/Picture2.png" class="w-100 p-2 ms-2" alt="">
-                                <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/adver/Picture3.png" class="w-100 p-2 ms-2" alt="">
-                                <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/adver/Picture1.png" class="w-100 p-2 ms-2" alt="">
+                                <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/adver/Picture2.png"
+                                    class="w-100 p-2 ms-2" alt="">
+                                <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/adver/Picture3.png"
+                                    class="w-100 p-2 ms-2" alt="">
+                                <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/adver/Picture1.png"
+                                    class="w-100 p-2 ms-2" alt="">
                             </div>
                         </div>
                     </div>
@@ -285,6 +312,7 @@
                 <a href="#" class="fw-semibold">Thông tin-Truyền thông-Quảng cáo</a>
             </div>
         </div>
-        <a href="#" type="button" class="d-block text-center m-auto mt-4 text-primary">Xem tất cả nghề nghiệp <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#" type="button" class="d-block text-center m-auto mt-4 text-primary">Xem tất cả nghề nghiệp <i
+                class="fa-solid fa-arrow-right"></i></a>
     </div>
 </section>

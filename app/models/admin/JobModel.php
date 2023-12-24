@@ -200,11 +200,10 @@ class JobModel extends Model
     public function handleViewJob($jobId)
     {
         $queryGet = $this->db->table('jobs')
-            ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.slug, jobs.form_work, jobs.location, 
-                jobs.salary, jobs.deadline, jobs.rank, jobs.degree_required,
-                jobs.number_recruits, jobs.exp_required, jobs.requirement, 
-                jobs.description, jobs.welfare, jobs.other_info, job_categories.name as jobField,
-                companies.name, companies.description as company_description, 
+            ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.slug, jobs.location, jobs.salary, jobs.deadline,
+                jobs.number_recruits, jobs.requirement, jobs.description, jobs.welfare, 
+                jobs.other_info, job_categories.name as jobField, jobs.form_work, jobs.education_required, 
+                jobs.exp_required, jobs.rank, companies.name, companies.description as company_description, 
                 companies.location as company_location, companies.scales')
             ->join('job_categories', 'job_categories.id = jobs.job_category_id')
             ->join('companies', 'companies.id = jobs.company_id')
@@ -222,13 +221,17 @@ class JobModel extends Model
     public function handleGetDetail($jobId)
     {
         $queryGet = $this->db->table('jobs')
-            ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.slug, jobs.form_work, jobs.location, 
-                jobs.salary, jobs.deadline, jobs.rank, jobs.degree_required, jobs.view_count,
-                jobs.number_recruits, jobs.exp_required, jobs.requirement, jobs.create_at,
+            ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.slug, jobs.location, jobs.salary, jobs.deadline, 
+                jobs.view_count, jobs.number_recruits, jobs.requirement, jobs.create_at, form_work.name as form_work, 
+                education.name as education_required, year_experience.name as exp_required, job_rank.name as rank,
                 jobs.description as job_description, jobs.welfare, jobs.other_info, job_categories.name as jobField,
                 companies.name, companies.location as company_location, companies.scales, companies.description')
             ->join('job_categories', 'jobs.job_category_id = job_categories.id')
             ->join('companies', 'jobs.company_id = companies.id')
+            ->join('form_work', 'form_work.id = jobs.form_work')
+            ->join('education', 'education.id = jobs.education_required')
+            ->join('year_experience', 'year_experience.id = jobs.exp_required')
+            ->join('job_rank', 'job_rank.id = jobs.rank')
             ->where('jobs.id', '=', $jobId)
             ->get();
 
@@ -290,9 +293,10 @@ class JobModel extends Model
 
             $queryGet = $this->db->table('jobs')
                 ->select('jobs.id, jobs.thumbnail, jobs.title, jobs.location, jobs.salary, 
-                jobs.slug, jobs.exp_required, companies.name')
+                    jobs.slug, jobs.exp_required, companies.name, year_experience.name as exp_required')
                 ->join('companies', 'jobs.company_id = companies.id')
                 ->join('job_categories', 'jobs.job_category_id = job_categories.id')
+                ->join('year_experience', 'year_experience.id = jobs.exp_required')
                 ->where('job_categories.name', '=', $jobField)
                 ->limit(3, $randomIndex)
                 ->get();
@@ -327,7 +331,7 @@ class JobModel extends Model
                 'jobs.salary' => $_POST['salary'],
                 'jobs.deadline' => $_POST['deadline'],
                 'jobs.rank' => $_POST['rank'],
-                'jobs.degree_required' => $_POST['degree_required'],
+                'jobs.education_required' => $_POST['education_required'],
                 'jobs.exp_required' => $_POST['exp_required'],
                 'jobs.number_recruits' => $_POST['number_recruits'],
                 'jobs.requirement' => $_POST['requirement'],
@@ -384,7 +388,7 @@ class JobModel extends Model
                     'deadline' => $_POST['deadline'],
                     'rank' => $_POST['rank'],
                     'company_id' => $this->db->lastInsertId(),
-                    'degree_required' => $_POST['degree_required'],
+                    'education_required' => $_POST['education_required'],
                     'exp_required' => $_POST['exp_required'],
                     'number_recruits' => $_POST['number_recruits'],
                     'requirement' => $_POST['requirement'],
@@ -416,7 +420,7 @@ class JobModel extends Model
                 'deadline' => $_POST['deadline'],
                 'rank' => $_POST['rank'],
                 'company_id' => $companyId,
-                'degree_required' => $_POST['degree_required'],
+                'education_required' => $_POST['education_required'],
                 'exp_required' => $_POST['exp_required'],
                 'number_recruits' => $_POST['number_recruits'],
                 'requirement' => $_POST['requirement'],
@@ -452,10 +456,71 @@ class JobModel extends Model
         return $response;
     }
 
-    public function handleRecruitment($userId, $jobId, $cvPath) {
+    public function handleGetFormWork()
+    {
+        $queryGet = $this->db->table('form_work')
+            ->select('id, name')
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetJobRank()
+    {
+        $queryGet = $this->db->table('job_rank')
+            ->select('id, name')
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetYearExp()
+    {
+        $queryGet = $this->db->table('year_experience')
+            ->select('id, name')
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetEducation()
+    {
+        $queryGet = $this->db->table('education')
+            ->select('id, name')
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleRecruitment($userId, $jobId, $cvPath)
+    {
         $dataInsert = [
-            'candidate_id' => $userId, 
-            'job_id' => $jobId, 
+            'candidate_id' => $userId,
+            'job_id' => $jobId,
             'fullname' => $_POST['fullname'],
             'email' => $_POST['email'],
             'phone' => $_POST['phone'],
@@ -466,21 +531,22 @@ class JobModel extends Model
 
         $insertStatus = $this->db->table('job_applications')
             ->insert($dataInsert);
-        
-        if ($insertStatus):
+
+        if ($insertStatus) :
             return true;
         endif;
 
         return false;
     }
 
-    public function isJobId($jobId) {
+    public function isJobId($jobId)
+    {
         $checkId = $this->db->table('jobs')
             ->select('id')
             ->where('id', '=', $jobId)
             ->first();
 
-        if (!empty($checkId)):
+        if (!empty($checkId)) :
             return true;
         endif;
 
