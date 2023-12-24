@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-lg-7">
                         <div class="input-group w-50">
-                            <input type="email" name="email" class="form-control border-0" value="<?php echo $information['email']; ?>" disabled>
+                            <input type="email" name="email" class="form-control border-0 old-email" value="<?php echo $information['email']; ?>" disabled>
                             <span class="input-group-text p-0 m-0 px-2" style="background-color: #e9ecef;"><i class="text-primary bi bi-check-circle"></i></span>
                         </div>
 
@@ -40,6 +40,8 @@
                     </div>
                     <div class="col-lg-3">
                         <button class="btn border border-primary text-primary" type="button" onclick="editEmail()"><i class="bi bi-pencil"></i> Sửa email</button>
+                        <br>
+                        <button class="btn border border-danger text-danger mt-3 btn-cancer-edit" type="button" style="display: none;" onclick="cancerEditEmail()"><i class="bi bi-trash"></i> Huỷ</button>
                     </div>
                 </div>
             </div>

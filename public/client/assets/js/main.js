@@ -178,6 +178,16 @@ function deleteFile() {
 
 function editEmail() {
   const inputEditEmail = document.querySelector('.input-edit-email')
+  const btnCancerEdit = document.querySelector('.btn-cancer-edit')
   inputEditEmail.style.display = 'block'
+  btnCancerEdit.style.display = 'block'
 }
 
+function cancerEditEmail() {
+  const inputEditEmail = document.querySelector('.input-edit-email')
+  const inputOldEmail = document.querySelector('.old-email')
+  const btnCancerEdit = document.querySelector('.btn-cancer-edit')
+  inputEditEmail.style.display = 'none'
+  inputEditEmail.value = inputOldEmail.value
+  btnCancerEdit.style.display = 'none'
+}

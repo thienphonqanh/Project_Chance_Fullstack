@@ -97,7 +97,7 @@
                         <p class="text-center fw-normal text-dark">Kiến tạo hồ sơ với bố cục chuẩn mực, chuyên nghiệp
                             cho các ngành nghề, được nhiều nhà tuyển dụng đề xuất.</p>
                         <?php if (isUser()): ?>
-                            <a href="<?php echo _WEB_ROOT; ?>/thong-tin-ca-nhan" type="button"
+                            <a href="<?php echo _WEB_ROOT; ?>/quan-ly-tai-khoan/tai-khoan" type="button"
                                 class="discover-2 border border-primary btn btn-primary text-white d-block w-50 p-2 text-center m-auto rounded fw-bold fs-5">Khám
                             phá</a>
                         <?php else: ?>

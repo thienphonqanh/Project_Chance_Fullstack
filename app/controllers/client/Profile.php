@@ -122,7 +122,6 @@ class Profile extends Controller
                 endif;
             endif;
 
-
             if (
                 !empty($oldEmail) && (!empty($oldPhone))
                 && $oldEmail == $data['email'] && $oldPhone == $data['phone']
