@@ -14,7 +14,7 @@
                     <div class="collapse show" id="collapseExample-1">
                         <ul class="p-0 m-0 mx-4 px-1">
                             <li class="py-1">
-                                <a href="#" class="text-dark fw-normal fs-6">
+                                <a href="<?php echo _WEB_ROOT; ?>/quan-ly-tai-khoan/tai-khoan" class="text-dark fw-normal fs-6">
                                     <i class="bi bi-people-fill text-primary"></i> Tài khoản của bạn
                                 </a>
                             </li>
@@ -30,7 +30,7 @@
                     <div class="collapse show" id="collapseExample-2">
                         <ul class="p-0 m-0 mx-4 px-1">
                             <li class="py-1">
-                                <a href="#" class="text-dark fw-normal fs-6">
+                                <a href="<?php echo _WEB_ROOT; ?>/quan-ly-ho-so/ho-so" class="text-dark fw-normal fs-6">
                                     <i class="bi bi-people-fill text-primary"></i> Hồ sơ của bạn
                                 </a>
                             </li>
