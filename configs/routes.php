@@ -1,8 +1,8 @@
 <?php
 
 // Đường dẫn ảo -> đường dẫn thật
-$routes['default_controller'] = '';
-// $routes['/'] = 'client/home';
+// $routes['default_controller'] = 'client/home';
+$routes['/'] = 'client/home';
 $routes['trang-chu'] = 'client/home';
 $routes['admin'] = 'admin/dashboard';
 
