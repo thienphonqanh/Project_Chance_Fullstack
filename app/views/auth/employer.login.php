@@ -26,6 +26,6 @@
         </form>
     </div>
     <div class="p-0 d-lg-block d-sm-none d-md-none d-none" style="width: 30%;">
-        <img src="https://tuyendung.topcv.vn/app/_nuxt/img/banner-01.d2c28c7.png" class="img-fluid" style="overflow: hidden; height: 100vh;" alt="">
+        <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/logos/ntd.banner.png" class="img-fluid" style="overflow: hidden; height: 100vh;" alt="">
     </div>
 </div>
