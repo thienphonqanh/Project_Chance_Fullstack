@@ -32,6 +32,9 @@
     <!-- Thanh header -->
     <nav class="navbar p-1 navbar-expand-lg">
         <div class="container">
+            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
             <a class="navbar-brand d-flex align-items-center" href="index.html">
                 <img src="<?php echo _WEB_ROOT; ?>/public/client/assets/images/logos/Logo-Chance.png" class="img-fluid logo-image">
 

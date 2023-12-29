@@ -175,6 +175,22 @@
   .custom-btn-profile {
     width: 100%;
   }
+
+  .special-text {
+    bottom: 0; 
+    left: 50%; 
+    transform: translate(-50%, 0);
+  }
+
+  .special-text-home {
+    top: 0; 
+    left: 50%; 
+    transform: translate(-50%, 0);
+  }
+
+  .handbook-ntd {
+    width: 90% !important;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -195,6 +211,10 @@
 
   .criteria {
     width: 25%;
+  }
+
+  .ntd-service-header {
+    width: 75% !important;
   }
 }
 
@@ -226,6 +246,10 @@
 
   .criteria {
     width: 25%;
+  }
+
+  .ntd-service-header {
+    width: 90% !important;
   }
 }
 
@@ -337,5 +361,9 @@
 
   .second-criteria {
     width: 100%;
+  }
+
+  .ntd-service-header {
+    width: 95% !important;
   }
 }
