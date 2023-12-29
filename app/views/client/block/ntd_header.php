@@ -53,7 +53,7 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav align-items-center ms-lg-5">
                             <li class="nav-item ms-lg-auto d-none d-sm-none d-md-none d-lg-block">
-                                <a class="nav-link p-0 px-3 text-dark fw-semibold fs-6 border-end border-2 border-primary" type="button" href="<?php echo _WEB_ROOT; ?>/dang-nhap"><span class="fs-6 fw-normal text-dark">Nhà tuyển dụng</span><br> Đăng ký/Đăng nhập</a>
+                                <a class="nav-link p-0 px-3 text-dark fw-semibold fs-6 border-end border-2 border-primary" type="button" href="<?php echo _WEB_ROOT; ?>/ntd/dang-nhap"><span class="fs-6 fw-normal text-dark">Nhà tuyển dụng</span><br> Đăng ký/Đăng nhập</a>
                             </li>
     
                             <li class="nav-item d-none d-sm-none d-md-none d-lg-block">

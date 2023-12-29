@@ -54,7 +54,6 @@ class Auth extends Controller
 
         endif;
 
-
         $this->data['body'] = 'auth/login';
         $this->data['title'] = 'Đăng nhập Chance';
         $this->data['msg'] = Session::flash('msg');
@@ -62,6 +61,59 @@ class Auth extends Controller
         $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
         $this->data['dataView']['old'] = Session::flash('chance_session_old');
         $this->render('layouts/auth', $this->data, '');
+    }
+
+    // Xử lý login
+    public function employerLogin()
+    {
+    $request = new Request();
+    $response = new Response();
+
+    if (isLogin()) :
+        $response->redirect('ntd');
+    endif;
+
+    if ($request->isPost()) : // Kiểm tra post
+        $request->rules([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $request->message([
+            'email.required' => 'Email không được để trống',
+            'password.required' => 'Mật khẩu không được để trống',
+        ]);
+
+        $validate = $request->validate();
+
+        if ($validate) :
+            $data = $request->getFields();
+
+            if (!empty($data)) :
+                $username = $data['email'];
+                $password = $data['password'];
+
+                $result = $this->authModel->handleLogin($username, $password);
+
+                if ($result) :
+                    $response->redirect('trang-chu');
+                else :
+                    $response->redirect('dang-nhap');
+                endif;
+            endif;
+        else :
+            Session::flash('msg', 'Vui lòng nhập tất cả dữ liệu');
+            Session::flash('msg_type', 'danger');
+        endif;
+
+    endif;
+
+    $this->data['body'] = 'auth/employer.login';
+    $this->data['title'] = 'Đăng nhập nhà tuyển dụng';
+    $this->data['msg'] = Session::flash('msg');
+    $this->data['msgType'] = Session::flash('msg_type');
+    $this->data['dataView']['old'] = Session::flash('chance_session_old');
+    $this->render('layouts/employer.auth', $this->data, '');
     }
 
     // Xử lý register
@@ -115,11 +167,69 @@ class Auth extends Controller
 
         $this->data['body'] = 'auth/register';
         $this->data['title'] = 'Đăng ký Chance';
-        $this->data['msg'] = Session::flash('msg');
-        $this->data['msgType'] = Session::flash('msg_type');
+        $this->data['dataView']['msg'] = Session::flash('msg');
+        $this->data['dataView']['msgType'] = Session::flash('msg_type');
         $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
         $this->data['dataView']['old'] = Session::flash('chance_session_old');
         $this->render('layouts/auth', $this->data, '');
+    }
+
+    // Xử lý register
+    public function employerRegister()
+    {
+        $request = new Request();
+        $response = new Response();
+
+        if (isLogin()) :
+            $response->redirect('ntd');
+        endif;
+
+        if ($request->isPost()) : // Kiểm tra post
+            $request->rules([
+                'fullname' => 'required|min:5',
+                'email' => 'required|email|min:11|unique:candidates:email',
+                'password' => 'required|min:8|special',
+                're_password' => 'required|match:password'
+            ]);
+
+            $request->message([
+                'fullname.required' => 'Họ tên không được để trống',
+                'fullname.min' => 'Họ tên phải lớn hơn 4 ký tự',
+                'email.required' => 'Email không được để trống',
+                'email.email' => 'Định dạng email không hợp lệ',
+                'email.min' => 'Email phải lớn hơn 11 ký tự',
+                'email.unique' => 'Email đã tồn tại',
+                'password.required' => 'Mật khẩu không được để trống',
+                'password.min' => 'Mật khẩu phải lớn hơn 7 ký tự',
+                'password.special' => 'Mật khẩu phải có ít nhất 1 ký tự hoa và 1 ký tự đặc biệt',
+                're_password.required' => 'Mật khẩu không được để trống',
+                're_password.match' => 'Mật khẩu không trùng khớp',
+            ]);
+
+            $validate = $request->validate();
+
+            if ($validate) :
+                $result = $this->authModel->handleRegister();
+
+                if ($result) :
+                    $response->redirect('dang-nhap');
+                else :
+                    $response->redirect('dang-ky');
+                endif;
+            else :
+                Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
+                Session::flash('msg_type', 'danger');
+            endif;
+
+        endif;
+
+        $this->data['body'] = 'auth/employer.register';
+        $this->data['title'] = 'Đăng ký nhà tuyển dụng';
+        $this->data['dataView']['msg'] = Session::flash('msg');
+        $this->data['dataView']['msgType'] = Session::flash('msg_type');
+        $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
+        $this->data['dataView']['old'] = Session::flash('chance_session_old');
+        $this->render('layouts/employer.auth', $this->data, '');
     }
 
     public function active()

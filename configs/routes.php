@@ -91,3 +91,5 @@ $routes['ung-tuyen'] = 'client/job/recruitment';
 
 // Nhà tuyển dụng
 $routes['ntd'] = 'client/employer/index';
+$routes['ntd/dang-nhap'] = 'auth/employerLogin';
+$routes['ntd/dang-ky'] = 'auth/employerRegister';

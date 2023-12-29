@@ -191,6 +191,11 @@
   .handbook-ntd {
     width: 90% !important;
   }
+
+  .ntd-form-login, .ntd-form-register {
+    width: 100% !important;
+    padding: 12px !important;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -215,6 +220,10 @@
 
   .ntd-service-header {
     width: 75% !important;
+  }
+
+  .ntd-form-login, .ntd-form-register {
+    padding: 60px !important;
   }
 }
 
@@ -250,6 +259,10 @@
 
   .ntd-service-header {
     width: 90% !important;
+  }
+
+  .ntd-form-login, .ntd-form-register {
+    padding: 60px !important;
   }
 }
 
@@ -365,5 +378,9 @@
 
   .ntd-service-header {
     width: 95% !important;
+  }
+
+  .ntd-form-login, .ntd-form-register  {
+    padding: 30px !important;
   }
 }
