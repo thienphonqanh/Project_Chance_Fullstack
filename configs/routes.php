@@ -88,3 +88,6 @@ $routes['quan-ly-ho-so/them-ho-so'] = 'client/profile/addPersonalProfile';
 $routes['quan-ly-ho-so/ho-so'] = 'client/profile/viewPersonalProfile';
 $routes['quan-ly-ho-so/sua-ho-so'] = 'client/profile/editPersonalProfile';
 $routes['ung-tuyen'] = 'client/job/recruitment';
+
+// Nhà tuyển dụng
+$routes['ntd'] = 'client/employer/index';

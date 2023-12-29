@@ -100,7 +100,7 @@
                         </li>
 
                         <li class="nav-item d-none d-sm-none d-md-none d-lg-block">
-                            <a class="nav-link p-0 px-3 text-dark fw-normal fs-5" type="button" href="<?php echo _WEB_ROOT; ?>/dang-nhap"><i class="text-primary bi bi-suitcase-lg fs-5"></i> Nhà Tuyển Dụng</a>
+                            <a class="nav-link p-0 px-3 text-dark fw-normal fs-5" type="button" href="<?php echo _WEB_ROOT; ?>/ntd"><i class="text-primary bi bi-suitcase-lg fs-5"></i> Nhà Tuyển Dụng</a>
                         </li>
                     <?php elseif (!isUser()) : ?>
 
