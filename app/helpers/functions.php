@@ -170,6 +170,14 @@ function getIdUserLogin()
     return false;
 }
 
+function getIdEmployerLogin()
+{
+    if (getEmployerData() && !empty(getEmployerData()['id'])) :
+        return getEmployerData()['id'];
+    endif;
+
+    return false;
+}
 
 function getModule()
 {
@@ -223,6 +231,39 @@ function handleActiveSidebar($module = '', $action = '')
         else :
             if (!empty($module)) :
                 if ($path[0] === $module) :
+                    return true;
+                endif;
+            endif;
+        endif;
+
+    endif;
+
+    return false;
+}
+
+function handleActiveSidebarEmployer($module = '', $action = '')
+{
+    if (!empty($_SERVER['PATH_INFO'])) :
+        $path = trim($_SERVER['PATH_INFO'], '/');
+        $path = explode('/', $path);
+    endif;
+
+    if (!empty($path)) :
+        $path = array_filter($path);
+
+        if (count($path) > 1) :
+            if (empty($action)) :
+                if ($path[1] === $module) :
+                    return true;
+                endif;
+            else :
+                if ($path[1] === $module && $path[2] === $action) :
+                    return true;
+                endif;
+            endif;
+        else :
+            if (!empty($module)) :
+                if ($path[1] === $module) :
                     return true;
                 endif;
             endif;

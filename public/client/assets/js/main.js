@@ -1,3 +1,13 @@
+// Xử lý ckeditor với class
+let classTextArea = document.querySelectorAll(".editor");
+
+if (classTextArea !== null) {
+  classTextArea.forEach((item, index) => {
+    item.id = "editor_" + (index + 1);
+    CKEDITOR.replace(item.id);
+  });
+}
+
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
@@ -194,3 +204,4 @@ function cancerEditEmail() {
   inputEditEmail.value = inputOldEmail.value
   btnCancerEdit.style.display = 'none'
 }
+
