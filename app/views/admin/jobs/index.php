@@ -43,8 +43,8 @@
                         <th class="text-center" width="11%">Địa điểm</th>
                         <th class="text-center" width="9%">Trạng thái</th>
                         <th class="text-center" width="8%">Thời hạn</th>
-                        <th class="text-center" width="7%">Xem</th>
-                        <th class="text-center" width="7%">Sửa</th>
+                        <th class="text-center" width="8%">Xem</th>
+                        <th class="text-center" width="8%">Sửa</th>
                     </tr>
                 </thead>
                 <tbody>

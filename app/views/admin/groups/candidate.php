@@ -10,6 +10,8 @@
                             Chưa kích hoạt</option>
                         <option value="active" <?php isset($request->getFields()['status']) && $request->getFields()['status'] == 'active' ? 'selected' : '' ?>>
                             Đã kích hoạt</option>
+                        <option value="unactive" <?php isset($request->getFields()['status']) && $request->getFields()['status'] == 'unactive' ? 'selected' : '' ?>>
+                            Bị cấm</option>
                     </select>
                 </div>
                 <div class="col-5">

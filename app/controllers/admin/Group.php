@@ -12,7 +12,7 @@ class Group extends Controller
         $this->groupModel = $this->model('GroupModel', 'admin');
     }
 
-    public function getPersonnel()
+    public function getEmployer()
     {
         $request = new Request();
         $query = $request->getFields();
@@ -23,27 +23,35 @@ class Group extends Controller
             extract($query);
 
             if (isset($status)) :
-                if ($status == 'active' || $status == 'inactive') :
-                    $filters['status'] = $status == 'active' ? 1 : 0;
-                endif;
+                switch ($status):
+                    case 'active':
+                        $filters['status'] = $status = 1;
+                        break;
+                    case 'inactive':
+                        $filters['status'] = $status = 0;
+                        break;
+                    case 'unactive':
+                        $filters['status'] = $status = 2;
+                        break;
+                endswitch;
             endif;
         endif;
 
-        $resultPaginate = $this->groupModel->handleGetPersonnel($filters, $keyword ?? '', $this->config['page_limit']);
+        $resultPaginate = $this->groupModel->handleGetEmployer($filters, $keyword ?? '', $this->config['page_limit']);
 
         $result = $resultPaginate['data'];
 
         $links = $resultPaginate['link'];
 
         if (!empty($result)) :
-            $listPersonnel = $result;
-            $this->data['dataView']['listPersonnel'] = $listPersonnel;
+            $listEmployer = $result;
+            $this->data['dataView']['listEmployer'] = $listEmployer;
         else :
             $emtyValue = 'Không có dữ liệu';
             $this->data['dataView']['emptyValue'] = $emtyValue;
         endif;
 
-        $this->data['body'] = 'admin/groups/personnel';
+        $this->data['body'] = 'admin/groups/employer';
         $this->data['dataView']['request'] = $request;
         $this->data['dataView']['links'] = $links;
         $this->render('layouts/layout', $this->data, 'admin');
@@ -60,9 +68,17 @@ class Group extends Controller
             extract($query);
 
             if (isset($status)) :
-                if ($status == 'active' || $status == 'inactive') :
-                    $filters['status'] = $status == 'active' ? 1 : 0;
-                endif;
+                switch ($status):
+                    case 'active':
+                        $filters['status'] = $status = 1;
+                        break;
+                    case 'inactive':
+                        $filters['status'] = $status = 0;
+                        break;
+                    case 'unactive':
+                        $filters['status'] = $status = 2;
+                        break;
+                endswitch;
             endif;
         endif;
 
@@ -87,7 +103,7 @@ class Group extends Controller
     }
 
     // Xem thông tin cá nhân của ứng viên
-    public function viewProfilePersonnel()
+    public function viewProfileEmployer()
     {
         $request = new Request();
 
@@ -96,11 +112,14 @@ class Group extends Controller
         if (!empty($data['id'])) :
             $userId = $data['id'];
 
-            $result = $this->groupModel->handleViewProfilePersonnel($userId);
+            $result = $this->groupModel->handleViewProfileEmployer($userId);
+            $jobField = $this->groupModel->handleGetJobField();
 
-            if (!empty($result)) :
+            if (!empty($result) && !empty($jobField)) :
                 $dataProfile = $result;
+
                 $this->data['dataView']['dataProfile'] = $dataProfile;
+                $this->data['dataView']['jobField'] = $jobField;
             else :
                 $emtyValue = 'Không có dữ liệu';
                 $this->data['dataView']['emptyValue'] = $emtyValue;
@@ -108,7 +127,7 @@ class Group extends Controller
         endif;
 
 
-        $this->data['body'] = 'admin/profile/personnel';
+        $this->data['body'] = 'admin/profile/employer';
         $this->render('layouts/layout', $this->data, 'admin');
     }
 
@@ -140,14 +159,14 @@ class Group extends Controller
     }
 
     // Sửa thông tin cá nhân của user
-    public function updateProfilePersonnel()
+    public function updateProfileEmployer()
     {
         $request = new Request();
 
         $data = $request->getFields();
         $userId = $_GET['id'];
 
-        $checkOld = $this->groupModel->handleGetOldPersonnel($userId);
+        $checkOld = $this->groupModel->handleGetOldEmployer($userId);
         $oldEmail = $checkOld['email'];
         $oldPhone = $checkOld['phone'];
         $oldThumbnail = $checkOld['thumbnail'];
@@ -218,7 +237,10 @@ class Group extends Controller
                     'fullname' => 'required|min:5',
                     'email' => 'required|email|min:11',
                     'phone' => 'required|phone',
-                    'dob' => 'required'
+                    'name' => 'required|min:5',
+                    'address' => 'required',
+                    'scales' => 'required',
+                    'job_field' => 'required'
                 ]);
 
                 $request->message([
@@ -229,7 +251,11 @@ class Group extends Controller
                     'email.min' => 'Email phải lớn hơn 11 ký tự',
                     'phone.required' => 'Số điện thoại không được để trống',
                     'phone.phone' => 'Số điện thoại không hợp lệ',
-                    'dob.required' => 'Ngày sinh không được để trống',
+                    'name.required' => 'Tên công ty không được để trống',
+                    'name.min' => 'Tên công ty phải lớn hơn 4 ký tự',
+                    'address.required' => 'Địa chỉ công ty không được để trống',
+                    'scales.required' => 'Quy mô công ty không được để trống',
+                    'job_field.required' => 'Lĩnh vực không được để trống',
                 ]);
 
             elseif (
@@ -240,7 +266,10 @@ class Group extends Controller
                     'fullname' => 'required|min:5',
                     'email' => 'required|email|min:11|unique:candidates:email',
                     'phone' => 'required|phone',
-                    'dob' => 'required'
+                    'name' => 'required|min:5',
+                    'address' => 'required',
+                    'scales' => 'required',
+                    'job_field' => 'required'
                 ]);
 
                 $request->message([
@@ -252,7 +281,11 @@ class Group extends Controller
                     'email.unique' => 'Email đã tồn tại',
                     'phone.required' => 'Số điện thoại không được để trống',
                     'phone.phone' => 'Số điện thoại không hợp lệ',
-                    'dob.required' => 'Ngày sinh không được để trống',
+                    'name.required' => 'Tên công ty không được để trống',
+                    'name.min' => 'Tên công ty phải lớn hơn 4 ký tự',
+                    'address.required' => 'Địa chỉ công ty không được để trống',
+                    'scales.required' => 'Quy mô công ty không được để trống',
+                    'job_field.required' => 'Lĩnh vực không được để trống',
                 ]);
 
             elseif (
@@ -263,7 +296,10 @@ class Group extends Controller
                     'fullname' => 'required|min:5',
                     'email' => 'required|email|min:11',
                     'phone' => 'required|phone|unique:candidates:phone',
-                    'dob' => 'required'
+                    'name' => 'required|min:5',
+                    'address' => 'required',
+                    'scales' => 'required',
+                    'job_field' => 'required'
                 ]);
 
                 $request->message([
@@ -275,7 +311,11 @@ class Group extends Controller
                     'phone.required' => 'Số điện thoại không được để trống',
                     'phone.phone' => 'Số điện thoại không hợp lệ',
                     'phone.unique' => 'Số điện thoại đã tồn tại',
-                    'dob.required' => 'Ngày sinh không được để trống',
+                    'name.required' => 'Tên công ty không được để trống',
+                    'name.min' => 'Tên công ty phải lớn hơn 4 ký tự',
+                    'address.required' => 'Địa chỉ công ty không được để trống',
+                    'scales.required' => 'Quy mô công ty không được để trống',
+                    'job_field.required' => 'Lĩnh vực không được để trống',
                 ]);
 
             else :
@@ -283,7 +323,10 @@ class Group extends Controller
                     'fullname' => 'required|min:5',
                     'email' => 'required|email|min:11|unique:candidates:email',
                     'phone' => 'required|phone|unique:candidates:phone',
-                    'dob' => 'required'
+                    'name' => 'required|min:5',
+                    'address' => 'required',
+                    'scales' => 'required',
+                    'job_field' => 'required'
                 ]);
 
                 $request->message([
@@ -296,7 +339,11 @@ class Group extends Controller
                     'phone.required' => 'Số điện thoại không được để trống',
                     'phone.phone' => 'Số điện thoại không hợp lệ',
                     'phone.unique' => 'Số điện thoại đã tồn tại',
-                    'dob.required' => 'Ngày sinh không được để trống',
+                    'name.required' => 'Tên công ty không được để trống',
+                    'name.min' => 'Tên công ty phải lớn hơn 4 ký tự',
+                    'address.required' => 'Địa chỉ công ty không được để trống',
+                    'scales.required' => 'Quy mô công ty không được để trống',
+                    'job_field.required' => 'Lĩnh vực không được để trống',
                 ]);
             endif;
 
@@ -311,7 +358,7 @@ class Group extends Controller
                         endif;
                     endif;
 
-                    $resultUpdate = $this->groupModel->handleUpdateProfilePersonnel($userId, $avatarPath);
+                    $resultUpdate = $this->groupModel->handleUpdateProfileEmployer($userId, $avatarPath);
                 endif;
 
                 if ($resultUpdate) :
@@ -328,18 +375,21 @@ class Group extends Controller
         endif;
 
         if (!empty($userId)) :
-            $result = $this->groupModel->handleViewProfilePersonnel($userId);
+            $result = $this->groupModel->handleViewProfileEmployer($userId);
+            $jobField = $this->groupModel->handleGetJobField();
 
-            if (!empty($result)) :
+            if (!empty($result) && !empty($jobField)) :
                 $dataProfile = $result;
+
                 $this->data['dataView']['dataProfile'] = $dataProfile;
+                $this->data['dataView']['jobField'] = $jobField;
             else :
                 $emtyValue = 'Không có dữ liệu';
                 $this->data['dataView']['emptyValue'] = $emtyValue;
             endif;
         endif;
 
-        $this->data['body'] = 'admin/profile/personnel_edit';
+        $this->data['body'] = 'admin/profile/employer_edit';
         $this->data['dataView']['msg'] = Session::flash('msg');
         $this->data['dataView']['msgType'] = Session::flash('msg_type');
         $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
@@ -577,7 +627,7 @@ class Group extends Controller
     }
 
     // Xử lý trạng thái account
-    public function changeStatusAccountPersonnel()
+    public function changeStatusAccountEmployer()
     {
         $request = new Request();
         $response = new Response();
@@ -588,17 +638,17 @@ class Group extends Controller
             $userId = $data['id'];
             $action = $data['action'];
 
-            $result = $this->groupModel->handleChangeStatusAccountPersonnel($userId, $action); // Gọi xử lý ở Model
+            $result = $this->groupModel->handleChangeStatusAccountEmployer($userId, $action); // Gọi xử lý ở Model
 
             if ($result) :
-                $response->redirect('groups/nhan-su');
+                $response->redirect('groups/nha-tuyen-dung');
             endif;
 
         endif;
     }
 
     // Xoá nhân sự
-    public function deletePersonnel()
+    public function deleteEmployer()
     {
         $request = new Request();
         $response = new Response();
@@ -610,10 +660,10 @@ class Group extends Controller
             $itemsToDelete = implode(',', $itemsToDelete);
 
 
-            $result = $this->groupModel->handleDeletePersonnel($itemsToDelete);
+            $result = $this->groupModel->handleDeleteEmployer($itemsToDelete);
 
             if ($result) :
-                $response->redirect('groups/nhan-su');
+                $response->redirect('groups/nha-tuyen-dung');
             endif;
 
         endif;

@@ -40,16 +40,16 @@ $routes['lien-he'] = 'client/contact';
 */
 // Dashboard - Nhóm người dùng
 $routes['groups'] = 'admin/group';
-$routes['groups/nhan-su'] = 'admin/group/getPersonnel';
+$routes['groups/nha-tuyen-dung'] = 'admin/group/getEmployer';
 $routes['groups/ung-vien'] = 'admin/group/getCandidate';
 $routes['groups/ung-vien/thong-tin'] = 'admin/group/viewProfileCandidate';
 $routes['groups/ung-vien/chinh-sua'] = 'admin/group/updateProfileCandidate';
 $routes['groups/ung-vien/trang-thai'] = 'admin/group/changeStatusAccountCandidate';
 $routes['groups/ung-vien/xoa'] = 'admin/group/deleteCandidate';
-$routes['groups/nhan-su/thong-tin'] = 'admin/group/viewProfilePersonnel';
-$routes['groups/nhan-su/chinh-sua'] = 'admin/group/updateProfilePersonnel';
-$routes['groups/nhan-su/trang-thai'] = 'admin/group/changeStatusAccountPersonnel';
-$routes['groups/nhan-su/xoa'] = 'admin/group/deletePersonnel';
+$routes['groups/nha-tuyen-dung/thong-tin'] = 'admin/group/viewProfileEmployer';
+$routes['groups/nha-tuyen-dung/chinh-sua'] = 'admin/group/updateProfileEmployer';
+$routes['groups/nha-tuyen-dung/trang-thai'] = 'admin/group/changeStatusAccountEmployer';
+$routes['groups/nha-tuyen-dung/xoa'] = 'admin/group/deleteEmployer';
 
 
 // Dashboard - Quản lý việc làm

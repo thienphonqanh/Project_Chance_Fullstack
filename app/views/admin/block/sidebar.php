@@ -52,9 +52,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo _WEB_ROOT; ?>/groups/nhan-su" class="nav-link <?php echo handleActiveSidebar('groups', 'nhan-su') ? 'active' : false; ?>">
+                            <a href="<?php echo _WEB_ROOT; ?>/groups/nha-tuyen-dung" class="nav-link <?php echo handleActiveSidebar('groups', 'nhan-su') ? 'active' : false; ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách nhân sự</p>
+                                <p>Danh sách nhà tuyển dụng</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -103,7 +103,7 @@
                     <a href="#" class="nav-link  <?php echo handleActiveSidebar('contacts') ? 'active' : false; ?>">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
-                            Quản lý liên hệ 
+                            Quản lý liên hệ
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>

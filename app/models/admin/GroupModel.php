@@ -18,12 +18,12 @@ class GroupModel extends Model
     }
 
     // Xử lý lấy danh sách nhân sự
-    public function handleGetPersonnel($filters = [], $keyword = '', $limit)
+    public function handleGetEmployer($filters = [], $keyword = '', $limit)
     {
-        $queryGet = $this->db->table('admins')
-            ->select('admins.id, admins.fullname, admins.status, admins.email, groups.name')
-            ->join('groups', 'admins.group_id = groups.id')
-            ->where('admins.group_id', '!=', 2);
+        $queryGet = $this->db->table('companies')
+            ->select('companies.id, companies.name, companies.status, 
+                companies.phone, companies.email')
+            ->where('companies.group_id', '=', 3);
 
         $checkNull = false;
 
@@ -36,8 +36,9 @@ class GroupModel extends Model
         if (!empty($keyword)) :
             $queryGet->where(function ($query) use ($keyword) {
                 $query
-                    ->where('admins.fullname', 'LIKE', "%$keyword%")
-                    ->orWhere('groups.name', 'LIKE', "%$keyword%");
+                    ->where('companies.name', 'LIKE', "%$keyword%")
+                    ->orWhere('companies.email', 'LIKE', "%$keyword%")
+                    ->orWhere('companies.phone', 'LIKE', "%$keyword%");
             });
         endif;
 
@@ -121,11 +122,11 @@ class GroupModel extends Model
     }
 
     // Xử lý lấy data trang thông tin 
-    public function handleViewProfilePersonnel($userId)
+    public function handleViewProfileEmployer($userId)
     {
-        $queryGet = $this->db->table('admins')
-            ->select('fullname, thumbnail, email, dob, phone, gender, location, address,
-                contact_facebook, contact_twitter, about_content')
+        $queryGet = $this->db->table('companies')
+            ->select('fullname, thumbnail, email, phone, location, name, 
+                scales, job_category_id, description')
             ->where('id', '=', $userId)
             ->first();
 
@@ -137,9 +138,9 @@ class GroupModel extends Model
     }
 
     // Xử lý lấy update trang thông tin 
-    public function handleUpdateProfilePersonnel($userId, $avatarPath)
+    public function handleUpdateProfileEmployer($userId, $avatarPath)
     {
-        $queryGet = $this->db->table('admins')
+        $queryGet = $this->db->table('companies')
             ->where('id', '=', $userId)
             ->first();
 
@@ -149,17 +150,15 @@ class GroupModel extends Model
                 'thumbnail' => $avatarPath,
                 'email' => $_POST['email'],
                 'phone' => $_POST['phone'],
-                'dob' => $_POST['dob'],
-                'gender' => $_POST['gender'],
-                'location' => $_POST['location'],
-                'address' => $_POST['address'],
-                'contact_facebook' => $_POST['contact_facebook'],
-                'contact_twitter' => $_POST['contact_twitter'],
-                'about_content' => $_POST['about_content'],
+                'location' => $_POST['address'],
+                'name' => $_POST['name'],
+                'scales' => $_POST['scales'],
+                'job_category_id' => $_POST['job_field'],
+                'description' => $_POST['description'],
                 'update_at' => date('Y-m-d H:i:s'),
             ];
 
-            $updateStatus = $this->db->table('admins')
+            $updateStatus = $this->db->table('companies')
                 ->where('id', '=', $userId)
                 ->update($dataUpdate);
 
@@ -208,9 +207,9 @@ class GroupModel extends Model
     }
 
     // Lấy email, phone cũ của personnel
-    public function handleGetOldPersonnel($userId)
+    public function handleGetOldEmployer($userId)
     {
-        $queryGet = $this->db->table('admins')
+        $queryGet = $this->db->table('companies')
             ->select('email, phone, thumbnail')
             ->where('id', '=', $userId)
             ->first();
@@ -284,9 +283,9 @@ class GroupModel extends Model
     }
 
     // Xử lý duyệt đăng ký dịch vụ của personnel
-    public function handleChangeStatusAccountPersonnel($userId, $action)
+    public function handleChangeStatusAccountEmployer($userId, $action)
     {
-        $queryGet = $this->db->table('admins')
+        $queryGet = $this->db->table('companies')
             ->select('status')
             ->where('id', '=', $userId)
             ->first();
@@ -314,7 +313,7 @@ class GroupModel extends Model
                     break;
             endswitch;
 
-            $updateStatus = $this->db->table('admins')
+            $updateStatus = $this->db->table('companies')
                 ->where('id', '=', $userId)
                 ->update($dataUpdate);
 
@@ -327,11 +326,11 @@ class GroupModel extends Model
     }
 
     // Xử lý xoá nhân sự
-    public function handleDeletePersonnel($itemsToDelete = '')
+    public function handleDeleteEmployer($itemsToDelete = '')
     {
         $itemsToDelete = '(' . $itemsToDelete . ')';
 
-        $queryDelete = $this->db->table('admins')
+        $queryDelete = $this->db->table('companies')
             ->where('id', 'IN', $itemsToDelete)
             ->delete();
 
@@ -356,5 +355,20 @@ class GroupModel extends Model
         endif;
 
         return false;
+    }
+
+    public function handleGetJobField()
+    {
+        $queryGet = $this->db->table('job_categories')
+            ->select('id, name')
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
     }
 }
