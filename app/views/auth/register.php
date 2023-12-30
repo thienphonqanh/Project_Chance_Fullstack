@@ -7,7 +7,6 @@
         </div>
         <?php echo form_error('fullname', $errors, '<span class="error">', '</span>') ?>
     </div>
-
     <div class="form-group mt-3">
         <label for="email">Email</label>
         <div class="input-group w-100">
@@ -15,6 +14,14 @@
             <input type="email" class="form-control border-start-0" name="email" placeholder="Địa chỉ email" value="<?php echo (!empty(old('email', $old))) ? old('email', $old) : false ?>">
         </div>
         <?php echo form_error('email', $errors, '<span class="error">', '</span>') ?>
+    </div>
+    <div class="form-group mt-3">
+        <label for="phone">Số điện thoại</label>
+        <div class="input-group w-100">
+            <span class="input-group-text p-0 border border-end-0"><i class="bi bi-envelope p-2 px-3 text-primary"></i></span>
+            <input type="text" class="form-control border-start-0" name="phone" placeholder="Số điện thoại" value="<?php echo (!empty(old('phone', $old))) ? old('phone', $old) : false ?>">
+        </div>
+        <?php echo form_error('phone', $errors, '<span class="error">', '</span>') ?>
     </div>
     <div class="form-group mt-3">
         <label for="password">Mật khẩu</label>

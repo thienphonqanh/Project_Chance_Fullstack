@@ -1,8 +1,15 @@
 <div class="d-flex">
     <div class="mt-5 ntd-form-login" style="padding: 120px; width: 70%; overflow: hidden">
         <h5 class="text-primary">Chào mừng bạn đã trở lại</h5>
-        <p class="m-0 fs-5">Cùng tạo dựng lợi thế cho doanh nghiệp bằng trải nghiệm công nghệ tuyển dụng ứng dụng sâu AI & Hiring Funnel</p>
-        
+        <p class="m-0 fs-5">Cùng tạo dựng lợi thế cho doanh nghiệp bằng trải nghiệm công nghệ tuyển dụng ứng dụng sâu AI
+            & Hiring Funnel</p>
+        <?php
+        if (!empty($msg)) :
+            echo '<div class="alert alert-' . $msgType . '">';
+            echo $msg;
+            echo '</div>';
+        endif;
+        ?>
         <form action="" method="post" class="mt-3">
             <div class="form-group">
                 <label for="email">Email</label>
@@ -12,14 +19,14 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="email">Mật khẩu</label>
+                <label for="password">Mật khẩu</label>
                 <div class="input-group mb-2 w-100">
                     <span class="input-group-text p-0 border border-end-0"><i class="bi bi-shield-lock p-2 px-3 text-primary"></i></span>
                     <input type="password" class="form-control border-start-0" name="password" placeholder="Nhập mật khẩu">
                 </div>
             </div>
             <div class="form-group text-end">
-                <a href="#">Quên mật khẩu</a>
+                <a href="<?php echo _WEB_ROOT; ?>/ntd/forgot">Quên mật khẩu</a>
             </div>
             <button type="submit" class="btn btn-primary btn-lg w-100 mt-2">Đăng nhập</button>
             <p class="text-center mt-3 text-dark">Bạn chưa có tài khoản? <a href="<?php echo _WEB_ROOT; ?>/ntd/dang-ky">Đăng ký ngay</a></p>

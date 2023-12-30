@@ -1,11 +1,37 @@
 <?php
 function isLogin()
 {
-    if (!empty(Session::data('login_token'))) :
-        $token = Session::data('login_token');
+    if (!empty(Session::data('login_token_user'))) :
+        $token = Session::data('login_token_user');
     endif;
 
     if (!empty($token)) :
+        return true;
+    endif;
+
+    return false;
+}
+
+function isEmployerLogin()
+{
+    if (!empty(Session::data('login_token_employer'))) :
+        $token = Session::data('login_token_employer');
+    endif;
+
+    if (!empty($token)) :
+        return true;
+    endif;
+
+    return false;
+}
+
+function isAdmin()
+{
+    if (!empty(Session::data('user_data')['group_id'])) :
+        $groupId = Session::data('user_data')['group_id'];
+    endif;
+
+    if (!empty($groupId) && $groupId === 1) :
         return true;
     endif;
 
@@ -25,6 +51,19 @@ function isUser()
     return false;
 }
 
+function isEmployer()
+{
+    if (!empty(Session::data('employer_data')['group_id'])) :
+        $groupId = Session::data('employer_data')['group_id'];
+    endif;
+
+    if (!empty($groupId) && $groupId === 3) :
+        return true;
+    endif;
+
+    return false;
+}
+
 function getUserData()
 {
     if (!empty(Session::data('user_data'))) :
@@ -34,10 +73,28 @@ function getUserData()
     return false;
 }
 
+function getEmployerData()
+{
+    if (!empty(Session::data('employer_data'))) :
+        return Session::data('employer_data');
+    endif;
+
+    return false;
+}
+
 function getNameUserLogin()
 {
     if (getUserData() && !empty(getUserData()['fullname'])) :
         return getUserData()['fullname'];
+    endif;
+
+    return false;
+}
+
+function getNameEmployerLogin()
+{
+    if (getEmployerData() && !empty(getEmployerData()['name'])) :
+        return getEmployerData()['name'];
     endif;
 
     return false;
@@ -58,10 +115,38 @@ function getFirstName()
     return false;
 }
 
+
+function getShortNameEmployer()
+{
+    if (!empty(getNameEmployerLogin())) :
+        $fullname = getNameEmployerLogin();
+        $fullname = explode(' ', $fullname);
+        $length = count($fullname);
+
+        if ($length <= 3) :
+            return getNameEmployerLogin();
+        else :
+            $shortName = implode(' ', array_slice($fullname, 0, 3));
+            return $shortName;
+        endif;
+    endif;
+
+    return false;
+}
+
 function getAvatarUserLogin()
 {
     if (getUserData() && !empty(getUserData()['thumbnail'])) :
         return getUserData()['thumbnail'];
+    endif;
+
+    return false;
+}
+
+function getAvatarEmployerLogin()
+{
+    if (getEmployerData() && !empty(getEmployerData()['thumbnail'])) :
+        return getEmployerData()['thumbnail'];
     endif;
 
     return false;

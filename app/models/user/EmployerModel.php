@@ -1,5 +1,6 @@
-<?php 
-class EmployerModel extends Model {
+<?php
+class EmployerModel extends Model
+{
     public function tableFill()
     {
         return '';
@@ -14,5 +15,4 @@ class EmployerModel extends Model {
     {
         return '';
     }
-
 }

@@ -3,7 +3,7 @@
         <label for="email">Email</label>
         <div class="input-group mb-4 w-100">
             <span class="input-group-text p-0 border border-end-0"><i class="bi bi-envelope p-2 px-3 text-primary"></i></span>
-            <input type="email" class="form-control border-start-0" name="email" placeholder="Địa chỉ email" value="<?php echo (!empty(old('email', $old))) ? old('email', $old) : false ?>">
+            <input type="email" class="form-control border-start-0" name="email" placeholder="Địa chỉ email">
         </div>
     </div>
     <div class="form-group">

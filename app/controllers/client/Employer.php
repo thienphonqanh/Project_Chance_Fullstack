@@ -1,5 +1,6 @@
 <?php
-class Employer extends Controller {
+class Employer extends Controller
+{
     private $data = [];
     private $employerModel;
 
@@ -7,7 +8,7 @@ class Employer extends Controller {
     {
         $this->employerModel = $this->model('EmployerModel', 'user');
     }
-    
+
     public function index()
     {
 

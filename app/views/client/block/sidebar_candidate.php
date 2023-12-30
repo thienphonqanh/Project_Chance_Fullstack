@@ -64,7 +64,7 @@
             </li>
             <li>
                 <div class="d-inline-flex gap-1 p-0">
-                    <a class="btn border border-0 p-0 m-0 px-3 py-2 fw-bold text-dark" data-bs-toggle="collapse" href="#collapseExample-4" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <a class="btn border border-0 p-0 m-0 px-3 py-2 fw-bold text-dark text-start" data-bs-toggle="collapse" href="#collapseExample-4" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <i class="bi bi-chevron-down"></i> Nhà tuyển dụng bạn quan tâm
                     </a>
                 </div>

@@ -1,5 +1,6 @@
-<?php 
-class ContactModel extends Model {
+<?php
+class ContactModel extends Model
+{
     public function tableFill()
     {
         return '';
@@ -15,7 +16,8 @@ class ContactModel extends Model {
         return '';
     }
 
-    public function handleContact($userId) {
+    public function handleContact($userId)
+    {
         $dataInsert = [
             'candidate_id' => $userId,
             'fullname' => $_POST['fullname'],
@@ -27,11 +29,10 @@ class ContactModel extends Model {
         $insertStatus = $this->db->table('contacts')
             ->insert($dataInsert);
 
-        if ($insertStatus):
+        if ($insertStatus) :
             return true;
         endif;
-        
+
         return false;
     }
-
 }

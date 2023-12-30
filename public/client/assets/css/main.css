@@ -1465,15 +1465,16 @@ nav[aria-label="breadcrumb"] {
   list-style-type: none;
 }
 
-.btn-save-info:hover, .btn-upload-avatar:hover {
+.btn-save-info:hover,
+.btn-upload-avatar:hover {
   cursor: pointer;
   background: var(--section-bg-color);
-  transition: .3s all;
+  transition: 0.3s all;
 }
 
 .btn-delete-avatar:hover {
   cursor: pointer;
-  transition: .3s all;
+  transition: 0.3s all;
   background: var(--custom-section-color);
 }
 
@@ -1497,7 +1498,7 @@ nav[aria-label="breadcrumb"] {
 
 .btn-post:hover {
   cursor: pointer;
-  transition: .3s all;
+  transition: 0.3s all;
   background: rgb(208, 226, 244);
 }
 
@@ -1517,9 +1518,9 @@ nav[aria-label="breadcrumb"] {
 
 .section-knowledge ul li:hover {
   box-shadow: 0 0.4rem 1rem rgba(75, 75, 75, 0.175);
-  transition: .5s all;
+  transition: 0.5s all;
 }
 
 .section-knowledge ul li {
-  transition: .5s all;
+  transition: 0.5s all;
 }

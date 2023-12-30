@@ -31,7 +31,7 @@
 <body id="top">
     <!-- Thanh header -->
     <nav class="navbar p-1 navbar-expand-lg">
-        <div class="container">
+        <div class="container-lg">
             <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button> -->
@@ -44,21 +44,62 @@
                 </div>
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <?php
+            if (isEmployerLogin()) :
+            ?>
+                <button class="btn d-lg-none d-sm-block d-md-block d-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                    <div class="avatar-profile-edit text-center">
+                        <img src="<?php echo _WEB_ROOT . '/' . getAvatarEmployerLogin(); ?>" height="38px" width="38px" class="avatar" alt="">
+                    </div>
+                </button>
+            <?php elseif ((!isEmployerLogin() && !isEmployer())
+                || (isEmployerLogin() && !isEmployer())
+            ) : ?>
+                <div class="d-lg-none d-sm-block d-md-block d-block">
+                    <a href="<?php echo _WEB_ROOT; ?>/ntd/dang-nhap">
+                        <i class="text-dark bi bi-person fs-2"></i>
+                    </a>
+                </div>
+            <?php endif; ?>
+
+            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+            </button> -->
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav align-items-center ms-lg-5 ">
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav align-items-center ms-lg-5">
-                            <li class="nav-item ms-lg-auto d-none d-sm-none d-md-none d-lg-block">
-                                <a class="nav-link p-0 px-3 text-dark fw-semibold fs-6 border-end border-2 border-primary" type="button" href="<?php echo _WEB_ROOT; ?>/ntd/dang-nhap"><span class="fs-6 fw-normal text-dark">Nhà tuyển dụng</span><br> Đăng ký/Đăng nhập</a>
-                            </li>
-    
-                            <li class="nav-item d-none d-sm-none d-md-none d-lg-block">
-                                <a class="nav-link p-0 px-3 text-dark fw-normal fs-5" type="button" href="<?php echo _WEB_ROOT; ?>/trang-chu"><i class="bi bi-people text-primary"></i> Người tìm việc</a>
-                            </li>
+                            <?php if (!isEmployerLogin()) : ?>
+                                <li class="nav-item ms-lg-auto d-none d-sm-none d-md-none d-lg-block">
+                                    <a class="nav-link p-0 px-3 text-dark fw-semibold fs-6 border-end border-2 border-primary" type="button" href="<?php echo _WEB_ROOT; ?>/ntd/dang-nhap"><span class="fs-6 fw-normal text-dark">Nhà tuyển dụng</span><br> Đăng ký/Đăng nhập</a>
+                                </li>
+
+                                <li class="nav-item d-none d-sm-none d-md-none d-lg-block">
+                                    <a class="nav-link p-0 px-3 text-dark fw-normal fs-5" type="button" href="<?php echo _WEB_ROOT; ?>/trang-chu"><i class="bi bi-people text-primary"></i>
+                                        Người tìm việc</a>
+                                </li>
+                            <?php elseif (isEmployer()) : ?>
+                                <li class="nav-item dropdown ms-lg-auto d-none d-sm-none d-md-none d-lg-block">
+                                    <a class="nav-link dropdown-toggle d-flex flex-row align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <div class="avatar-profile-edit text-center">
+                                            <img src="<?php echo _WEB_ROOT . '/' . getAvatarEmployerLogin(); ?>" height="34px" width="34px" class="avatar" alt="">
+                                        </div>
+                                        <span class="px-2 m-0">
+                                            <?php echo getShortNameEmployer(); ?>
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/quan-ly-tai-khoan/tai-khoan">Tài khoản</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/doi-mat-khau">Đổi mật
+                                                khẩu</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/ntd/dang-xuat">Đăng
+                                                xuất</a></li>
+                                    </ul>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </ul>
