@@ -1,5 +1,5 @@
 <div class="p-1">
-    <?php 
+    <?php
     if (!empty($dataJob)) :
         foreach ($dataJob as $item) :
     ?>
@@ -10,25 +10,25 @@
                     <h4 class="text-start fw-bold text-uppercase">Thông tin việc làm</h4>
                 </div>
                 <div class="col-6 text-end mb-2">
-                    <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'].'-'.$item['id'].'.html'; ?>"
+                    <a href="<?php echo _WEB_ROOT; ?>/chi-tiet-viec-lam/<?php echo $item['slug'] . '-' . $item['id'] . '.html'; ?>"
                         type="button" class="btn btn-primary px-4">Xem trang</a>
                 </div>
                 <?php
-                    if (!empty($msg)) :
-                        echo '<div class="alert alert-' . $msgType . '">';
-                        echo $msg;
-                        echo '</div>';
-                    endif;
-                ?>
+                        if (!empty($msg)) :
+                            echo '<div class="alert alert-' . $msgType . '">';
+                            echo $msg;
+                            echo '</div>';
+                        endif;
+                        ?>
                 <div class="col-12">
                     <div id="avatar-preview" class="avatar mb-3">
-                        <?php 
-                            $root = _WEB_ROOT;
-                            echo (!empty($item['thumbnail'])) ? 
-                            '<img src="'.$root.'/'.$item['thumbnail'].'" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">' 
-                            : 
-                            '<img src="'.$root.'/public/client/assets/images/default_job.jpg" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">';
-                        ?>
+                        <?php
+                                $root = _WEB_ROOT;
+                                echo (!empty($item['thumbnail'])) ?
+                                    '<img src="' . $root . '/' . $item['thumbnail'] . '" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">'
+                                    :
+                                    '<img src="' . $root . '/public/client/assets/images/default_job.jpg" style="width: 130px; height: 130px;" id="avatar-default" alt="Avatar">';
+                                ?>
                     </div>
                     <input type="file" name="avatar-input" id="avatar-input" accept="image/*" onchange="previewImage()"
                         class="d-none">
@@ -64,15 +64,16 @@
                         <select class="form-select" id="floatingSelect" name="job_field"
                             aria-label="Floating label select example">
                             <option selected>Chọn</option>
-                            <?php 
-                                if (!empty($jobField)): 
-                                    foreach ($jobField as $subItem):
-                            ?>
+                            <?php
+                                    if (!empty($jobField)) :
+                                        foreach ($jobField as $subItem) :
+                                    ?>
                             <option value="<?php echo $subItem['id']; ?>"
-                                <?php echo $item['jobField'] === $subItem['name'] ? 'selected' : false;?>>
+                                <?php echo $item['jobField'] === $subItem['name'] ? 'selected' : false; ?>>
                                 <?php echo $subItem['name']; ?>
                             </option>
-                            <?php endforeach; endif; ?>
+                            <?php endforeach;
+                                    endif; ?>
                         </select>
                         <label for="floatingSelect">Lĩnh vực <span class="text-danger fw-bold">*</span></label>
                         <?php echo form_error('job_field', $errors, '<span class="fst-italic fs-6 text-danger px-2">', '</span>') ?>
@@ -87,15 +88,16 @@
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
                             name="rank">
                             <option value="0">Chọn</option>
-                            <?php 
-                                if (!empty($rank)): 
-                                    foreach ($rank as $subItem):
-                            ?>
+                            <?php
+                                    if (!empty($rank)) :
+                                        foreach ($rank as $subItem) :
+                                    ?>
                             <option value="<?php echo $subItem['id']; ?>"
-                                <?php echo $item['rank'] === $subItem['id'] ? 'selected' : false;?>>
+                                <?php echo $item['rank'] === $subItem['id'] ? 'selected' : false; ?>>
                                 <?php echo $subItem['name']; ?>
                             </option>
-                            <?php endforeach; endif; ?>
+                            <?php endforeach;
+                                    endif; ?>
                         </select>
                         <label for="floatingInput">Cấp bậc <span class="text-danger fw-bold">*</span></label>
                         <?php echo form_error('rank', $errors, '<span class="fst-italic fs-6 text-danger px-2">', '</span>') ?>
@@ -113,15 +115,16 @@
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
                             name="form_work">
                             <option value="0">Chọn</option>
-                            <?php 
-                                if (!empty($formWork)): 
-                                    foreach ($formWork as $subItem):
-                            ?>
+                            <?php
+                                    if (!empty($formWork)) :
+                                        foreach ($formWork as $subItem) :
+                                    ?>
                             <option value="<?php echo $subItem['id']; ?>"
-                                <?php echo $item['form_work'] === $subItem['id'] ? 'selected' : false;?>>
+                                <?php echo $item['form_work'] === $subItem['id'] ? 'selected' : false; ?>>
                                 <?php echo $subItem['name']; ?>
                             </option>
-                            <?php endforeach; endif; ?>
+                            <?php endforeach;
+                                    endif; ?>
                         </select>
                         <label for="floatingInput">Hình thức làm việc<span class="text-danger fw-bold">*</span></label>
                         <?php echo form_error('form_work', $errors, '<span class="fst-italic fs-6 text-danger px-2">', '</span>') ?>
@@ -142,15 +145,16 @@
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
                             name="education_required">
                             <option value="0">Chọn</option>
-                            <?php 
-                                if (!empty($education)): 
-                                    foreach ($education as $subItem):
-                            ?>
+                            <?php
+                                    if (!empty($education)) :
+                                        foreach ($education as $subItem) :
+                                    ?>
                             <option value="<?php echo $subItem['id']; ?>"
-                                <?php echo $item['education_required'] === $subItem['id'] ? 'selected' : false;?>>
+                                <?php echo $item['education_required'] === $subItem['id'] ? 'selected' : false; ?>>
                                 <?php echo $subItem['name']; ?>
                             </option>
-                            <?php endforeach; endif; ?>
+                            <?php endforeach;
+                                    endif; ?>
                         </select>
                         <label for="floatingInput">Yêu cầu bằng cấp<span class="text-danger fw-bold">*</span></label>
                         <?php echo form_error('degree_required', $errors, '<span class="fst-italic fs-6 text-danger px-2">', '</span>') ?>
@@ -160,15 +164,16 @@
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
                             name="exp_required">
                             <option value="0">Chọn</option>
-                            <?php 
-                                if (!empty($yearExp)): 
-                                    foreach ($yearExp as $subItem):
-                            ?>
+                            <?php
+                                    if (!empty($yearExp)) :
+                                        foreach ($yearExp as $subItem) :
+                                    ?>
                             <option value="<?php echo $subItem['id']; ?>"
-                                <?php echo $item['exp_required'] === $subItem['id'] ? 'selected' : false;?>>
+                                <?php echo $item['exp_required'] === $subItem['id'] ? 'selected' : false; ?>>
                                 <?php echo $subItem['name']; ?>
                             </option>
-                            <?php endforeach; endif; ?>
+                            <?php endforeach;
+                                    endif; ?>
                         </select>
                         <label for="floatingInput">Yêu cầu kinh nghiệm<span class="text-danger fw-bold">*</span></label>
                         <?php echo form_error('exp_required', $errors, '<span class="fst-italic fs-6 text-danger px-2">', '</span>') ?>
@@ -235,13 +240,13 @@
                         <label for="floatingTextarea2">Giới thiệu công ty</label>
                     </div>
                 </div>
-                <<div class="col-12 text-end mt-2">
+                <div class="col-12 text-end mt-2">
                     <button type="submit" class="btn btn-primary btn-md px-3">Lưu thay đổi</button>
                     <a href="<?php echo _WEB_ROOT; ?>/jobs/danh-sach" class="btn btn-md px-4 btn-danger">Quay lại</a>
+                </div>
             </div>
         </div>
-</div>
-</form>
-<?php endforeach;
+    </form>
+    <?php endforeach;
     endif; ?>
 </div>

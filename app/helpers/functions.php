@@ -348,3 +348,27 @@ function checkFileType($fileName = '')
 
     return false;
 }
+
+function toSlug($title)
+{
+    $slug = strtolower($title); // Chuyển thành chữ thường
+
+    $slug = trim($slug); // Xoá khoảng trắng 2 đầu
+
+    // Lọc dấu
+    $slug = preg_replace("/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/ui", "a", $slug);
+    $slug = preg_replace("/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/ui", "e", $slug);
+    $slug = preg_replace("/i|í|ì|ỉ|ĩ|ị/ui", "i", $slug);
+    $slug = preg_replace("/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/ui", "o", $slug);
+    $slug = preg_replace("/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/ui", "u", $slug);
+    $slug = preg_replace("/ý|ỳ|ỷ|ỹ|ỵ/ui", "y", $slug);
+    $slug = preg_replace("/đ/ui", "d", $slug);
+
+    // Chuyển dấu cách (khoảng trắng) thành gạch ngang
+    $slug = preg_replace("/ /ui", "-", $slug);
+
+    // Xoá tất cả các ký tự đặc biệt
+    $slug = preg_replace("/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/ui", "", $slug);
+
+    return $slug;
+}
