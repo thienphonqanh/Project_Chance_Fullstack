@@ -129,6 +129,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/quan-ly-tai-khoan/tai-khoan">Tài khoản</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/ntd">Cổng nhà tuyển dụng</a></li>
                                     <li><a class="dropdown-item" href="<?php echo _WEB_ROOT; ?>/doi-mat-khau">Đổi mật
                                             khẩu</a>
                                     </li>

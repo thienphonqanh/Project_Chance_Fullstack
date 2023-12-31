@@ -100,6 +100,7 @@ $routes['ntd/active'] = 'auth/employerActive';
 $routes['ntd/forgot'] = 'auth/employerForgot';
 $routes['ntd/check'] = 'auth/employerCheck';
 $routes['ntd/reset'] = 'auth/employerReset';
+$routes['ntd/doi-mat-khau'] = 'client/employer/changePassword';
 $routes['ntd/quan-ly-tai-khoan/tai-khoan'] = 'client/employer/editEmployerInformation';
 $routes['ntd/quan-ly-dang-tuyen/tao-tin'] = 'client/employer/addJob';
 $routes['ntd/quan-ly-dang-tuyen/danh-sach'] = 'client/employer/listJob';
