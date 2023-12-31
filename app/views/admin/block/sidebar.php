@@ -80,6 +80,12 @@
                                 <p>Danh sách việc làm</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?php echo _WEB_ROOT; ?>/jobs/ho-so-ung-vien" class="nav-link <?php echo handleActiveSidebar('jobs', 'ho-so-ung-vien') ? 'active' : false; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Hồ sơ ứng viên</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item <?php echo handleActiveSidebar('handbooks') ? 'menu-open' : false; ?>">

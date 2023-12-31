@@ -247,3 +247,47 @@ function deleteImage(thumbnail) {
   defaultImg.style.height = "130px";
   preview.appendChild(defaultImg);
 }
+
+
+function validateFile() {
+  const fileInput = document.getElementById('upload-cv');
+  const fileNameDisplay = document.getElementById('file-name');
+  const errorMessage = document.getElementById('error-message');
+  const deleteButton = document.getElementById('delete-button-cv');
+
+  if (fileInput.files.length > 0) {
+      const allowedFormats = [".pdf", ".doc", ".docx"];
+      const fileExtension = fileInput.files[0].name.split('.').pop().toLowerCase();
+
+      if (allowedFormats.indexOf(`.${fileExtension}`) === -1) {
+          // Display error message
+          errorMessage.innerText = 'Chỉ chấp nhận file có định dạng .PDF, .DOC, hoặc .DOCX.';
+
+          // Reset file input and clear file name display
+          fileInput.value = '';
+          fileNameDisplay.innerText = '';
+          fileNameDisplay.classList.remove('border', 'border-1', 'border-secondary');
+          deleteButton.style.display = 'none'
+      } else {
+          // Clear error message
+          errorMessage.innerText = '';
+
+          // Display file name
+          fileNameDisplay.innerText = `${fileInput.files[0].name}`;
+          fileNameDisplay.classList.add('border', 'border-1', 'border-secondary');
+          deleteButton.style.display = 'inline-block'
+      }
+
+  }
+}
+
+function deleteFile() {
+  const fileInput = document.getElementById('upload-cv');
+  const fileNameDisplay = document.getElementById('file-name');
+  const deleteButton = document.getElementById('delete-button-cv');
+
+  fileInput.value = '';
+  fileNameDisplay.innerText = '';
+  fileNameDisplay.classList.remove('border', 'border-1', 'border-secondary');
+  deleteButton.style.display = 'none';
+}

@@ -77,6 +77,48 @@ class JobModel extends Model
         return $response;
     }
 
+    // Xử lý lấy danh sách việc làm ở Dashboard
+    public function handleGetCandidateProfile($filters = [], $keyword = '', $limit)
+    {
+        $queryGet = $this->db->table('profile')
+            ->select('profile.id, profile.job_desired, candidates.fullname, profile.status')
+            ->join('candidates', 'profile.candidate_id = candidates.id');
+
+        $checkNull = false;
+
+        if (!empty($filters)) :
+            foreach ($filters as $key => $value) :
+                $queryGet->where($key, '=', $value);
+            endforeach;
+        endif;
+
+        if (!empty($keyword)) :
+            $queryGet->where(function ($query) use ($keyword) {
+                $query
+                    ->where('profile.job_desired', 'LIKE', "%$keyword%")
+                    ->orWhere('candidates.fullname', 'LIKE', "%$keyword%");
+            });
+        endif;
+
+        $queryGet = $queryGet->paginate($limit);
+
+        if (!empty($queryGet['data'])) :
+            foreach ($queryGet['data'] as $key => $item) :
+                foreach ($item as $subKey => $subItem) :
+                    if ($subItem === NULL || $subItem === '') :
+                        $checkNull = true;
+                    endif;
+                endforeach;
+            endforeach;
+        endif;
+
+        if (!$checkNull) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
     // Xử lý lấy danh sách việc làm ở Client
     public function handleGetListJob($filters = [], $keyword = [])
     {
@@ -184,12 +226,69 @@ class JobModel extends Model
         return false;
     }
 
+    // Xử lý duyệt việc làm
+    public function handleChangeStatusCandidateProfile($profileId, $action)
+    {
+        $queryGet = $this->db->table('profile')
+            ->select('status')
+            ->where('id', '=', $profileId)
+            ->first();
+
+        if (!empty($queryGet)) :
+            if (!empty($action)) :
+                switch ($action):
+                    case 'active';
+                        $dataUpdate = [
+                            'status' => 1,
+                            'update_at' => date('Y-m-d H:i:s')
+                        ];
+                        break;
+                    case 'inactive';
+                        $dataUpdate = [
+                            'status' => 0,
+                            'update_at' => date('Y-m-d H:i:s')
+                        ];
+                        break;
+                    case 'unactive';
+                        $dataUpdate = [
+                            'status' => 2,
+                            'update_at' => date('Y-m-d H:i:s')
+                        ];
+                        break;
+                endswitch;
+            endif;
+
+
+            $updateStatus = $this->db->table('profile')
+                ->where('id', '=', $profileId)
+                ->update($dataUpdate);
+
+            if ($updateStatus) :
+                return true;
+            endif;
+        endif;
+
+        return false;
+    }
+
     // Xử lý xoá và update số lượng
     public function handleDelete($itemsToDelete = '')
     {
         $itemsToDelete = '(' . $itemsToDelete . ')';
 
         $queryDelete = $this->db->table('jobs')
+            ->where('id', 'IN', $itemsToDelete)
+            ->delete();
+
+        return $queryDelete ? true : false;
+    }
+
+    // Xử lý xoá và update số lượng
+    public function handleDeleteCandidateProfile($itemsToDelete = '')
+    {
+        $itemsToDelete = '(' . $itemsToDelete . ')';
+
+        $queryDelete = $this->db->table('profile')
             ->where('id', 'IN', $itemsToDelete)
             ->delete();
 
@@ -548,7 +647,7 @@ class JobModel extends Model
                 ->where('id', '=', $jobId)
                 ->update($updateApplyQuantity);
 
-            if ($updateApplyQuantityStatus):
+            if ($updateApplyQuantityStatus) :
                 return true;
             endif;
         endif;
@@ -568,5 +667,91 @@ class JobModel extends Model
         endif;
 
         return false;
+    }
+
+    public function handleCheckProfile($profileId)
+    {
+        $queryCheck = $this->db->table('profile')
+            ->where('profile.id', '=', $profileId)
+            ->first();
+
+        if (!empty($queryCheck)) :
+            return true;
+        endif;
+
+        return false;
+    }
+
+    public function handleGetPersonalProfile($profileId)
+    {
+        $queryGet = $this->db->table('profile')
+            ->where('profile.id', '=', $profileId)
+            ->first();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleEditPersonalProfile($profileId, $cvPath)
+    {
+        if (!empty($cvPath)) :
+            $dataUpdate = [
+                'job_category_id' => $_POST['job_field'],
+                'job_desired' => $_POST['job_desired'],
+                'form_work' => $_POST['form_work'],
+                'current_rank' => $_POST['current_rank'],
+                'rank_desired' => $_POST['rank_desired'],
+                'academic_level' => $_POST['current_rank'],
+                'year_experience' => $_POST['rank_desired'],
+                'cv_file' => $cvPath,
+                'file_name' => $_FILES["upload-cv"]["name"],
+                'skills' => $_POST['skills'],
+                'update_at' => date('Y-m-d H:i:s')
+            ];
+        else :
+            $dataUpdate = [
+                'job_category_id' => $_POST['job_field'],
+                'job_desired' => $_POST['job_desired'],
+                'form_work' => $_POST['form_work'],
+                'current_rank' => $_POST['current_rank'],
+                'rank_desired' => $_POST['rank_desired'],
+                'academic_level' => $_POST['current_rank'],
+                'year_experience' => $_POST['rank_desired'],
+                'skills' => $_POST['skills'],
+                'update_at' => date('Y-m-d H:i:s')
+            ];
+        endif;
+
+        $updateStatus = $this->db->table('profile')
+            ->where('profile.id', '=', $profileId)
+            ->update($dataUpdate);
+
+        if ($updateStatus) :
+            return true;
+        endif;
+
+        return false;
+    }
+
+    public function handleGetPersonalInformation($profileId)
+    {
+        $queryGet = $this->db->table('candidates')
+            ->select('candidates.*')
+            ->join('profile', 'profile.candidate_id = candidates.id')
+            ->where('profile.id', '=', $profileId)
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
     }
 }

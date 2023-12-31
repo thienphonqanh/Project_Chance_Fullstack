@@ -29,8 +29,6 @@
             <input type="hidden" name="module" value="groups">
         </form>
         <hr>
-        <a type="button" href="<?php echo _WEB_ROOT; ?>/jobs/them-moi" class="btn btn-primary px-3"><i
-                class="bi bi-plus-circle-dotted px-1"></i> Thêm việc làm</a>
         <form action="<?php echo _WEB_ROOT; ?>/jobs/danh-sach/xoa" method="post" class="form-delete">
             <table class="table table-bordered mt-4">
                 <thead>

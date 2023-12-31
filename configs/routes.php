@@ -55,11 +55,15 @@ $routes['groups/nha-tuyen-dung/xoa'] = 'admin/group/deleteEmployer';
 // Dashboard - Quản lý việc làm
 $routes['jobs'] = 'admin/job';
 $routes['jobs/danh-sach'] = 'admin/job/getListJob';
+$routes['jobs/ho-so-ung-vien'] = 'admin/job/getCandidateProfile';
+$routes['jobs/ho-so-ung-vien/trang-thai'] = 'admin/job/changeStatusCandidateProfile';
+$routes['jobs/ho-so-ung-vien/xoa'] = 'admin/job/deleteCandidateProfile';
+$routes['jobs/ho-so-ung-vien/chinh-sua'] = 'admin/job/editCandidateProfile';
+$routes['jobs/ho-so-ung-vien/thong-tin'] = 'admin/job/viewCandidateProfile';
 $routes['jobs/danh-sach/thong-tin'] = 'admin/job/viewJob';
 $routes['jobs/danh-sach/trang-thai'] = 'admin/job/changeStatus';
 $routes['jobs/danh-sach/chinh-sua'] = 'admin/job/updateJob';
 $routes['jobs/danh-sach/xoa'] = 'admin/job/delete';
-$routes['jobs/them-moi'] = 'admin/job/addJob';
 
 // Dashboard - Quản lý tin tức nghề nghiệp
 $routes['handbooks'] = 'admin/handbook';
