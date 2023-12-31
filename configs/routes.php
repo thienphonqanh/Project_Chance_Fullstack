@@ -103,3 +103,6 @@ $routes['ntd/quan-ly-dang-tuyen/tao-tin'] = 'client/employer/addJob';
 $routes['ntd/quan-ly-dang-tuyen/danh-sach'] = 'client/employer/listJob';
 $routes['ntd/quan-ly-dang-tuyen/danh-sach/chinh-sua'] = 'client/employer/updateJob';
 $routes['ntd/quan-ly-dang-tuyen/danh-sach/xoa'] = 'client/employer/deleteJob';
+$routes['ntd/quan-ly-ung-vien/ho-so-ung-tuyen'] = 'client/employer/appliedJob';
+$routes['ntd/quan-ly-ung-vien/ho-so-ung-tuyen/trang-thai'] = 'client/employer/changeStatusAppliedProfile';
+$routes['ntd/quan-ly-ung-vien/ho-so-ung-tuyen/gui-email'] = 'client/employer/sendMailApplied';

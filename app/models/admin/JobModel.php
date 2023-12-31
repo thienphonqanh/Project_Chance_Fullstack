@@ -533,7 +533,24 @@ class JobModel extends Model
             ->insert($dataInsert);
 
         if ($insertStatus) :
-            return true;
+            $queryGet = $this->db->table('jobs')
+                ->select('apply_count')
+                ->where('id', '=', $jobId)
+                ->first();
+
+            $applyCount = $queryGet['apply_count'];
+
+            $updateApplyQuantity = [
+                'apply_count' => $applyCount + 1
+            ];
+
+            $updateApplyQuantityStatus = $this->db->table('jobs')
+                ->where('id', '=', $jobId)
+                ->update($updateApplyQuantity);
+
+            if ($updateApplyQuantityStatus):
+                return true;
+            endif;
         endif;
 
         return false;

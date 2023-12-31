@@ -202,7 +202,8 @@ class EmployerModel extends Model
     public function handleGetListJob($filters = [], $keyword = [])
     {
         $queryGet = $this->db->table('jobs')
-            ->select('jobs.id, jobs.title, jobs.deadline, jobs.create_at, jobs.view_count, jobs.status')
+            ->select('jobs.id, jobs.title, jobs.deadline, jobs.create_at, 
+                jobs.slug, jobs.apply_count, jobs.view_count, jobs.status')
             ->orderBy('jobs.create_at', 'DESC')
             ->where('jobs.company_id', '=', getIdEmployerLogin());
 
@@ -254,6 +255,8 @@ class EmployerModel extends Model
 
         if (!empty($queryGet)) :
             $response = count($queryGet);
+        else :
+            $response = 0;
         endif;
 
         return $response;
@@ -345,11 +348,182 @@ class EmployerModel extends Model
             ->first();
 
         if (!empty($queryCheck)) :
-            $deleteStatus = $this->db->table('jobs')
-                ->where('id', '=', $jobId)
-                ->delete();
+            $queryCheckApplied = $this->db->table('job_applications')
+                ->select('id')
+                ->where('job_applications.job_id', '=', $jobId)
+                ->first();
 
-            if ($deleteStatus) :
+            if (!empty($queryCheckApplied)) :
+                $deleteStatusApplied = $this->db->table('job_applications')
+                    ->where('job_applications.job_id', '=', $jobId)
+                    ->delete();
+
+                if ($deleteStatusApplied) :
+                    $deleteStatus = $this->db->table('jobs')
+                        ->where('id', '=', $jobId)
+                        ->delete();
+
+                    if ($deleteStatus) :
+                        return true;
+                    endif;
+                endif;
+            else :
+                $deleteStatus = $this->db->table('jobs')
+                    ->where('id', '=', $jobId)
+                    ->delete();
+
+                if ($deleteStatus) :
+                    return true;
+                endif;
+            endif;
+        endif;
+
+        return false;
+    }
+
+    public function handleGetListJobApplied($filters = [], $keyword = [])
+    {
+        $queryGet = $this->db->table('job_applications')
+            ->select('job_applications.id, job_applications.fullname, jobs.title, 
+                job_applications.create_at, job_applications.status')
+            ->join('candidates', 'candidates.id = job_applications.candidate_id')
+            ->join('jobs', 'jobs.id = job_applications.job_id')
+            ->orderBy('job_applications.create_at', 'DESC')
+            ->where('jobs.company_id', '=', getIdEmployerLogin());
+
+        $response = [];
+        $checkNull = false;
+
+        if (!empty($filters)) :
+            foreach ($filters as $key => $value) :
+                $queryGet->where($key, '=', $value);
+            endforeach;
+        endif;
+
+        if (!empty($keyword)) :
+            $queryGet->where(function ($query) use ($keyword) {
+                $query
+                    ->where('job_applications.fullname', 'LIKE', "%$keyword%")
+                    ->orWhere('jobs.title', 'LIKE', "%$keyword%")
+                    ->orWhere('job_applications.create_at', 'LIKE', "%$keyword%");
+            });
+        endif;
+
+        $queryGet = $queryGet->get();
+
+        if (!empty($queryGet['data'])) :
+            foreach ($queryGet['data'] as $key => $item) :
+                foreach ($item as $subKey => $subItem) :
+                    if ($subItem === NULL || $subItem === '') :
+                        $checkNull = true;
+                    endif;
+                endforeach;
+            endforeach;
+        endif;
+
+        if (!$checkNull) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetInfoSendMail($jobId)
+    {
+        $queryGet = $this->db->table('job_applications')
+            ->select('job_applications.id, job_applications.phone, job_applications.fullname,
+                job_applications.email')
+            ->where('job_applications.id', '=', $jobId)
+            ->first();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleCountJobApplied()
+    {
+        $queryGet = $this->db->table('job_applications')
+            ->select('job_applications.id')
+            ->join('jobs', 'job_applications.job_id = jobs.id')
+            ->where('jobs.company_id', '=', getIdEmployerLogin())
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = count($queryGet);
+        else :
+            $response = 0;
+        endif;
+
+        return $response;
+    }
+
+    // Xử lý duyệt đăng ký dịch vụ của personnel
+    public function handleChangeStatusAppliedProfile($jobId, $action)
+    {
+        $queryGet = $this->db->table('job_applications')
+            ->select('status')
+            ->where('job_applications.id', '=', $jobId)
+            ->first();
+
+
+        if (!empty($queryGet)) :
+            switch ($action):
+                case 'active':
+                    $dataUpdate = [
+                        'status' => 1,
+                        'update_at' => date('Y-m-d H:i:s')
+                    ];
+                    break;
+                case 'inactive':
+                    $dataUpdate = [
+                        'status' => 0,
+                        'update_at' => date('Y-m-d H:i:s')
+                    ];
+                    break;
+                case 'unactive':
+                    $dataUpdate = [
+                        'status' => 2,
+                        'update_at' => date('Y-m-d H:i:s')
+                    ];
+                    break;
+            endswitch;
+
+            $updateStatus = $this->db->table('job_applications')
+                ->where('job_applications.id', '=', $jobId)
+                ->update($dataUpdate);
+
+            if ($updateStatus) :
+                return true;
+            endif;
+        endif;
+
+        return false;
+    }
+
+    public function handleSendMailApplied($jobId)
+    {
+        $queryGetEmail = $this->handleGetInfoSendMail($jobId);
+        $email = $queryGetEmail['email'];
+
+        $queryGet = $this->db->table('job_applications')
+            ->select('id')
+            ->where('id', '=', $jobId)
+            ->first();
+
+        if (!empty($queryGet)) :
+            $subject = $_POST['subject'];
+            $content = $_POST['content'];
+
+            $sendStatus = Mailer::sendMail($email, $subject, $content);
+
+            if ($sendStatus) :
                 return true;
             endif;
         endif;

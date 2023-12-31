@@ -600,4 +600,121 @@ class Employer extends Controller
             $response->redirect('ntd/quan-ly-dang-tuyen/danh-sach');
         endif;
     }
+
+    // Xem thông tin của việc làm
+    public function appliedJob()
+    {
+        $request = new Request();
+        $data = $request->getFields();
+
+        $filters = [];
+
+        if (!empty($data)) :
+            extract($data);
+
+            if (isset($status)) :
+                switch ($status):
+                    case 'active':
+                        $filters['job_applications.status'] = $status = 1;
+                        break;
+                    case 'inactive':
+                        $filters['job_applications.status'] = $status = 0;
+                        break;
+                    case 'unactive':
+                        $filters['job_applications.status'] = $status = 2;
+                        break;
+                endswitch;
+            endif;
+        endif;
+
+        $countJobApplied = $this->employerModel->handleCountJobApplied();
+        $result = $this->employerModel->handleGetListJobApplied($filters, $keyword ?? '');
+
+        if (!empty($result)) :
+            $listJobApplied = $result;
+            $this->data['dataView']['listJobApplied'] = $listJobApplied;
+        endif;
+
+        if (is_numeric($countJobApplied)) :
+            $quantityJob = $countJobApplied;
+            $this->data['dataView']['quantityJob'] = $quantityJob;
+        endif;
+
+        $this->data['body'] = 'client/ntd.profile/applied_profile';
+        $this->data['dataView']['request'] = $request;
+        $this->render('layouts/ntd.layout', $this->data, 'client');
+    }
+
+    // Xử lý trạng thái account
+    public function changeStatusAppliedProfile()
+    {
+        $request = new Request();
+        $response = new Response();
+
+        $data = $request->getFields();
+
+        if (!empty($data['id']) && !empty($data['action'])) :
+            $jobId = $data['id'];
+            $action = $data['action'];
+
+            $result = $this->employerModel->handleChangeStatusAppliedProfile($jobId, $action); // Gọi xử lý ở Model
+
+            if ($result) :
+                $response->redirect('ntd/quan-ly-ung-vien/ho-so-ung-tuyen');
+            endif;
+
+        endif;
+    }
+
+    // Xử lý trạng thái account
+    public function sendMailApplied()
+    {
+        $request = new Request();
+        $jobId = $_GET['id'];
+
+        if (!empty($jobId)) :
+            $informationSendMail = $this->employerModel->handleGetInfoSendMail($jobId);
+
+            if (!empty($informationSendMail)) :
+                $this->data['dataView']['information'] = $informationSendMail;
+            endif;
+
+            if ($request->isPost()) :
+                $request->rules([
+                    'subject' => 'required',
+                    'content' => 'required'
+                ]);
+
+                $request->message([
+                    'subject.required' => 'Tiêu đề không được để trống',
+                    'content.required' => 'Nội dung không được để trống',
+                ]);
+
+                $validate = $request->validate();
+
+                if ($validate) :
+                    $result = $this->employerModel->handleSendMailApplied($jobId); // Gọi xử lý ở Model
+
+                    if ($result) :
+                        Session::flash('msg', 'Đã gửi thành công');
+                        Session::flash('msg_type', 'success');
+                    else :
+                        Session::flash('msg', 'Hệ thống đang gặp sự cố');
+                        Session::flash('msg_type', 'danger');
+                    endif;
+                else :
+                    Session::flash('msg', 'Vui lòng kiểm tra toàn bộ dữ liệu');
+                    Session::flash('msg_type', 'danger');
+                endif;
+
+            endif;
+        endif;
+
+        $this->data['body'] = 'client/ntd.profile/send_mail';
+        $this->data['dataView']['msg'] = Session::flash('msg');
+        $this->data['dataView']['msgType'] = Session::flash('msg_type');
+        $this->data['dataView']['errors'] = Session::flash('chance_session_errors');
+        $this->data['dataView']['old'] = Session::flash('chance_session_old');
+        $this->render('layouts/ntd.layout', $this->data, 'client');
+    }
 }
