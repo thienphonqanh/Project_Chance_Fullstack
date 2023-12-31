@@ -599,4 +599,90 @@ class Profile extends Controller
             $response->redirect('quan-ly-ho-so/them-ho-so');
         endif;
     }
+
+    public function appliedJob()
+    {
+        $request = new Request();
+        $data = $request->getFields();
+
+        $filters = [];
+
+        if (!empty($data)) :
+            extract($data);
+
+            if (isset($status)) :
+                switch ($status):
+                    case 'active':
+                        $filters['job_applications.status'] = $status = 1;
+                        break;
+                    case 'inactive':
+                        $filters['job_applications.status'] = $status = 0;
+                        break;
+                    case 'unactive':
+                        $filters['job_applications.status'] = $status = 2;
+                        break;
+                endswitch;
+            endif;
+        endif;
+
+        $countJobApplied = $this->profileModel->handleCountJobApplied();
+        $result = $this->profileModel->handleGetListJobApplied($filters);
+
+        if (!empty($result)) :
+            $listJobApplied = $result;
+            $this->data['dataView']['listJobApplied'] = $listJobApplied;
+        endif;
+
+        if (is_numeric($countJobApplied)) :
+            $quantityJob = $countJobApplied;
+            $this->data['dataView']['quantityJob'] = $quantityJob;
+        endif;
+
+        $this->data['body'] = 'client/profile/applied_job';
+        $this->data['dataView']['request'] = $request;
+        $this->render('layouts/main.layout', $this->data, 'client');
+    }
+
+    public function savedJob()
+    {
+        $request = new Request();
+        $data = $request->getFields();
+
+        $filters = [];
+
+        if (!empty($data)) :
+            extract($data);
+
+            if (isset($status)) :
+                switch ($status):
+                    case 'active':
+                        $filters['job_applications.status'] = $status = 1;
+                        break;
+                    case 'inactive':
+                        $filters['job_applications.status'] = $status = 0;
+                        break;
+                    case 'unactive':
+                        $filters['job_applications.status'] = $status = 2;
+                        break;
+                endswitch;
+            endif;
+        endif;
+
+        $countJobApplied = $this->profileModel->handleCountJobApplied();
+        $result = $this->profileModel->handleGetListJobApplied($filters);
+
+        if (!empty($result)) :
+            $listJobApplied = $result;
+            $this->data['dataView']['listJobApplied'] = $listJobApplied;
+        endif;
+
+        if (is_numeric($countJobApplied)) :
+            $quantityJob = $countJobApplied;
+            $this->data['dataView']['quantityJob'] = $quantityJob;
+        endif;
+
+        $this->data['body'] = 'client/profile/saved_job';
+        $this->data['dataView']['request'] = $request;
+        $this->render('layouts/main.layout', $this->data, 'client');
+    }
 }

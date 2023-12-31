@@ -1,5 +1,6 @@
-<?php 
-class ProfileModel extends Model {
+<?php
+class ProfileModel extends Model
+{
     public function tableFill()
     {
         return '';
@@ -15,30 +16,31 @@ class ProfileModel extends Model {
         return '';
     }
 
-    public function handleChangePassword($userId) {
+    public function handleChangePassword($userId)
+    {
         $checkOldPass = $this->db->table('candidates')
             ->select('password')
             ->where('id', '=', $userId)
             ->first();
-        
-        if (password_verify($_POST['old_password'], $checkOldPass['password'])):
-            if (!password_verify($_POST['new_password'], $checkOldPass['password'])):
+
+        if (password_verify($_POST['old_password'], $checkOldPass['password'])) :
+            if (!password_verify($_POST['new_password'], $checkOldPass['password'])) :
                 $dataUpdate = [
                     'password' => password_hash($_POST['new_password'], PASSWORD_DEFAULT)
-                ];  
+                ];
 
                 $updateStatus = $this->db->table('candidates')
                     ->where('id', '=', $userId)
                     ->update($dataUpdate);
-                
-                if ($updateStatus):
+
+                if ($updateStatus) :
                     return true;
                 endif;
-            else:
+            else :
                 Session::flash('msg', 'Bạn đang dùng mật khẩu này');
                 Session::flash('msg_type', 'danger');
             endif;
-        else:
+        else :
             Session::flash('msg', 'Mật khẩu cũ chưa chính xác');
             Session::flash('msg_type', 'danger');
         endif;
@@ -46,14 +48,15 @@ class ProfileModel extends Model {
         return false;
     }
 
-    public function handleGetPersonalInformation($userId) {
+    public function handleGetPersonalInformation($userId)
+    {
         $queryGet = $this->db->table('candidates')
             ->where('id', '=', $userId)
             ->first();
 
         $response = [];
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
 
@@ -122,7 +125,8 @@ class ProfileModel extends Model {
         Session::data('user_data', $userData);
     }
 
-    public function handleGetJobApplied($userId) {
+    public function handleGetJobApplied($userId)
+    {
         $queryGet = $this->db->table('job_applications')
             ->select('job_applications.id, job_applications.status, jobs.title, companies.name')
             ->join('jobs', 'job_applications.job_id = jobs.id')
@@ -132,10 +136,10 @@ class ProfileModel extends Model {
 
         $response = [];
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
-        
+
         return $response;
     }
 
@@ -216,7 +220,7 @@ class ProfileModel extends Model {
 
     public function handleAddPersonalProfile($userId, $cvPath)
     {
-        if (!empty($cvPath)):
+        if (!empty($cvPath)) :
             $dataInsert = [
                 'candidate_id' => $userId,
                 'job_category_id' => $_POST['job_field'],
@@ -231,7 +235,7 @@ class ProfileModel extends Model {
                 'skills' => $_POST['skills'],
                 'create_at' => date('Y-m-d H:i:s')
             ];
-        else:
+        else :
             $dataInsert = [
                 'candidate_id' => $userId,
                 'job_category_id' => $_POST['job_field'],
@@ -258,7 +262,7 @@ class ProfileModel extends Model {
 
     public function handleEditPersonalProfile($profileId, $cvPath)
     {
-        if (!empty($cvPath)):
+        if (!empty($cvPath)) :
             $dataUpdate = [
                 'job_category_id' => $_POST['job_field'],
                 'job_desired' => $_POST['job_desired'],
@@ -272,7 +276,7 @@ class ProfileModel extends Model {
                 'skills' => $_POST['skills'],
                 'update_at' => date('Y-m-d H:i:s')
             ];
-        else:
+        else :
             $dataUpdate = [
                 'job_category_id' => $_POST['job_field'],
                 'job_desired' => $_POST['job_desired'],
@@ -297,21 +301,23 @@ class ProfileModel extends Model {
         return false;
     }
 
-    public function handleGetPersonalProfile($userId) {
+    public function handleGetPersonalProfile($userId)
+    {
         $queryGet = $this->db->table('profile')
             ->where('candidate_id', '=', $userId)
             ->first();
 
         $response = [];
 
-        if (!empty($queryGet)):
+        if (!empty($queryGet)) :
             $response = $queryGet;
         endif;
 
         return $response;
     }
 
-    public function handleCheckProfile() {
+    public function handleCheckProfile()
+    {
         $queryCheck = $this->db->table('profile')
             ->where('candidate_id', '=', getIdUserLogin())
             ->first();
@@ -337,6 +343,61 @@ class ProfileModel extends Model {
         $response = [];
 
         if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleCountJobApplied()
+    {
+        $queryGet = $this->db->table('job_applications')
+            ->select('job_applications.id')
+            ->where('job_applications.candidate_id', '=', getIdUserLogin())
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = count($queryGet);
+        else :
+            $response = 0;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetListJobApplied($filters = [])
+    {
+        $queryGet = $this->db->table('job_applications')
+            ->select('job_applications.id, job_applications.fullname, jobs.title, 
+                job_applications.job_id, job_applications.create_at, job_applications.status')
+            ->join('jobs', 'jobs.id = job_applications.job_id')
+            ->orderBy('job_applications.create_at', 'DESC')
+            ->where('job_applications.candidate_id', '=', getIdUserLogin());
+
+        $response = [];
+        $checkNull = false;
+
+        if (!empty($filters)) :
+            foreach ($filters as $key => $value) :
+                $queryGet->where($key, '=', $value);
+            endforeach;
+        endif;
+
+        $queryGet = $queryGet->get();
+
+        if (!empty($queryGet['data'])) :
+            foreach ($queryGet['data'] as $key => $item) :
+                foreach ($item as $subKey => $subItem) :
+                    if ($subItem === NULL || $subItem === '') :
+                        $checkNull = true;
+                    endif;
+                endforeach;
+            endforeach;
+        endif;
+
+        if (!$checkNull) :
             $response = $queryGet;
         endif;
 
