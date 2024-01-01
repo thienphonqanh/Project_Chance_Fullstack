@@ -4,7 +4,7 @@
 // $routes['default_controller'] = 'client/home';
 $routes['/'] = 'client/home';
 $routes['trang-chu'] = 'client/home';
-$routes['admin'] = 'admin/dashboard';
+$routes['admin'] = 'admin/dashboard/index';
 
 
 // Route Auth
@@ -115,3 +115,5 @@ $routes['ntd/quan-ly-ung-vien/ho-so-ung-tuyen'] = 'client/employer/appliedJob';
 $routes['ntd/quan-ly-ung-vien/ho-so-ung-tuyen/trang-thai'] = 'client/employer/changeStatusAppliedProfile';
 $routes['ntd/quan-ly-ung-vien/ho-so-ung-tuyen/gui-email'] = 'client/employer/sendMailApplied';
 $routes['ntd/quan-ly-ung-vien/ho-so-ung-tuyen/xem-ho-so'] = 'client/employer/viewProfile';
+
+$routes['admin/doi-mat-khau'] = 'admin/dashboard/changePassword';

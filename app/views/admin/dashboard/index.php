@@ -7,14 +7,15 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3><?php echo !empty($countCandidate) ? $countCandidate : ''; ?></h3>
 
-                        <p>New Orders</p>
+                        <p>Số lượng ứng viên</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo _WEB_ROOT; ?>/groups/ung-vien" class="small-box-footer">Chi tiết <i
+                            class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -22,14 +23,15 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>53<sup style="font-size: 20px">%</sup></h3>
+                        <h3><?php echo !empty($countEmployer) ? $countEmployer : ''; ?></h3>
 
-                        <p>Bounce Rate</p>
+                        <p>Số lượng nhà tuyển dụng</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo _WEB_ROOT; ?>/groups/nha-tuyen-dung" class="small-box-footer">Chi tiết <i
+                            class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -37,14 +39,15 @@
                 <!-- small box -->
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3>44</h3>
+                        <h3><?php echo !empty($countJob) ? $countJob : ''; ?></h3>
 
-                        <p>User Registrations</p>
+                        <p>Số lượng việc làm</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo _WEB_ROOT; ?>/jobs/danh-sach" class="small-box-footer">Chi tiết <i
+                            class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -52,14 +55,15 @@
                 <!-- small box -->
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>65</h3>
+                        <h3><?php echo !empty($countHandbook) ? $countHandbook : ''; ?></h3>
 
-                        <p>Unique Visitors</p>
+                        <p>Số lương bài viết</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo _WEB_ROOT; ?>/handbooks/danh-sach" class="small-box-footer">Chi tiết <i
+                            class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

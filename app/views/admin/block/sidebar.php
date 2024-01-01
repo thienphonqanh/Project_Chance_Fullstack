@@ -10,7 +10,8 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="<?php echo _WEB_ROOT . '/' . getAvatarUserLogin(); ?>" style="width: 32px; height: 32px;" class="img-circle elevation-2" alt="User Image">
+                <img src="<?php echo _WEB_ROOT . '/' . getAvatarUserLogin(); ?>" style="width: 32px; height: 32px;"
+                    class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block"><?php echo getNameUserLogin(); ?></a>
@@ -35,7 +36,8 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="<?php echo _WEB_ROOT; ?>/admin" class="nav-link <?php echo handleActiveSidebar('admin') ? 'active' : false; ?>">
+                    <a href="<?php echo _WEB_ROOT; ?>/admin"
+                        class="nav-link <?php echo handleActiveSidebar('admin') ? 'active' : false; ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Trang chủ
@@ -52,13 +54,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo _WEB_ROOT; ?>/groups/nha-tuyen-dung" class="nav-link <?php echo handleActiveSidebar('groups', 'nhan-su') ? 'active' : false; ?>">
+                            <a href="<?php echo _WEB_ROOT; ?>/groups/nha-tuyen-dung"
+                                class="nav-link <?php echo handleActiveSidebar('groups', 'nha-tuyen-dung') ? 'active' : false; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách nhà tuyển dụng</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo _WEB_ROOT; ?>/groups/ung-vien" class="nav-link <?php echo handleActiveSidebar('groups', 'ung-vien') ? 'active' : false; ?>">
+                            <a href="<?php echo _WEB_ROOT; ?>/groups/ung-vien"
+                                class="nav-link <?php echo handleActiveSidebar('groups', 'ung-vien') ? 'active' : false; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách ứng viên</p>
                             </a>
@@ -75,13 +79,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo _WEB_ROOT; ?>/jobs/danh-sach" class="nav-link <?php echo handleActiveSidebar('jobs', 'danh-sach') ? 'active' : false; ?>">
+                            <a href="<?php echo _WEB_ROOT; ?>/jobs/danh-sach"
+                                class="nav-link <?php echo handleActiveSidebar('jobs', 'danh-sach') ? 'active' : false; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách việc làm</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo _WEB_ROOT; ?>/jobs/ho-so-ung-vien" class="nav-link <?php echo handleActiveSidebar('jobs', 'ho-so-ung-vien') ? 'active' : false; ?>">
+                            <a href="<?php echo _WEB_ROOT; ?>/jobs/ho-so-ung-vien"
+                                class="nav-link <?php echo handleActiveSidebar('jobs', 'ho-so-ung-vien') ? 'active' : false; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Hồ sơ ứng viên</p>
                             </a>
@@ -98,7 +104,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo _WEB_ROOT; ?>/handbooks/danh-sach" class="nav-link <?php echo handleActiveSidebar('handbooks', 'danh-sach') ? 'active' : false; ?>">
+                            <a href="<?php echo _WEB_ROOT; ?>/handbooks/danh-sach"
+                                class="nav-link <?php echo handleActiveSidebar('handbooks', 'danh-sach') ? 'active' : false; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách tin tức</p>
                             </a>
@@ -115,7 +122,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo _WEB_ROOT; ?>/contacts/danh-sach" class="nav-link <?php echo handleActiveSidebar('contacts', 'danh-sach') ? 'active' : false; ?>">
+                            <a href="<?php echo _WEB_ROOT; ?>/contacts/danh-sach"
+                                class="nav-link <?php echo handleActiveSidebar('contacts', 'danh-sach') ? 'active' : false; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách liên hệ</p>
                             </a>
