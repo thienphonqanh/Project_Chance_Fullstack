@@ -588,4 +588,28 @@ class Job extends Controller
         $this->data['dataView']['old'] = Session::flash('chance_session_old');
         $this->render('layouts/layout', $this->data, 'admin');
     }
+
+    public function viewCV() {
+        $cvId = isset($_GET['id']) ? $_GET['id'] : null;
+
+        if (isset($cvId)):
+            $cvFile = $this->jobModel->handleGetFileCV($cvId);
+
+            if (!empty($cvFile) && file_exists($cvFile['cv_file'])) :
+                $fileExtension = pathinfo($cvFile['cv_file'], PATHINFO_EXTENSION);
+                // Hiển thị file PDF trực tiếp
+                if (pathinfo($fileExtension, PATHINFO_EXTENSION) === 'pdf') :
+                    header('Content-type: application/pdf');
+                    readfile($cvFile['cv_file']);
+                else :
+                    // Hiển thị link tải về cho các định dạng khác
+                    header('Content-type: application/octet-stream');
+                    header('Content-Disposition: attachment; filename="' . $cvFile['cv_file'] . '"');
+                    readfile($cvFile['cv_file']);
+                endif;
+            endif;
+        endif;
+
+        
+    }
 }

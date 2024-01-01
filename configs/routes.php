@@ -60,6 +60,7 @@ $routes['jobs/ho-so-ung-vien/trang-thai'] = 'admin/job/changeStatusCandidateProf
 $routes['jobs/ho-so-ung-vien/xoa'] = 'admin/job/deleteCandidateProfile';
 $routes['jobs/ho-so-ung-vien/chinh-sua'] = 'admin/job/editCandidateProfile';
 $routes['jobs/ho-so-ung-vien/thong-tin'] = 'admin/job/viewCandidateProfile';
+$routes['jobs/ho-so-ung-vien/xem-cv'] = 'admin/job/viewCV';
 $routes['jobs/danh-sach/thong-tin'] = 'admin/job/viewJob';
 $routes['jobs/danh-sach/trang-thai'] = 'admin/job/changeStatus';
 $routes['jobs/danh-sach/chinh-sua'] = 'admin/job/updateJob';

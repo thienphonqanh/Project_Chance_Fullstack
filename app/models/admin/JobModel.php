@@ -754,4 +754,19 @@ class JobModel extends Model
 
         return $response;
     }
+
+    public function handleGetFileCV($cvId) {
+        $queryGet = $this->db->table('profile')
+            ->select('cv_file')
+            ->where('id', '=', $cvId)
+            ->first();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
 }
