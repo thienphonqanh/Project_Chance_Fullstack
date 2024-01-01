@@ -114,3 +114,4 @@ $routes['ntd/quan-ly-dang-tuyen/danh-sach/xoa'] = 'client/employer/deleteJob';
 $routes['ntd/quan-ly-ung-vien/ho-so-ung-tuyen'] = 'client/employer/appliedJob';
 $routes['ntd/quan-ly-ung-vien/ho-so-ung-tuyen/trang-thai'] = 'client/employer/changeStatusAppliedProfile';
 $routes['ntd/quan-ly-ung-vien/ho-so-ung-tuyen/gui-email'] = 'client/employer/sendMailApplied';
+$routes['ntd/quan-ly-ung-vien/ho-so-ung-tuyen/xem-ho-so'] = 'client/employer/viewProfile';

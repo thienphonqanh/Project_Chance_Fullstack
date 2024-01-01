@@ -762,4 +762,51 @@ class Employer extends Controller
         $this->data['dataView']['old'] = Session::flash('chance_session_old');
         $this->render('layouts/ntd.layout', $this->data, 'client');
     }
+
+    public function viewProfile()
+    {
+        $candidateId = $_GET['id'];
+
+        if (!empty($candidateId)) :
+            $profileId = $this->employerModel->handleGetProfileId($candidateId);
+            $profileId = $profileId['id'];
+
+            if (!empty($profileId)) :
+                $result = $this->employerModel->handleGetPersonalInformation($profileId);
+
+                if (!empty($result)) :
+                    $information = $result;
+                    $this->data['dataView']['information'] = $information;
+                endif;
+
+                $jobField = $this->employerModel->handleGetJobField();
+                $rank = $this->employerModel->handleGetJobRank();
+                $education = $this->employerModel->handleGetEducation();
+                $yearExp = $this->employerModel->handleGetYearExp();
+                $formWork = $this->employerModel->handleGetFormWork();
+
+                if (
+                    !empty($jobField) && !empty($rank)
+                    && !empty($education) && !empty($yearExp) && !empty($formWork)
+                ) :
+
+                    $this->data['dataView']['jobField'] = $jobField;
+                    $this->data['dataView']['rank'] = $rank;
+                    $this->data['dataView']['education'] = $education;
+                    $this->data['dataView']['yearExp'] = $yearExp;
+                    $this->data['dataView']['formWork'] = $formWork;
+                endif;
+
+                $profileInformation = $this->employerModel->handleGetPersonalProfile($profileId);
+
+                if (!empty($profileInformation)) :
+                    $this->data['dataView']['profileInformation'] = $profileInformation;
+                endif;
+            endif;
+        endif;
+
+        $this->data['body'] = 'client/ntd.profile/view_candidate_profile';
+        $this->data['dataView'][''] = '';
+        $this->render('layouts/ntd.layout', $this->data, 'client');
+    }
 }

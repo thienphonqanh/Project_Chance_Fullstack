@@ -15,12 +15,14 @@ class Dashboard extends Controller
             $response->redirect('trang-chu');
         endif;
 
-        if (!isUser()) :
+        if (isAdmin()) :
             $this->data['body'] = 'dashboard/index';
             $this->data['dataView'][''] = '';
             $this->render('layouts/layout', $this->data, 'admin');
-        else :
+        elseif (isUser()) :
             $response->redirect('trang-chu');
+        elseif (isEmployer()) :
+            $response->redirect('ntd');
         endif;
     }
 }

@@ -385,7 +385,7 @@ class EmployerModel extends Model
     {
         $queryGet = $this->db->table('job_applications')
             ->select('job_applications.id, job_applications.fullname, jobs.title, 
-                job_applications.create_at, job_applications.status')
+                job_applications.create_at, job_applications.status, job_applications.candidate_id')
             ->join('candidates', 'candidates.id = job_applications.candidate_id')
             ->join('jobs', 'jobs.id = job_applications.job_id')
             ->orderBy('job_applications.create_at', 'DESC')
@@ -561,5 +561,53 @@ class EmployerModel extends Model
         endif;
 
         return false;
+    }
+
+    public function handleGetPersonalInformation($profileId)
+    {
+        $queryGet = $this->db->table('candidates')
+            ->select('candidates.*')
+            ->join('profile', 'profile.candidate_id = candidates.id')
+            ->where('profile.id', '=', $profileId)
+            ->get();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetPersonalProfile($profileId)
+    {
+        $queryGet = $this->db->table('profile')
+            ->where('profile.id', '=', $profileId)
+            ->first();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
+    }
+
+    public function handleGetProfileId($candidateId)
+    {
+        $queryGet = $this->db->table('profile')
+            ->select('profile.id')
+            ->where('profile.candidate_id', '=', $candidateId)
+            ->first();
+
+        $response = [];
+
+        if (!empty($queryGet)) :
+            $response = $queryGet;
+        endif;
+
+        return $response;
     }
 }
