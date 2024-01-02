@@ -341,19 +341,69 @@ class GroupModel extends Model
         return false;
     }
 
+    public function handleDeleteProfile($itemsToDelete = '') 
+    {
+        $itemsToDelete = '(' . $itemsToDelete . ')';
+
+        $queryDeleteProfike = $this->db->table('profile')
+            ->where('candidate_id', 'IN', $itemsToDelete)
+            ->delete();
+        
+        if ($queryDeleteProfike):
+            return true;
+        endif;
+        
+        return false;
+    }
+
+    public function handleCheckProfile($itemsToDelete = '') {
+        $itemsToDelete = '(' . $itemsToDelete . ')';
+        
+        $queryCheckProfike = $this->db->table('profile')
+            ->where('profile.candidate_id', 'IN', $itemsToDelete)
+            ->get();
+
+        if (!empty($queryCheckProfike)) :
+            return true;
+        endif;
+
+        return false;
+    }
+
     // Xử lý xoá ứng viên
     public function handleDeleteCandidate($itemsToDelete = '')
     {
         $itemsToDelete = '(' . $itemsToDelete . ')';
 
-        $queryDelete = $this->db->table('candidates')
-            ->where('id', 'IN', $itemsToDelete)
-            ->delete();
+        $queryDeleteProfile = $this->db->table('login_token')
+            ->select('id')
+            ->where('candidate_id', 'IN', $itemsToDelete)
+            ->get();
 
-        if ($queryDelete) :
-            return true;
+        if (!empty($queryDeleteProfile)):
+            $queryDeleteLogin = $this->db->table('login_token')
+                ->where('candidate_id', 'IN', $itemsToDelete)
+                ->delete();
+
+            if ($queryDeleteLogin):
+                $queryDelete = $this->db->table('candidates')
+                    ->where('id', 'IN', $itemsToDelete)
+                    ->delete();
+    
+                if ($queryDelete) :
+                    return true;
+                endif;
+            endif;
+        else:
+            $queryDelete = $this->db->table('candidates')
+                ->where('id', 'IN', $itemsToDelete)
+                ->delete();
+
+            if ($queryDelete) :
+                return true;
+            endif;
         endif;
-
+        
         return false;
     }
 

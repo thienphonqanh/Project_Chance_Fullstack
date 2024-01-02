@@ -276,11 +276,35 @@ class JobModel extends Model
     {
         $itemsToDelete = '(' . $itemsToDelete . ')';
 
-        $queryDelete = $this->db->table('jobs')
-            ->where('id', 'IN', $itemsToDelete)
-            ->delete();
+        $queryCheck = $this->db->table('job_applications')
+            ->where('job_applications.job_id', 'IN', $itemsToDelete)
+            ->get();
+        
+        if (!empty($queryCheck)):
+            $queryDeleteJob = $this->db->table('job_applications')
+                ->where('job_applications.job_id', 'IN', $itemsToDelete)
+                ->delete();
 
-        return $queryDelete ? true : false;
+            if ($queryDeleteJob):
+                $queryDelete = $this->db->table('jobs')
+                ->where('id', 'IN', $itemsToDelete)
+                ->delete();
+
+                if ($queryDelete):
+                    return true;
+                endif;
+            endif;
+        else:
+            $queryDelete = $this->db->table('jobs')
+                ->where('id', 'IN', $itemsToDelete)
+                ->delete();
+
+            if ($queryDelete):
+                return true;
+            endif;
+        endif;
+
+        return false;
     }
 
     // Xử lý xoá và update số lượng

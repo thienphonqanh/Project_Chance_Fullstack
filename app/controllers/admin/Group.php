@@ -659,7 +659,6 @@ class Group extends Controller
             $itemsToDelete = isset($data['item']) ? $data['item'] : [];
             $itemsToDelete = implode(',', $itemsToDelete);
 
-
             $result = $this->groupModel->handleDeleteEmployer($itemsToDelete);
 
             if ($result) :
@@ -681,13 +680,25 @@ class Group extends Controller
             $itemsToDelete = isset($data['item']) ? $data['item'] : [];
             $itemsToDelete = implode(',', $itemsToDelete);
 
+            $checkProfile = $this->groupModel->handleCheckProfile($itemsToDelete);
 
-            $result = $this->groupModel->handleDeleteCandidate($itemsToDelete);
+            if ($checkProfile) :
+                $deleteProfile = $this->groupModel->handleDeleteProfile($itemsToDelete);
 
-            if ($result) :
-                $response->redirect('groups/ung-vien');
+                if ($deleteProfile) :
+                    $result = $this->groupModel->handleDeleteCandidate($itemsToDelete);
+    
+                    if ($result) :
+                        $response->redirect('groups/ung-vien');
+                    endif;
+                endif;
+            else:
+                $result = $this->groupModel->handleDeleteCandidate($itemsToDelete);
+    
+                if ($result) :
+                    $response->redirect('groups/ung-vien');
+                endif;
             endif;
-
         endif;
     }
 }
